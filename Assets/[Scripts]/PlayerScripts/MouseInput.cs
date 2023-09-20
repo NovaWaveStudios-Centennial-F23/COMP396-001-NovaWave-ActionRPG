@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class MouseInput : MonoBehaviour
 {
+    [HideInInspector]
     public Vector3 mouseInputPosition;
   
     // Update is called once per frame
@@ -16,7 +17,7 @@ public class MouseInput : MonoBehaviour
         if(Physics.Raycast(ray, out hit, float.MaxValue))
         {
             mouseInputPosition = hit.point;
-            UnityEngine.Debug.Log(mouseInputPosition);
+           // UnityEngine.Debug.Log(mouseInputPosition);
         }
     }
 }
