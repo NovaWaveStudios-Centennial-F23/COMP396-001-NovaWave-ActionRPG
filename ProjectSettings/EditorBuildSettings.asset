@@ -4,5 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Networking Test/Scenes/Menu.unity
+    guid: 02471d71655475f4c9d7d885180eced3
+  - enabled: 1
+    path: Assets/Networking Test/Scenes/GameList.unity
+    guid: b87d03d27edd9c141a336dfd9662870a
+  - enabled: 1
+    path: Assets/Networking Test/Scenes/NetworkTest1.unity
+    guid: b417a3dc5031d8d4183e3014cf81a801
+  - enabled: 1
+    path: Assets/Networking Test/Scenes/NetworkTest2.unity
+    guid: 2b038de9a05bb584381627dc8125277a
   m_configObjects: {}
