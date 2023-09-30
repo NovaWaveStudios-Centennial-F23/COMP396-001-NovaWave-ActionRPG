@@ -313,11 +313,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62277f45532a47b478b1fd33acf25972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  igniteScriptableObject: {fileID: 0}
+  igniteSO: {fileID: 0}
+  plasmaFieldSO: {fileID: 0}
   ignitePrefab: {fileID: 1442896983113451992, guid: 8109a70c8d21b4c4c99a3f5119eb932d, type: 3}
+  plasmaFieldPrefab: {fileID: 1963430750495883453, guid: 23d3f24bb3e1c1544a989f9fe740208b, type: 3}
   groundMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
 --- !u!1 &1591455705
 GameObject:
   m_ObjectHideFlags: 0

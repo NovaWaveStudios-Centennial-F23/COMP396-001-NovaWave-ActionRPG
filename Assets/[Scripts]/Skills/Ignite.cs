@@ -8,11 +8,10 @@ public class Ignite : MonoBehaviour
     public IgniteScriptableObject ignite;
     public Vector3 direction;
 
-    [SerializeField] private int damage;
-
+    
+    private int damage;
     private Rigidbody rb;
     private float speed = 20f;
-    private Quaternion rotation;
 
     void Start()
     {
