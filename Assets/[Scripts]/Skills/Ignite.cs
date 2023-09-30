@@ -12,11 +12,12 @@ public class Ignite : MonoBehaviour
 
     private Rigidbody rb;
     private float speed = 20f;
-   
+    private Quaternion rotation;
+
     void Start()
     {
         damage = ignite.damage;
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();        
     }
 
     void Update()

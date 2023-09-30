@@ -314,7 +314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   igniteScriptableObject: {fileID: 0}
-  ignitePrefab: {fileID: 6115374442436653417, guid: 8109a70c8d21b4c4c99a3f5119eb932d, type: 3}
+  ignitePrefab: {fileID: 1442896983113451992, guid: 8109a70c8d21b4c4c99a3f5119eb932d, type: 3}
   groundMask:
     serializedVersion: 2
     m_Bits: 8
