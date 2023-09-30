@@ -319,7 +319,7 @@ MonoBehaviour:
   plasmaFieldPrefab: {fileID: 1963430750495883453, guid: 23d3f24bb3e1c1544a989f9fe740208b, type: 3}
   groundMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
 --- !u!1 &1591455705
 GameObject:
   m_ObjectHideFlags: 0
