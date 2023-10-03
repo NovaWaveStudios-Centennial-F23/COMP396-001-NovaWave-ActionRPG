@@ -6,12 +6,12 @@ using UnityEngine;
 public class SkillsController : MonoBehaviour
 {
     [Header("Scriptable Objects")]
-    [SerializeField] private IgniteScriptableObject igniteSO;
-    [SerializeField] private PlasmaFieldScriptableObject plasmaFieldSO;
+    [SerializeField] private FireballScriptableObject fireballSO;
+    [SerializeField] private FrostNovaScriptableObject frostNovaSO;
 
     [Header("Prefabs")]
-    [SerializeField] private GameObject ignitePrefab;
-    [SerializeField] private GameObject plasmaFieldPrefab;
+    [SerializeField] private GameObject fireballPrefab;
+    [SerializeField] private GameObject frostNovaPrefab;
 
     [Header("Others")]
     [SerializeField] private LayerMask groundMask;
@@ -38,28 +38,28 @@ public class SkillsController : MonoBehaviour
         //Instantiate Ignite Prefab
         if (Input.GetKeyDown(KeyCode.E))
         {
-            InitIgnite();
+            InitFireball();
         }
 
         //PLASMA FIELD
         if (Input.GetKeyDown(KeyCode.F))
         {
-            InitPlasmaField();
+            InitFrostNova();
         }
     }
 
-    private void InitIgnite()
+    private void InitFireball()
     {
-        igniteSO= Resources.Load<IgniteScriptableObject>("Skills/Ignite/Ignite2");
-        GameObject ignite = Instantiate(ignitePrefab, transform.position, Quaternion.identity);
-        ignite.GetComponent<Ignite>().ignite = igniteSO;
-        ignite.GetComponent<Ignite>().direction = mousePosition;
+        fireballSO= Resources.Load<FireballScriptableObject>("Skills/Ignite/Ignite2");
+        GameObject ignite = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
+        ignite.GetComponent<Fireball>().fireball = fireballSO;
+        ignite.GetComponent<Fireball>().direction = mousePosition;
     }
 
-    private void InitPlasmaField()
+    private void InitFrostNova()
     {
-        plasmaFieldSO = Resources.Load<PlasmaFieldScriptableObject>("Skills/PlasmaField/PlasmaField1");
-        GameObject plasmaField = Instantiate(plasmaFieldPrefab, transform.position, Quaternion.identity);
-        plasmaField.GetComponent<PlasmaField>().plasmaField = plasmaFieldSO;
+        frostNovaSO = Resources.Load<FrostNovaScriptableObject>("Skills/PlasmaField/PlasmaField1");
+        GameObject plasmaField = Instantiate(frostNovaPrefab, transform.position, Quaternion.identity);
+        plasmaField.GetComponent<FrostNova>().frostNova = frostNovaSO;
     }
 }

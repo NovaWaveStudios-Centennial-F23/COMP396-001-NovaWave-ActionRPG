@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlasmaField : MonoBehaviour
+public class FrostNova : MonoBehaviour
 {
-    public PlasmaFieldScriptableObject plasmaField;
+    public FrostNovaScriptableObject frostNova;
     IEnumerator TurnOff()
     {
-        yield return new WaitForSeconds(plasmaField.duration);
+        yield return new WaitForSeconds(frostNova.duration);
         Destroy(this.gameObject);
     }
     // Start is called before the first frame update

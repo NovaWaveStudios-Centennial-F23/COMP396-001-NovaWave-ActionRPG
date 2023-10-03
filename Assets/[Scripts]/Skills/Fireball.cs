@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class Ignite : MonoBehaviour
+public class Fireball : MonoBehaviour
 {
-    public IgniteScriptableObject ignite;
+    public FireballScriptableObject fireball;
     public Vector3 direction;
 
     
@@ -15,7 +15,7 @@ public class Ignite : MonoBehaviour
 
     void Start()
     {
-        damage = ignite.damage;
+        damage = fireball.damage;
         rb = GetComponent<Rigidbody>();        
     }
 
