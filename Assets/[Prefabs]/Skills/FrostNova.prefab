@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7038661698565560294}
   - component: {fileID: 5074665351123817848}
   m_Layer: 0
-  m_Name: PlasmaField
+  m_Name: FrostNova
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -50,7 +50,7 @@ public class SkillsController : MonoBehaviour
 
     private void InitFireball()
     {
-        fireballSO= Resources.Load<FireballScriptableObject>("Skills/Ignite/Ignite2");
+        fireballSO= Resources.Load<FireballScriptableObject>("Skills/Fireball/Fireball2");
         GameObject ignite = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
         ignite.GetComponent<Fireball>().fireball = fireballSO;
         ignite.GetComponent<Fireball>().direction = mousePosition;

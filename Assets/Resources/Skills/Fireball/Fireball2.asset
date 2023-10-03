@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7fe6e3cb94b0964891886fdc3d997e2, type: 3}
   m_Name: Fireball2
   m_EditorClassIdentifier: 
-  damage: 10
+  level: 5
+  element: 0
+  coolDown: 8
+  duration: 6
+  AOE: 3

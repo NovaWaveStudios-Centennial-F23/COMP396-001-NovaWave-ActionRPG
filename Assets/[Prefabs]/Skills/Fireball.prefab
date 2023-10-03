@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6705861958087821581}
   - component: {fileID: 566306503169897383}
   m_Layer: 0
-  m_Name: Ignite
+  m_Name: Fireball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

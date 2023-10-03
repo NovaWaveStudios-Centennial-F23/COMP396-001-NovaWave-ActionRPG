@@ -9,13 +9,14 @@ public class Fireball : MonoBehaviour
     public Vector3 direction;
 
     
-    private int damage;
+    private float damage;
     private Rigidbody rb;
     private float speed = 20f;
 
     void Start()
     {
-        damage = fireball.damage;
+        damage = Mathf.Round(28 * Mathf.Log((600 * fireball.level) + 650) - 190);
+        Debug.Log(damage);
         rb = GetComponent<Rigidbody>();        
     }
 
