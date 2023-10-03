@@ -17,4 +17,5 @@ public class FireballScriptableObject : ScriptableObject
     public float coolDown;
     public float duration;
     public float AOE;
+    public int projectileSpeed;
 }

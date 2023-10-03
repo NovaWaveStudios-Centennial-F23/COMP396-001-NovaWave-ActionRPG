@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class SkillsController : MonoBehaviour
 {
+    private static SkillsController instance;
+    public static SkillsController Instance { get { return instance; } }
+
     [Header("Scriptable Objects")]
     [SerializeField] private FireballScriptableObject fireballSO;
     [SerializeField] private FrostNovaScriptableObject frostNovaSO;
@@ -15,18 +18,31 @@ public class SkillsController : MonoBehaviour
 
     [Header("Others")]
     [SerializeField] private LayerMask groundMask;
+    [SerializeField] private SkillTree skillTree;
 
     private Vector3 mousePosition;
-    // Start is called before the first frame update
-    void Start()
-    {
+    public bool fireballCooldown = false;
 
+    void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+        void Update()
     {
-        //IGNITE
+        SkillCast();
+    }
+
+    private void SkillCast()
+    {
+        //FIREBALL
         //Raycast
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
@@ -36,12 +52,12 @@ public class SkillsController : MonoBehaviour
         }
 
         //Instantiate Ignite Prefab
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && !fireballCooldown)
         {
             InitFireball();
         }
 
-        //PLASMA FIELD
+        //FROST NOVA
         if (Input.GetKeyDown(KeyCode.F))
         {
             InitFrostNova();
@@ -50,16 +66,17 @@ public class SkillsController : MonoBehaviour
 
     private void InitFireball()
     {
-        fireballSO= Resources.Load<FireballScriptableObject>("Skills/Fireball/Fireball2");
-        GameObject ignite = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
-        ignite.GetComponent<Fireball>().fireball = fireballSO;
-        ignite.GetComponent<Fireball>().direction = mousePosition;
+        fireballSO= Resources.Load<FireballScriptableObject>("Skills/Fireball/Fireball" + skillTree.fireballLvl.ToString());        
+        GameObject fireball = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
+        fireball.GetComponent<Fireball>().fireball = fireballSO;
+        fireball.GetComponent<Fireball>().direction = mousePosition;
+        fireballCooldown = true;
     }
 
     private void InitFrostNova()
     {
         frostNovaSO = Resources.Load<FrostNovaScriptableObject>("Skills/PlasmaField/PlasmaField1");
-        GameObject plasmaField = Instantiate(frostNovaPrefab, transform.position, Quaternion.identity);
-        plasmaField.GetComponent<FrostNova>().frostNova = frostNovaSO;
+        GameObject frostNova = Instantiate(frostNovaPrefab, transform.position, Quaternion.identity);
+        frostNova.GetComponent<FrostNova>().frostNova = frostNovaSO;
     }
 }

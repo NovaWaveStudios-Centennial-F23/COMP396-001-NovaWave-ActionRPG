@@ -5,7 +5,7 @@ using UnityEngine;
 public class FrostNova : MonoBehaviour
 {
     public FrostNovaScriptableObject frostNova;
-    IEnumerator TurnOff()
+    IEnumerator DurationEnd()
     {
         yield return new WaitForSeconds(frostNova.duration);
         Destroy(this.gameObject);
@@ -13,6 +13,6 @@ public class FrostNova : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(TurnOff());
+        StartCoroutine(DurationEnd());
     }
 }
