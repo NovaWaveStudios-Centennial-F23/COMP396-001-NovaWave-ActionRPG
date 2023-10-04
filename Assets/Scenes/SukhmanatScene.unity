@@ -313,6 +313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62277f45532a47b478b1fd33acf25972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireballCooldown: 0
   fireballSO: {fileID: 0}
   frostNovaSO: {fileID: 0}
   fireballPrefab: {fileID: 1442896983113451992, guid: 8109a70c8d21b4c4c99a3f5119eb932d, type: 3}
@@ -321,7 +322,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   fireballSkillTree: {fileID: 1411277993}
-  fireballCooldown: 0
 --- !u!1 &1411277992
 GameObject:
   m_ObjectHideFlags: 0
@@ -351,11 +351,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6328ec5504c5014189dab5060275049, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseFireballLvl: 1
-  burning: 0
-  fireballDoubleCast: 1
-  fireballSpeedLvl: 0
-  fireballSpeedInc: 0
+  fireballLvl: 0
+  fireballStats: []
+  fireballNodes:
+  - nodeLvl: 0
+    nodeStat: []
+  - nodeLvl: 0
+    nodeStat:
+    - stat: 19
+      value: -0.2
+  - nodeLvl: 0
+    nodeStat:
+    - stat: 20
+      value: -0.01
+  - nodeLvl: 0
+    nodeStat:
+    - stat: 22
+      value: 0.1
+  - nodeLvl: 0
+    nodeStat:
+    - stat: 23
+      value: 0.05
+  - nodeLvl: 0
+    nodeStat:
+    - stat: 26
+      value: 1
 --- !u!4 &1411277994
 Transform:
   m_ObjectHideFlags: 0

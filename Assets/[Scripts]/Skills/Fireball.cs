@@ -12,8 +12,7 @@ using UnityEngine;
  * 5 - Radius
  * 6 - Projectile Speed
  * 7 - Range
- * 8 - Burning
- * 9 - Double Cast
+ * 8 - Double Cast
  */
 
 public class Fireball : MonoBehaviour

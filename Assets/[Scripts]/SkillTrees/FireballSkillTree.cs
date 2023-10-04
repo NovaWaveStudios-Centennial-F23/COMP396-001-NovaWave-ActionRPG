@@ -4,6 +4,11 @@ using UnityEngine;
 
 /* FIREBALL NODES INDEX
  * 0 - Base Fireball Level
+ * 1 - Cast Time
+ * 2 - Cooldown
+ * 3 - Radius
+ * 4 - Projectile Speed
+ * 5 - Double Cast
  */
 
 public class FireballSkillTree : MonoBehaviour
@@ -38,7 +43,8 @@ public class FireballSkillTree : MonoBehaviour
                 {
                     if (fireballStats[i].stat == fireballNodes[j].nodeStat[k].stat)
                     {
-                        fireballStats[i].value *= (fireballNodes[j].nodeLvl * fireballNodes[j].nodeStat[k].value);
+                        float valueInc = fireballStats[i].value * (fireballNodes[j].nodeLvl * fireballNodes[j].nodeStat[k].value);
+                        fireballStats[i].value += valueInc;
                     }
                 }
             }
