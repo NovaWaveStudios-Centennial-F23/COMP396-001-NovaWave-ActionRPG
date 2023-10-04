@@ -8,6 +8,8 @@ public class SkillsController : MonoBehaviour
     private static SkillsController instance;
     public static SkillsController Instance { get { return instance; } }
 
+    public bool fireballCooldown = false;
+
     [Header("Scriptable Objects")]
     [SerializeField] private FireballSO fireballSO;
     [SerializeField] private FrostNovaSO frostNovaSO;
@@ -21,7 +23,6 @@ public class SkillsController : MonoBehaviour
     [SerializeField] private FireballSkillTree fireballSkillTree;
 
     private Vector3 mousePosition;
-    public bool fireballCooldown = false;
 
     void Awake()
     {
@@ -68,15 +69,13 @@ public class SkillsController : MonoBehaviour
 
     private void InitFireball()
     {
-        fireballSO = Resources.Load<FireballSO>("Skills/Fireball/Fireball" + fireballSkillTree.baseFireballLvl.ToString());
-        fireballSO.speed = fireballSkillTree.GetFireballSpeed();
-        fireballSO.burning = fireballSkillTree.burning;
+        fireballSO = Resources.Load<FireballSO>("Skills/Fireball/Fireball" + fireballSkillTree.fireballLvl.ToString());
 
         GameObject fireball = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
         fireball.GetComponent<Fireball>().fireball = fireballSO;
         fireball.GetComponent<Fireball>().direction = mousePosition;
 
-        if (fireballSkillTree.fireballDoubleCast)
+        if (fireballSkillTree.fireballStats[10].value == 1)
         {
             GameObject fireball2 = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
             fireball2.GetComponent<Fireball>().fireball = fireballSO;

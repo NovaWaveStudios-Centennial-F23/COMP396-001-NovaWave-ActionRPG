@@ -9,20 +9,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7fe6e3cb94b0964891886fdc3d997e2, type: 3}
+  m_Script: {fileID: 11500000, guid: 3e850c26349c7094c99f0cdb44cc3087, type: 3}
   m_Name: Fireball2
   m_EditorClassIdentifier: 
-  level: 2
+  level: 1
   damageType: 1
-  minDamage: 0
-  maxDamage: 0
-  critRate: 0
-  critDamage: 0
-  castTime: 0
-  coolDown: 1
-  duration: 6
-  radius: 0
-  speed: 0
-  range: 0
-  doubleCast: 0
-  burning: 0
+  stats:
+  - stat: 17
+    value: 0
+  - stat: 18
+    value: 0
+  - stat: 19
+    value: 0
+  - stat: 20
+    value: 0
+  - stat: 21
+    value: 0
+  - stat: 22
+    value: 0
+  - stat: 23
+    value: 0
+  - stat: 24
+    value: 0
+  - stat: 25
+    value: 0
+  - stat: 26
+    value: 0

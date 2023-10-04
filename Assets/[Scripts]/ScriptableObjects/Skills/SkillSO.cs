@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "SkillSciptableObject", menuName = "ScriptableObejcts/Skills/Create New Skill")]
 public class SkillSO : ScriptableObject
-{  
+{
     public int level;
     public enum DamageType
     {
@@ -14,10 +16,5 @@ public class SkillSO : ScriptableObject
     }
 
     public DamageType damageType;
-    public float minDamage;
-    public float maxDamage;
-    public float castTime;
-    public float cooldown;
-    public float duration;
-    public float radius;
+    public List<Stats> stats = new List<Stats>();
 }
