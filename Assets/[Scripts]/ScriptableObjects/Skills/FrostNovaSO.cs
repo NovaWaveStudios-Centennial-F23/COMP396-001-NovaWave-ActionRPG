@@ -4,9 +4,8 @@ using UnityEngine;
 
 
 [CreateAssetMenu(fileName = "FrostNovaScriptableObject", menuName = "ScriptableObejcts/Skills/FrostNova")]
-public class FrostNovaScriptableObject : ScriptableObject
+public class FrostNovaSO : SkillSO
 {
-    public int damage;
-    public float duration;
+
 }
 

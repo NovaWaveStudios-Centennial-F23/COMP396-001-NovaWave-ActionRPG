@@ -13,8 +13,16 @@ MonoBehaviour:
   m_Name: Fireball1
   m_EditorClassIdentifier: 
   level: 1
-  element: 0
+  damageType: 1
+  minDamage: 0
+  maxDamage: 0
+  critRate: 0
+  critDamage: 0
+  castTime: 0
   coolDown: 1
   duration: 5
-  AOE: 2
-  projectileSpeed: 5
+  radius: 0
+  speed: 0
+  range: 0
+  doubleCast: 0
+  burning: 0

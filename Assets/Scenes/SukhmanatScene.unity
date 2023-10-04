@@ -320,7 +320,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 8
-  skillTree: {fileID: 1411277993}
+  fireballSkillTree: {fileID: 1411277993}
   fireballCooldown: 0
 --- !u!1 &1411277992
 GameObject:
@@ -333,7 +333,7 @@ GameObject:
   - component: {fileID: 1411277994}
   - component: {fileID: 1411277993}
   m_Layer: 0
-  m_Name: SkillTree
+  m_Name: FireballSkillTree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -351,7 +351,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6328ec5504c5014189dab5060275049, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireballLvl: 1
+  baseFireballLvl: 0
+  burning: 0
+  fireballDoubleCast: 0
+  fireballSpeedLvl: 0
+  fireballCooldownLvl: 0
+  fireballSpeedInc: 0
+  fireballCooldownInc: 0
 --- !u!4 &1411277994
 Transform:
   m_ObjectHideFlags: 0

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Fireball : MonoBehaviour
 {
-    public FireballScriptableObject fireball;
+    public FireballSO fireball;
     public Vector3 direction;
     public float damage;
 
@@ -19,8 +19,7 @@ public class Fireball : MonoBehaviour
 
     void Start()
     {
-        damage = Mathf.Round(28 * Mathf.Log((600 * fireball.level) + 650) - 190);
-        Debug.Log(damage);
+        damage = Random.Range(fireball.minDamage, fireball.maxDamage);
         rb = GetComponent<Rigidbody>();
 
         StartCoroutine(Cooldown());
@@ -28,7 +27,12 @@ public class Fireball : MonoBehaviour
 
     void Update()
     {
+        Projectile();
+    }
+
+    private void Projectile()
+    {
         transform.forward = (direction * 100) - transform.position;
-        rb.velocity = transform.forward * fireball.projectileSpeed;
+        rb.velocity = transform.forward * fireball.speed;
     }
 }

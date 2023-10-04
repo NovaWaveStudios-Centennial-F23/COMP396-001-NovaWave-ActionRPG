@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FrostNova : MonoBehaviour
 {
-    public FrostNovaScriptableObject frostNova;
+    public FrostNovaSO frostNova;
     IEnumerator DurationEnd()
     {
         yield return new WaitForSeconds(frostNova.duration);
