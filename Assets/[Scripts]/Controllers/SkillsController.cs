@@ -11,7 +11,7 @@ public class SkillsController : MonoBehaviour
     public bool fireballCooldown = false;
 
     [Header("Scriptable Objects")]
-    [SerializeField] private FireballSO fireballSO;
+    [SerializeField] private SkillSO fireballSO;
     [SerializeField] private FrostNovaSO frostNovaSO;
 
     [Header("Prefabs")]
@@ -69,13 +69,13 @@ public class SkillsController : MonoBehaviour
 
     private void InitFireball()
     {
-        fireballSO = Resources.Load<FireballSO>("Skills/Fireball/Fireball" + fireballSkillTree.fireballLvl.ToString());
+        fireballSO = Resources.Load<SkillSO>("Skills/Fireball/Fireball" + fireballSkillTree.fireballLvl.ToString());
 
         GameObject fireball = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
         fireball.GetComponent<Fireball>().fireball = fireballSO;
         fireball.GetComponent<Fireball>().direction = mousePosition;
 
-        if (fireballSkillTree.fireballStats[10].value == 1)
+        if (fireballSkillTree.fireballStats[5].value == 1)
         {
             GameObject fireball2 = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
             fireball2.GetComponent<Fireball>().fireball = fireballSO;

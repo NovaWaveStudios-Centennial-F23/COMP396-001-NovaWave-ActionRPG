@@ -354,7 +354,7 @@ MonoBehaviour:
   fireballLvl: 0
   fireballStats: []
   fireballNodes:
-  - nodeLvl: 0
+  - nodeLvl: 5
     nodeStat: []
   - nodeLvl: 0
     nodeStat:

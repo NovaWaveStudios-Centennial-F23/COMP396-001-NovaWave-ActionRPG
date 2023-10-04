@@ -17,7 +17,7 @@ using UnityEngine;
 
 public class Fireball : MonoBehaviour
 {
-    public FireballSO fireball;
+    public SkillSO fireball;
     public Vector3 direction;
     public float damage;
 

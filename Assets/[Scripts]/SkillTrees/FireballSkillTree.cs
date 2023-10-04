@@ -15,10 +15,10 @@ public class FireballSkillTree : MonoBehaviour
 {
     public int fireballLvl;
     
-    public List<Stats> fireballStats;
+    public List<Stats> fireballStats = new List<Stats>();
     public List<Nodes> fireballNodes = new List<Nodes>();
 
-    private FireballSO fireballSO;
+    private SkillSO fireballSO;
 
     private void Start()
     {
@@ -29,7 +29,7 @@ public class FireballSkillTree : MonoBehaviour
     public void LoadFireball()
     {
         fireballLvl = fireballNodes[0].nodeLvl;
-        fireballSO = Resources.Load<FireballSO>("Skills/Fireball/Fireball" + fireballLvl.ToString());
+        fireballSO = Resources.Load<SkillSO>("Skills/Fireball/Fireball" + fireballLvl.ToString());
         fireballStats = fireballSO.stats;
     }
 
