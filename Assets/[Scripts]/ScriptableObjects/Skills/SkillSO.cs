@@ -16,10 +16,8 @@ public class SkillSO : ScriptableObject
     public DamageType damageType;
     public float minDamage;
     public float maxDamage;
-    public float critRate;
-    public float critDamage;
     public float castTime;
-    public float coolDown;
+    public float cooldown;
     public float duration;
     public float radius;
 }

@@ -10,15 +10,10 @@ public class FireballSkillTree : MonoBehaviour
 
     [HideInInspector]
     public int fireballSpeedLvl;
-    [HideInInspector]
-    public int fireballCooldownLvl;
 
     [SerializeField]
     private float fireballSpeedInc;
-    [SerializeField]
-    private float fireballCooldownInc;
 
-    private float fireballCooldown;
     private float fireballSpeed;
     private FireballSO fireballSO;
 
@@ -38,9 +33,13 @@ public class FireballSkillTree : MonoBehaviour
         return fireballSpeed;
     }
 
-    public float GetFireballCooldown()
+    public void ToggleFireballDoubleCast()
     {
-        fireballCooldown = (fireballCooldownLvl * fireballCooldownInc) + fireballSO.coolDown;
-        return fireballCooldown;
+        fireballDoubleCast = !fireballDoubleCast;
+    }
+
+    public void ToggleBurning()
+    {
+        burning = !burning;
     }
 }

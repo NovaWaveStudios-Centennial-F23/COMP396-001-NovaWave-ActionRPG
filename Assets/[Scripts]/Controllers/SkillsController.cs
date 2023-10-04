@@ -70,13 +70,18 @@ public class SkillsController : MonoBehaviour
     {
         fireballSO = Resources.Load<FireballSO>("Skills/Fireball/Fireball" + fireballSkillTree.baseFireballLvl.ToString());
         fireballSO.speed = fireballSkillTree.GetFireballSpeed();
-        fireballSO.coolDown = fireballSkillTree.GetFireballCooldown();
         fireballSO.burning = fireballSkillTree.burning;
-        fireballSO.doubleCast = fireballSkillTree.fireballDoubleCast;
 
         GameObject fireball = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
         fireball.GetComponent<Fireball>().fireball = fireballSO;
         fireball.GetComponent<Fireball>().direction = mousePosition;
+
+        if (fireballSkillTree.fireballDoubleCast)
+        {
+            GameObject fireball2 = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
+            fireball2.GetComponent<Fireball>().fireball = fireballSO;
+            fireball2.GetComponent<Fireball>().direction = mousePosition;
+        }
         fireballCooldown = true;
     }
 

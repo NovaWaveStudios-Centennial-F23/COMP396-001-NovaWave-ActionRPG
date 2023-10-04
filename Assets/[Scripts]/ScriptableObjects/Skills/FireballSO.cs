@@ -7,6 +7,5 @@ public class FireballSO: SkillSO
 {
     public float speed;
     public float range;
-    public bool doubleCast;
     public bool burning;
 }

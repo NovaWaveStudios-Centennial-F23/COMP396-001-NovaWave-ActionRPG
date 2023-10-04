@@ -351,13 +351,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6328ec5504c5014189dab5060275049, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseFireballLvl: 0
+  baseFireballLvl: 1
   burning: 0
-  fireballDoubleCast: 0
+  fireballDoubleCast: 1
   fireballSpeedLvl: 0
-  fireballCooldownLvl: 0
   fireballSpeedInc: 0
-  fireballCooldownInc: 0
 --- !u!4 &1411277994
 Transform:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ public class Fireball : MonoBehaviour
 
     IEnumerator Cooldown()
     {
-        yield return new WaitForSeconds(fireball.coolDown);
+        yield return new WaitForSeconds(fireball.cooldown);
         SkillsController.Instance.fireballCooldown = false;
     }
 
@@ -27,12 +27,17 @@ public class Fireball : MonoBehaviour
 
     void Update()
     {
-        Projectile();
+        ShootFireball();
     }
 
-    private void Projectile()
+    private void ShootFireball()
     {
         transform.forward = (direction * 100) - transform.position;
         rb.velocity = transform.forward * fireball.speed;
+    }
+
+    private void ApplyBurning(int enemy)
+    {
+
     }
 }
