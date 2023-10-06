@@ -13,11 +13,12 @@ using UnityEngine;
  */
 
 public class FireballSkillTree : MonoBehaviour
-{
-    public int fireballLvl;
-    
+{    
     public List<Stats> fireballStats = new List<Stats>();
     public List<Node> fireballNodes = new List<Node>();
+
+    [HideInInspector]
+    public int fireballLvl;
 
     private SkillSO fireballSO;
 

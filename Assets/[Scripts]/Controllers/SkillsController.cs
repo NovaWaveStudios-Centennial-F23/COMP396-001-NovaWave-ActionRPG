@@ -12,7 +12,6 @@ public class SkillsController : MonoBehaviour
 
     [Header("Scriptable Objects")]
     [SerializeField] private SkillSO fireballSO;
-    [SerializeField] private FrostNovaSO frostNovaSO;
 
     [Header("Prefabs")]
     [SerializeField] private GameObject fireballPrefab;
@@ -59,12 +58,6 @@ public class SkillsController : MonoBehaviour
         {
             InitFireball();
         }
-
-        //FROST NOVA
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            InitFrostNova();
-        }
     }
 
     private void InitFireball()
@@ -82,12 +75,5 @@ public class SkillsController : MonoBehaviour
             fireball2.GetComponent<Fireball>().direction = mousePosition;
         }
         fireballCooldown = true;
-    }
-
-    private void InitFrostNova()
-    {
-        frostNovaSO = Resources.Load<FrostNovaSO>("Skills/PlasmaField/PlasmaField1");
-        GameObject frostNova = Instantiate(frostNovaPrefab, transform.position, Quaternion.identity);
-        frostNova.GetComponent<FrostNova>().frostNova = frostNovaSO;
     }
 }

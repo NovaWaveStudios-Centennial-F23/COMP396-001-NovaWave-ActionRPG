@@ -22,8 +22,7 @@ public class Stats
         FireDamage,
         IceDamage,
         ElectricDamage,
-        MinSkillDamage,
-        MaxSkillDamage,
+        SkillDamage,
         CastTime,
         Cooldown,
         Duration,
@@ -36,5 +35,6 @@ public class Stats
     }
     public Stat stat;
     public float value;
+    public float deviation;
 }
 

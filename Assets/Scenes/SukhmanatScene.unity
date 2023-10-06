@@ -464,7 +464,7 @@ MonoBehaviour:
   fireballLvl: 0
   fireballStats: []
   fireballNodes:
-  - nodeLvl: 5
+  - nodeLvl: 1
     nodeStat: []
   - nodeLvl: 0
     nodeStat:
@@ -641,7 +641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4686a3c43cefd3442a837650262dfdcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerLvl: 0
+  playerLvl: 1
   player: {fileID: 1285277580}
   playerStats: []
   playerNodes: []
