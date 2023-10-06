@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Item", menuName = "ScriptableObejcts/Items/Create New Item")]
+[CreateAssetMenu(fileName = "New Item", menuName = "ScriptableObejcts/Create New Item")]
 public class Item : ScriptableObject
 {
     // [Yusuke Kuroki]Need to add more variables for item/weapon/gear etc...

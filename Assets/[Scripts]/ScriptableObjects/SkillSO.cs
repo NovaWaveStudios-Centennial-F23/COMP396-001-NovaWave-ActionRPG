@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SkillSciptableObject", menuName = "ScriptableObejcts/Skills/Create New Skill")]
+[CreateAssetMenu(fileName = "SkillSciptableObject", menuName = "ScriptableObejcts/Create New Skill")]
 public class SkillSO : ScriptableObject
 {
     public int level;

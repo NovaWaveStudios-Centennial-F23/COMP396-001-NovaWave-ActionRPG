@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "GearSciptableObject", menuName = "ScriptableObejcts/Gear/Create New Gear")]
-public class GearSO : MonoBehaviour
+[CreateAssetMenu(fileName = "GearSciptableObject", menuName = "ScriptableObejcts/Create New Gear")]
+public class GearSO : ScriptableObject
 {
     public int level;
     public enum GearType
@@ -34,5 +34,7 @@ public class GearSO : MonoBehaviour
     public GearType gearType;
     public GearRating gearRating;
     public GearRarity gearRarity;
-    public List<Stats> stats = new List<Stats>();
+    public List<Stats> mainStats = new List<Stats>();
+    public List<Stats> randomRolls = new List<Stats>();
+    public List<Stats> affixes = new List<Stats>();
 }

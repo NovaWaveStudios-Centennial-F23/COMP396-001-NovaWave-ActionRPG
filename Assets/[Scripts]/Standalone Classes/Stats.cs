@@ -31,7 +31,11 @@ public class Stats
         Range,
         Burning,
         DoubleCast,
-        ManaCost
+        ManaCost,
+        ElementalDamage,
+        ElementalRes,
+        NewElementDamage,
+        NewElementRes
     }
     public Stat stat;
     public float value;
