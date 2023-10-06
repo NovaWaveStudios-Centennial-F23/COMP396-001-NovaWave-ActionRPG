@@ -662,7 +662,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4686a3c43cefd3442a837650262dfdcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerLvl: 1
+  playerLvl: 2
   player: {fileID: 1285277580}
   playerStats: []
   playerNodes: []
