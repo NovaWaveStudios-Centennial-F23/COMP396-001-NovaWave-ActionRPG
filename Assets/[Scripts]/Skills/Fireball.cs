@@ -6,13 +6,14 @@ using UnityEngine;
 /* FIREBALL STATS INDEX
  * 0 - Min Skill Damage
  * 1 - Max Skill Damage
- * 2 - Cast Time
- * 3 - Cooldown
- * 4 - Duration
- * 5 - Radius
- * 6 - Projectile Speed
- * 7 - Range
- * 8 - Double Cast
+ * 2 - Mana Cost
+ * 3 - Cast Time
+ * 4 - Cooldown
+ * 5 - Duration
+ * 6 - Radius
+ * 7 - Projectile Speed
+ * 8 - Range
+ * 9 - Double Cast
  */
 
 public class Fireball : MonoBehaviour
@@ -25,7 +26,7 @@ public class Fireball : MonoBehaviour
 
     IEnumerator Cooldown()
     {
-        yield return new WaitForSeconds(fireball.stats[3].value);
+        yield return new WaitForSeconds(fireball.stats[4].value);
         SkillsController.Instance.fireballCooldown = false;
     }
 
@@ -45,12 +46,12 @@ public class Fireball : MonoBehaviour
     private void ShootFireball()
     {
         transform.forward = (direction * 100) - transform.position;
-        rb.velocity = transform.forward * fireball.stats[6].value;
+        rb.velocity = transform.forward * fireball.stats[7].value;
     }
 
     private void ApplyBurning()
     {
-        if (fireball.stats[8].value == 1)
+        if (fireball.stats[9].value == 1)
         {
             //do burning
         }

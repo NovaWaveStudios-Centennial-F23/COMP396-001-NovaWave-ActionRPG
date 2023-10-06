@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/* FIREBALL NODES INDEX
+/* FIREBALL SKILLTREE NODES INDEX
  * 0 - Base Fireball Level
- * 1 - Cast Time
- * 2 - Cooldown
- * 3 - Radius
- * 4 - Projectile Speed
- * 5 - Double Cast
+ * 1 - Mana Cost
+ * 2 - Cast Time
+ * 3 - Cooldown
+ * 4 - Radius
+ * 5 - Projectile Speed
+ * 6 - Double Cast
  */
 
 public class FireballSkillTree : MonoBehaviour
@@ -16,14 +17,14 @@ public class FireballSkillTree : MonoBehaviour
     public int fireballLvl;
     
     public List<Stats> fireballStats = new List<Stats>();
-    public List<Nodes> fireballNodes = new List<Nodes>();
+    public List<Node> fireballNodes = new List<Node>();
 
     private SkillSO fireballSO;
 
     private void Start()
     {
         LoadFireball();
-        UpdateFireball();
+        UpdateFireballStats();
     }
 
     public void LoadFireball()
@@ -33,7 +34,7 @@ public class FireballSkillTree : MonoBehaviour
         fireballStats = fireballSO.stats;
     }
 
-    public void UpdateFireball()
+    public void UpdateFireballStats()
     {
         for (int i = 0; i < fireballStats.Count; i++)
         {
@@ -51,7 +52,7 @@ public class FireballSkillTree : MonoBehaviour
         }
     }
 
-    public void UpgradeNode(Nodes node)
+    public void UpgradeFireballNode(Node node)
     {
         node.nodeLvl += 1;
         if (node == fireballNodes[0])
@@ -59,16 +60,16 @@ public class FireballSkillTree : MonoBehaviour
             LoadFireball();
         }
 
-        UpdateFireball();
+        UpdateFireballStats();
     }
 
-    public void DegradeNode(Nodes node)
+    public void DegradeFireballNode(Node node)
     {
         node.nodeLvl -= 1;
         if (node == fireballNodes[0])
         {
             LoadFireball();
         }
-        UpdateFireball();
+        UpdateFireballStats();
     }
 }

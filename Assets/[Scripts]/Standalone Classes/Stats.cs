@@ -31,7 +31,8 @@ public class Stats
         ProjectileSpeed,
         Range,
         Burning,
-        DoubleCast
+        DoubleCast,
+        ManaCost
     }
     public Stat stat;
     public float value;

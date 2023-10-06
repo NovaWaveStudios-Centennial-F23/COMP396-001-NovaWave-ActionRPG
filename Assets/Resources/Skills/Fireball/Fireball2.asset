@@ -19,6 +19,8 @@ MonoBehaviour:
     value: 10
   - stat: 18
     value: 18
+  - stat: 27
+    value: 20
   - stat: 19
     value: 1.1
   - stat: 20
