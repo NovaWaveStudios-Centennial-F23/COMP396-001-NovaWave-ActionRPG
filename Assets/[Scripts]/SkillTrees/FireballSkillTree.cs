@@ -2,16 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/* FIREBALL SKILLTREE NODES INDEX
- * 0 - Base Fireball Level
- * 1 - Mana Cost
- * 2 - Cast Time
- * 3 - Cooldown
- * 4 - Radius
- * 5 - Projectile Speed
- * 6 - Double Cast
- */
-
 public class FireballSkillTree : MonoBehaviour
 {    
     public List<Stats> fireballStats = new List<Stats>();
