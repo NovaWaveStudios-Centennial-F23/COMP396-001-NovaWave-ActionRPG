@@ -15,33 +15,30 @@ MonoBehaviour:
   level: 1
   damageType: 1
   stats:
-  - stat: 17
-    value: 15
-    deviation: 3
-  - stat: 18
-    value: 10
-    deviation: 0
   - stat: 27
     value: 20
-    deviation: 0
-  - stat: 19
-    value: 1.2
-    deviation: 0
-  - stat: 20
-    value: 5
-    deviation: 0
-  - stat: 21
-    value: 5
-    deviation: 0
-  - stat: 22
-    value: 2
-    deviation: 0
-  - stat: 23
+    deviation: 5
+  - stat: 28
     value: 15
     deviation: 0
-  - stat: 24
+  - stat: 29
+    value: 5
+    deviation: 0
+  - stat: 30
+    value: 10
+    deviation: 0
+  - stat: 31
+    value: 1.2
+    deviation: 0
+  - stat: 32
+    value: 8
+    deviation: 0
+  - stat: 33
+    value: 15
+    deviation: 0
+  - stat: 34
     value: 20
     deviation: 0
-  - stat: 26
+  - stat: 35
     value: 0
     deviation: 0

@@ -9,6 +9,7 @@ public class Fireball : MonoBehaviour
     public SkillSO fireball;
     public Vector3 direction;
     public float damage;
+    public List<Stats> fireballStats;
 
     private Rigidbody rb;
 
