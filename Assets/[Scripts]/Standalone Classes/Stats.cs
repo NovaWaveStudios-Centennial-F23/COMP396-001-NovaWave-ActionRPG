@@ -45,7 +45,7 @@ public class Stats
         Stun
     }
     public Stat stat;
-    public float value;
+    public float statValue;
     public float deviation;
 }
 

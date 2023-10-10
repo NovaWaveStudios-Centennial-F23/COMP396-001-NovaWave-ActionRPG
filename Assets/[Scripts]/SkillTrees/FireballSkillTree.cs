@@ -35,8 +35,16 @@ public class FireballSkillTree : MonoBehaviour
                 {
                     if (fireballStats[i].stat == fireballNodes[j].nodeStat[k].stat)
                     {
-                        float valueInc = fireballStats[i].value * (fireballNodes[j].nodeLvl * fireballNodes[j].nodeStat[k].value);
-                        fireballStats[i].value += valueInc;
+                        if (fireballNodes[j].nodeType == Node.NodeType.Linear)
+                        {
+                            float valueInc = fireballStats[i].statValue * (fireballNodes[j].nodeLvl * fireballNodes[j].nodeStat[k].statValue);
+                            fireballStats[i].statValue += valueInc;
+                        }
+                        else if (fireballNodes[j].nodeType == Node.NodeType.Logarithmic)
+                        {
+                            float multiplier = (134 * Mathf.Log(0.13f + 1.9f) - 85) / fireballNodes[j].nodeStat[k].statValue;
+                            fireballNodes[j].nodeValue = (134 * Mathf.Log((0.13f * fireballNodes[j].nodeLvl) + 1.9f) - 85) * multiplier;
+                        }
                     }
                 }
             }

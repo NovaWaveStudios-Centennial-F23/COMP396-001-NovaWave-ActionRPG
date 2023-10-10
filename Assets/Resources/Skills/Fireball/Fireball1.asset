@@ -16,29 +16,29 @@ MonoBehaviour:
   damageType: 1
   stats:
   - stat: 27
-    value: 20
-    deviation: 5
+    statValue: 0
+    deviation: 0
   - stat: 28
-    value: 15
+    statValue: 0
     deviation: 0
   - stat: 29
-    value: 5
+    statValue: 0
     deviation: 0
   - stat: 30
-    value: 10
+    statValue: 0
     deviation: 0
   - stat: 31
-    value: 1.2
+    statValue: 0
     deviation: 0
   - stat: 32
-    value: 8
+    statValue: 0
     deviation: 0
   - stat: 33
-    value: 15
+    statValue: 0
     deviation: 0
   - stat: 34
-    value: 20
+    statValue: 0
     deviation: 0
   - stat: 35
-    value: 0
+    statValue: 0
     deviation: 0

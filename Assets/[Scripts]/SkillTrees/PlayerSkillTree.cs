@@ -26,8 +26,16 @@ public class PlayerSkillTree : MonoBehaviour
                 {
                     if (playerStats[i].stat == playerNodes[j].nodeStat[k].stat)
                     {
-                        float valueInc = playerStats[i].value * (playerNodes[j].nodeLvl * playerNodes[j].nodeStat[k].value);
-                        playerStats[i].value += valueInc;                           
+                        if (playerNodes[j].nodeType == Node.NodeType.Linear)
+                        {
+                            float valueInc = playerStats[i].statValue * (playerNodes[j].nodeLvl * playerNodes[j].nodeStat[k].statValue);
+                            playerStats[i].statValue += valueInc;
+                        }
+                        else if (playerNodes[j].nodeType == Node.NodeType.Logarithmic)
+                        {
+                            float multiplier = (134 * Mathf.Log(0.13f + 1.9f) - 85) / playerNodes[j].nodeStat[k].statValue;
+                            playerNodes[j].nodeValue = (134 * Mathf.Log((0.13f * playerNodes[j].nodeLvl) + 1.9f) - 85) * multiplier;
+                        }
                     }
                 }
             }

@@ -363,7 +363,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.93, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1924580506}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1285277579
@@ -401,85 +402,85 @@ MonoBehaviour:
   playerLevel: 1
   playerStats:
   - stat: 0
-    value: 20
+    statValue: 0
     deviation: 5
   - stat: 1
-    value: 100
+    statValue: 0
     deviation: 0
   - stat: 2
-    value: 100
+    statValue: 0
     deviation: 0
   - stat: 3
-    value: 10
+    statValue: 0
     deviation: 0
   - stat: 4
-    value: 0
+    statValue: 0
     deviation: 0
   - stat: 5
-    value: 0
+    statValue: 0
     deviation: 0
   - stat: 6
-    value: 10
+    statValue: 0
     deviation: 0
   - stat: 7
-    value: 150
+    statValue: 0
     deviation: 0
   - stat: 8
-    value: 15
+    statValue: 0
     deviation: 0
   - stat: 9
-    value: 0
+    statValue: 0
     deviation: 0
   - stat: 10
-    value: 0
+    statValue: 0
     deviation: 0
   - stat: 11
-    value: 100
+    statValue: 0
     deviation: 0
   - stat: 12
-    value: 0
+    statValue: 0
     deviation: 0
   - stat: 13
-    value: 5
+    statValue: 0
     deviation: 0
   - stat: 14
-    value: 2
+    statValue: 0
     deviation: 0
   - stat: 15
-    value: 0
+    statValue: 0
     deviation: 0
   - stat: 16
-    value: 0
+    statValue: 0
     deviation: 0
   - stat: 17
-    value: 0
+    statValue: 0
     deviation: 0
   - stat: 18
-    value: 0
+    statValue: 0
     deviation: 0
   - stat: 19
-    value: 0
+    statValue: 0
     deviation: 0
   - stat: 20
-    value: 0
+    statValue: 0
     deviation: 0
   - stat: 21
-    value: 0
+    statValue: 0
     deviation: 0
   - stat: 22
-    value: 0
+    statValue: 0
     deviation: 0
   - stat: 23
-    value: 0
+    statValue: 0
     deviation: 0
   - stat: 24
-    value: 0
+    statValue: 0
     deviation: 0
   - stat: 25
-    value: 0
+    statValue: 0
     deviation: 0
   - stat: 26
-    value: 0
+    statValue: 0
     deviation: 0
 --- !u!1 &1411277992
 GameObject:
@@ -511,52 +512,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireballStats: []
-  fireballNodes:
-  - nodeLvl: 0
-    nodeStat:
-    - stat: 27
-      value: 5
-      deviation: 0
-  - nodeLvl: 0
-    nodeStat:
-    - stat: 28
-      value: 2
-      deviation: 0
-  - nodeLvl: 0
-    nodeStat:
-    - stat: 29
-      value: -1
-      deviation: 0
-  - nodeLvl: 0
-    nodeStat:
-    - stat: 30
-      value: 2
-      deviation: 0
-  - nodeLvl: 0
-    nodeStat:
-    - stat: 31
-      value: -0.1
-      deviation: 0
-  - nodeLvl: 0
-    nodeStat:
-    - stat: 32
-      value: 1
-      deviation: 0
-  - nodeLvl: 0
-    nodeStat:
-    - stat: 33
-      value: 2
-      deviation: 0
-  - nodeLvl: 0
-    nodeStat:
-    - stat: 34
-      value: 2
-      deviation: 0
-  - nodeLvl: 0
-    nodeStat:
-    - stat: 35
-      value: 1
-      deviation: 0
+  fireballNodes: []
   fireballLvl: 0
 --- !u!4 &1411277994
 Transform:
@@ -714,135 +670,238 @@ MonoBehaviour:
   playerStats: []
   playerNodes:
   - nodeLvl: 0
+    nodeValue: 0
+    nodeType: 0
     nodeStat:
     - stat: 1
-      value: 50
+      statValue: 0
       deviation: 0
   - nodeLvl: 0
+    nodeValue: 0
+    nodeType: 0
     nodeStat:
     - stat: 2
-      value: 25
+      statValue: 0
       deviation: 0
   - nodeLvl: 0
+    nodeValue: 0
+    nodeType: 0
     nodeStat:
     - stat: 3
-      value: 3
+      statValue: 0
       deviation: 0
   - nodeLvl: 0
+    nodeValue: 0
+    nodeType: 0
     nodeStat:
     - stat: 4
-      value: 2
+      statValue: 0
       deviation: 0
   - nodeLvl: 0
+    nodeValue: 0
+    nodeType: 0
     nodeStat:
     - stat: 5
-      value: 5
+      statValue: 0
       deviation: 0
   - nodeLvl: 0
+    nodeValue: 0
+    nodeType: 0
     nodeStat:
     - stat: 6
-      value: 2
+      statValue: 0
       deviation: 0
   - nodeLvl: 0
+    nodeValue: 0
+    nodeType: 0
     nodeStat:
     - stat: 7
-      value: 5
+      statValue: 0
       deviation: 0
   - nodeLvl: 0
+    nodeValue: 0
+    nodeType: 0
     nodeStat:
     - stat: 8
-      value: 5
+      statValue: 0
       deviation: 0
   - nodeLvl: 0
+    nodeValue: 0
+    nodeType: 0
     nodeStat:
     - stat: 9
-      value: 2
+      statValue: 0
       deviation: 0
   - nodeLvl: 0
+    nodeValue: 0
+    nodeType: 0
     nodeStat:
     - stat: 10
-      value: 2
+      statValue: 0
       deviation: 0
   - nodeLvl: 0
+    nodeValue: 0
+    nodeType: 0
     nodeStat:
     - stat: 11
-      value: 4
+      statValue: 0
       deviation: 0
   - nodeLvl: 0
+    nodeValue: 0
+    nodeType: 0
     nodeStat:
     - stat: 12
-      value: 1
+      statValue: 0
       deviation: 0
   - nodeLvl: 0
+    nodeValue: 0
+    nodeType: 0
     nodeStat:
     - stat: 13
-      value: 2
+      statValue: 0
       deviation: 0
   - nodeLvl: 0
+    nodeValue: 0
+    nodeType: 0
     nodeStat:
     - stat: 14
-      value: 1
+      statValue: 0
       deviation: 0
   - nodeLvl: 0
+    nodeValue: 0
+    nodeType: 0
     nodeStat:
     - stat: 15
-      value: 5
+      statValue: 0
       deviation: 0
   - nodeLvl: 0
+    nodeValue: 0
+    nodeType: 0
     nodeStat:
     - stat: 16
-      value: 2
+      statValue: 0
       deviation: 0
   - nodeLvl: 0
+    nodeValue: 0
+    nodeType: 0
     nodeStat:
     - stat: 17
-      value: 2
+      statValue: 0
       deviation: 0
   - nodeLvl: 0
+    nodeValue: 0
+    nodeType: 0
     nodeStat:
     - stat: 18
-      value: 2
+      statValue: 0
       deviation: 0
   - nodeLvl: 0
+    nodeValue: 0
+    nodeType: 0
     nodeStat:
     - stat: 19
-      value: 1
+      statValue: 0
       deviation: 0
   - nodeLvl: 0
+    nodeValue: 0
+    nodeType: 0
     nodeStat:
     - stat: 20
-      value: 2
+      statValue: 0
       deviation: 0
   - nodeLvl: 0
+    nodeValue: 0
+    nodeType: 0
     nodeStat:
     - stat: 21
-      value: 2
+      statValue: 0
       deviation: 0
   - nodeLvl: 0
+    nodeValue: 0
+    nodeType: 0
     nodeStat:
     - stat: 22
-      value: 2
+      statValue: 0
       deviation: 0
   - nodeLvl: 0
+    nodeValue: 0
+    nodeType: 0
     nodeStat:
     - stat: 23
-      value: 1
+      statValue: 0
       deviation: 0
   - nodeLvl: 0
+    nodeValue: 0
+    nodeType: 0
     nodeStat:
     - stat: 24
-      value: 1
+      statValue: 0
       deviation: 0
   - nodeLvl: 0
+    nodeValue: 0
+    nodeType: 0
     nodeStat:
     - stat: 25
-      value: 1
+      statValue: 0
       deviation: 0
   - nodeLvl: 0
+    nodeValue: 0
+    nodeType: 0
     nodeStat:
     - stat: 26
-      value: 1
+      statValue: 0
       deviation: 0
+--- !u!1 &1924580505
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1924580506}
+  - component: {fileID: 1924580507}
+  m_Layer: 0
+  m_Name: GearEquipped
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1924580506
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924580505}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1285277578}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1924580507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924580505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92c42c4499e60564e9f64195c9babd32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wand: {fileID: 0}
+  staff: {fileID: 0}
+  shield: {fileID: 0}
+  helmet: {fileID: 0}
+  chestplate: {fileID: 0}
+  gloves: {fileID: 0}
+  boots: {fileID: 0}
 --- !u!1 &2046068702
 GameObject:
   m_ObjectHideFlags: 0
@@ -949,6 +1008,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2101839531
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2101839532}
+  - component: {fileID: 2101839533}
+  m_Layer: 0
+  m_Name: Boots
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2101839532
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2101839531}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.057667, y: -3.5896049, z: -2.9710078}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2101839533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2101839531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d184a49b8a03c7a4787ac148aba17175, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gearSO: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -959,3 +1063,4 @@ SceneRoots:
   - {fileID: 1285277578}
   - {fileID: 1280662733}
   - {fileID: 273671541}
+  - {fileID: 2101839532}
