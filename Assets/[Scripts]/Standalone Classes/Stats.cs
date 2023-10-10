@@ -42,7 +42,8 @@ public class Stats
         Range,
         Burning,
         Slowness,
-        Stun
+        Stun,
+        FireballDoubleCast
     }
     public Stat stat;
     public float statValue;

@@ -18,23 +18,22 @@ public class PlayerSkillTree : MonoBehaviour
 
     public void UpdatePlayerStats()
     {
-        for (int i = 0; i < playerStats.Count; i++)
+        foreach (Stats stat in playerStats)
         {
-            for (int j = 0; j < playerNodes.Count; j++) 
+            foreach (Node node in playerNodes)
             {
-                for (int k = 0; k < playerNodes[j].nodeStat.Count; k++) 
-                {
-                    if (playerStats[i].stat == playerNodes[j].nodeStat[k].stat)
+                for (int i = 0; i < node.nodeStats.Count; i ++)
+                {                    
+                    if (stat.stat == node.nodeStats[i].stat)
                     {
-                        if (playerNodes[j].nodeType == Node.NodeType.Linear)
+                        if (node.nodeType == Node.NodeType.Linear)
                         {
-                            float valueInc = playerStats[i].statValue * (playerNodes[j].nodeLvl * playerNodes[j].nodeStat[k].statValue);
-                            playerStats[i].statValue += valueInc;
+                            node.nodeValues[i] = node.nodeLvl * node.nodeStats[i].statValue;
                         }
-                        else if (playerNodes[j].nodeType == Node.NodeType.Logarithmic)
+                        else if (node.nodeType == Node.NodeType.Logarithmic)
                         {
-                            float multiplier = (134 * Mathf.Log(0.13f + 1.9f) - 85) / playerNodes[j].nodeStat[k].statValue;
-                            playerNodes[j].nodeValue = (134 * Mathf.Log((0.13f * playerNodes[j].nodeLvl) + 1.9f) - 85) * multiplier;
+                            float multiplier = node.nodeStats[i].statValue / (134 * Mathf.Log(0.13f + 1.9f) - 85); 
+                            node.nodeValues[i] = (134 * Mathf.Log((0.13f * node.nodeLvl) + 1.9f) - 85) * multiplier;
                         }
                     }
                 }

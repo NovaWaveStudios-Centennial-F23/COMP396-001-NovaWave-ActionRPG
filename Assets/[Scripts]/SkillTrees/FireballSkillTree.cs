@@ -27,23 +27,22 @@ public class FireballSkillTree : MonoBehaviour
 
     public void UpdateFireballStats()
     {
-        for (int i = 0; i < fireballStats.Count; i++)
+        foreach (Stats stat in fireballStats)
         {
-            for (int j = 0; j < fireballNodes.Count; j++)
+            foreach (Node node in fireballNodes)
             {
-                for (int k = 0; k < fireballNodes[j].nodeStat.Count; k++)
+                for (int i = 0; i < node.nodeStats.Count; i++)
                 {
-                    if (fireballStats[i].stat == fireballNodes[j].nodeStat[k].stat)
+                    if (stat.stat == node.nodeStats[i].stat)
                     {
-                        if (fireballNodes[j].nodeType == Node.NodeType.Linear)
+                        if (node.nodeType == Node.NodeType.Linear)
                         {
-                            float valueInc = fireballStats[i].statValue * (fireballNodes[j].nodeLvl * fireballNodes[j].nodeStat[k].statValue);
-                            fireballStats[i].statValue += valueInc;
+                            node.nodeValues[i] = node.nodeLvl * node.nodeStats[i].statValue;
                         }
-                        else if (fireballNodes[j].nodeType == Node.NodeType.Logarithmic)
+                        else if (node.nodeType == Node.NodeType.Logarithmic)
                         {
-                            float multiplier = (134 * Mathf.Log(0.13f + 1.9f) - 85) / fireballNodes[j].nodeStat[k].statValue;
-                            fireballNodes[j].nodeValue = (134 * Mathf.Log((0.13f * fireballNodes[j].nodeLvl) + 1.9f) - 85) * multiplier;
+                            float multiplier = node.nodeStats[i].statValue / (134 * Mathf.Log(0.13f + 1.9f) - 85);
+                            node.nodeValues[i] = (134 * Mathf.Log((0.13f * node.nodeLvl) + 1.9f) - 85) * multiplier;
                         }
                     }
                 }

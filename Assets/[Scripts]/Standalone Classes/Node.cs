@@ -11,7 +11,8 @@ public class Node
         Exponential
     }
     public int nodeLvl;
-    public float nodeValue;
+    public int maxNodeLvl;
+    public List<float> nodeValues;
     public NodeType nodeType;
-    public List<Stats> nodeStat = new List<Stats>();
+    public List<Stats> nodeStats = new List<Stats>();
 }
