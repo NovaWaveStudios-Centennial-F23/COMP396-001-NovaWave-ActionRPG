@@ -259,6 +259,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1280662733}
+  - component: {fileID: 1280662734}
   m_Layer: 0
   m_Name: CalculationController
   m_TagString: Untagged
@@ -281,6 +282,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1280662734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1280662732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f01addf639a38d4c938ab28e82db094, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillsController: {fileID: 0}
+  playerStats: {fileID: 0}
+  equippedGear: {fileID: 0}
+  playerSkillTree: {fileID: 0}
+  fireballSkillTree: {fileID: 0}
+  fireballStats: []
 --- !u!1 &1285277574
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,7 +531,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireballStats: []
-  fireballNodes: []
+  fireballNodes:
+  - nodeLvl: 0
+    maxNodeLvl: 0
+    nodeValues:
+    - 0
+    nodeType: 0
+    nodeStats: []
   fireballLvl: 0
 --- !u!4 &1411277994
 Transform:
@@ -670,187 +695,144 @@ MonoBehaviour:
   playerStats: []
   playerNodes:
   - nodeLvl: 0
-    nodeValue: 0
+    maxNodeLvl: 0
+    nodeValues: []
     nodeType: 0
-    nodeStat:
-    - stat: 1
+    nodeStats:
+    - stat: 0
+      statValue: 0
+      deviation: 0
+    - stat: 0
+      statValue: 0
+      deviation: 0
+    - stat: 0
       statValue: 0
       deviation: 0
   - nodeLvl: 0
-    nodeValue: 0
+    maxNodeLvl: 0
+    nodeValues: []
     nodeType: 0
-    nodeStat:
-    - stat: 2
-      statValue: 0
-      deviation: 0
+    nodeStats: []
   - nodeLvl: 0
-    nodeValue: 0
+    maxNodeLvl: 0
+    nodeValues: []
     nodeType: 0
-    nodeStat:
-    - stat: 3
-      statValue: 0
-      deviation: 0
+    nodeStats: []
   - nodeLvl: 0
-    nodeValue: 0
+    maxNodeLvl: 0
+    nodeValues: []
     nodeType: 0
-    nodeStat:
-    - stat: 4
-      statValue: 0
-      deviation: 0
+    nodeStats: []
   - nodeLvl: 0
-    nodeValue: 0
+    maxNodeLvl: 0
+    nodeValues: []
     nodeType: 0
-    nodeStat:
-    - stat: 5
-      statValue: 0
-      deviation: 0
+    nodeStats: []
   - nodeLvl: 0
-    nodeValue: 0
+    maxNodeLvl: 0
+    nodeValues: []
     nodeType: 0
-    nodeStat:
-    - stat: 6
-      statValue: 0
-      deviation: 0
+    nodeStats: []
   - nodeLvl: 0
-    nodeValue: 0
+    maxNodeLvl: 0
+    nodeValues: []
     nodeType: 0
-    nodeStat:
-    - stat: 7
-      statValue: 0
-      deviation: 0
+    nodeStats: []
   - nodeLvl: 0
-    nodeValue: 0
+    maxNodeLvl: 0
+    nodeValues: []
     nodeType: 0
-    nodeStat:
-    - stat: 8
-      statValue: 0
-      deviation: 0
+    nodeStats: []
   - nodeLvl: 0
-    nodeValue: 0
+    maxNodeLvl: 0
+    nodeValues: []
     nodeType: 0
-    nodeStat:
-    - stat: 9
-      statValue: 0
-      deviation: 0
+    nodeStats: []
   - nodeLvl: 0
-    nodeValue: 0
+    maxNodeLvl: 0
+    nodeValues: []
     nodeType: 0
-    nodeStat:
-    - stat: 10
-      statValue: 0
-      deviation: 0
+    nodeStats: []
   - nodeLvl: 0
-    nodeValue: 0
+    maxNodeLvl: 0
+    nodeValues: []
     nodeType: 0
-    nodeStat:
-    - stat: 11
-      statValue: 0
-      deviation: 0
+    nodeStats: []
   - nodeLvl: 0
-    nodeValue: 0
+    maxNodeLvl: 0
+    nodeValues: []
     nodeType: 0
-    nodeStat:
-    - stat: 12
-      statValue: 0
-      deviation: 0
+    nodeStats: []
   - nodeLvl: 0
-    nodeValue: 0
+    maxNodeLvl: 0
+    nodeValues: []
     nodeType: 0
-    nodeStat:
-    - stat: 13
-      statValue: 0
-      deviation: 0
+    nodeStats: []
   - nodeLvl: 0
-    nodeValue: 0
+    maxNodeLvl: 0
+    nodeValues: []
     nodeType: 0
-    nodeStat:
-    - stat: 14
-      statValue: 0
-      deviation: 0
+    nodeStats: []
   - nodeLvl: 0
-    nodeValue: 0
+    maxNodeLvl: 0
+    nodeValues: []
     nodeType: 0
-    nodeStat:
-    - stat: 15
-      statValue: 0
-      deviation: 0
+    nodeStats: []
   - nodeLvl: 0
-    nodeValue: 0
+    maxNodeLvl: 0
+    nodeValues: []
     nodeType: 0
-    nodeStat:
-    - stat: 16
-      statValue: 0
-      deviation: 0
+    nodeStats: []
   - nodeLvl: 0
-    nodeValue: 0
+    maxNodeLvl: 0
+    nodeValues: []
     nodeType: 0
-    nodeStat:
-    - stat: 17
-      statValue: 0
-      deviation: 0
+    nodeStats: []
   - nodeLvl: 0
-    nodeValue: 0
+    maxNodeLvl: 0
+    nodeValues: []
     nodeType: 0
-    nodeStat:
-    - stat: 18
-      statValue: 0
-      deviation: 0
+    nodeStats: []
   - nodeLvl: 0
-    nodeValue: 0
+    maxNodeLvl: 0
+    nodeValues: []
     nodeType: 0
-    nodeStat:
-    - stat: 19
-      statValue: 0
-      deviation: 0
+    nodeStats: []
   - nodeLvl: 0
-    nodeValue: 0
+    maxNodeLvl: 0
+    nodeValues: []
     nodeType: 0
-    nodeStat:
-    - stat: 20
-      statValue: 0
-      deviation: 0
+    nodeStats: []
   - nodeLvl: 0
-    nodeValue: 0
+    maxNodeLvl: 0
+    nodeValues: []
     nodeType: 0
-    nodeStat:
-    - stat: 21
-      statValue: 0
-      deviation: 0
+    nodeStats: []
   - nodeLvl: 0
-    nodeValue: 0
+    maxNodeLvl: 0
+    nodeValues: []
     nodeType: 0
-    nodeStat:
-    - stat: 22
-      statValue: 0
-      deviation: 0
+    nodeStats: []
   - nodeLvl: 0
-    nodeValue: 0
+    maxNodeLvl: 0
+    nodeValues: []
     nodeType: 0
-    nodeStat:
-    - stat: 23
-      statValue: 0
-      deviation: 0
+    nodeStats: []
   - nodeLvl: 0
-    nodeValue: 0
+    maxNodeLvl: 0
+    nodeValues: []
     nodeType: 0
-    nodeStat:
-    - stat: 24
-      statValue: 0
-      deviation: 0
+    nodeStats: []
   - nodeLvl: 0
-    nodeValue: 0
+    maxNodeLvl: 0
+    nodeValues: []
     nodeType: 0
-    nodeStat:
-    - stat: 25
-      statValue: 0
-      deviation: 0
+    nodeStats: []
   - nodeLvl: 0
-    nodeValue: 0
+    maxNodeLvl: 0
+    nodeValues: []
     nodeType: 0
-    nodeStat:
-    - stat: 26
-      statValue: 0
-      deviation: 0
+    nodeStats: []
 --- !u!1 &1924580505
 GameObject:
   m_ObjectHideFlags: 0
@@ -914,6 +896,7 @@ GameObject:
   - component: {fileID: 2046068705}
   - component: {fileID: 2046068704}
   - component: {fileID: 2046068703}
+  - component: {fileID: 2046068707}
   m_Layer: 3
   m_Name: Ground
   m_TagString: Untagged
@@ -1008,6 +991,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2046068707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2046068702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f01addf639a38d4c938ab28e82db094, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillsController: {fileID: 0}
+  playerStats: {fileID: 0}
+  equippedGear: {fileID: 0}
+  playerSkillTree: {fileID: 0}
+  fireballSkillTree: {fileID: 0}
+  fireballStats: []
 --- !u!1 &2101839531
 GameObject:
   m_ObjectHideFlags: 0
@@ -1017,6 +1018,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2101839532}
+  - component: {fileID: 2101839535}
+  - component: {fileID: 2101839534}
   - component: {fileID: 2101839533}
   m_Layer: 0
   m_Name: Boots
@@ -1053,6 +1056,57 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gearSO: {fileID: 0}
+  gearStats: []
+--- !u!23 &2101839534
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2101839531}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &2101839535
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2101839531}
+  m_Mesh: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
