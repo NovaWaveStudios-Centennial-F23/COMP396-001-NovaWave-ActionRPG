@@ -17,7 +17,7 @@ public class MouseInput : MonoBehaviour
         if(Physics.Raycast(ray, out hit, float.MaxValue))
         {
             mouseInputPosition = hit.point;
-           // UnityEngine.Debug.Log(mouseInputPosition);
+            //UnityEngine.Debug.Log(mouseInputPosition);
         }
     }
 }
