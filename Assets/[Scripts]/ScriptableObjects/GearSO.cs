@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "GearSciptableObject", menuName = "ScriptableObejcts/Create New Gear")]
 public class GearSO : ScriptableObject
 {
+    public MeshFilter gearMeshFilter;
     public int level;
     public enum GearType
     {

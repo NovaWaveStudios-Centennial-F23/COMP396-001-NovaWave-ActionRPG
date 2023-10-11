@@ -2,16 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/* FIREBALL SKILLTREE NODES INDEX
- * 0 - Base Fireball Level
- * 1 - Mana Cost
- * 2 - Cast Time
- * 3 - Cooldown
- * 4 - Radius
- * 5 - Projectile Speed
- * 6 - Double Cast
- */
-
 public class FireballSkillTree : MonoBehaviour
 {    
     public List<Stats> fireballStats = new List<Stats>();
@@ -37,16 +27,23 @@ public class FireballSkillTree : MonoBehaviour
 
     public void UpdateFireballStats()
     {
-        for (int i = 0; i < fireballStats.Count; i++)
+        foreach (Stats stat in fireballStats)
         {
-            for (int j = 0; j < fireballNodes.Count; j++)
+            foreach (Node node in fireballNodes)
             {
-                for (int k = 0; k < fireballNodes[j].nodeStat.Count; k++)
+                for (int i = 0; i < node.nodeStats.Count; i++)
                 {
-                    if (fireballStats[i].stat == fireballNodes[j].nodeStat[k].stat)
+                    if (stat.stat == node.nodeStats[i].stat)
                     {
-                        float valueInc = fireballStats[i].value * (fireballNodes[j].nodeLvl * fireballNodes[j].nodeStat[k].value);
-                        fireballStats[i].value += valueInc;
+                        if (node.nodeType == Node.NodeType.Linear)
+                        {
+                            node.nodeValues[i] = node.nodeLvl * node.nodeStats[i].statValue;
+                        }
+                        else if (node.nodeType == Node.NodeType.Logarithmic)
+                        {
+                            float multiplier = node.nodeStats[i].statValue / (134 * Mathf.Log(0.13f + 1.9f) - 85);
+                            node.nodeValues[i] = (134 * Mathf.Log((0.13f * node.nodeLvl) + 1.9f) - 85) * multiplier;
+                        }
                     }
                 }
             }
