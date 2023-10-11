@@ -17,14 +17,14 @@ public class Stats
         CooldownReductionP,
         ManaCostRecutionP,
         CastSpeedP,
+        DoubleCastP,
         DropRateP,
         ItemRarityP,
         SpellDamageP,
         FireDamageP,
         FrostDamageP,
         ElectroDamageP,
-        ExtraElementalDamage,
-        ExtraElementalRes,
+        ElementalDamageP,
         FireResP,
         FrostResP,
         ElectroResP,
@@ -42,10 +42,11 @@ public class Stats
         Range,
         Burning,
         Slowness,
-        Stun
+        Stun,
+        FireballDoubleCast
     }
     public Stat stat;
-    public float value;
+    public float statValue;
     public float deviation;
 }
 

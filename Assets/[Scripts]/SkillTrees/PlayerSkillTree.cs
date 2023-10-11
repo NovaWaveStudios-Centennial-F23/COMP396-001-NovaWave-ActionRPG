@@ -18,16 +18,23 @@ public class PlayerSkillTree : MonoBehaviour
 
     public void UpdatePlayerStats()
     {
-        for (int i = 0; i < playerStats.Count; i++)
+        foreach (Stats stat in playerStats)
         {
-            for (int j = 0; j < playerNodes.Count; j++) 
+            foreach (Node node in playerNodes)
             {
-                for (int k = 0; k < playerNodes[j].nodeStat.Count; k++) 
-                {
-                    if (playerStats[i].stat == playerNodes[j].nodeStat[k].stat)
+                for (int i = 0; i < node.nodeStats.Count; i ++)
+                {                    
+                    if (stat.stat == node.nodeStats[i].stat)
                     {
-                        float valueInc = playerStats[i].value * (playerNodes[j].nodeLvl * playerNodes[j].nodeStat[k].value);
-                        playerStats[i].value += valueInc;                           
+                        if (node.nodeType == Node.NodeType.Linear)
+                        {
+                            node.nodeValues[i] = node.nodeLvl * node.nodeStats[i].statValue;
+                        }
+                        else if (node.nodeType == Node.NodeType.Logarithmic)
+                        {
+                            float multiplier = node.nodeStats[i].statValue / (134 * Mathf.Log(0.13f + 1.9f) - 85); 
+                            node.nodeValues[i] = (134 * Mathf.Log((0.13f * node.nodeLvl) + 1.9f) - 85) * multiplier;
+                        }
                     }
                 }
             }
