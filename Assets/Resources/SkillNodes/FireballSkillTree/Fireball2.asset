@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0805b25fee546d54698c0b2704bec57a, type: 3}
+  m_Name: Fireball2
+  m_EditorClassIdentifier: 
+  stats:
+  - stat: 24
+    statValue: 1
+    deviation: 1
+  icon: {fileID: 21300000, guid: d31c8cb7d83ea5e47a0a811c4dccbe6a, type: 3}
+  dependancies:
+  - {fileID: 11400000, guid: d48c2718c65437344b5e112d9f5c7da8, type: 2}

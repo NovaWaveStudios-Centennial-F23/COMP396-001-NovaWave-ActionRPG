@@ -45,6 +45,7 @@ public class Stats
         Stun,
         FireballDoubleCast
     }
+
     public Stat stat;
     public float statValue;
     public float deviation;
