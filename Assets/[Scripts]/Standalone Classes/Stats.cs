@@ -47,7 +47,14 @@ public class Stats
     }
 
     public Stat stat;
-    public float statValue;
-    public float deviation;
+    public float minValue;
+    public float maxValue;
+
+    public static Stats operator +(Stats stats, Stats other)
+    {
+        stats.minValue += other.minValue;
+        stats.maxValue += other.maxValue;
+        return stats;
+    }
 }
 

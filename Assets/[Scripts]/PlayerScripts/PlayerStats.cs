@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    public int playerLevel;
-    public List<Stats> playerStats = new List<Stats>();
+    [SerializeField]
+    private List<Stats> playerStats = new List<Stats>();
+
+    public Dictionary<Stats.Stat, float, float>
 }

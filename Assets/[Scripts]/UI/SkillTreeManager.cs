@@ -13,7 +13,7 @@ public class SkillTreeManager : MonoBehaviour
     private SkillTreeNode[] nodes;
 
     [SerializeField]
-    public Dictionary<Stats.Stat, float> modifiers;
+    public Dictionary<Stats.Stat, Stats> modifiers;
     public SkillTree skillTree;
 
     private void Start()
@@ -24,7 +24,7 @@ public class SkillTreeManager : MonoBehaviour
 
     public void RecalculateModifiers()
     {
-        modifiers = new Dictionary<Stats.Stat, float>();
+        modifiers = new Dictionary<Stats.Stat, Stats>();
         
         if (nodes.Length > 0)
         {
@@ -39,11 +39,11 @@ public class SkillTreeManager : MonoBehaviour
                         {
                             if (modifiers.ContainsKey(s.stat))
                             {
-                                modifiers[s.stat] += s.statValue;
+                                modifiers[s.stat] += s;
                             }
                             else
                             {
-                                modifiers.Add(s.stat, s.statValue);
+                                modifiers.Add(s.stat, s);
                             }
                         }
                     }
