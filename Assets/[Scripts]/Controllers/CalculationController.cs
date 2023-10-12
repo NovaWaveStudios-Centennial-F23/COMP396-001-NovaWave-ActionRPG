@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CalculationController : MonoBehaviour
@@ -16,7 +17,7 @@ public class CalculationController : MonoBehaviour
     [SerializeField] private EquippedGear equippedGear;
 
     [Header("Skill Tress")]
-    [SerializeField] private PlayerSkillTree playerSkillTree;
+    [SerializeField] private SkillTreeManager playerSkillTree;
     [SerializeField] private FireballSkillTree fireballSkillTree;
 
     [Header("Skill Stats")]
@@ -47,40 +48,27 @@ public class CalculationController : MonoBehaviour
 
     public void CalculatePlayerStats()
     {
-        List<Stats> gearStats = CalculateGearStats();
+        Dictionary<Stats.Stat, Stats> gearStats = CalculateGearStats();
 
         // Calculate Player Stats from the skill tree
-        foreach (Stats stat in playerStats.playerStats) 
+        foreach (Stats.Stat s in playerSkillTree.skillTreeModifiers.Keys)
         {
-            foreach (Node node in playerSkillTree.playerNodes)
-            {
-                for (int i = 0; i < node.nodeStats.Count; i++)
-                {
-                    if (stat.stat == node.nodeStats[i].stat)
-                    {
-                        stat.statValue += node.nodeValues[i];
-                    }
-                }
-            }
+            playerStats.UpdateModifiers(s, playerSkillTree.skillTreeModifiers[s]);
         }
 
         // Calculate Player Stats from gear equipped
-        foreach (Stats stat in playerStats.playerStats)
+        foreach (Stats.Stat s in gearStats.Keys)
         {
-            foreach (Stats gearstat in gearStats)
-            {
-                if (stat.stat == gearstat.stat)
-                {
-                    stat.statValue += gearstat.statValue;
-                }
-            }
+            playerStats.UpdateModifiers(s, gearStats[s]);
         }
+
+        playerStats.UpdatePlayerStats();
     }
 
-    public List<Stats> CalculateGearStats()
+    private Dictionary<Stats.Stat, Stats> CalculateGearStats()
     {
-        List<Stats> gearStats = new List<Stats>();
         List<Gear> gears = new List<Gear>();
+        Dictionary<Stats.Stat, Stats> gearStats = new Dictionary<Stats.Stat, Stats>();
 
         // List of equipped gear
         if (equippedGear.wand != null)
@@ -115,31 +103,32 @@ public class CalculationController : MonoBehaviour
         //Calculate all stats from gear
         foreach (Gear g in gears)
         {
-            foreach (Stats s in g.gearStats)
+            foreach (Stats.Stat s in g.gearModifiers.Keys)
             {
-                foreach (Stats t in gearStats)
+                if (gearStats.ContainsKey(s))
                 {
-                    if (t != s)
-                    {
-                        gearStats.Add(s);
-                    }
-                    else if (t == s)
-                    {
-                        t.statValue += s.statValue;
-                    }
-                    else
-                    {
-                        throw new NullReferenceException();
-                    }
+                    gearStats[s] += g.gearModifiers[s];
+                }
+                else
+                {
+                    gearStats.Add(s, g.gearModifiers[s]);
                 }
             }
-        }       
+        }
 
         return gearStats;
     }
 
     public void SkillTreeCalculation(SkillTreeManager.SkillTree skillTree)
     {
+        switch (skillTree)
+        {
+            case SkillTreeManager.SkillTree.Player:
+                CalculatePlayerStats();
+                break;
+            default:
+                break;
 
+        }
     }
 }
