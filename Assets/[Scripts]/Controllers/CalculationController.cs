@@ -138,4 +138,8 @@ public class CalculationController : MonoBehaviour
         return gearStats;
     }
 
+    public void SkillTreeCalculation(SkillTreeManager.SkillTree skillTree)
+    {
+
+    }
 }
