@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class SkillTreeManager : MonoBehaviour
 {
-
-
+    public enum SkillTree
+    {
+        Player,
+        Fireball
+    }
     //collection of all skillNodes
     private SkillTreeNode[] nodes;
 
     [SerializeField]
-    Dictionary<Stats.Stat, float> modifiers;
+    public Dictionary<Stats.Stat, float> modifiers;
+    public SkillTree skillTree;
+
     private void Start()
     {
         nodes = GetComponentsInChildren<SkillTreeNode>();
@@ -46,16 +51,12 @@ public class SkillTreeManager : MonoBehaviour
             }
         }
 
-        //for testing
-        Debug.Log($"Fire Affinity: {GetStat(Stats.Stat.FireAffinity)}");
     }
 
 
-    public float GetStat(Stats.Stat stat)
+    public Dictionary<Stats.Stat, float> GetStats(Stats.Stat stat)
     {
-        modifiers.TryGetValue(stat, out var modifer);
-
-        return modifer;
+        return modifiers;
     }
 }
 

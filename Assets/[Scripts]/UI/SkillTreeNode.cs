@@ -20,6 +20,9 @@ public class SkillTreeNode : MonoBehaviour, IPointerClickHandler
     [SerializeField]
     List<SkillTreeNodeSO> dataObjects = new List<SkillTreeNodeSO>();
 
+    [SerializeField]
+    SkillTreeManager skillTreeGO;
+
     [Tooltip("Nodes that need to be allocated in order to allocate this one")]
     public List<SkillTreeNode> prerequisites = new List<SkillTreeNode>();
 
@@ -128,7 +131,7 @@ public class SkillTreeNode : MonoBehaviour, IPointerClickHandler
             
         }
         UpdateAppearance();
-
+        CalculationController.Instance.SkillTreeCalculation(skillTreeGO.skillTree);
     }
 
     private bool PassedPrequisites()

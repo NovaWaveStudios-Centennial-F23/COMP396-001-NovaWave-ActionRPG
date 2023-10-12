@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class CalculationController : MonoBehaviour
 {
-    private CalculationController instance;
-    public CalculationController Instance { get { return instance; } }
+    private static CalculationController instance;
+    public static CalculationController Instance { get { return instance; } }
 
     [Header("Controllers")]
     [SerializeField] private SkillsController skillsController;
