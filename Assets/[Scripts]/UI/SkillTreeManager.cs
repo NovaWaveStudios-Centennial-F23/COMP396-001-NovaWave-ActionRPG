@@ -54,7 +54,7 @@ public class SkillTreeManager : MonoBehaviour
     }
 
 
-    public Dictionary<Stats.Stat, float> GetStats(Stats.Stat stat)
+    public Dictionary<Stats.Stat, Stats> GetStats()
     {
         return modifiers;
     }

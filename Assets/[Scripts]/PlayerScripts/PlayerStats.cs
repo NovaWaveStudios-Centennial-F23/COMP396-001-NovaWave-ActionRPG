@@ -7,5 +7,5 @@ public class PlayerStats : MonoBehaviour
     [SerializeField]
     private List<Stats> playerStats = new List<Stats>();
 
-    public Dictionary<Stats.Stat, float, float>
+    public Dictionary<Stats.Stat, Stats> playerStats;
 }
