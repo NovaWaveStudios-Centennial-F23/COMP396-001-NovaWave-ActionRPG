@@ -131,7 +131,7 @@ public class SkillTreeNode : MonoBehaviour, IPointerClickHandler
             
         }
         UpdateAppearance();
-        CalculationController.Instance.SkillTreeCalculation(skillTreeGO.skillTree);
+        CalculationController.Instance.SkillTreeCalculation(skillTreeGO.GetSkillTree());
     }
 
     private bool PassedPrequisites()

@@ -7,14 +7,14 @@ public class PlayerStats : MonoBehaviour
     [SerializeField]
     private List<Stats> playerStats = new List<Stats>();
 
-    public Dictionary<Stats.Stat, Stats> playerModifiers;
+    private Dictionary<Stats.Stat, Stats> playerModifiers;
 
     void Start()
     {
-        InitModifiers();
+        InitPlayerModifiers();
     }
 
-    private void InitModifiers()
+    private void InitPlayerModifiers()
     {
         playerModifiers = new Dictionary<Stats.Stat, Stats>();
 
@@ -31,7 +31,7 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    public void UpdateModifiers(Stats.Stat s, Stats v)
+    public void UpdatePlayerModifiers(Stats.Stat s, Stats v)
     {
         if (playerModifiers.ContainsKey(s))
         {
@@ -59,5 +59,24 @@ public class PlayerStats : MonoBehaviour
                 }
             }
         }
+    }
+
+    // GET Methods
+    public List<Stats> GetAllPlayerStats()
+    {
+        return playerStats;
+    }
+
+    public Stats GetPlayerStat(Stats.Stat stat)
+    {
+        Stats st = null;
+        foreach (Stats s in playerStats)
+        {
+            if (s.stat == stat)
+            {
+                st = s;
+            }
+        }
+        return st;
     }
 }
