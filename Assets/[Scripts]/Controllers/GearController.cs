@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class GearController : MonoBehaviour
     public static  GearController Instane { get { return instance; } }
 
     [SerializeField] private GearSO gearSO;
+    [SerializeField] private GameObject gearPrefab;
     [SerializeField] private PlayerStats playerStats;
     [SerializeField] private EnemyStatsTest enemyStats;
     //test variables
@@ -28,87 +30,98 @@ public class GearController : MonoBehaviour
 
     private void SpawnGear(GearSO.GearType gearType, GearSO.GearBase gearBase, GearSO.GearRarity gearRarity)
     {
+        // Load Gear Scriptable Object
+        gearSO = Resources.Load<GearSO>("Gear/" + gearType.ToString() + "/" + gearRarity.ToString() + gearBase.ToString());
 
+        System.Random random = new System.Random();
+
+        for (int i = 0; i < (int)gearType; i++)
+        {
+            int range = random.Next(0, gearSO.randomRolls.Count);
+            gearSO.affixes.Add(gearSO.randomRolls[range]);
+            gearSO.randomRolls.Remove(gearSO.randomRolls[range]); // No duplicate affixes
+        }
+
+        GameObject gear = Instantiate(gearPrefab, transform.position, Quaternion.identity);
+
+        foreach (Stats s in gearSO.mainStats)
+        {
+            s.minValue = UnityEngine.Random.Range(s.minValue, s.maxValue);
+            s.maxValue = UnityEngine.Random.Range(s.minValue, s.maxValue);
+            gear.GetComponent<Gear>().gearModifiers.Add(s.stat, s);
+        }
+        foreach (Stats s in gearSO.affixes)
+        {
+            s.minValue = UnityEngine.Random.Range(s.minValue, s.maxValue);
+            s.maxValue = UnityEngine.Random.Range(s.minValue, s.maxValue);
+            gear.GetComponent<Gear>().gearModifiers.Add(s.stat, s);
+        }    
     }
 
-    public void GearDrops(GearSO.GearType gearType)
+    public void GearDrops()
     {
-        int dropNumber = (int)Mathf.Round(Random.Range(enemyStats.GetEnemyStat(Stats.Stat.Range).minValue, enemyStats.GetEnemyStat(Stats.Stat.Range).maxValue));
+        // Number of possible drops
+        int dropNumber = (int)Mathf.Round(UnityEngine.Random.Range(enemyStats.GetEnemyStat(Stats.Stat.Range).minValue, enemyStats.GetEnemyStat(Stats.Stat.Range).maxValue));
 
-        float enemyDropRate = Random.Range(enemyStats.GetEnemyStat(Stats.Stat.DropRateP).minValue, enemyStats.GetEnemyStat(Stats.Stat.DropRateP).maxValue);
-        float playerDropRate = Random.Range(playerStats.GetPlayerStat(Stats.Stat.DropRateP).minValue, playerStats.GetPlayerStat(Stats.Stat.DropRateP).maxValue);
+        // Drop Rate Stats
+        float enemyDropRate = UnityEngine.Random.Range(enemyStats.GetEnemyStat(Stats.Stat.DropRateP).minValue, enemyStats.GetEnemyStat(Stats.Stat.DropRateP).maxValue);
+        float playerDropRate = UnityEngine.Random.Range(playerStats.GetPlayerStat(Stats.Stat.DropRateP).minValue, playerStats.GetPlayerStat(Stats.Stat.DropRateP).maxValue);
         float dropRate = enemyDropRate + playerDropRate;
 
-        float enemyItemRarity = Random.Range(enemyStats.GetEnemyStat(Stats.Stat.ItemRarityP).minValue, enemyStats.GetEnemyStat(Stats.Stat.ItemRarityP).maxValue);
-        float playerItemRarity = Random.Range(playerStats.GetPlayerStat(Stats.Stat.ItemRarityP).minValue, playerStats.GetPlayerStat(Stats.Stat.ItemRarityP).maxValue);
+        // Item Rarity Stats
+        float enemyItemRarity = UnityEngine.Random.Range(enemyStats.GetEnemyStat(Stats.Stat.ItemRarityP).minValue, enemyStats.GetEnemyStat(Stats.Stat.ItemRarityP).maxValue);
+        float playerItemRarity = UnityEngine.Random.Range(playerStats.GetPlayerStat(Stats.Stat.ItemRarityP).minValue, playerStats.GetPlayerStat(Stats.Stat.ItemRarityP).maxValue);
         float itemRarity = enemyItemRarity + playerItemRarity;
 
         for (int i = 0; i < dropNumber; i++)
         {
-            float randomDropRate = Random.value;
+            GearSO.GearType gearType;
+            GearSO.GearBase gearBase;
+            GearSO.GearRarity gearRarity;
+
+            // Choose Gear Type
+            System.Random random = new System.Random();
+            int type = random.Next(0, 6);
+
+            gearType = (GearSO.GearType)type;
+
+            // Check for Drop rate
+            float randomDropRate = UnityEngine.Random.value;
             float range = 238 * (Mathf.Exp(0.01f * dropRate) - 225);
 
             if (randomDropRate <= dropRate / 100)
             {
-                float randomRarity = Random.value;
+                float randomRarity = UnityEngine.Random.value;
 
-                if (randomRarity <= itemRarity / 100)
+                // Choose Gear Base
+                if (randomDropRate <= (dropRate * 5) / 100)
                 {
-                    // Drops legendary gear
-                    if (randomDropRate <= (dropRate * 5) / 100)
-                    {
-                        // Hero
-                        SpawnGear(gearType, GearSO.GearBase.Hero, GearSO.GearRarity.Legendary);
-                    }
-                    else if (randomDropRate > (dropRate * 5) / 100 && randomDropRate <= range / 100)
-                    {
-                        // Warrior
-                        SpawnGear(gearType, GearSO.GearBase.Warrior, GearSO.GearRarity.Legendary);
-                    }
-                    else
-                    {
-                        // Basic
-                        SpawnGear(gearType, GearSO.GearBase.Basic, GearSO.GearRarity.Legendary);
-                    }
+                    gearBase = GearSO.GearBase.Hero;
                 }
-                else if (randomRarity > itemRarity && randomRarity <= (itemRarity * 5) / 100)
+                else if (randomDropRate > (dropRate * 5) / 100 && randomDropRate <= range / 100)
                 {
-                    //Drops rare gear
-                    if (randomDropRate <= (dropRate * 5) / 100)
-                    {
-                        // Hero
-                        SpawnGear(gearType, GearSO.GearBase.Hero, GearSO.GearRarity.Rare);
-                    }
-                    else if (randomDropRate > (dropRate * 5) / 100 && randomDropRate <= range / 100)
-                    {
-                        // Warrior
-                        SpawnGear(gearType, GearSO.GearBase.Warrior, GearSO.GearRarity.Rare);
-                    }
-                    else
-                    {
-                        // Basic
-                        SpawnGear(gearType, GearSO.GearBase.Basic, GearSO.GearRarity.Rare);
-                    }
+                    gearBase = GearSO.GearBase.Warrior;
                 }
                 else
                 {
-                    //Drops common gear
-                    if (randomDropRate <= (dropRate * 5) / 100)
-                    {
-                        // Hero
-                        SpawnGear(gearType, GearSO.GearBase.Hero, GearSO.GearRarity.Common);
-                    }
-                    else if (randomDropRate > (dropRate * 5) / 100 && randomDropRate <= range / 100)
-                    {
-                        // Warrior
-                        SpawnGear(gearType, GearSO.GearBase.Warrior, GearSO.GearRarity.Common);
-                    }
-                    else
-                    {
-                        // Basic
-                        SpawnGear(gearType, GearSO.GearBase.Basic, GearSO.GearRarity.Common);
-                    }
+                    gearBase = GearSO.GearBase.Basic;
                 }
+
+                // Choose Gear Rarity
+                if (randomRarity <= itemRarity / 100)
+                {
+                    gearRarity = GearSO.GearRarity.Legendary;
+                }
+                else if (randomRarity > itemRarity && randomRarity <= (itemRarity * 5) / 100)
+                {
+                    gearRarity = GearSO.GearRarity.Rare;
+                }
+                else
+                {
+                    gearRarity = GearSO.GearRarity.Common;
+                }
+
+                SpawnGear(gearType, gearBase, gearRarity);
             }
         }
     }

@@ -27,9 +27,9 @@ public class GearSO : ScriptableObject
 
     public enum GearRarity
     {
-        Common,
-        Rare,
-        Legendary
+        Common = 1,
+        Rare = 2,
+        Legendary = 4
     }
 
     public GearType gearType;

@@ -18,7 +18,7 @@ public class CalculationController : MonoBehaviour
 
     [Header("Skill Tress")]
     [SerializeField] private SkillTreeManager playerSkillTree;
-    [SerializeField] private FireballSkillTree fireballSkillTree;
+    [SerializeField] private SkillTreeManager fireballSkillTree;
 
     [Header("Skill Stats")]
     [SerializeField] private List<Stats> fireballStats;

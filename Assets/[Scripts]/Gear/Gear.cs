@@ -8,6 +8,4 @@ public class Gear : MonoBehaviour
     private List<Stats> gearStats;
 
     public Dictionary<Stats.Stat, Stats> gearModifiers;
-
-
 }
