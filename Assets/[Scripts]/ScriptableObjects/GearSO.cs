@@ -18,22 +18,22 @@ public class GearSO : ScriptableObject
         Boots
     }
 
-    public enum GearRating
+    public enum GearBase
     {
-        Low,
-        Medium,
-        High
+        Basic,
+        Warrior,
+        Hero
     }
 
     public enum GearRarity
     {
-        Common,
-        Rare,
-        Legendary
+        Common = 1,
+        Rare = 2,
+        Legendary = 4
     }
 
     public GearType gearType;
-    public GearRating gearRating;
+    public GearBase gearBase;
     public GearRarity gearRarity;
     public List<Stats> mainStats = new List<Stats>();
     public List<Stats> randomRolls = new List<Stats>();

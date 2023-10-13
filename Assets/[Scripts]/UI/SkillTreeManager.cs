@@ -13,8 +13,10 @@ public class SkillTreeManager : MonoBehaviour
     private SkillTreeNode[] nodes;
 
     [SerializeField]
-    public Dictionary<Stats.Stat, Stats> skillTreeModifiers;
-    public SkillTree skillTree;
+    private Dictionary<Stats.Stat, Stats> skillTreeModifiers;
+
+    [SerializeField]
+    private SkillTree skillTree;
 
     private void Start()
     {
@@ -56,6 +58,11 @@ public class SkillTreeManager : MonoBehaviour
     public Dictionary<Stats.Stat, Stats> GetStats()
     {
         return skillTreeModifiers;
+    }
+
+    public SkillTree GetSkillTree()
+    {
+        return skillTree;
     }
 }
 

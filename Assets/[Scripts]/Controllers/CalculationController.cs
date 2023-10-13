@@ -18,7 +18,7 @@ public class CalculationController : MonoBehaviour
 
     [Header("Skill Tress")]
     [SerializeField] private SkillTreeManager playerSkillTree;
-    [SerializeField] private FireballSkillTree fireballSkillTree;
+    [SerializeField] private SkillTreeManager fireballSkillTree;
 
     [Header("Skill Stats")]
     [SerializeField] private List<Stats> fireballStats;
@@ -34,32 +34,21 @@ public class CalculationController : MonoBehaviour
             instance = this;
         }
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void CalculatePlayerStats()
     {
         Dictionary<Stats.Stat, Stats> gearStats = CalculateGearStats();
 
         // Calculate Player Stats from the skill tree
-        foreach (Stats.Stat s in playerSkillTree.skillTreeModifiers.Keys)
+        foreach (Stats.Stat s in playerSkillTree.GetStats().Keys)
         {
-            playerStats.UpdateModifiers(s, playerSkillTree.skillTreeModifiers[s]);
+            playerStats.UpdatePlayerModifiers(s, playerSkillTree.GetStats()[s]);
         }
 
         // Calculate Player Stats from gear equipped
         foreach (Stats.Stat s in gearStats.Keys)
         {
-            playerStats.UpdateModifiers(s, gearStats[s]);
+            playerStats.UpdatePlayerModifiers(s, gearStats[s]);
         }
 
         playerStats.UpdatePlayerStats();

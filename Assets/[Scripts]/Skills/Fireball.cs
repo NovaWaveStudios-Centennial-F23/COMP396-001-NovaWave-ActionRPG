@@ -15,13 +15,13 @@ public class Fireball : MonoBehaviour
 
     IEnumerator Cooldown()
     {
-        yield return new WaitForSeconds(fireball.stats[4].statValue);
+        yield return new WaitForSeconds(fireball.stats[4].minValue);
         SkillsController.Instance.fireballCooldown = false;
     }
 
     void Start()
     {
-        damage = Random.Range(fireball.stats[0].statValue, fireball.stats[1].statValue);
+        damage = Random.Range(fireball.stats[0].minValue , fireball.stats[1].minValue);
         rb = GetComponent<Rigidbody>();
 
         StartCoroutine(Cooldown());
@@ -35,12 +35,12 @@ public class Fireball : MonoBehaviour
     private void ShootFireball()
     {
         transform.forward = (direction * 100) - transform.position;
-        rb.velocity = transform.forward * fireball.stats[7].statValue;
+        rb.velocity = transform.forward * fireball.stats[7].minValue;
     }
 
     private void ApplyBurning()
     {
-        if (fireball.stats[9].statValue == 1)
+        if (fireball.stats[9].minValue == 1)
         {
             //do burning
         }

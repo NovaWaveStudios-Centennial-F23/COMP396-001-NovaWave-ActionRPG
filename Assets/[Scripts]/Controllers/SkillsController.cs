@@ -19,7 +19,7 @@ public class SkillsController : MonoBehaviour
 
     [Header("Others")]
     [SerializeField] private LayerMask groundMask;
-    [SerializeField] private FireballSkillTree fireballSkillTree;
+    [SerializeField] private SkillTreeManager fireballSkillTree;
 
     private Vector3 mousePosition;
 
@@ -61,19 +61,19 @@ public class SkillsController : MonoBehaviour
     }
 
     private void InitFireball()
-    {
+    {/*
         fireballSO = Resources.Load<SkillSO>("Skills/Fireball/Fireball" + fireballSkillTree.fireballLvl.ToString());
 
         GameObject fireball = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
         fireball.GetComponent<Fireball>().fireball = fireballSO;
         fireball.GetComponent<Fireball>().direction = mousePosition;
 
-        if (fireballSkillTree.fireballStats[5].statValue == 1)
+        if (fireballSkillTree.GetSkillTree()[5].statValue == 1)
         {
             GameObject fireball2 = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
             fireball2.GetComponent<Fireball>().fireball = fireballSO;
             fireball2.GetComponent<Fireball>().direction = mousePosition;
         }
-        fireballCooldown = true;
+        fireballCooldown = true;*/
     }
 }
