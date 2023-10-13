@@ -62,7 +62,7 @@ public class SkillsController : MonoBehaviour
 
     private void InitFireball()
     {
-        fireballSO = Resources.Load<SkillSO>("Skills/Fireball/Fireball" + fireballSkillTree.fireballLvl.ToString());
+        /*fireballSO = Resources.Load<SkillSO>("Skills/Fireball/Fireball" + fireballSkillTree.fireballLvl.ToString());
 
         GameObject fireball = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
         fireball.GetComponent<Fireball>().fireball = fireballSO;
@@ -74,6 +74,6 @@ public class SkillsController : MonoBehaviour
             fireball2.GetComponent<Fireball>().fireball = fireballSO;
             fireball2.GetComponent<Fireball>().direction = mousePosition;
         }
-        fireballCooldown = true;
+        fireballCooldown = true;*/
     }
 }
