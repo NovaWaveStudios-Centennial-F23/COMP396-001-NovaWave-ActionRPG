@@ -81,9 +81,7 @@ public class SkillTreeNode : MonoBehaviour, IPointerClickHandler
         {
             //hide the level indicator
             levelIndicatorGO.SetActive(false);
-        }       
-
-        
+        }
     }
 
     private void RefundSkill()

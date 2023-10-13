@@ -47,18 +47,20 @@ public class GearController : MonoBehaviour
         foreach (Stats s in gearSO.mainStats)
         {
             s.minValue = UnityEngine.Random.Range(s.minValue, s.maxValue);
-            s.maxValue = UnityEngine.Random.Range(s.minValue, s.maxValue);
-            gear.GetComponent<Gear>().gearModifiers.Add(s.stat, s);
+            s.maxValue = s.minValue;
+            gear.GetComponent<Gear>().GetGearModifiers().Add(s.stat, s);
         }
         foreach (Stats s in gearSO.affixes)
         {
             s.minValue = UnityEngine.Random.Range(s.minValue, s.maxValue);
-            s.maxValue = UnityEngine.Random.Range(s.minValue, s.maxValue);
-            gear.GetComponent<Gear>().gearModifiers.Add(s.stat, s);
-        }    
+            s.maxValue = s.minValue;
+            gear.GetComponent<Gear>().GetGearModifiers().Add(s.stat, s);
+        }
+
+        gear.GetComponent<Gear>().InitGearStats();
     }
 
-    public void GearDrops()
+    public void GearDropCalculation()
     {
         // Number of possible drops
         int dropNumber = (int)Mathf.Round(UnityEngine.Random.Range(enemyStats.GetEnemyStat(Stats.Stat.Range).minValue, enemyStats.GetEnemyStat(Stats.Stat.Range).maxValue));

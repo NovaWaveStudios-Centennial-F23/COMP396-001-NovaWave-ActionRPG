@@ -62,9 +62,10 @@ public class PlayerStats : MonoBehaviour
     }
 
     // GET Methods
-    public List<Stats> GetAllPlayerStats()
+    public Dictionary<Stats.Stat, Stats> GetAllPlayerModifiers()
     {
-        return playerStats;
+        InitPlayerModifiers();
+        return playerModifiers;
     }
 
     public Stats GetPlayerStat(Stats.Stat stat)

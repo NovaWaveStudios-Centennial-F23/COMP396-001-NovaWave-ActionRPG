@@ -20,8 +20,7 @@ public class CalculationController : MonoBehaviour
     [SerializeField] private SkillTreeManager playerSkillTree;
     [SerializeField] private SkillTreeManager fireballSkillTree;
 
-    [Header("Skill Stats")]
-    [SerializeField] private List<Stats> fireballStats;
+    private Dictionary<Stats.Stat, Stats> fireballStats;
 
     void Awake()
     {
@@ -35,7 +34,23 @@ public class CalculationController : MonoBehaviour
         }
     }
 
-    public void CalculatePlayerStats()
+    public void SkillTreeCalculation(SkillTreeManager.SkillTree skillTree)
+    {
+        switch (skillTree)
+        {
+            case SkillTreeManager.SkillTree.Player:
+                CalculatePlayerStats();
+                break;
+            case SkillTreeManager.SkillTree.Fireball:
+                CalculateFireballStats();
+                break;
+            default:
+                break;
+
+        }
+    }
+
+    private void CalculatePlayerStats()
     {
         Dictionary<Stats.Stat, Stats> gearStats = CalculateGearStats();
 
@@ -92,15 +107,15 @@ public class CalculationController : MonoBehaviour
         //Calculate all stats from gear
         foreach (Gear g in gears)
         {
-            foreach (Stats.Stat s in g.gearModifiers.Keys)
+            foreach (Stats.Stat s in g.GetGearModifiers().Keys)
             {
                 if (gearStats.ContainsKey(s))
                 {
-                    gearStats[s] += g.gearModifiers[s];
+                    gearStats[s] += g.GetGearModifiers()[s];
                 }
                 else
                 {
-                    gearStats.Add(s, g.gearModifiers[s]);
+                    gearStats.Add(s, g.GetGearModifiers()[s]);
                 }
             }
         }
@@ -108,16 +123,16 @@ public class CalculationController : MonoBehaviour
         return gearStats;
     }
 
-    public void SkillTreeCalculation(SkillTreeManager.SkillTree skillTree)
+    public void CalculateFireballStats()
     {
-        switch (skillTree)
-        {
-            case SkillTreeManager.SkillTree.Player:
-                CalculatePlayerStats();
-                break;
-            default:
-                break;
+        fireballStats = fireballSkillTree.GetStats();
 
+        foreach (Stats.Stat s in fireballStats.Keys)
+        {
+            if (playerStats.GetAllPlayerModifiers().ContainsKey(s))
+            {
+                fireballStats[s] += playerStats.GetAllPlayerModifiers()[s];
+            }
         }
     }
 }
