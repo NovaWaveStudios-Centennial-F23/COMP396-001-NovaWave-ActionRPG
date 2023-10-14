@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
@@ -31,7 +32,7 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    public void UpdatePlayerModifiers(Stats.Stat s, Stats v)
+    public void UpdatePlayerStats(Stats.Stat s, Stats v)
     {
         if (playerModifiers.ContainsKey(s))
         {
@@ -39,32 +40,13 @@ public class PlayerStats : MonoBehaviour
         }
         else
         {
-            playerModifiers.Add(s, v);
+            playerStats.Add(v);
+            playerModifiers.Add(playerStats.Find(e => e == v).stat, playerStats.Find(e => e == v));
         }
     }
 
-    public void UpdatePlayerStats()
+    public Dictionary<Stats.Stat, Stats> GetAllPlayerStats()
     {
-        foreach (Stats.Stat s in playerModifiers.Keys)
-        {
-            for (int i = 0; i < playerStats.Count; i++)
-            {
-                if (playerStats[i].stat == s)
-                {
-                    playerStats[i] += playerModifiers[s];
-                }
-                else
-                {
-                    playerStats.Add(playerModifiers[s]);
-                }
-            }
-        }
-    }
-
-    // GET Methods
-    public Dictionary<Stats.Stat, Stats> GetAllPlayerModifiers()
-    {
-        InitPlayerModifiers();
         return playerModifiers;
     }
 

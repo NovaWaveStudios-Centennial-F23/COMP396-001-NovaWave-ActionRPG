@@ -9,6 +9,15 @@ public class Gear : MonoBehaviour
 
     private Dictionary<Stats.Stat, Stats> gearModifiers;
 
+    private void Awake()
+    {
+        gearModifiers = new Dictionary<Stats.Stat, Stats>();
+        foreach (Stats s in gearStats)
+        {
+            gearModifiers.Add(s.stat, s);
+        }
+    }
+
     public void InitGearStats()
     {
         foreach (Stats.Stat s in gearModifiers.Keys)
@@ -17,8 +26,8 @@ public class Gear : MonoBehaviour
         }
     }
 
-    public Dictionary<Stats.Stat, Stats> GetGearModifiers() 
-    { 
-        return gearModifiers; 
+    public Dictionary<Stats.Stat, Stats> GetGearStats() 
+    {
+        return gearModifiers;
     }
 }

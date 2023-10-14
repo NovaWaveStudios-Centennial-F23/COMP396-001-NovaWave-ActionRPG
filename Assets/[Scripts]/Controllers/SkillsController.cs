@@ -37,7 +37,7 @@ public class SkillsController : MonoBehaviour
 
     void Update()
     {
-        SkillCast();
+        //SkillCast();
     }
 
     private void Raycast()

@@ -20,6 +20,8 @@ public class CalculationController : MonoBehaviour
     [SerializeField] private SkillTreeManager playerSkillTree;
     [SerializeField] private SkillTreeManager fireballSkillTree;
 
+    private Dictionary<Stats.Stat, Stats> playerSkillTreeStats;
+    private Dictionary<Stats.Stat, Stats> gearStats;
     private Dictionary<Stats.Stat, Stats> fireballStats;
 
     void Awake()
@@ -34,12 +36,20 @@ public class CalculationController : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            CalculateGearStats();
+        }
+    }
+
     public void SkillTreeCalculation(SkillTreeManager.SkillTree skillTree)
     {
         switch (skillTree)
         {
             case SkillTreeManager.SkillTree.Player:
-                CalculatePlayerStats();
+                SetPlayerSkillTreeStats();
                 break;
             case SkillTreeManager.SkillTree.Fireball:
                 CalculateFireballStats();
@@ -52,24 +62,41 @@ public class CalculationController : MonoBehaviour
 
     private void CalculatePlayerStats()
     {
-        Dictionary<Stats.Stat, Stats> gearStats = CalculateGearStats();
-
-        // Calculate Player Stats from the skill tree
-        foreach (Stats.Stat s in playerSkillTree.GetStats().Keys)
+        foreach (Stats.Stat s in playerStats.GetAllPlayerStats().Keys)
         {
-            playerStats.UpdatePlayerModifiers(s, playerSkillTree.GetStats()[s]);
-        }
+            foreach (Stats.Stat t in playerSkillTreeStats.Keys)
+            {
+                if (s == t)
+                {
+                    playerStats.GetAllPlayerStats()[s] += playerSkillTreeStats[s];
+                }
+                else
+                {
+                    playerStats.GetAllPlayerStats().Add(t, playerSkillTreeStats[t]);
+                }
+            }
 
-        // Calculate Player Stats from gear equipped
-        foreach (Stats.Stat s in gearStats.Keys)
-        {
-            playerStats.UpdatePlayerModifiers(s, gearStats[s]);
+            foreach (Stats.Stat u in gearStats.Keys)
+            {
+                if (s == u)
+                {
+                    playerStats.GetAllPlayerStats()[s] += gearStats[s];
+                }
+                else
+                {
+                    playerStats.GetAllPlayerStats().Add(u, gearStats[u]);
+                }
+            }
         }
-
-        playerStats.UpdatePlayerStats();
+    }
+    
+    public void SetPlayerSkillTreeStats()
+    {
+        playerSkillTreeStats = playerSkillTree.GetStats();
+        CalculatePlayerStats();
     }
 
-    private Dictionary<Stats.Stat, Stats> CalculateGearStats()
+    private void CalculateGearStats()
     {
         List<Gear> gears = new List<Gear>();
         Dictionary<Stats.Stat, Stats> gearStats = new Dictionary<Stats.Stat, Stats>();
@@ -107,20 +134,23 @@ public class CalculationController : MonoBehaviour
         //Calculate all stats from gear
         foreach (Gear g in gears)
         {
-            foreach (Stats.Stat s in g.GetGearModifiers().Keys)
+            foreach (Stats.Stat s in g.GetGearStats().Keys)
             {
                 if (gearStats.ContainsKey(s))
                 {
-                    gearStats[s] += g.GetGearModifiers()[s];
+                    gearStats[s] += g.GetGearStats()[s];
+                    break;
                 }
                 else
                 {
-                    gearStats.Add(s, g.GetGearModifiers()[s]);
+                    gearStats.Add(s, g.GetGearStats()[s]);
+                    break;
                 }
             }
         }
 
-        return gearStats;
+        this.gearStats = gearStats;
+        CalculatePlayerStats();
     }
 
     public void CalculateFireballStats()
@@ -129,9 +159,9 @@ public class CalculationController : MonoBehaviour
 
         foreach (Stats.Stat s in fireballStats.Keys)
         {
-            if (playerStats.GetAllPlayerModifiers().ContainsKey(s))
+            if (playerStats.GetAllPlayerStats().ContainsKey(s))
             {
-                fireballStats[s] += playerStats.GetAllPlayerModifiers()[s];
+                fireballStats[s] += playerStats.GetAllPlayerStats()[s];
             }
         }
     }

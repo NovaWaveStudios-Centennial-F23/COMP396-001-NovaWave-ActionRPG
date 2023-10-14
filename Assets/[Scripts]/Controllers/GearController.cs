@@ -48,13 +48,13 @@ public class GearController : MonoBehaviour
         {
             s.minValue = UnityEngine.Random.Range(s.minValue, s.maxValue);
             s.maxValue = s.minValue;
-            gear.GetComponent<Gear>().GetGearModifiers().Add(s.stat, s);
+            gear.GetComponent<Gear>().GetGearStats().Add(s.stat, s);
         }
         foreach (Stats s in gearSO.affixes)
         {
             s.minValue = UnityEngine.Random.Range(s.minValue, s.maxValue);
             s.maxValue = s.minValue;
-            gear.GetComponent<Gear>().GetGearModifiers().Add(s.stat, s);
+            gear.GetComponent<Gear>().GetGearStats().Add(s.stat, s);
         }
 
         gear.GetComponent<Gear>().InitGearStats();
