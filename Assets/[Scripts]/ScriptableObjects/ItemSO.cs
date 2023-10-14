@@ -6,9 +6,17 @@ using UnityEngine;
 public enum ItemType
 {
     // Need to add more specific item types
+    // and marge with gear types from gearSO
     Consumable,
     Misc,
-    Default
+    Default,
+    Wand,
+    Staff,
+    Shield,
+    Helmet,
+    Chestplate,
+    Gloves,
+    Boots
 }
 
 public abstract class ItemSO : ScriptableObject
@@ -27,6 +35,14 @@ public class Item
 {
     public string Name;
     public int Id;
+
+    // Constructer
+    public Item()
+    {
+        Name = "";
+        Id = -1;
+    }
+
     public Item(ItemSO item)
     {
         Name = item.name;

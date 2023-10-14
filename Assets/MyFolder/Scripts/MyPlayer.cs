@@ -6,6 +6,7 @@ using UnityEngine;
 public class MyPlayer : MonoBehaviour
 {
     // ========== Add below properties and methods to player script ==========
+    public MouseItem mouseItem = new MouseItem();
     public InventorySO inventory;
 
     public void OnTriggerEnter(Collider other)

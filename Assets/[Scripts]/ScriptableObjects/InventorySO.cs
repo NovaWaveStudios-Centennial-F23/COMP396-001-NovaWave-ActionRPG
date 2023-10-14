@@ -81,11 +81,11 @@ public class InventorySO : ScriptableObject
     //     }
     // }
 
-    // [ContextMenu("Clear")]
-    // public void Clear()
-    // {
-    //     Container = new Inventory();
-    // }
+    [ContextMenu("Clear")]
+    public void Clear()
+    {
+        Container.Clear();
+    }
 }
 
 //
@@ -96,6 +96,13 @@ public class Inventory
 {
     // implement a logic to put same nunber to InventorySlot for Player.OnApplicationQuit()
     public InventorySlot[] Items = new InventorySlot[48];
+    public void Clear()
+    {
+        for (int i = 0; i < Items.Length; i++)
+        {
+            Items[i].UpdateSlot(-1, new Item(), 0);
+        }
+    }
 }
 
 //
@@ -104,6 +111,8 @@ public class Inventory
 [System.Serializable]
 public class InventorySlot
 {
+    public ItemType[] AllowedItems = new ItemType[0];
+    public UserInterface parent;
     public int ID = -1;
     public Item item;
     public int amount;
@@ -135,4 +144,20 @@ public class InventorySlot
         amount += value;
     }
 
+    public bool CanPlaceInSlot(ItemSO _item)
+    {
+        if (AllowedItems.Length <= 0/* || _item == null || _item.data.Id < 0*/)
+        {
+            return true;
+        }
+
+        for (int i = 0; i < AllowedItems.Length; i++)
+        {
+            if (_item.itemType == AllowedItems[i])
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }
