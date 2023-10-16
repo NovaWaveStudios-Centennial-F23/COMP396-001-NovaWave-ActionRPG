@@ -9,6 +9,7 @@ public class SkillTreeManager : MonoBehaviour
         Player,
         Fireball
     }
+
     //collection of all skillNodes
     private SkillTreeNode[] nodes;
 
@@ -64,5 +65,8 @@ public class SkillTreeManager : MonoBehaviour
     {
         return skillTree;
     }
+
+
+
 }
 

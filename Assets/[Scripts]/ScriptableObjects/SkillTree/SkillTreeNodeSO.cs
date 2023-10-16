@@ -1,3 +1,7 @@
+/* Created by Han Bi
+ * 
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,10 +10,20 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SkillNode", menuName = "ScriptableObjects/CreateSkillNode")]
 public class SkillTreeNodeSO : ScriptableObject
 {
-    public List<Stats> stats = new List<Stats>();
-    public Sprite icon;
+    public List<SkillSO> skills;
 
-    //only used if there is are prequisites for the skill
-    public List<SkillTreeNodeSO> dependancies = new List<SkillTreeNodeSO>();
+    [SkillSelector]
+    [SerializeField]
+    string skillType;
+
+    public string skillName;
+    public Sprite icon;
+    public string description;
+
+
+    private void OnValidate()
+    {
+
+    }
 
 }

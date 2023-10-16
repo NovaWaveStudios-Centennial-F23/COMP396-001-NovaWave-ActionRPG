@@ -1,10 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 
-public class Fireball : MonoBehaviour
+public class Fireball : Skill
 {
     public SkillSO fireball;
     public Vector3 direction;

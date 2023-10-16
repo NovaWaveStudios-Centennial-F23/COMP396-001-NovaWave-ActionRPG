@@ -56,5 +56,12 @@ public class Stats
         stats.maxValue += other.maxValue;
         return stats;
     }
+
+    public Stats(Stat stat)
+    {
+        this.stat = stat;
+    }
+
+    public Stats() { }
 }
 

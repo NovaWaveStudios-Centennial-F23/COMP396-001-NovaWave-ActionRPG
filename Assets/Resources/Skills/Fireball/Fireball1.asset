@@ -13,32 +13,10 @@ MonoBehaviour:
   m_Name: Fireball1
   m_EditorClassIdentifier: 
   level: 1
+  manaCost:
+    stat: 28
+    minValue: 0
+    maxValue: 0
+  skillType: Player
   damageType: 1
-  stats:
-  - stat: 27
-    statValue: 0
-    deviation: 0
-  - stat: 28
-    statValue: 0
-    deviation: 0
-  - stat: 29
-    statValue: 0
-    deviation: 0
-  - stat: 30
-    statValue: 0
-    deviation: 0
-  - stat: 31
-    statValue: 0
-    deviation: 0
-  - stat: 32
-    statValue: 0
-    deviation: 0
-  - stat: 33
-    statValue: 0
-    deviation: 0
-  - stat: 34
-    statValue: 0
-    deviation: 0
-  - stat: 35
-    statValue: 0
-    deviation: 0
+  otherStats: []

@@ -58,7 +58,7 @@ public class NodeConnector : MonoBehaviour
         connector.transform.SetParent(connectorParent.transform);
 
         //sets the height (length of the line) for the connector
-        connector.GetComponent<RectTransform>().sizeDelta = new Vector2(1, c);
+        connector.GetComponent<RectTransform>().localScale = new Vector3(1, c, 1);
         connector.GetComponent<RectTransform>().eulerAngles = new Vector3(0, 0, angleDeg+90);
         connector.GetComponent<RectTransform>().position = connectorPos;
 

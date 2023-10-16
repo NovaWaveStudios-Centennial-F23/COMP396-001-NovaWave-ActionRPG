@@ -2,11 +2,12 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using Unity.Services.Analytics.Internal;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class SkillTreeNode : MonoBehaviour, IPointerClickHandler
+public class SkillTreeNode : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField]
     GameObject outlineGO;
@@ -18,12 +19,10 @@ public class SkillTreeNode : MonoBehaviour, IPointerClickHandler
     GameObject levelIndicatorGO;
 
     [SerializeField]
-    List<SkillTreeNodeSO> dataObjects = new List<SkillTreeNodeSO>();
+    SkillTreeNodeSO nodeData;
 
     [Tooltip("Nodes that need to be allocated in order to allocate this one")]
     public List<SkillTreeNode> prerequisites = new List<SkillTreeNode>();
-
-    
 
     //components: found at runtime
     Image image;
@@ -31,8 +30,10 @@ public class SkillTreeNode : MonoBehaviour, IPointerClickHandler
     TextMeshProUGUI levelText;
 
     //variables
-    private int maxLevel;
+    public int maxLevel { get; private set; }
     private int currentLevel = 0;
+    List<SkillSO> dataObjects;
+    //used for de-allocating skills, it will check dependancies before unallocating the skill
     private List<SkillTreeNode> dependancies = new List<SkillTreeNode>();
 
     //broadcast event whenenever current level of skill is changed
@@ -40,19 +41,21 @@ public class SkillTreeNode : MonoBehaviour, IPointerClickHandler
 
     private void Start()
     {
+        dataObjects = nodeData.skills;
         maxLevel = dataObjects.Count;
         image = iconGO.GetComponent<Image>();
         outline = outlineGO.GetComponent<Image>();
-        image.sprite = dataObjects[0].icon;
+        image.sprite = nodeData.icon;
         levelText = levelIndicatorGO.GetComponentInChildren<TextMeshProUGUI>();
+
         //auto-generate dependancies from prerequisites
         foreach(SkillTreeNode node in prerequisites)
         {
             node.AddDependancy(this);
         }
-
         UpdateAppearance();
     }
+
     void UpdateAppearance()
     {
         if (currentLevel > 0)
@@ -83,12 +86,12 @@ public class SkillTreeNode : MonoBehaviour, IPointerClickHandler
 
     private void RefundSkill()
     {
-        //give player skillpoint
-
         //check if its possible to refund or deallocate skill point
         if(currentLevel > 0)
         {
             currentLevel--;
+            //give player skillpoint
+
             //broadcasting event whenever skill level changes
             OnSkillLevelChanged(currentLevel);
         }
@@ -115,15 +118,13 @@ public class SkillTreeNode : MonoBehaviour, IPointerClickHandler
             {
                 PurchaseSkill();
             }
-
         }
         else if (eventData.button == PointerEventData.InputButton.Right)
         {
-            if (PassedDependancies() || currentLevel > 1)
+            if (currentLevel > 1 || PassedDependancies())
             {
                 RefundSkill();
             }
-            
         }
 
         UpdateAppearance();
@@ -175,9 +176,14 @@ public class SkillTreeNode : MonoBehaviour, IPointerClickHandler
 
     public List<Stats> GetStats()
     {
-
-        return dataObjects[currentLevel - 1].stats;
-
+        if(currentLevel == 0)
+        {
+            return null;
+        }
+        else
+        {
+            return dataObjects[currentLevel - 1].stats;
+        }       
     }
 
     public void AddDependancy(SkillTreeNode node)
@@ -185,4 +191,22 @@ public class SkillTreeNode : MonoBehaviour, IPointerClickHandler
         dependancies.Add(node);
     }
 
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        //throw new NotImplementedException();
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        //throw new NotImplementedException();
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        foreach(SkillTreeNode node in prerequisites)
+        {
+            Gizmos.DrawLine(transform.position, node.transform.position);
+        }
+    }
 }
