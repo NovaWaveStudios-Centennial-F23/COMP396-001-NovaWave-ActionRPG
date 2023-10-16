@@ -8,7 +8,6 @@ using UnityEngine;
 
 public abstract class ToolTipHandler : MonoBehaviour
 {
-
-    public abstract void DisplayDetails(SkillTreeNode data);
+    public abstract void DisplayDetails(ref SkillTreeNode data);
 
 }

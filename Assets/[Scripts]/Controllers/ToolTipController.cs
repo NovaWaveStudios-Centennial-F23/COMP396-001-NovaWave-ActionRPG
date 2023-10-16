@@ -9,7 +9,7 @@ using UnityEngine;
 
 public class ToolTipController : MonoBehaviour
 {
-    public ToolTipController Instance { get; private set; }
+    public static ToolTipController Instance { get;  private set; }
 
     [SerializeField]
     GameObject skillTooltip;
@@ -42,11 +42,17 @@ public class ToolTipController : MonoBehaviour
             nodeToolTip,
             gearToolTip
         };
+
+        CloseTooltips();
     }
 
-    public void ShowSkillToolTip(SkillSO skillData)
+    public void ShowSkillToolTip(SkillTreeNode node)
     {
-
+        CloseTooltips();
+        skillTooltip.SetActive(true);
+        skillTooltip.GetComponent<SkillToolTip>().DisplayDetails(ref node);
+        Vector2 mousePos = Input.mousePosition;
+        skillTooltip.transform.position = mousePos;
     }
 
 

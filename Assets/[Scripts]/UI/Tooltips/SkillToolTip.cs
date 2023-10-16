@@ -18,9 +18,11 @@ public class SkillToolTip : ToolTipHandler
     TextMeshProUGUI txtSkillLevel;
 
 
-    public override void DisplayDetails(SkillTreeNode node)
+    public override void DisplayDetails(ref SkillTreeNode node)
     {
         int currentLevel = node.GetCurrentLevel();
         int maxLevel = node.maxLevel;
+        txtSkillLevel.text = $"Level: {currentLevel}/{maxLevel}";
+
     }
 }

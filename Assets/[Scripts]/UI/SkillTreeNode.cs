@@ -193,12 +193,12 @@ public class SkillTreeNode : MonoBehaviour, IPointerClickHandler, IPointerEnterH
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        //throw new NotImplementedException();
+        ToolTipController.Instance.ShowSkillToolTip(this);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        //throw new NotImplementedException();
+        ToolTipController.Instance.CloseTooltips();
     }
 
     private void OnDrawGizmos()
