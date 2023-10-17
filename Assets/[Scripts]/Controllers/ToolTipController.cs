@@ -51,8 +51,6 @@ public class ToolTipController : MonoBehaviour
         CloseTooltips();
         skillTooltip.SetActive(true);
         skillTooltip.GetComponent<SkillToolTip>().DisplayDetails(ref node);
-        Vector2 mousePos = Input.mousePosition;
-        skillTooltip.transform.position = mousePos;
     }
 
 

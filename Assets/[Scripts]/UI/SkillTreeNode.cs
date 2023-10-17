@@ -128,6 +128,7 @@ public class SkillTreeNode : MonoBehaviour, IPointerClickHandler, IPointerEnterH
         }
 
         UpdateAppearance();
+        ToolTipController.Instance.ShowSkillToolTip(this);
     }
 
     private bool PassedPrequisites()
