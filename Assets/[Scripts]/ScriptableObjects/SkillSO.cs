@@ -8,8 +8,8 @@ using System.Reflection;
 [CreateAssetMenu(fileName = "SkillSciptableObject", menuName = "ScriptableObejcts/Create New Skill")]
 public class SkillSO : ScriptableObject
 {
-    public int level;
     public Stats manaCost = new Stats(Stats.Stat.ManaCost);
+    public Stats cooldown = new Stats(Stats.Stat.Cooldown);
     public enum DamageType
     {
         NORMAL,

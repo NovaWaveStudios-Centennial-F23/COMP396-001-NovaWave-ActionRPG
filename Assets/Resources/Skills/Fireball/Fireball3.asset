@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e850c26349c7094c99f0cdb44cc3087, type: 3}
-  m_Name: Fireball1
+  m_Name: Fireball3
   m_EditorClassIdentifier: 
   level: 1
   manaCost:
@@ -24,5 +24,5 @@ MonoBehaviour:
   damageType: 1
   otherStats:
   - stat: 0
-    minValue: 50
-    maxValue: 55
+    minValue: 60
+    maxValue: 65

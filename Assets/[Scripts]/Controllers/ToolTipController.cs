@@ -2,9 +2,7 @@
  * Used for displaying UI when user hovers over a interactive object
  * Singleton design pattern since there should only be one tooltip on screen at any given time
  */
-using System.Collections;
 using System.Collections.Generic;
-using Unity.Properties;
 using UnityEngine;
 
 public class ToolTipController : MonoBehaviour
@@ -12,15 +10,15 @@ public class ToolTipController : MonoBehaviour
     public static ToolTipController Instance { get;  private set; }
 
     [SerializeField]
-    GameObject skillTooltip;
+    RectTransform skillTooltip;
 
     [SerializeField]
-    GameObject nodeToolTip;
+    RectTransform nodeTooltip;
 
     [SerializeField]
-    GameObject gearToolTip;
+    RectTransform gearTooltip;
 
-    private List<GameObject> toolTips;
+    private List<RectTransform> toolTips;
 
     private void Awake()
     {
@@ -36,11 +34,11 @@ public class ToolTipController : MonoBehaviour
 
     private void Start()
     {
-        toolTips = new List<GameObject>
+        toolTips = new List<RectTransform>
         {
             skillTooltip,
-            nodeToolTip,
-            gearToolTip
+            nodeTooltip,
+            gearTooltip
         };
 
         CloseTooltips();
@@ -49,17 +47,15 @@ public class ToolTipController : MonoBehaviour
     public void ShowSkillToolTip(SkillTreeNode node)
     {
         CloseTooltips();
-        skillTooltip.SetActive(true);
-        skillTooltip.GetComponent<SkillToolTip>().DisplayDetails(ref node);
+        skillTooltip.gameObject.SetActive(true);
+        skillTooltip.GetComponent<SkillToolTip>().DisplayDetails(node);
     }
-
-
 
 
     public void CloseTooltips()
     {
-        foreach(GameObject tip in toolTips) {            
-            tip.SetActive(false);
+        foreach(RectTransform t in toolTips) {            
+            t.gameObject.SetActive(false);
         }
     }
 

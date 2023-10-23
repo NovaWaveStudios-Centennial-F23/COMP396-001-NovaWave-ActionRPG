@@ -57,6 +57,50 @@ public class Stats
         return stats;
     }
 
+    public override bool Equals(object obj) => this.Equals(obj as Stats);
+
+    public bool Equals(Stats other)
+    {
+        if(other == null) return false;
+
+        if(ReferenceEquals(this, other)) return true;
+
+        if(this.GetType() != other.GetType())
+        {
+            return false;
+        }
+
+        return this.stat == other.stat;
+    }
+
+    //not sure if this is correct
+    public override int GetHashCode() => stat.GetHashCode();
+
+    public static bool operator ==(Stats lhs, Stats rhs)
+    {
+        if(lhs is null)
+        {
+            if(rhs is null)
+            {
+                //both are null
+                return true;
+            }
+
+            //only left side is null
+            return false;
+        }
+
+        return lhs.Equals(rhs);
+    }
+
+    public static bool operator !=(Stats lhs, Stats rhs)
+    {
+        return !(lhs == rhs);
+    }
+
+
+
+
     public Stats(Stat stat)
     {
         this.stat = stat;

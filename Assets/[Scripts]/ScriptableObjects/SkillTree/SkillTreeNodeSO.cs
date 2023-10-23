@@ -12,18 +12,18 @@ public class SkillTreeNodeSO : ScriptableObject
 {
     public List<SkillSO> skills;
 
+    public enum NodeType
+    {
+        Skill,
+        Support
+    }
+
     [SkillSelector]
-    [SerializeField]
-    string skillType;
+    public string skillType;
+
+    public NodeType nodeType;
 
     public string skillName;
     public Sprite icon;
     public string description;
-
-
-    private void OnValidate()
-    {
-
-    }
-
 }

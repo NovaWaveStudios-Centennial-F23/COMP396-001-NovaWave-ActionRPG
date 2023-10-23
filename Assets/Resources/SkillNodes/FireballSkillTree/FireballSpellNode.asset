@@ -18,6 +18,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 936d0fef7e45fac4bb871ea7a89bd77d, type: 2}
   - {fileID: 11400000, guid: 936d0fef7e45fac4bb871ea7a89bd77d, type: 2}
   skillType: Fireball
+  nodeType: 0
   skillName: Fireball
   icon: {fileID: 21300000, guid: 3b36db2d8ce95bb45b4bc5ee555eeeb8, type: 3}
-  description: 
+  description: Fires a large ball of fire that deals

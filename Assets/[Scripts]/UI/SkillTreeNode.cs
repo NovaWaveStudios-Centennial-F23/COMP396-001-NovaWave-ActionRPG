@@ -19,7 +19,7 @@ public class SkillTreeNode : MonoBehaviour, IPointerClickHandler, IPointerEnterH
     GameObject levelIndicatorGO;
 
     [SerializeField]
-    SkillTreeNodeSO nodeData;
+    public SkillTreeNodeSO nodeData;
 
     [Tooltip("Nodes that need to be allocated in order to allocate this one")]
     public List<SkillTreeNode> prerequisites = new List<SkillTreeNode>();
@@ -128,6 +128,7 @@ public class SkillTreeNode : MonoBehaviour, IPointerClickHandler, IPointerEnterH
         }
 
         UpdateAppearance();
+
         ToolTipController.Instance.ShowSkillToolTip(this);
     }
 
@@ -200,6 +201,44 @@ public class SkillTreeNode : MonoBehaviour, IPointerClickHandler, IPointerEnterH
     public void OnPointerExit(PointerEventData eventData)
     {
         ToolTipController.Instance.CloseTooltips();
+    }
+
+    public SkillTreeNodeSO GetNodeData()
+    {
+        return nodeData;
+    }
+
+    public SkillSO GetCurrentSkillSO()
+    {
+        if(currentLevel > 0)
+        {
+            return GetSkillData(currentLevel-1);
+        }
+        else
+        {
+            return null;
+        }
+    }
+    
+    public SkillSO GetNextLevelSO()
+    {
+        if(currentLevel == maxLevel)
+        {
+            return null;
+        }
+
+        return GetSkillData(currentLevel);
+
+    }
+
+    private SkillSO GetSkillData(int index)
+    {
+        if (index < 0 || index > dataObjects.Count)
+        {
+            throw new ArgumentOutOfRangeException("index");
+        }
+
+        return dataObjects[index];
     }
 
     private void OnDrawGizmos()
