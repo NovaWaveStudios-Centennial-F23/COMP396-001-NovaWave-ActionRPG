@@ -260,6 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 003e147496254f5498feb82b9a436b9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iconImage: {fileID: 1670138769}
   txtSkillName: {fileID: 1775651723}
   txtSkillLevel: {fileID: 1406599733}
   txtManaCost: {fileID: 1329725891}
