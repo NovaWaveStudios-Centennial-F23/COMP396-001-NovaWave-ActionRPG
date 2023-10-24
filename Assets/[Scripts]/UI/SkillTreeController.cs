@@ -69,21 +69,21 @@ public class SkillTreeController : MonoBehaviour
                         List<Stats> activeStats = node.GetStats();
 
                         //check to see if the skill tree type is already in dictionary, if it is not, then add it
-                        if (!skillTreeModifiers.ContainsKey(node.nodeData.skillType))
+                        if (!skillTreeModifiers.ContainsKey(node.nodeData.skillTreeType))
                         {
-                            skillTreeModifiers[node.nodeData.skillType] = new Dictionary<Stats.Stat, Stats>();
+                            skillTreeModifiers[node.nodeData.skillTreeType] = new Dictionary<Stats.Stat, Stats>();
                         }
 
                         //check to see if the skill tree type already has some similar stats
                         foreach (Stats s in activeStats)
                         {
-                            if (skillTreeModifiers[node.nodeData.skillType].ContainsKey(s.stat))
+                            if (skillTreeModifiers[node.nodeData.skillTreeType].ContainsKey(s.stat))
                             {
-                                skillTreeModifiers[node.nodeData.skillType][s.stat] += s;
+                                skillTreeModifiers[node.nodeData.skillTreeType][s.stat] += s;
                             }
                             else
                             {
-                                skillTreeModifiers[node.nodeData.skillType][s.stat] = s;
+                                skillTreeModifiers[node.nodeData.skillTreeType][s.stat] = s;
                             }
                         }
                     }

@@ -31,6 +31,7 @@ public class SkillTreeNode : MonoBehaviour, IPointerClickHandler, IPointerEnterH
 
     //variables
     public int maxLevel { get; private set; }
+    public bool isActiveSkill { get; private set; }
     private int currentLevel = 0;
     List<SkillSO> dataObjects;
     //used for de-allocating skills, it will check dependancies before unallocating the skill
@@ -47,7 +48,14 @@ public class SkillTreeNode : MonoBehaviour, IPointerClickHandler, IPointerEnterH
         outline = outlineGO.GetComponent<Image>();
         image.sprite = nodeData.icon;
         levelText = levelIndicatorGO.GetComponentInChildren<TextMeshProUGUI>();
-
+        if (nodeData.skills[0].GetType() == typeof(ActiveSkillSO))
+        {
+            isActiveSkill = true;
+        }
+        else
+        {
+            isActiveSkill = false;
+        }
         //auto-generate dependancies from prerequisites
         foreach(SkillTreeNode node in prerequisites)
         {

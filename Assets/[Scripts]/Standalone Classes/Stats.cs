@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 
 [System.Serializable]
 public class Stats
@@ -114,14 +115,56 @@ public class Stats
         return !(lhs == rhs);
     }
 
-
-
-
     public Stats(Stat stat)
     {
         this.stat = stat;
     }
 
     public Stats() { }
+
+    public string ToString(bool isActiveSkill=false)
+    {
+        string ans = "";
+
+        switch (stat)
+        {
+            case Stat.BaseDamage:
+                if (!isActiveSkill)
+                {
+                    ans += minValue >= 0 ? "+" : "-";
+                }
+                else
+                {
+                    ans += "Deals ";
+                }
+                ans += $"{minValue} to {maxValue}% of your attack";
+
+                break;
+            case Stat.Health:
+                ans += maxValue >= 0 ? "+" : "-";
+                ans += $"{maxValue} to maximum health";
+                break;
+            case Stat.Mana:
+                ans += maxValue >= 0 ? "+" : "-";
+                ans += $"{maxValue} to maximum mana";
+                break;
+            case Stat.Armor:
+                ans += maxValue >= 0 ? "+" : "-";
+                ans += $"{maxValue} to armour";
+                break;
+            case Stat.ManaCost:
+                ans += $"Mana: {maxValue}";
+                break;
+            case Stat.Cooldown:
+                ans += $"Cooldown: {maxValue:0.00}s";
+                break;
+            default: return $"Unimplemented ToString method for ${nameof(stat)}";
+        }
+
+        return ans;
+    }
+
+
+
 }
 

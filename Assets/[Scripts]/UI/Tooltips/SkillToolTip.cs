@@ -33,6 +33,8 @@ public class SkillToolTip : ToolTipHandler
 
     private List<TextMeshProUGUI> optionaltooltipElements;
 
+    private bool isActiveSkill = false;
+
     private void Awake()
     {
         optionaltooltipElements = new List<TextMeshProUGUI>()
@@ -45,6 +47,9 @@ public class SkillToolTip : ToolTipHandler
 
     public override void DisplayDetails(SkillTreeNode node)
     {
+
+        isActiveSkill = node.isActiveSkill;
+
         DisplayIcon(node.nodeData.icon);
         DisplayName(node.nodeData.skillName);
         DisplayLevel(node.GetCurrentLevel(), node.maxLevel);
@@ -56,7 +61,7 @@ public class SkillToolTip : ToolTipHandler
         }
 
         
-        if (node.nodeData.nodeType == SkillTreeNodeSO.NodeType.Skill)
+        if (isActiveSkill)
         {
             ActiveSkillSO skillInfo;
 
@@ -71,15 +76,55 @@ public class SkillToolTip : ToolTipHandler
                 skillInfo = node.GetCurrentSkillSO() as ActiveSkillSO;
             }
 
-            DisplayMana(skillInfo.manaCost.maxValue);
-            DisplayCoolDown(skillInfo.cooldown.maxValue);
-            DisplaySkillDescription(node.nodeData.description, skillInfo);
+            Stats baseDamage = null;
+            Stats manaCost = null;
+            Stats cooldown = null;
+
+            foreach(Stats s in skillInfo.allStats)
+            {
+                if(s.stat == Stats.Stat.BaseDamage)
+                {
+                    baseDamage = s;
+                }
+                else if(s.stat == Stats.Stat.ManaCost)
+                {
+                    manaCost = s;
+                }else if(s.stat == Stats.Stat.Cooldown)
+                {
+                    cooldown = s;
+                }
+            }
+
+            DisplayMana(manaCost);
+            DisplayCoolDown(cooldown);
+            DisplaySkillDescription(baseDamage);
 
             if (node.GetCurrentSkillSO() != null && node.GetNextLevelSO() != null)
             {
-                DisplayNextLevelInfo(node.nodeData.description, node.GetCurrentSkillSO(), node.GetNextLevelSO());
+                DisplayNextLevelInfo(node.GetCurrentSkillSO(), node.GetNextLevelSO());
             }
-            
+
+        }
+        else
+        {
+            PassiveSkillSO skillInfo;
+            //if skill is not allocated
+            if (node.GetCurrentSkillSO() == null)
+            {
+                skillInfo = node.GetNextLevelSO() as PassiveSkillSO;
+
+            }
+            else
+            {
+                skillInfo = node.GetCurrentSkillSO() as PassiveSkillSO;
+            }
+
+            DisplayModifiers(skillInfo.allStats);
+
+            if (node.GetCurrentSkillSO() != null && node.GetNextLevelSO() != null)
+            {
+                DisplayNextLevelInfo(node.GetCurrentSkillSO(), node.GetNextLevelSO());
+            }
         }
 
         
@@ -100,73 +145,81 @@ public class SkillToolTip : ToolTipHandler
         txtSkillLevel.text = $"Level: {currentLevel}/{maxLevel}";
     }
 
-    private void DisplayMana(float manaCost)
+    private void DisplayMana(Stats manaCost)
     {
-        int cost = Mathf.RoundToInt(manaCost);
-        txtManaCost.text = $"Mana: {cost}";
+        txtManaCost.text = manaCost.ToString(isActiveSkill);
         txtManaCost.gameObject.SetActive(true);
     }
 
-    private void DisplayCoolDown(float cooldown)
+    private void DisplayCoolDown(Stats cooldown)
     {
-        string cdr = cooldown.ToString("0.00");
-        txtCdr.text = $"Cooldown: {cdr}s";
+        txtCdr.text = cooldown.ToString(isActiveSkill);
         txtCdr.gameObject.SetActive(true);
     }
 
-    private void DisplaySkillDescription(string description, SkillSO data)
+    private void DisplaySkillDescription(Stats baseDamage)
     {
-        string finalDescription = description;
-
-        //find the BaseDamage stat
-        Stats baseDamage = null;
-
-        for(int i = 0; i < data.allStats.Count; i++) 
-        {
-            if (data.allStats[i].stat == Stats.Stat.BaseDamage)
-            {
-                baseDamage = data.allStats[i];
-                break;
-            }
-        }
+        string finalDescription = "";
 
         if(baseDamage != null)
         {
-            finalDescription += $" {baseDamage.minValue} to {baseDamage.maxValue}% of your attack";
+            finalDescription += $"{baseDamage.ToString(isActiveSkill)}";
         }
 
         txtSkillDescription.text = finalDescription;
     }
 
-    //In
-    //used to display the changes in a modular way:
-    //
-    private void DisplayNextLevelInfo(string descripton, SkillSO currSkillData, SkillSO nextSkillData)
+    private void DisplayNextLevelInfo(SkillSO currentSkillData, SkillSO nextSkillData)
     {
-        string nextLevelInfo = "Next Level:\n";
-        nextLevelInfo += descripton;
+        string nextLevelInfo = "Next Level:";
 
-        //find the BaseDamage stat
-        Stats baseDamage = null;
+        var currentStats = currentSkillData.allStats;
+        var nextStats = nextSkillData.allStats;
 
-        for (int i = 0; i < nextSkillData.allStats.Count; i++)
+        List<Stats> changedStats = new List<Stats>(nextStats);
+
+        //check all the stats for the next level and see if its different from the current
+        foreach(Stats stat in nextStats)
         {
-            if (nextSkillData.allStats[i].stat == Stats.Stat.BaseDamage)
+            //try to find the stat in the currentStats
+            foreach(Stats stat2 in currentStats)
             {
-                baseDamage = nextSkillData.allStats[i];
-                break;
+                if(stat2 == stat)
+                {
+                    //if its found, then test to see if the value has changed
+                    if(stat2.minValue == stat.minValue || stat2.maxValue == stat.maxValue) 
+                    {
+                        changedStats.Remove(stat);
+                    }
+                }
             }
         }
 
-        if (baseDamage != null)
+        foreach(Stats s in changedStats)
         {
-            nextLevelInfo += $" {baseDamage.minValue} to {baseDamage.maxValue}% of your attack";
-
+            nextLevelInfo += $"\n{s.ToString(isActiveSkill)}";
         }
+
+
 
         txtNextSkillDescription.text = nextLevelInfo;
 
         txtNextSkillDescription.gameObject.SetActive(true);
+    }
+
+    private void DisplayModifiers(List<Stats> stats)
+    {
+        string modifiers = "";
+        for(int i = 0; i < stats.Count; i++)
+        {
+            if(i != 0)
+            {
+                modifiers += "\n";
+            }
+            modifiers += stats[i].ToString();
+        }
+
+        txtSkillDescription.text = modifiers;
     }
 
 }

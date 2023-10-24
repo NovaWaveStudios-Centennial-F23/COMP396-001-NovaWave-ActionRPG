@@ -60,11 +60,4 @@ public class ToolTipController : MonoBehaviour
     }
 
 
-
-
-
-
-
-
-
 }

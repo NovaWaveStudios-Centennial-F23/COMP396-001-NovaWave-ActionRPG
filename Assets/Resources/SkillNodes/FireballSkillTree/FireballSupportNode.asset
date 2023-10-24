@@ -15,8 +15,6 @@ MonoBehaviour:
   skills:
   - {fileID: 11400000, guid: f1e1d25af69761a49af1f94e3025516d, type: 2}
   - {fileID: 11400000, guid: a0d1d440d5243b54bbb36486da0b917a, type: 2}
-  skillType: Fireball
-  nodeType: 1
-  skillName: +10 Damage
+  skillTreeType: Fireball
+  skillName: Arcane Elixer
   icon: {fileID: 21300000, guid: ef3c0aac431fd8f4bb4669e9015b995a, type: 3}
-  description: 
