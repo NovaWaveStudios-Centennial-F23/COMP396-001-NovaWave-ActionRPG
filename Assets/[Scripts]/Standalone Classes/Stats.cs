@@ -52,9 +52,25 @@ public class Stats
 
     public static Stats operator +(Stats stats, Stats other)
     {
-        stats.minValue += other.minValue;
-        stats.maxValue += other.maxValue;
-        return stats;
+        //I don't think we should be changing the existing class since then we lose the 'record of truth'
+        //stats.minValue += other.minValue;
+        //stats.maxValue += other.maxValue;
+
+        //check if the stats are the same before adding
+        if (!stats.Equals(other))
+        {
+            throw new ArgumentException("Cannot add two stats of different types together");
+        }
+
+        //create new stat with same stat type
+        Stats ans = new Stats(stats.stat)
+        {
+            minValue = stats.minValue + other.minValue,
+            maxValue = stats.maxValue + other.maxValue
+        };
+
+        return ans;
+
     }
 
     public override bool Equals(object obj) => this.Equals(obj as Stats);
@@ -65,12 +81,12 @@ public class Stats
 
         if(ReferenceEquals(this, other)) return true;
 
-        if(this.GetType() != other.GetType())
+        if(GetType() != other.GetType())
         {
             return false;
         }
 
-        return this.stat == other.stat;
+        return stat == other.stat;
     }
 
     //not sure if this is correct

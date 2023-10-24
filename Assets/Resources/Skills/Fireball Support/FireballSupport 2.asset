@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageType: 1
   miscStats:
-  - stat: 10
-    minValue: 3
-    maxValue: 3
+  - stat: 0
+    minValue: 20
+    maxValue: 20

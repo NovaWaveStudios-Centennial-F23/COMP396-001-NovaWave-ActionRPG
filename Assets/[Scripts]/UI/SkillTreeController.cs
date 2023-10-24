@@ -126,9 +126,10 @@ public class SkillTreeController : MonoBehaviour
     {
         RecalculateModifiers();
         Dictionary<Stats.Stat, Stats> modifiers = GetModifiers(nameof(Fireball));
+
         if (modifiers.ContainsKey(Stats.Stat.BaseDamage))
         {
-            Debug.Log($"Fireball Base damage (max): {GetModifiers(nameof(Fireball))[Stats.Stat.BaseDamage].maxValue}");
+            Debug.Log($"Fireball Base damage (max): {modifiers[Stats.Stat.BaseDamage].maxValue}");
         }
         else
         {
