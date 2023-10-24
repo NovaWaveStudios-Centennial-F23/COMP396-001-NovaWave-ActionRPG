@@ -58,17 +58,17 @@ public class SkillToolTip : ToolTipHandler
         
         if (node.nodeData.nodeType == SkillTreeNodeSO.NodeType.Skill)
         {
-            SkillSO skillInfo;
+            ActiveSkillSO skillInfo;
 
             //if skill is not allocated
             if (node.GetCurrentSkillSO() == null)
             {
-                skillInfo = node.GetNextLevelSO();
+                skillInfo = node.GetNextLevelSO() as ActiveSkillSO;
 
             }
             else
             {
-                skillInfo = node.GetCurrentSkillSO();
+                skillInfo = node.GetCurrentSkillSO() as ActiveSkillSO;
             }
 
             DisplayMana(skillInfo.manaCost.maxValue);
@@ -121,11 +121,11 @@ public class SkillToolTip : ToolTipHandler
         //find the BaseDamage stat
         Stats baseDamage = null;
 
-        for(int i = 0; i < data.stats.Count; i++) 
+        for(int i = 0; i < data.allStats.Count; i++) 
         {
-            if (data.stats[i].stat == Stats.Stat.BaseDamage)
+            if (data.allStats[i].stat == Stats.Stat.BaseDamage)
             {
-                baseDamage = data.stats[i];
+                baseDamage = data.allStats[i];
                 break;
             }
         }
@@ -149,11 +149,11 @@ public class SkillToolTip : ToolTipHandler
         //find the BaseDamage stat
         Stats baseDamage = null;
 
-        for (int i = 0; i < nextSkillData.stats.Count; i++)
+        for (int i = 0; i < nextSkillData.allStats.Count; i++)
         {
-            if (nextSkillData.stats[i].stat == Stats.Stat.BaseDamage)
+            if (nextSkillData.allStats[i].stat == Stats.Stat.BaseDamage)
             {
-                baseDamage = nextSkillData.stats[i];
+                baseDamage = nextSkillData.allStats[i];
                 break;
             }
         }

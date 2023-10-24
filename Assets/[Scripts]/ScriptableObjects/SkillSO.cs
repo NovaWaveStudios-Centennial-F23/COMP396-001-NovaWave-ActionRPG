@@ -8,34 +8,29 @@ using System.Reflection;
 [CreateAssetMenu(fileName = "SkillSciptableObject", menuName = "ScriptableObejcts/Create New Skill")]
 public class SkillSO : ScriptableObject
 {
-    public Stats manaCost = new Stats(Stats.Stat.ManaCost);
-    public Stats cooldown = new Stats(Stats.Stat.Cooldown);
+
     public enum DamageType
     {
         NORMAL,
         FIRE,
         ICE,
-        ELECTRIC
+        ELECTRIC,
+        NONE
     }
 
     public DamageType damageType;
-    public List<Stats> stats { get; private set; }
-    public List<Stats> otherStats;
+    public List<Stats> allStats { get; private set; } = new List<Stats>();  
+    public List<Stats> miscStats = new List<Stats>();
 
-    private void OnValidate()
+    protected virtual void OnValidate()
     {
-        stats = new List<Stats>
+        allStats.Clear();
+        foreach (Stats stat in miscStats)
         {
-            manaCost,
-        };
-
-        foreach (Stats stat in otherStats)
-        {
-            stats.Add(stat);
+            allStats.Add(stat);
         }
-
-
     }
+
 
 
 }

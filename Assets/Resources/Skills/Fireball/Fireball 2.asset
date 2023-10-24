@@ -9,20 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e850c26349c7094c99f0cdb44cc3087, type: 3}
-  m_Name: Fireball3
+  m_Script: {fileID: 11500000, guid: ad57ff6f3eadd7042bd134f46f7574e7, type: 3}
+  m_Name: Fireball 2
   m_EditorClassIdentifier: 
-  level: 1
+  damageType: 1
+  miscStats:
+  - stat: 0
+    minValue: 55
+    maxValue: 60
   manaCost:
     stat: 28
     minValue: 10
     maxValue: 10
   cooldown:
     stat: 29
-    minValue: 0.22
-    maxValue: 0.22
-  damageType: 1
-  otherStats:
-  - stat: 0
-    minValue: 60
-    maxValue: 65
+    minValue: 0.21
+    maxValue: 0.21

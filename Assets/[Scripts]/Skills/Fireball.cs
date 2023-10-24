@@ -14,13 +14,13 @@ public class Fireball : Skill
 
     IEnumerator Cooldown()
     {
-        yield return new WaitForSeconds(fireball.stats[4].minValue);
+        yield return new WaitForSeconds(fireball.allStats[4].minValue);
         SkillsController.Instance.fireballCooldown = false;
     }
 
     void Start()
     {
-        damage = Random.Range(fireball.stats[0].minValue , fireball.stats[1].minValue);
+        damage = Random.Range(fireball.allStats[0].minValue , fireball.allStats[1].minValue);
         rb = GetComponent<Rigidbody>();
 
         StartCoroutine(Cooldown());
@@ -34,12 +34,12 @@ public class Fireball : Skill
     private void ShootFireball()
     {
         transform.forward = (direction * 100) - transform.position;
-        rb.velocity = transform.forward * fireball.stats[7].minValue;
+        rb.velocity = transform.forward * fireball.allStats[7].minValue;
     }
 
     private void ApplyBurning()
     {
-        if (fireball.stats[9].minValue == 1)
+        if (fireball.allStats[9].minValue == 1)
         {
             //do burning
         }

@@ -17,8 +17,8 @@ public class CalculationController : MonoBehaviour
     [SerializeField] private EquippedGear equippedGear;
 
     [Header("Skill Tress")]
-    [SerializeField] private SkillTreeManager playerSkillTree;
-    [SerializeField] private SkillTreeManager fireballSkillTree;
+    [SerializeField] private SkillTreeController playerSkillTree;
+    [SerializeField] private SkillTreeController fireballSkillTree;
 
     private Dictionary<Stats.Stat, Stats> playerSkillTreeStats;
     private Dictionary<Stats.Stat, Stats> gearStats;
@@ -44,14 +44,14 @@ public class CalculationController : MonoBehaviour
         }
     }
 
-    public void SkillTreeCalculation(SkillTreeManager.SkillTree skillTree)
+    public void SkillTreeCalculation(SkillTreeController.SkillTree skillTree)
     {
         switch (skillTree)
         {
-            case SkillTreeManager.SkillTree.Player:
+            case SkillTreeController.SkillTree.Player:
                 SetPlayerSkillTreeStats();
                 break;
-            case SkillTreeManager.SkillTree.Fireball:
+            case SkillTreeController.SkillTree.Fireball:
                 CalculateFireballStats();
                 break;
             default:

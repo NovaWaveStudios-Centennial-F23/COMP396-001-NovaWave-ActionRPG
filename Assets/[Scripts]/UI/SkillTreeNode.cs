@@ -184,7 +184,7 @@ public class SkillTreeNode : MonoBehaviour, IPointerClickHandler, IPointerEnterH
         }
         else
         {
-            return dataObjects[currentLevel - 1].stats;
+            return dataObjects[currentLevel - 1].allStats;
         }       
     }
 

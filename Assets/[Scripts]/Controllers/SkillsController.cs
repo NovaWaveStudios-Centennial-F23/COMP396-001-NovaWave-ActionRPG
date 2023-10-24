@@ -19,7 +19,7 @@ public class SkillsController : MonoBehaviour
 
     [Header("Others")]
     [SerializeField] private LayerMask groundMask;
-    [SerializeField] private SkillTreeManager fireballSkillTree;
+    [SerializeField] private SkillTreeController fireballSkillTree;
 
     private Vector3 mousePosition;
 
