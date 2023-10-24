@@ -6,8 +6,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SkillSciptableObject", menuName = "ScriptableObejcts/Create New Skill/Active Skil")]
 public class ActiveSkillSO : SkillSO
 {
-    public Stats manaCost = new Stats(Stats.Stat.ManaCost);
-    public Stats cooldown = new Stats(Stats.Stat.Cooldown);
+    public Stats manaCost = new(Stats.Stat.ManaCost);
+    public Stats cooldown = new(Stats.Stat.Cooldown);
 
     protected override void OnValidate()
     {
