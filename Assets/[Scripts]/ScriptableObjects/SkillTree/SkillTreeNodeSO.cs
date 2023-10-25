@@ -1,5 +1,5 @@
 /* Created by Han Bi
- * 
+ * used for details about the skill tree node
  */
 
 using System;
@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "SkillNode", menuName = "ScriptableObjects/CreateSkillNode")]
+[CreateAssetMenu(fileName = "SkillNode", menuName = "Scriptable Object/Skill Node")]
 public class SkillTreeNodeSO : ScriptableObject
 {
     public List<SkillSO> skills = new List<SkillSO>();

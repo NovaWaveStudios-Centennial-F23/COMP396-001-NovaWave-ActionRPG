@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using TMPro;
-using Unity.Services.Analytics.Internal;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;

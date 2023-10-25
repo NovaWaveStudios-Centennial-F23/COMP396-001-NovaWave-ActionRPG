@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Official Scenes/StartMenu.unity
     guid: 02471d71655475f4c9d7d885180eced3
   - enabled: 1
-    path: Assets/Networking Test/Scenes/GameList.unity
+    path: Assets/Scenes/Official Scenes/CharacterSelectionMenu.unity
     guid: b87d03d27edd9c141a336dfd9662870a
   - enabled: 1
     path: Assets/Networking Test/Scenes/NetworkTest1.unity
