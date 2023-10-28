@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -21,45 +22,45 @@ public class PlayerStats : MonoBehaviour
 
         foreach (Stats s in playerStats)
         {
-            if (!playerModifiers.ContainsKey(s.stat))
-            {
-                playerModifiers.Add(s.stat, s);
-            }
-            else
-            {
-                playerModifiers[s.stat] = s;
-            }
+            playerModifiers.Add(s.stat, s);
         }
     }
 
-    public void UpdatePlayerStats(Stats.Stat s, Stats v)
-    {
-        if (playerModifiers.ContainsKey(s))
-        {
-            playerModifiers[s] += v;
-        }
-        else
-        {
-            playerStats.Add(v);
-            playerModifiers.Add(playerStats.Find(e => e == v).stat, playerStats.Find(e => e == v));
-        }
-    }
-
-    public Dictionary<Stats.Stat, Stats> GetAllPlayerStats()
+    public Dictionary<Stats.Stat, Stats> GetAllPlayerModifiers()
     {
         return playerModifiers;
     }
 
-    public Stats GetPlayerStat(Stats.Stat stat)
+    public List<Stats> GetAllPlayerStats()
+    {
+        return playerStats;
+    }
+
+    public Stats GetPlayerModifier(Stats.Stat stat)
     {
         Stats st = null;
+        foreach (Stats.Stat s in playerModifiers.Keys)
+        {
+            if (s == stat)
+            {
+                st = playerModifiers[s];    
+            }
+        }
+        return st;
+    }
+
+    public void SetPlayerModifier(Stats.Stat stat, Stats value)
+    {
         foreach (Stats s in playerStats)
         {
             if (s.stat == stat)
             {
-                st = s;
+                playerModifiers[s.stat] = value;
+            }
+            else
+            {
+                Debug.Log("Stat doesn't exist in player stats");
             }
         }
-        return st;
     }
 }

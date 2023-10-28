@@ -67,12 +67,12 @@ public class GearController : MonoBehaviour
 
         // Drop Rate Stats
         float enemyDropRate = UnityEngine.Random.Range(enemyStats.GetEnemyStat(Stats.Stat.DropRateP).minValue, enemyStats.GetEnemyStat(Stats.Stat.DropRateP).maxValue);
-        float playerDropRate = UnityEngine.Random.Range(playerStats.GetPlayerStat(Stats.Stat.DropRateP).minValue, playerStats.GetPlayerStat(Stats.Stat.DropRateP).maxValue);
+        float playerDropRate = UnityEngine.Random.Range(playerStats.GetPlayerModifier(Stats.Stat.DropRateP).minValue, playerStats.GetPlayerModifier(Stats.Stat.DropRateP).maxValue);
         float dropRate = enemyDropRate + playerDropRate;
 
         // Item Rarity Stats
         float enemyItemRarity = UnityEngine.Random.Range(enemyStats.GetEnemyStat(Stats.Stat.ItemRarityP).minValue, enemyStats.GetEnemyStat(Stats.Stat.ItemRarityP).maxValue);
-        float playerItemRarity = UnityEngine.Random.Range(playerStats.GetPlayerStat(Stats.Stat.ItemRarityP).minValue, playerStats.GetPlayerStat(Stats.Stat.ItemRarityP).maxValue);
+        float playerItemRarity = UnityEngine.Random.Range(playerStats.GetPlayerModifier(Stats.Stat.ItemRarityP).minValue, playerStats.GetPlayerModifier(Stats.Stat.ItemRarityP).maxValue);
         float itemRarity = enemyItemRarity + playerItemRarity;
 
         for (int i = 0; i < dropNumber; i++)

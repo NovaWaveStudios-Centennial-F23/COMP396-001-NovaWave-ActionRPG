@@ -1,3 +1,8 @@
+/* Creted by Sukhmannat Singh & Han Bi
+ * Contains the enum for all stats and operator overrides
+ * Last updated Oct 26, 2023
+ */
+
 using System;
 using Unity.VisualScripting;
 
@@ -6,45 +11,45 @@ public class Stats
 {
     public enum Stat
     {
-        BaseDamage,
-        Health,
-        Mana,
-        Armor,
-        BlockChanceP,
-        DamageReflectP,
-        CritRateP,
-        CritDamageP,
-        MovementSpeed,
-        CooldownReductionP,
-        ManaCostRecutionP,
-        CastSpeedP,
-        DoubleCastP,
-        DropRateP,
-        ItemRarityP,
-        SpellDamageP,
-        FireDamageP,
-        FrostDamageP,
-        ElectroDamageP,
-        ElementalDamageP,
-        FireResP,
-        FrostResP,
-        ElectroResP,
-        ElementalResP,
-        FireAffinity,
-        FrostAffinity,
-        ElectroAffinity,
-        SkillDamage,
-        ManaCost,
-        Cooldown,
-        AOE,
-        CastTIme,
-        Duration,
-        ProjectileSpeed,
-        Range,
-        Burning,
-        Slowness,
-        Stun,
-        FireballDoubleCast
+        BaseDamage,             // Unit Base Damage (applies to all damage)
+        Health,                 // Unit Health
+        Mana,                   // Unit Mana
+        Armor,                  // Unit Armor (blocks some amount of damage inflicted on self)
+        BlockChanceP,           // Unit block chance percentage (chance to completely block an attack)
+        DamageReflectP,         // Unit damage reflect percentage (reflect a percentage of damage inflicted on self)
+        CritRateP,              // Unit crit rate percentage (chance to land critical hits)
+        CritDamageP,            // Unit crit damage percentage (the percentage of extra damage dealt on critical hits)
+        MovementSpeed,          // Unit movement speed
+        CooldownReductionP,     // Unit cooldown reduction percentage (reduces the amount of cooldown on all spells)
+        ManaCostRecutionP,      // Player mana cost reduction percentage (reduces the mana cost of all spells)
+        CastSpeedP,             // Unit cast speed percentage (decreases the cast speel for all spells)
+        DoubleCastP,            // Unit double cast percentage (chance to cast a spell twice)
+        DropRateP,              // Player drop rate percentage (increases the chance to drop an item)
+        ItemRarityP,            // Player item rarity (increases the chance of getting higher tier loot)
+        SpellDamageP,           // Unit spell damage (increases the damage of all spells) [Subject to removal as its similar to base damage]
+        FireDamageP,            // Unit fire damage percentage (increases the damage of all fire spells)
+        FrostDamageP,           // Unit frost damage percentage (increases the damage of all frost spells)
+        ElectroDamageP,         // Unit electro damage percentage (increases the damage of all electro spells)
+        ElementalDamageP,       // Unit elemental damage percentage (increases the damage of all elemntal spells)
+        FireResP,               // Unit fire resistance percentage (decreases the amount of fire damage inflicted on self)
+        FrostResP,              // Unit frost resistance percentage (decreases the amount of frost damage inflicted on self)
+        ElectroResP,            // Unit electro resistance percentage (decreases the amount of electro damage inflicted on self)
+        ElementalResP,          // Unit elemental resistance percentage (decreases the amount of all elemental damage inflicted on self)
+        FireAffinity,           // Unit fire affinity (increases the burning damage and burn duration)
+        FrostAffinity,          // Unit frost affinity (increases the slow percentage and slow duration)
+        ElectroAffinity,        // Unit electro affinity (increases the stun duration)
+        SkillDamage,            // Skill base damage (applies to a specific skill)
+        ManaCost,               // Skill mana cost 
+        Cooldown,               // Skill cooldown 
+        AOE,                    // Skill area of effect
+        CastTIme,               // Skill cast time
+        Duration,               // Skill duration
+        ProjectileSpeed,        // Skill projectile speed
+        Range,                  // Skill range
+        Burning,                // [Subject to removal] (More of a state than a stat)
+        Slowness,               // [Subject to removal] (More of a state than a stat)
+        Stun,                   // [Subject to removal] (More of a state than a stat)
+        FireballDoubleCast      // [Subject to removal] (Is a skill tree node, not particularly a stat) 
     }
 
     public Stat stat;
@@ -53,10 +58,6 @@ public class Stats
 
     public static Stats operator +(Stats stats, Stats other)
     {
-        //I don't think we should be changing the existing class since then we lose the 'record of truth'
-        //stats.minValue += other.minValue;
-        //stats.maxValue += other.maxValue;
-
         //check if the stats are the same before adding
         if (!stats.Equals(other))
         {
@@ -163,8 +164,5 @@ public class Stats
 
         return ans;
     }
-
-
-
 }
 

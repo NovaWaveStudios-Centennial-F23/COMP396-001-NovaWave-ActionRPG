@@ -1,13 +1,18 @@
+/* Created by Sukhmannat Singh
+ * Used to set stats for player and skills
+ * Last modified Oct 25, 2023
+ */
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class CalculationController : MonoBehaviour
+public class StatsController : MonoBehaviour
 {
-    private static CalculationController instance;
-    public static CalculationController Instance { get { return instance; } }
+    private static StatsController instance;
+    public static StatsController Instance { get { return instance; } }
 
     [Header("Controllers")]
     [SerializeField] private SkillsController skillsController;
@@ -16,13 +21,9 @@ public class CalculationController : MonoBehaviour
     [SerializeField] private PlayerStats playerStats;
     [SerializeField] private EquippedGear equippedGear;
 
-    [Header("Skill Tress")]
-    [SerializeField] private SkillTreeController playerSkillTree;
-    [SerializeField] private SkillTreeController fireballSkillTree;
-
-    private Dictionary<Stats.Stat, Stats> playerSkillTreeStats;
+    private Dictionary<Stats.Stat, Stats> skillTreeStats;
     private Dictionary<Stats.Stat, Stats> gearStats;
-    private Dictionary<Stats.Stat, Stats> fireballStats;
+    private List<Stats> initialPlayerStats;
 
     void Awake()
     {
@@ -36,72 +37,70 @@ public class CalculationController : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        skillTreeStats = new Dictionary<Stats.Stat, Stats>();
+        gearStats = new Dictionary<Stats.Stat, Stats>();
+        initialPlayerStats = playerStats.GetAllPlayerStats();
+    }
+
     void Update()
     {
+        // Manual Test to calculate player stats
         if (Input.GetKeyDown(KeyCode.L))
         {
-            CalculateGearStats();
+            CalculatePlayerStats();
+            //Debug.Log(playerStats.GetAllPlayerModifiers()[0].minValue);
+            //Debug.Log(playerStats.GetAllPlayerModifiers()[0].maxValue);
         }
     }
 
-    public void SkillTreeCalculation(SkillTreeController.SkillTree skillTree)
+    public void SetSkillTreeStats(string skillTree)
     {
-        switch (skillTree)
-        {
-            case SkillTreeController.SkillTree.Player:
-                SetPlayerSkillTreeStats();
-                break;
-            case SkillTreeController.SkillTree.Fireball:
-                CalculateFireballStats();
-                break;
-            default:
-                break;
-
-        }
+        // Get skill tree modifiers from Skill Tree Controller
+        skillTreeStats = SkillTreeController.instance.GetModifiers(skillTree);
     }
 
     private void CalculatePlayerStats()
     {
-        foreach (Stats.Stat s in playerStats.GetAllPlayerStats().Keys)
-        {
-            foreach (Stats.Stat t in playerSkillTreeStats.Keys)
-            {
-                if (s == t)
-                {
-                    playerStats.GetAllPlayerStats()[s] += playerSkillTreeStats[s];
-                }
-                else
-                {
-                    playerStats.GetAllPlayerStats().Add(t, playerSkillTreeStats[t]);
-                }
-            }
+        SetSkillTreeStats("Fireball");
+        CalculateGearStats();
 
-            foreach (Stats.Stat u in gearStats.Keys)
+        // Duplicate dict to traverse through it
+        Dictionary<Stats.Stat, Stats> dict = new Dictionary<Stats.Stat, Stats>(playerStats.GetAllPlayerModifiers());
+
+        // Change player stats based on skill tree stats and gear stats
+        foreach (Stats.Stat s in dict.Keys)
+        {
+            bool hasGearStat = gearStats.ContainsKey(s);
+            bool hasSkillTreeStat = skillTreeStats.ContainsKey(s);
+
+            if (hasGearStat && hasSkillTreeStat)
             {
-                if (s == u)
-                {
-                    playerStats.GetAllPlayerStats()[s] += gearStats[s];
-                }
-                else
-                {
-                    playerStats.GetAllPlayerStats().Add(u, gearStats[u]);
-                }
+                Stats result = initialPlayerStats[initialPlayerStats.IndexOf(dict[s])] + gearStats[s] + skillTreeStats[s];
+                playerStats.SetPlayerModifier(s, result);
+            }
+            else if (!hasGearStat && hasSkillTreeStat)
+            {
+                Stats result = initialPlayerStats[initialPlayerStats.IndexOf(dict[s])] + skillTreeStats[s];
+                playerStats.SetPlayerModifier(s, result);
+
+            }
+            else if (hasGearStat && !hasSkillTreeStat)
+            {
+                Stats result = initialPlayerStats[initialPlayerStats.IndexOf(dict[s])] + gearStats[s];
+                playerStats.SetPlayerModifier(s, result);
             }
         }
     }
     
-    public void SetPlayerSkillTreeStats()
-    {
-        playerSkillTreeStats = playerSkillTree.GetStats();
-        CalculatePlayerStats();
-    }
-
     private void CalculateGearStats()
     {
+        this.gearStats.Clear();
         List<Gear> gears = new List<Gear>();
         Dictionary<Stats.Stat, Stats> gearStats = new Dictionary<Stats.Stat, Stats>();
 
-        // List of equipped gear
+        // List of equipped gear (Cannot be a list)
         if (equippedGear.wand != null)
         {
             gears.Add(equippedGear.wand);
@@ -150,19 +149,5 @@ public class CalculationController : MonoBehaviour
         }
 
         this.gearStats = gearStats;
-        CalculatePlayerStats();
-    }
-
-    public void CalculateFireballStats()
-    {
-        fireballStats = fireballSkillTree.GetStats();
-
-        foreach (Stats.Stat s in fireballStats.Keys)
-        {
-            if (playerStats.GetAllPlayerStats().ContainsKey(s))
-            {
-                fireballStats[s] += playerStats.GetAllPlayerStats()[s];
-            }
-        }
     }
 }

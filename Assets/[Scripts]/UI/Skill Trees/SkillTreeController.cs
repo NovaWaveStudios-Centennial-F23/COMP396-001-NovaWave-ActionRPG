@@ -90,10 +90,6 @@ public class SkillTreeController : MonoBehaviour
                 }
             }
         }
-
-        
-
-        
     }
 
     [Obsolete("Will be removed, talk to Charlie for more details")]
