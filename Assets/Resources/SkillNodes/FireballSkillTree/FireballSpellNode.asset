@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0805b25fee546d54698c0b2704bec57a, type: 3}
+  m_Name: FireballSpellNode
+  m_EditorClassIdentifier: 
+  skills:
+  - {fileID: 11400000, guid: a64d30a07b40d164e8c6ed332f9ba0d7, type: 2}
+  - {fileID: 11400000, guid: 9e4c6214a0efbbd47832426551a9a01f, type: 2}
+  - {fileID: 11400000, guid: 4335563e26911c04882e38bb156e1f9b, type: 2}
+  - {fileID: 11400000, guid: 9b0bcfa87f83a184181859f8885940da, type: 2}
+  skillTreeType: Fireball
+  skillName: Fireball
+  icon: {fileID: 21300000, guid: c2541016858bb6f429ef6083f5f95395, type: 3}

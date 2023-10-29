@@ -4,23 +4,30 @@ using UnityEngine;
 
 public class Gear : MonoBehaviour
 {
-    public GearSO gearSO;
-    public List<Stats> gearStats;
+    [SerializeField]
+    private List<Stats> gearStats;
 
-    private MeshFilter meshFilter;
+    private Dictionary<Stats.Stat, Stats> gearModifiers;
 
-    void Start()
+    private void Awake()
     {
-        meshFilter.mesh = gearSO.gearMeshFilter.mesh;
+        gearModifiers = new Dictionary<Stats.Stat, Stats>();
+        foreach (Stats s in gearStats)
+        {
+            gearModifiers.Add(s.stat, s);
+        }
+    }
 
-        //Converting Main Stats + Affixes into 1 list
-        foreach (Stats s in gearSO.mainStats)
+    public void InitGearStats()
+    {
+        foreach (Stats.Stat s in gearModifiers.Keys)
         {
-            gearStats.Add(s);
+            gearStats.Add(gearModifiers[s]);
         }
-        foreach (Stats s in gearSO.affixes)
-        {
-            gearStats.Add(s);
-        }
+    }
+
+    public Dictionary<Stats.Stat, Stats> GetGearStats() 
+    {
+        return gearModifiers;
     }
 }
