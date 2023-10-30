@@ -1764,7 +1764,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillsController: {fileID: 1285277579}
-  playerStats: {fileID: 1285277580}
+  playerStats:
+  - stat: 0
+    minValue: 50
+    maxValue: 100
   equippedGear: {fileID: 1924580507}
 --- !u!1 &1285277574
 GameObject:
@@ -1778,7 +1781,6 @@ GameObject:
   - component: {fileID: 1285277577}
   - component: {fileID: 1285277576}
   - component: {fileID: 1285277579}
-  - component: {fileID: 1285277580}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1872,22 +1874,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   fireballSkillTree: {fileID: 0}
---- !u!114 &1285277580
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1285277574}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d42caf1e47d54a14a95b11307ac33892, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerStats:
-  - stat: 0
-    minValue: 50
-    maxValue: 100
 --- !u!1 &1433811233
 GameObject:
   m_ObjectHideFlags: 0
@@ -2569,7 +2555,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillsController: {fileID: 0}
-  playerStats: {fileID: 0}
+  playerStats: []
   equippedGear: {fileID: 0}
 --- !u!1 &2058518991
 GameObject:

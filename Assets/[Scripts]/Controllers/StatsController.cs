@@ -18,9 +18,10 @@ public class StatsController : MonoBehaviour
     [SerializeField] private SkillsController skillsController;
 
     [Header("Player Stats")]
-    [SerializeField] private PlayerStats playerStats;
+    [SerializeField] private List<Stats> playerStats;
     [SerializeField] private EquippedGear equippedGear;
 
+    private Dictionary<Stats.Stat, Stats> playerModifiers;
     private Dictionary<Stats.Stat, Stats> skillTreeStats;
     private Dictionary<Stats.Stat, Stats> gearStats;
     private List<Stats> initialPlayerStats;
@@ -41,7 +42,8 @@ public class StatsController : MonoBehaviour
     {
         skillTreeStats = new Dictionary<Stats.Stat, Stats>();
         gearStats = new Dictionary<Stats.Stat, Stats>();
-        initialPlayerStats = playerStats.GetAllPlayerStats();
+        InitPlayerModifiers();
+        initialPlayerStats = GetAllPlayerStats();
     }
 
     void Update()
@@ -50,8 +52,18 @@ public class StatsController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L))
         {
             CalculatePlayerStats();
-            //Debug.Log(playerStats.GetAllPlayerModifiers()[0].minValue);
-            //Debug.Log(playerStats.GetAllPlayerModifiers()[0].maxValue);
+            Debug.Log(GetAllPlayerModifiers()[0].minValue);
+            Debug.Log(GetAllPlayerModifiers()[0].maxValue);
+        }
+    }
+
+    private void InitPlayerModifiers()
+    {
+        playerModifiers = new Dictionary<Stats.Stat, Stats>();
+
+        foreach (Stats s in playerStats)
+        {
+            playerModifiers.Add(s.stat, s);
         }
     }
 
@@ -67,7 +79,7 @@ public class StatsController : MonoBehaviour
         CalculateGearStats();
 
         // Duplicate dict to traverse through it
-        Dictionary<Stats.Stat, Stats> dict = new Dictionary<Stats.Stat, Stats>(playerStats.GetAllPlayerModifiers());
+        Dictionary<Stats.Stat, Stats> dict = new Dictionary<Stats.Stat, Stats>(GetAllPlayerModifiers());
 
         // Change player stats based on skill tree stats and gear stats
         foreach (Stats.Stat s in dict.Keys)
@@ -78,18 +90,18 @@ public class StatsController : MonoBehaviour
             if (hasGearStat && hasSkillTreeStat)
             {
                 Stats result = initialPlayerStats[initialPlayerStats.IndexOf(dict[s])] + gearStats[s] + skillTreeStats[s];
-                playerStats.SetPlayerModifier(s, result);
+                SetPlayerModifier(s, result);
             }
             else if (!hasGearStat && hasSkillTreeStat)
             {
                 Stats result = initialPlayerStats[initialPlayerStats.IndexOf(dict[s])] + skillTreeStats[s];
-                playerStats.SetPlayerModifier(s, result);
+                SetPlayerModifier(s, result);
 
             }
             else if (hasGearStat && !hasSkillTreeStat)
             {
                 Stats result = initialPlayerStats[initialPlayerStats.IndexOf(dict[s])] + gearStats[s];
-                playerStats.SetPlayerModifier(s, result);
+                SetPlayerModifier(s, result);
             }
         }
     }
@@ -149,5 +161,43 @@ public class StatsController : MonoBehaviour
         }
 
         this.gearStats = gearStats;
+    }
+
+    public Dictionary<Stats.Stat, Stats> GetAllPlayerModifiers()
+    {
+        return playerModifiers;
+    }
+
+    public List<Stats> GetAllPlayerStats()
+    {
+        return playerStats;
+    }
+
+    public Stats GetPlayerModifier(Stats.Stat stat)
+    {
+        Stats st = null;
+        foreach (Stats.Stat s in playerModifiers.Keys)
+        {
+            if (s == stat)
+            {
+                st = playerModifiers[s];
+            }
+        }
+        return st;
+    }
+
+    public void SetPlayerModifier(Stats.Stat stat, Stats value)
+    {
+        foreach (Stats s in playerStats)
+        {
+            if (s.stat == stat)
+            {
+                playerModifiers[s.stat] = value;
+            }
+            else
+            {
+                Debug.Log("Stat doesn't exist in player stats");
+            }
+        }
     }
 }
