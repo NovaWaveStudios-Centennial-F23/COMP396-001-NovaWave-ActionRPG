@@ -9,7 +9,11 @@ public abstract class GroupButtonHandler : MonoBehaviour
 
     private void Start()
     {
-        Initialize();
+        if(buttons.Count != 0)
+        {
+            Initialize();
+        }
+        
     }
 
     protected void Initialize()
@@ -22,6 +26,12 @@ public abstract class GroupButtonHandler : MonoBehaviour
             }
 
         }
+    }
+
+    public void AddButton(GroupButton button)
+    {
+        buttons.Add(button);
+        button.OnStateActive += HandleButtonStateChange;
     }
 
     protected virtual void HandleButtonStateChange(GroupButton button)

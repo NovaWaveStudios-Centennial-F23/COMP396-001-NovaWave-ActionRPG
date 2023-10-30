@@ -1,10 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class CharacterSelectButton : GroupButton
 {
+    [Header("Character Select Button")]
+    [SerializeField]
+    TextMeshProUGUI txtCharacterName;
+
+    [SerializeField]
+    TextMeshProUGUI txtCharacterLevel;
+
+    CharacterSelectionSceneManager sceneManager;
+    string characterName;
+    int characterLevel;
+    Sprite characterIcon;
+
+    private void Awake()
+    {
+        sceneManager = FindFirstObjectByType<CharacterSelectionSceneManager>();
+        UpdateAppearance();
+    }
+
+    public void PopulateData(CharacterSaveData data)
+    {
+        characterName = data.Name;
+        characterLevel = data.Level;
+    }
 
     protected override void UpdateAppearance()
     {
@@ -18,6 +43,48 @@ public class CharacterSelectButton : GroupButton
             background.color = UIConstants.unselectedCharacterBorderColour;
             icon.color = UIConstants.deselectedSkillColor;
         }
+
+        //icon.sprite = characterIcon;
+        txtCharacterLevel.text = $"Level: {characterLevel}";
+        txtCharacterName.text = characterName;
     }
+
+    public override void OnPointerClick(PointerEventData eventData)
+    {
+        if(sceneManager == null)
+        {
+            sceneManager = FindFirstObjectByType<CharacterSelectionSceneManager>();
+        }
+
+
+        if(sceneManager != null)
+        {
+            base.OnPointerClick(eventData);
+        }
+        else
+        {
+            Debug.LogError($"Cannot find {nameof(CharacterSelectionSceneManager)} for {this}");
+        }
+    }
+
+    public void UpdateSprite(Sprite sprite)
+    {
+        characterIcon = sprite;
+        UpdateAppearance();
+    }
+
+    public void UpdateName(string name)
+    {
+        characterName = name;
+        UpdateAppearance();
+    }
+
+    public void UpdateLevel(int level)
+    {
+        characterLevel = level;
+        UpdateAppearance();
+    }
+
+
 
 }
