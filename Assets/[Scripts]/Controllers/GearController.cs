@@ -11,7 +11,7 @@ public class GearController : MonoBehaviour
 
     [SerializeField] private GearSO gearSO;
     [SerializeField] private GameObject gearPrefab;
-    [SerializeField] private PlayerStats playerStats;
+    [SerializeField] private List<Stats> playerStats;
     [SerializeField] private EnemyStatsTest enemyStats;
     //test variables
 
@@ -26,6 +26,11 @@ public class GearController : MonoBehaviour
         {
             instance = this;
         }
+    }
+
+    private void Start()
+    {
+        playerStats = StatsController.Instance.GetAllPlayerStats();
     }
 
     private void SpawnGear(GearSO.GearType gearType, GearSO.GearBase gearBase, GearSO.GearRarity gearRarity)
@@ -67,12 +72,12 @@ public class GearController : MonoBehaviour
 
         // Drop Rate Stats
         float enemyDropRate = UnityEngine.Random.Range(enemyStats.GetEnemyStat(Stats.Stat.DropRateP).minValue, enemyStats.GetEnemyStat(Stats.Stat.DropRateP).maxValue);
-        float playerDropRate = UnityEngine.Random.Range(playerStats.GetPlayerModifier(Stats.Stat.DropRateP).minValue, playerStats.GetPlayerModifier(Stats.Stat.DropRateP).maxValue);
+        float playerDropRate = UnityEngine.Random.Range(StatsController.Instance.GetPlayerModifier(Stats.Stat.DropRateP).minValue, StatsController.Instance.GetPlayerModifier(Stats.Stat.DropRateP).maxValue);
         float dropRate = enemyDropRate + playerDropRate;
 
         // Item Rarity Stats
         float enemyItemRarity = UnityEngine.Random.Range(enemyStats.GetEnemyStat(Stats.Stat.ItemRarityP).minValue, enemyStats.GetEnemyStat(Stats.Stat.ItemRarityP).maxValue);
-        float playerItemRarity = UnityEngine.Random.Range(playerStats.GetPlayerModifier(Stats.Stat.ItemRarityP).minValue, playerStats.GetPlayerModifier(Stats.Stat.ItemRarityP).maxValue);
+        float playerItemRarity = UnityEngine.Random.Range(StatsController.Instance.GetPlayerModifier(Stats.Stat.ItemRarityP).minValue, StatsController.Instance.GetPlayerModifier(Stats.Stat.ItemRarityP).maxValue);
         float itemRarity = enemyItemRarity + playerItemRarity;
 
         for (int i = 0; i < dropNumber; i++)

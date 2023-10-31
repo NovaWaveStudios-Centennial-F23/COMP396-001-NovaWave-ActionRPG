@@ -12,6 +12,8 @@ public class MobSpawner : MonoBehaviour
     public int enemiesPerGroup = 3; // Number of enemies per group
     public float groupSpacing = 2.0f; // Distance between enemy groups
     public float zigzagSpacing = 1.0f; // Distance between enemies in the zigzag formation
+    public Vector3 spawnAreaCenter; // Center of the spawn area
+    public Vector3 spawnAreaSize; // Size of the spawn area
 
     private List<GameObject> enemies = new List<GameObject>();
 
@@ -25,12 +27,17 @@ public class MobSpawner : MonoBehaviour
         // Check if any enemy is in range of the player and activate them
         foreach (GameObject enemy in enemies)
         {
-            if (enemy.activeSelf)
+            if (enemy != null && enemy.activeSelf)
             {
-                float distance = Vector3.Distance(enemy.transform.position, PlayerPosition());
-                if (distance <= enemy.GetComponent<EnemyAI>().attackRange)
+                // Make sure the enemy has an EnemyAI component before accessing it
+                EnemyAI enemyAI = enemy.GetComponent<EnemyAI>();
+                if (enemyAI != null)
                 {
-                    enemy.GetComponent<EnemyAI>().Activate();
+                    float distance = Vector3.Distance(enemy.transform.position, PlayerPosition());
+                    if (distance <= enemyAI.attackRange)
+                    {
+                        enemyAI.Activate();
+                    }
                 }
             }
         }
@@ -48,27 +55,19 @@ public class MobSpawner : MonoBehaviour
 
     void SpawnEnemies()
     {
-        Vector3 spawnPosition = transform.position;
         for (int i = 0; i < numGroups; i++)
         {
             for (int j = 0; j < enemiesPerGroup; j++)
             {
-                Vector3 offset = Vector3.right * j * zigzagSpacing;
-                if (j % 2 == 1)
-                {
-                    offset = -offset;
-                }
+                Vector3 randomPosition = GetRandomSpawnPosition();
 
                 // Randomly choose an enemy prefab to spawn
                 GameObject enemyPrefab = GetRandomEnemyPrefab();
 
-                GameObject enemy = Instantiate(enemyPrefab, spawnPosition + offset, Quaternion.identity);
+                GameObject enemy = Instantiate(enemyPrefab, randomPosition, Quaternion.identity);
                 enemies.Add(enemy);
                 enemy.SetActive(true); // Initially, enemies are idle
             }
-
-            // Adjust the spawn position for the next group
-            spawnPosition += Vector3.forward * groupSpacing;
         }
     }
 
@@ -86,5 +85,17 @@ public class MobSpawner : MonoBehaviour
             default:
                 return enemyPrefab1;
         }
+    }
+
+    Vector3 GetRandomSpawnPosition()
+    {
+        Vector3 minBounds = spawnAreaCenter - spawnAreaSize * 0.5f;
+        Vector3 maxBounds = spawnAreaCenter + spawnAreaSize * 0.5f;
+
+        float randomX = Random.Range(minBounds.x, maxBounds.x);
+        float randomY = Random.Range(minBounds.y, maxBounds.y);
+        float randomZ = Random.Range(minBounds.z, maxBounds.z);
+
+        return new Vector3(randomX, randomY, randomZ);
     }
 }

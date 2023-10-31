@@ -5,22 +5,19 @@ using UnityEngine;
 
 public class Fireball : Skill
 {
-    public SkillSO fireball;
+    public ActiveSkillSO fireball;
     public Vector3 direction;
-    public float damage;
-    public List<Stats> fireballStats;
 
     private Rigidbody rb;
 
     IEnumerator Cooldown()
     {
-        yield return new WaitForSeconds(fireball.allStats[4].minValue);
+        yield return new WaitForSeconds(fireball.allStats.Find(x => x.stat == Stats.Stat.Cooldown).minValue);
         SkillsController.Instance.fireballCooldown = false;
     }
 
     void Start()
     {
-        damage = Random.Range(fireball.allStats[0].minValue , fireball.allStats[1].minValue);
         rb = GetComponent<Rigidbody>();
 
         StartCoroutine(Cooldown());
@@ -33,8 +30,8 @@ public class Fireball : Skill
 
     private void ShootFireball()
     {
-        transform.forward = (direction * 100) - transform.position;
-        rb.velocity = transform.forward * fireball.allStats[7].minValue;
+        transform.forward = (direction * fireball.allStats.Find(x => x.stat == Stats.Stat.Range).minValue) - transform.position;
+        rb.velocity = transform.forward * fireball.allStats.Find(x => x.stat == Stats.Stat.ProjectileSpeed).minValue;
     }
 
     private void ApplyBurning()
