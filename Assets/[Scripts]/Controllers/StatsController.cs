@@ -13,16 +13,12 @@ public class StatsController : MonoBehaviour
 {
     private static StatsController instance;
     public static StatsController Instance { get { return instance; } }
-
-    [Header("Controllers")]
-    [SerializeField] private SkillsController skillsController;
-
-    [Header("Player Stats")]
+    
     [SerializeField] private List<Stats> playerStats;
     [SerializeField] private EquippedGear equippedGear;
 
     private Dictionary<Stats.Stat, Stats> playerModifiers;
-    private Dictionary<Stats.Stat, Stats> skillTreeStats;
+    private Dictionary<Stats.Stat, Stats> skillTreeModifiers;
     private Dictionary<Stats.Stat, Stats> gearStats;
     private List<Stats> initialPlayerStats;
 
@@ -30,7 +26,7 @@ public class StatsController : MonoBehaviour
     {
         if (instance != null && instance != this)
         {
-            Destroy(this.gameObject);
+            Destroy(this);
         }
         else
         {
@@ -40,7 +36,7 @@ public class StatsController : MonoBehaviour
 
     private void Start()
     {
-        skillTreeStats = new Dictionary<Stats.Stat, Stats>();
+        skillTreeModifiers = new Dictionary<Stats.Stat, Stats>();
         gearStats = new Dictionary<Stats.Stat, Stats>();
         InitPlayerModifiers();
         initialPlayerStats = GetAllPlayerStats();
@@ -50,10 +46,8 @@ public class StatsController : MonoBehaviour
     {
         // Manual Test to calculate player stats
         if (Input.GetKeyDown(KeyCode.L))
-        {
-            CalculatePlayerStats();
-            Debug.Log(GetAllPlayerModifiers()[0].minValue);
-            Debug.Log(GetAllPlayerModifiers()[0].maxValue);
+        {            
+            CalculatePlayerStats();            
         }
     }
 
@@ -67,15 +61,9 @@ public class StatsController : MonoBehaviour
         }
     }
 
-    public void SetSkillTreeStats(string skillTree)
-    {
-        // Get skill tree modifiers from Skill Tree Controller
-        skillTreeStats = SkillTreeController.instance.GetModifiers(skillTree);
-    }
-
     private void CalculatePlayerStats()
     {
-        SetSkillTreeStats("Fireball");
+        skillTreeModifiers = SkillTreeController.instance.GetModifiers("Fireball");
         CalculateGearStats();
 
         // Duplicate dict to traverse through it
@@ -85,25 +73,30 @@ public class StatsController : MonoBehaviour
         foreach (Stats.Stat s in dict.Keys)
         {
             bool hasGearStat = gearStats.ContainsKey(s);
-            bool hasSkillTreeStat = skillTreeStats.ContainsKey(s);
+            bool hasSkillTreeStat = skillTreeModifiers.ContainsKey(s);
 
             if (hasGearStat && hasSkillTreeStat)
             {
-                Stats result = initialPlayerStats[initialPlayerStats.IndexOf(dict[s])] + gearStats[s] + skillTreeStats[s];
+                Stats result = initialPlayerStats.Find(x => x.stat == s) + gearStats[s] + skillTreeModifiers[s];
                 SetPlayerModifier(s, result);
             }
             else if (!hasGearStat && hasSkillTreeStat)
             {
-                Stats result = initialPlayerStats[initialPlayerStats.IndexOf(dict[s])] + skillTreeStats[s];
+                Stats result = initialPlayerStats.Find(x => x.stat == s) + skillTreeModifiers[s];
                 SetPlayerModifier(s, result);
 
             }
             else if (hasGearStat && !hasSkillTreeStat)
             {
-                Stats result = initialPlayerStats[initialPlayerStats.IndexOf(dict[s])] + gearStats[s];
+                Stats result = initialPlayerStats.Find(x => x.stat == s) + gearStats[s];
                 SetPlayerModifier(s, result);
             }
         }
+
+        Debug.Log(GetAllPlayerModifiers()[0].minValue);
+        Debug.Log(GetAllPlayerModifiers()[0].maxValue);
+        SkillTreeController.instance.Test();
+        Debug.Log(skillTreeModifiers.Count);
     }
     
     private void CalculateGearStats()
@@ -196,7 +189,7 @@ public class StatsController : MonoBehaviour
             }
             else
             {
-                Debug.Log("Stat doesn't exist in player stats");
+                Debug.Log(s.stat + "doesn't exist in player stats");
             }
         }
     }

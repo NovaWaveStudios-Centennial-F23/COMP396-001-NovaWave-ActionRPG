@@ -49,7 +49,7 @@ public class Stats
         Burning,                // [Subject to removal] (More of a state than a stat)
         Slowness,               // [Subject to removal] (More of a state than a stat)
         Stun,                   // [Subject to removal] (More of a state than a stat)
-        FireballDoubleCast      // [Subject to removal] (Is a skill tree node, not particularly a stat) 
+        FireballDoubleCast      // [Subject to removal] (Is a skill tree node, not particularly a stat)
     }
 
     public Stat stat;
