@@ -3,7 +3,6 @@
  * 
  */
 
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -31,37 +30,37 @@ public class CharacterSelector : MonoBehaviour
     [SerializeField]
     CharacterSelectionHandler characterSelectionHandler;
 
+    [SerializeField]
+    bool generateFakeData;
+
     int characterCount = 0;
+    
 
     GameObject currentSelection;
-
-    [Header("Used for testing")]
-    Sprite saveDataIcon;
 
 
     private void Awake()
     {
-        currentSelection = null;
+        SetSelection(null);
         Initialize();
     }
 
 
     private void OnDisable()
     {
-        Reset();
+        SetSelection(null);
     }
 
-    private void Reset()
-    {
-
-    }
 
     private void Initialize()
     {
         characterCount = 0;
 
-        //get the save data
-        GenerateDummyData();
+        if (generateFakeData)
+        {
+            GenerateDummyData();
+        }
+
 
         DisplayData();
 
@@ -84,6 +83,7 @@ public class CharacterSelector : MonoBehaviour
         var obj1 = Instantiate(characterOptionPrefab);
         obj1.transform.parent = transform;
         obj1.GetComponent<CharacterSelectButton>().PopulateData(s1);
+        obj1.GetComponent<CharacterSelectButton>();
         characterSelectionHandler.AddButton(obj1.GetComponent<CharacterSelectButton>());
         characterCount++;
 
@@ -94,6 +94,35 @@ public class CharacterSelector : MonoBehaviour
         characterSelectionHandler.AddButton(obj2.GetComponent<CharacterSelectButton>());
         characterCount++;
     }
+
+
+    public void SetSelection(GameObject character)
+    {
+        currentSelection = character;
+        UpdateButtons();
+        
+    }
+
+    //this sets the state of the buttons making sure only the right buttons are enabled
+    private void UpdateButtons()
+    {
+        if(currentSelection != null)
+        {
+            btnSingleplayer.interactable = true;
+            btnMultiplayer.interactable = true;
+            btnDeleteCharacter.interactable = true;
+        }
+        else
+        {
+            btnSingleplayer.interactable = false;
+            btnMultiplayer.interactable = false;
+            btnDeleteCharacter.interactable = false;
+        }
+    }
+
+
+
+
 
 
 

@@ -14,14 +14,14 @@ public class CharacterSelectButton : GroupButton
     [SerializeField]
     TextMeshProUGUI txtCharacterLevel;
 
-    CharacterSelectionSceneManager sceneManager;
+    CharacterSelector characterSelector;
     string characterName;
     int characterLevel;
     Sprite characterIcon;
 
     private void Awake()
     {
-        sceneManager = FindFirstObjectByType<CharacterSelectionSceneManager>();
+        characterSelector = FindFirstObjectByType<CharacterSelector>();
         UpdateAppearance();
     }
 
@@ -51,19 +51,20 @@ public class CharacterSelectButton : GroupButton
 
     public override void OnPointerClick(PointerEventData eventData)
     {
-        if(sceneManager == null)
+        if(characterSelector == null)
         {
-            sceneManager = FindFirstObjectByType<CharacterSelectionSceneManager>();
+            characterSelector = FindFirstObjectByType<CharacterSelector>();
         }
 
 
-        if(sceneManager != null)
+        if(characterSelector != null)
         {
             base.OnPointerClick(eventData);
+            characterSelector.SetSelection(gameObject);
         }
         else
         {
-            Debug.LogError($"Cannot find {nameof(CharacterSelectionSceneManager)} for {this}");
+            Debug.LogError($"Cannot find {nameof(CharacterSelector)} for {this}");
         }
     }
 

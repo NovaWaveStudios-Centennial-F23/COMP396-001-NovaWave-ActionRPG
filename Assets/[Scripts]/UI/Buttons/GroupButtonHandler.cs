@@ -45,6 +45,14 @@ public abstract class GroupButtonHandler : MonoBehaviour
         }
     }
 
+    private void OnDisable()
+    {
+        foreach (GroupButton btn in buttons)
+        {
+            btn.SetActive(false);
+        }
+    }
+
     private void OnDestroy()
     {
         foreach (GroupButton button in buttons)
