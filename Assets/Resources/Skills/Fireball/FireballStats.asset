@@ -15,19 +15,19 @@ MonoBehaviour:
   damageType: 1
   miscStats:
   - stat: 0
-    minValue: 10
-    maxValue: 20
-  - stat: 34
-    minValue: 100
+    minValue: 0
     maxValue: 0
   - stat: 33
     minValue: 15
     maxValue: 0
+  - stat: 34
+    minValue: 100
+    maxValue: 0
   manaCost:
     stat: 28
-    minValue: 10
-    maxValue: 0
+    minValue: 11
+    maxValue: 11
   cooldown:
     stat: 29
-    minValue: 2
-    maxValue: 0
+    minValue: 0.21
+    maxValue: 0.21

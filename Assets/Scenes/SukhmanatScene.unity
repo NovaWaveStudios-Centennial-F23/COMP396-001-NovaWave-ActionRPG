@@ -1866,6 +1866,9 @@ MonoBehaviour:
   - stat: 0
     minValue: 50
     maxValue: 100
+  - stat: 16
+    minValue: 1
+    maxValue: 2
   equippedGear: {fileID: 1924580507}
 --- !u!1 &1285277574
 GameObject:

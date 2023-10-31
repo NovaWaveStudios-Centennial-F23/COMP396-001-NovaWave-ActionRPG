@@ -64,9 +64,9 @@ public class CalculationController : MonoBehaviour
                 case Stats.Stat.Cooldown:
                     PercentageSubtraction(skill, Stats.Stat.Cooldown, Stats.Stat.CooldownReductionP);
                     break;
-                case Stats.Stat.ManaCost:
+                /*case Stats.Stat.ManaCost:
                     PercentageSubtraction(skill, Stats.Stat.ManaCost, Stats.Stat.ManaCostRecutionP);
-                    break;
+                    break;*/
                 case Stats.Stat.CastTIme:
                     PercentageSubtraction(skill, Stats.Stat.CastTIme, Stats.Stat.CastSpeedP);
                     break;
@@ -95,11 +95,12 @@ public class CalculationController : MonoBehaviour
         Enum.TryParse(str, out stat);
 
         // Additional elemental damage
-        float elementalDamage = (playerModifiers[stat].minValue / 100) * playerModifiers[Stats.Stat.BaseDamage].minValue;
-        float totalDamage = skillDamage + elementalDamage;
+        //float elementalDamage = (playerModifiers[stat].minValue / 100) * playerModifiers[Stats.Stat.BaseDamage].minValue;
+        //float totalDamage = skillDamage + elementalDamage;
 
         // [Should be changed to skill damage]
-        skill.allStats.Find(x => x.stat == Stats.Stat.BaseDamage).minValue = totalDamage;
+        skill.allStats.Find(x => x.stat == Stats.Stat.BaseDamage).minValue = skillDamage;
+        skill.allStats.Find(x => x.stat == Stats.Stat.BaseDamage).maxValue = skillTreeModifiers[Stats.Stat.BaseDamage].maxValue;
     }
 
     private void PercentageSubtraction(SkillSO skill, Stats.Stat mainStat, Stats.Stat subStat)
