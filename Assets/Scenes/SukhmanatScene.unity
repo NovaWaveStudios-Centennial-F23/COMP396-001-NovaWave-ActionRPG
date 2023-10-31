@@ -953,6 +953,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &673735757
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 673735759}
+  - component: {fileID: 673735758}
+  m_Layer: 0
+  m_Name: CalculationController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &673735758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 673735757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1336c246fd061dd48826b8cbda355340, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &673735759
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 673735757}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 13.155103, y: 2.8766851, z: -8.928603}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &674157953
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1763,8 +1807,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f01addf639a38d4c938ab28e82db094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillsController: {fileID: 1285277579}
-  playerStats: {fileID: 1285277580}
+  playerStats:
+  - stat: 0
+    minValue: 50
+    maxValue: 100
   equippedGear: {fileID: 1924580507}
 --- !u!1 &1285277574
 GameObject:
@@ -1778,7 +1824,6 @@ GameObject:
   - component: {fileID: 1285277577}
   - component: {fileID: 1285277576}
   - component: {fileID: 1285277579}
-  - component: {fileID: 1285277580}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1872,22 +1917,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   fireballSkillTree: {fileID: 0}
---- !u!114 &1285277580
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1285277574}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d42caf1e47d54a14a95b11307ac33892, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerStats:
-  - stat: 0
-    minValue: 50
-    maxValue: 100
 --- !u!1 &1433811233
 GameObject:
   m_ObjectHideFlags: 0
@@ -2568,8 +2597,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f01addf639a38d4c938ab28e82db094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillsController: {fileID: 0}
-  playerStats: {fileID: 0}
+  playerStats:
+  - stat: 0
+    minValue: 0
+    maxValue: 0
   equippedGear: {fileID: 0}
 --- !u!1 &2058518991
 GameObject:
@@ -3116,3 +3147,4 @@ SceneRoots:
   - {fileID: 1254715368}
   - {fileID: 1083715397}
   - {fileID: 1742320316}
+  - {fileID: 673735759}
