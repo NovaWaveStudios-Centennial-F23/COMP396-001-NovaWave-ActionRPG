@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using static SkillTreeController;
 
 public class CalculationController : MonoBehaviour
 {
@@ -27,7 +28,7 @@ public class CalculationController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        skillTreeModifiers = new Dictionary<Stats.Stat, Stats>();
     }
 
     // Update is called once per frame
@@ -38,7 +39,7 @@ public class CalculationController : MonoBehaviour
 
     public void CalculateSkillStats(string skillTree, ActiveSkillSO skill)
     {
-        SetModifiers(skillTree);
+        SetModifiers("Fireball");
 
         //Add stats to an active skill scriptable object
         /*foreach (Stats s in skillTreeModifiers.Values)

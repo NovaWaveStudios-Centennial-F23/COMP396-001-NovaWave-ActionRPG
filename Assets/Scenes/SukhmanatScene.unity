@@ -426,6 +426,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 304273933}
   m_CullTransparentMesh: 1
+--- !u!1 &436998097
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 436998099}
+  - component: {fileID: 436998098}
+  m_Layer: 0
+  m_Name: CalculationController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &436998098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436998097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1336c246fd061dd48826b8cbda355340, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &436998099
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436998097}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 659688802}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &472491876
 GameObject:
   m_ObjectHideFlags: 0
@@ -947,10 +991,13 @@ Transform:
   m_GameObject: {fileID: 659688800}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 966.1858, y: 857.6883, z: 9.65247}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1280662733}
+  - {fileID: 436998099}
+  - {fileID: 678760658}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &674157953
@@ -1086,6 +1133,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63033cf2e3c427048ad701f8c441b19a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &678760656
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 678760658}
+  - component: {fileID: 678760657}
+  m_Layer: 0
+  m_Name: SkillsController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &678760657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678760656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62277f45532a47b478b1fd33acf25972, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireballCooldown: 0
+  activeSkillSO: {fileID: 0}
+  player: {fileID: 1285277574}
+  fireballPrefab: {fileID: 1442896983113451992, guid: 8109a70c8d21b4c4c99a3f5119eb932d, type: 3}
+  frostNovaPrefab: {fileID: 0}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 8
+--- !u!4 &678760658
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678760656}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 659688802}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &951293337
 GameObject:
   m_ObjectHideFlags: 0
@@ -1744,12 +1843,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1280662732}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.41973972, y: 0.023306847, z: -0.288867}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 659688802}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1280662734
 MonoBehaviour:
@@ -1760,11 +1859,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1280662732}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f01addf639a38d4c938ab28e82db094, type: 3}
+  m_Script: {fileID: 11500000, guid: a37446fabe00cf446ae12cc191ae21b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillsController: {fileID: 1285277579}
-  playerStats: {fileID: 1285277580}
+  playerStats:
+  - stat: 0
+    minValue: 50
+    maxValue: 100
   equippedGear: {fileID: 1924580507}
 --- !u!1 &1285277574
 GameObject:
@@ -1777,8 +1878,6 @@ GameObject:
   - component: {fileID: 1285277578}
   - component: {fileID: 1285277577}
   - component: {fileID: 1285277576}
-  - component: {fileID: 1285277579}
-  - component: {fileID: 1285277580}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1852,42 +1951,6 @@ Transform:
   - {fileID: 1924580506}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1285277579
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1285277574}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62277f45532a47b478b1fd33acf25972, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fireballCooldown: 0
-  fireballSO: {fileID: 0}
-  fireballPrefab: {fileID: 1442896983113451992, guid: 8109a70c8d21b4c4c99a3f5119eb932d, type: 3}
-  frostNovaPrefab: {fileID: 1963430750495883453, guid: 23d3f24bb3e1c1544a989f9fe740208b, type: 3}
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 8
-  fireballSkillTree: {fileID: 0}
---- !u!114 &1285277580
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1285277574}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d42caf1e47d54a14a95b11307ac33892, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerStats:
-  - stat: 0
-    minValue: 50
-    maxValue: 100
 --- !u!1 &1433811233
 GameObject:
   m_ObjectHideFlags: 0
@@ -2461,7 +2524,6 @@ GameObject:
   - component: {fileID: 2046068705}
   - component: {fileID: 2046068704}
   - component: {fileID: 2046068703}
-  - component: {fileID: 2046068707}
   m_Layer: 3
   m_Name: Ground
   m_TagString: Untagged
@@ -2556,21 +2618,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2046068707
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2046068702}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f01addf639a38d4c938ab28e82db094, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillsController: {fileID: 0}
-  playerStats: {fileID: 0}
-  equippedGear: {fileID: 0}
 --- !u!1 &2058518991
 GameObject:
   m_ObjectHideFlags: 0
@@ -3110,9 +3157,8 @@ SceneRoots:
   - {fileID: 1066481577}
   - {fileID: 2046068706}
   - {fileID: 1285277578}
-  - {fileID: 1280662733}
   - {fileID: 2724336357539142052}
-  - {fileID: 659688802}
   - {fileID: 1254715368}
   - {fileID: 1083715397}
   - {fileID: 1742320316}
+  - {fileID: 659688802}
