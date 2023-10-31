@@ -9,9 +9,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
-public class InGameSceneManager : MonoBehaviour
+public class InGameUIManager : MonoBehaviour
 {
-    InGameSceneManager Instance;
+    InGameUIManager Instance;
 
     [SerializeField]
     GameObject inventoryPanel;

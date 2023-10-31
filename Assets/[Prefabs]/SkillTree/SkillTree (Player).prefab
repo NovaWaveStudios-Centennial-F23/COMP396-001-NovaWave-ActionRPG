@@ -331,8 +331,8 @@ RectTransform:
   m_GameObject: {fileID: 3534082318533117154}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.01, y: 1.01, z: 1.01}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2546755934866245568}
   m_Father: {fileID: 0}
@@ -749,7 +749,7 @@ GameObject:
   - component: {fileID: 6768819517331044953}
   - component: {fileID: 766568132520164051}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: SkillPointsCounter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

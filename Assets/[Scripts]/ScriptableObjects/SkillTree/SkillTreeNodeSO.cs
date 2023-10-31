@@ -11,7 +11,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SkillNode", menuName = "Scriptable Object/Skill Node")]
 public class SkillTreeNodeSO : ScriptableObject
 {
-    public List<SkillSO> skills = new List<SkillSO>();
+    public List<SkillSO> skills = new();
 
     [SkillSelector]
     public string skillTreeType;
@@ -33,6 +33,19 @@ public class SkillTreeNodeSO : ScriptableObject
                 {
                     Debug.LogWarning($"Warning: there are different SkillTypes in the skill list of the {this.name} {nameof(SkillTreeNodeSO)}");
                 }
+            }
+        }
+
+        //check skills list to see if this Node represents a passive skill or not
+        if(skills.Count > 0)
+        {
+            if (skills[0].GetType() == typeof(ActiveSkillSO))
+            {
+                isActiveSkill = true;
+            }
+            else
+            {
+                isActiveSkill = false;
             }
         }
     }
