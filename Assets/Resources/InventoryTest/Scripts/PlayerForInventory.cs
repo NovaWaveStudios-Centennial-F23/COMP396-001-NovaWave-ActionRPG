@@ -8,7 +8,7 @@ public class PlayerForInventory : MonoBehaviour
     // Player should click items to pickup(= no need method for player script. should make into item behaviour script)
     public void OnTriggerEnter(Collider other)
     {
-        var groundItem = other.GetComponent<ItemBehaviour>();
+        var groundItem = other.GetComponent<GroundedItem>();
         if (groundItem)
         {
             Item _item = new Item(groundItem.item);

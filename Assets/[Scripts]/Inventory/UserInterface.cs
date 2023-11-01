@@ -15,6 +15,10 @@ public abstract class UserInterface : MonoBehaviour
     // Display properties
     public Dictionary<GameObject, InventorySlot> slotsOnInterface = new Dictionary<GameObject, InventorySlot>();
 
+    // Value for slot size
+    public int xSlot = 30;
+    public int ySlot = 30;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -72,6 +76,7 @@ public abstract class UserInterface : MonoBehaviour
 
     public void OnDragStart(GameObject obj)
     {
+        // Copy item data to mouse cursor
         MouseData.tempItemBeingDragged = CreateTempItem(obj);
     }
 
@@ -83,7 +88,7 @@ public abstract class UserInterface : MonoBehaviour
         // Get item from inventory
             tempItem = new GameObject();
             var rt = tempItem.AddComponent<RectTransform>();
-            rt.sizeDelta = new Vector2(30, 30);
+            rt.sizeDelta = new Vector2(xSlot, ySlot);
             tempItem.transform.SetParent(transform.parent);
             var img = tempItem.AddComponent<Image>();
             img.sprite = slotsOnInterface[obj].ItemObject.icon;
@@ -95,13 +100,17 @@ public abstract class UserInterface : MonoBehaviour
 
     public void OnDragEnd(GameObject obj)
     {
+        /* Tasks:
+            - Check if item is stackable and separate if needed(or separate right/left click)
+            - Check if item is stackable then remove item all or one by one
+            - Spawn removed item to field(probablly need to check inventory script as well)
+        */
+
         // Destroy dragged item
         Destroy(MouseData.tempItemBeingDragged);
 
         if (MouseData.interfaceMouseIsOver == null)
         {
-            // drop item to field
-            
             // Remove dragged item
             slotsOnInterface[obj].RemoveItem();
             return;
@@ -127,7 +136,6 @@ public abstract class UserInterface : MonoBehaviour
 public static class MouseData
 {
     public static UserInterface interfaceMouseIsOver;
-
     public static GameObject tempItemBeingDragged;
 
     // Hover item

@@ -9,7 +9,7 @@ public enum ItemType
     Consumable,
     Misc,
 
-    // gear for testing(should be removed)
+    // geartype for testing(should be removed)
     Wand,
     Staff,
     Shield,

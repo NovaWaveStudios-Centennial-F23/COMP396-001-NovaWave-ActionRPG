@@ -74,8 +74,13 @@ public class InventorySO : ScriptableObject
         return null;
     }
 
+    // item1 = slot
+    // item2 = mouse
     public void SwapItems(InventorySlot item1, InventorySlot item2)
     {
+        // check the slot is left/right slot and one of slot has double handed weapon
+        // need to get left/right slot
+
         if (item2.CanPlaceInSlot(item1.ItemObject) && item1.CanPlaceInSlot(item2.ItemObject))
         {
             InventorySlot temp = new InventorySlot(item2.item, item2.amount);
@@ -97,7 +102,6 @@ public class InventorySO : ScriptableObject
 [System.Serializable]
 public class Inventory
 {
-    // implement a logic to put same nunber to InventorySlot for Player.OnApplicationQuit()
     public static int numberOfSlots = 48;
     public InventorySlot[] Items = new InventorySlot[numberOfSlots];
     public void Clear()
@@ -172,6 +176,11 @@ public class InventorySlot
 
         for (int i = 0; i < AllowedItems.Length; i++)
         {
+            // return false if item type is double handed
+            // if (AllowedItems[i] == itemType.Staff) {
+            //     return false;
+            // }
+
             if (_itemObject.itemType == AllowedItems[i])
             {
                 return true;
