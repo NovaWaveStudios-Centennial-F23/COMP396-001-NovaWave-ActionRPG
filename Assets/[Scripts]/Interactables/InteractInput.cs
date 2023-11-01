@@ -11,7 +11,7 @@ public class InteractInput : MonoBehaviour
     GameObject currentHoverOverObject;
     [HideInInspector]
     public InteractableObject hoveringObject;
-    CharacterController hoveringOverCharacter;
+    CharacterDamage hoveringOverCharacter;
 
     void Update()
     {
@@ -50,7 +50,7 @@ public class InteractInput : MonoBehaviour
         if (interactableObject != null)
         {
             hoveringObject = interactableObject;
-            hoveringOverCharacter = interactableObject.GetComponent<CharacterController>();
+            hoveringOverCharacter = interactableObject.GetComponent<CharacterDamage>();
             textOnScreen.text = hoveringObject.objectName;
         }
         else
@@ -67,7 +67,8 @@ public class InteractInput : MonoBehaviour
     {
         if(hoveringOverCharacter != null)
         {
-            //hpBar.Show(hoveringOverCharacter.lifepool);
+            hpBar.Show(hoveringOverCharacter.lifepool);
+            Debug.Log(hoveringOverCharacter.lifepool);
         }
         else
         {

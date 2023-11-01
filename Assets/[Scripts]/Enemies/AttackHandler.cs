@@ -6,11 +6,12 @@ using UnityEngine;
 
 public class AttackHandler : MonoBehaviour
 {
-    Stats stats;
+    float damageAmount = 10f;
+    //Stats stats;
     [SerializeField] float attackRange = 1f;
     Animator animator;
     CharacterMovement characterMovement;
-
+    UIPoolBar uiPoolBar;
     InteractableObject target;
 
     private void Awake()
@@ -18,6 +19,7 @@ public class AttackHandler : MonoBehaviour
         animator = GetComponentInParent<Animator>();
         characterMovement = GetComponent<CharacterMovement>();
         //Stats stats = GetComponent<Stats>();
+        CharacterDamage characterDamage = GetComponent<CharacterDamage>();
     }
     internal void Attack(InteractableObject target)
     {
@@ -40,6 +42,9 @@ public class AttackHandler : MonoBehaviour
         {
             characterMovement.Stop();
             animator.SetTrigger("Attack");
+            CharacterDamage targetCharactertoAttack = target.GetComponent<CharacterDamage>();
+            targetCharactertoAttack.TakeDamage(damageAmount);
+
             //Code to be modified
             //Stats targetCharactertoAttack = target.GetComponent<Stats.Stat.Health>;
             //targetCharactertoAttack.TakeDamage(character.TakeStats(Statistic.Damage).value);
