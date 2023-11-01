@@ -14,14 +14,11 @@ public class StatsController : MonoBehaviour
     private static StatsController instance;
     public static StatsController Instance { get { return instance; } }
 
-    [Header("Controllers")]
-    [SerializeField] private SkillsController skillsController;
-
-    [Header("Player Stats")]
-    [SerializeField] private PlayerStats playerStats;
+    [SerializeField] private List<Stats> playerStats;
     [SerializeField] private EquippedGear equippedGear;
 
-    private Dictionary<Stats.Stat, Stats> skillTreeStats;
+    private Dictionary<Stats.Stat, Stats> playerModifiers;
+    private Dictionary<Stats.Stat, Stats> skillTreeModifiers;
     private Dictionary<Stats.Stat, Stats> gearStats;
     private List<Stats> initialPlayerStats;
 
@@ -29,7 +26,7 @@ public class StatsController : MonoBehaviour
     {
         if (instance != null && instance != this)
         {
-            Destroy(this.gameObject);
+            Destroy(this);
         }
         else
         {
@@ -39,9 +36,10 @@ public class StatsController : MonoBehaviour
 
     private void Start()
     {
-        skillTreeStats = new Dictionary<Stats.Stat, Stats>();
+        skillTreeModifiers = new Dictionary<Stats.Stat, Stats>();
         gearStats = new Dictionary<Stats.Stat, Stats>();
-        initialPlayerStats = playerStats.GetAllPlayerStats();
+        InitPlayerModifiers();
+        initialPlayerStats = GetAllPlayerStats();
     }
 
     void Update()
@@ -50,50 +48,57 @@ public class StatsController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L))
         {
             CalculatePlayerStats();
-            //Debug.Log(playerStats.GetAllPlayerModifiers()[0].minValue);
-            //Debug.Log(playerStats.GetAllPlayerModifiers()[0].maxValue);
         }
     }
 
-    public void SetSkillTreeStats(string skillTree)
+    private void InitPlayerModifiers()
     {
-        // Get skill tree modifiers from Skill Tree Controller
-        skillTreeStats = SkillTreeController.instance.GetModifiers(skillTree);
+        playerModifiers = new Dictionary<Stats.Stat, Stats>();
+
+        foreach (Stats s in playerStats)
+        {
+            playerModifiers.Add(s.stat, s);
+        }
     }
 
     private void CalculatePlayerStats()
     {
-        SetSkillTreeStats("Fireball");
+        skillTreeModifiers = SkillTreeController.instance.GetModifiers("Fireball");
         CalculateGearStats();
 
         // Duplicate dict to traverse through it
-        Dictionary<Stats.Stat, Stats> dict = new Dictionary<Stats.Stat, Stats>(playerStats.GetAllPlayerModifiers());
+        Dictionary<Stats.Stat, Stats> dict = new Dictionary<Stats.Stat, Stats>(GetAllPlayerModifiers());
 
         // Change player stats based on skill tree stats and gear stats
         foreach (Stats.Stat s in dict.Keys)
         {
             bool hasGearStat = gearStats.ContainsKey(s);
-            bool hasSkillTreeStat = skillTreeStats.ContainsKey(s);
+            bool hasSkillTreeStat = skillTreeModifiers.ContainsKey(s);
 
             if (hasGearStat && hasSkillTreeStat)
             {
-                Stats result = initialPlayerStats[initialPlayerStats.IndexOf(dict[s])] + gearStats[s] + skillTreeStats[s];
-                playerStats.SetPlayerModifier(s, result);
+                Stats result = initialPlayerStats.Find(x => x.stat == s) + gearStats[s] + skillTreeModifiers[s];
+                SetPlayerModifier(s, result);
             }
             else if (!hasGearStat && hasSkillTreeStat)
             {
-                Stats result = initialPlayerStats[initialPlayerStats.IndexOf(dict[s])] + skillTreeStats[s];
-                playerStats.SetPlayerModifier(s, result);
+                Stats result = initialPlayerStats.Find(x => x.stat == s) + skillTreeModifiers[s];
+                SetPlayerModifier(s, result);
 
             }
             else if (hasGearStat && !hasSkillTreeStat)
             {
-                Stats result = initialPlayerStats[initialPlayerStats.IndexOf(dict[s])] + gearStats[s];
-                playerStats.SetPlayerModifier(s, result);
+                Stats result = initialPlayerStats.Find(x => x.stat == s) + gearStats[s];
+                SetPlayerModifier(s, result);
             }
         }
+
+        Debug.Log(GetAllPlayerModifiers()[0].minValue);
+        Debug.Log(GetAllPlayerModifiers()[0].maxValue);
+        SkillTreeController.instance.Test();
+        Debug.Log(skillTreeModifiers.Count);
     }
-    
+
     private void CalculateGearStats()
     {
         this.gearStats.Clear();
@@ -149,5 +154,43 @@ public class StatsController : MonoBehaviour
         }
 
         this.gearStats = gearStats;
+    }
+
+    public Dictionary<Stats.Stat, Stats> GetAllPlayerModifiers()
+    {
+        return playerModifiers;
+    }
+
+    public List<Stats> GetAllPlayerStats()
+    {
+        return playerStats;
+    }
+
+    public Stats GetPlayerModifier(Stats.Stat stat)
+    {
+        Stats st = null;
+        foreach (Stats.Stat s in playerModifiers.Keys)
+        {
+            if (s == stat)
+            {
+                st = playerModifiers[s];
+            }
+        }
+        return st;
+    }
+
+    public void SetPlayerModifier(Stats.Stat stat, Stats value)
+    {
+        foreach (Stats s in playerStats)
+        {
+            if (s.stat == stat)
+            {
+                playerModifiers[s.stat] = value;
+            }
+            else
+            {
+                Debug.Log(s.stat + "doesn't exist in player stats");
+            }
+        }
     }
 }

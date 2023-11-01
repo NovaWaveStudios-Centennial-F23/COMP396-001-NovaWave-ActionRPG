@@ -11,11 +11,11 @@ public class SkillSO : ScriptableObject
 
     public enum DamageType
     {
-        NORMAL,
-        FIRE,
-        ICE,
-        ELECTRIC,
-        NONE
+        Normal,
+        Fire,
+        Frost,
+        Electro,
+        None
     }
 
     public DamageType damageType;
@@ -30,7 +30,4 @@ public class SkillSO : ScriptableObject
             allStats.Add(stat);
         }
     }
-
-
-
 }

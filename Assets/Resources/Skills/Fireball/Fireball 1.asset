@@ -15,8 +15,14 @@ MonoBehaviour:
   damageType: 1
   miscStats:
   - stat: 0
-    minValue: 50
+    minValue: 77.5
     maxValue: 55
+  - stat: 33
+    minValue: 15
+    maxValue: 0
+  - stat: 34
+    minValue: 100
+    maxValue: 0
   manaCost:
     stat: 28
     minValue: 11
