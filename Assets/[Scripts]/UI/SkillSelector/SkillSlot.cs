@@ -52,6 +52,7 @@ public class SkillSlot : MonoBehaviour, IPointerClickHandler
         iconImage.sprite = ActiveSkillUIData.Instance.GetSprite(typeof(Fireball).ToString());
 
         //let the input manager know
+
     }
 
 

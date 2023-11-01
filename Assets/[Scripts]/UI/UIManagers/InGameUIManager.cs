@@ -1,13 +1,11 @@
 /** Created by Han Bi
  * Used to handle UI states for while in-game
+ * Checks for input from player
  */
 using System;
 using System.Collections.Generic;
-using Unity.PlasticSCM.Editor.WebApi;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
 
 public class InGameUIManager : MonoBehaviour
 {
@@ -57,11 +55,7 @@ public class InGameUIManager : MonoBehaviour
     {
         //hide all windows
         listenForInputs = ShouldCheckForInput(curScene);
-        if(listenForInputs)
-        {
-
-        }
-        else
+        if(!listenForInputs)
         {
             //hide player HUD
         }
