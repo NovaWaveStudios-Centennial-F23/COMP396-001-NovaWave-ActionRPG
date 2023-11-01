@@ -11,15 +11,15 @@ public class SkillsController : MonoBehaviour
     public bool fireballCooldown = false;
 
     [Header("Scriptable Objects")]
-    [SerializeField] private SkillSO fireballSO;
+    [SerializeField] private ActiveSkillSO activeSkillSO;
 
     [Header("Prefabs")]
+    [SerializeField] private GameObject player;
     [SerializeField] private GameObject fireballPrefab;
     [SerializeField] private GameObject frostNovaPrefab;
 
     [Header("Others")]
     [SerializeField] private LayerMask groundMask;
-    [SerializeField] private SkillTreeController fireballSkillTree;
 
     private Vector3 mousePosition;
 
@@ -27,7 +27,7 @@ public class SkillsController : MonoBehaviour
     {
         if (instance != null && instance != this)
         {
-            Destroy(this.gameObject);
+            Destroy(this);
         }
         else
         {
@@ -37,7 +37,7 @@ public class SkillsController : MonoBehaviour
 
     void Update()
     {
-        //SkillCast();
+        SkillCast(nameof(Fireball));
     }
 
     private void Raycast()
@@ -50,30 +50,24 @@ public class SkillsController : MonoBehaviour
         }
     }
 
-    private void SkillCast()
+    public void SkillCast(string skill)
     {
         //FIREBALL
         Raycast();
         if (Input.GetKeyDown(KeyCode.E) && !fireballCooldown)
         {
-            InitFireball();
+            InitActiveSkill(skill);
         }
     }
 
-    private void InitFireball()
+    private void InitActiveSkill(string skill)
     {
-        /*fireballSO = Resources.Load<SkillSO>("Skills/Fireball/Fireball" + fireballSkillTree.fireballLvl.ToString());
+        activeSkillSO = Resources.Load<ActiveSkillSO>("Skills/" + skill + "/" + skill + "Stats");
+        CalculationController.Instance.CalculateSkillStats(skill, activeSkillSO);
 
-        GameObject fireball = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
-        fireball.GetComponent<Fireball>().fireball = fireballSO;
+        GameObject fireball = Instantiate(fireballPrefab, player.transform.position, Quaternion.identity);
+        fireball.GetComponent<Fireball>().fireball = activeSkillSO;
         fireball.GetComponent<Fireball>().direction = mousePosition;
-
-        if (fireballSkillTree.GetSkillTree()[5].statValue == 1)
-        {
-            GameObject fireball2 = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
-            fireball2.GetComponent<Fireball>().fireball = fireballSO;
-            fireball2.GetComponent<Fireball>().direction = mousePosition;
-        }
-        fireballCooldown = true;*/
+        fireballCooldown = true;
     }
 }

@@ -11,7 +11,7 @@ using UnityEngine.UI;
 
 public abstract class GroupButton : MonoBehaviour, IPointerClickHandler
 {
-    
+    [Header("Group Button")]    
     [SerializeField]
     protected Image background;
 
