@@ -37,7 +37,7 @@ public class SkillsController : MonoBehaviour
 
     void Update()
     {
-        SkillCast();
+        SkillCast(nameof(Fireball));
     }
 
     private void Raycast()
@@ -50,13 +50,13 @@ public class SkillsController : MonoBehaviour
         }
     }
 
-    private void SkillCast()
+    public void SkillCast(string skill)
     {
         //FIREBALL
         Raycast();
         if (Input.GetKeyDown(KeyCode.E) && !fireballCooldown)
         {
-            InitActiveSkill(nameof(Fireball));
+            InitActiveSkill(skill);
         }
     }
 
