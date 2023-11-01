@@ -6273,6 +6273,7 @@ GameObject:
   - component: {fileID: 9150599325089391298}
   - component: {fileID: 9150599325089391297}
   - component: {fileID: 9150599325089391299}
+  - component: {fileID: 9150599325089391300}
   m_Layer: 0
   m_Name: MaleCharacterPBR
   m_TagString: Player
@@ -8978,6 +8979,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5b7da0cf39b40c45a71fb07c3332d08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &9150599325089391300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2736945140606898811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12284d64381fccc40a444e86e0b139e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpBar: {fileID: 1522751054}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
