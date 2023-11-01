@@ -3,10 +3,8 @@
  * this component will pass the link between skill and key to another component to handle
  */
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -21,9 +19,18 @@ public class SkillSlot : MonoBehaviour, IPointerClickHandler
     [Tooltip("The text that will display the key to player")]
     TextMeshProUGUI txtKeyText;
 
+    [SerializeField]
+    GameObject tooltip;
+
     //references the icon image component
     [SerializeField]
     Image iconImage;
+
+    [SerializeField]
+    Transform skillSelectionContainer;
+
+    [SerializeField]
+    GameObject skillSelectionButton;
 
     //this is a reference of the skill that will be activated when key is pressed
     string selectedSkill;
@@ -34,6 +41,11 @@ public class SkillSlot : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         //show an option of all skills the player has unlocked
+        if (!tooltip.activeInHierarchy)
+        {
+            tooltip.SetActive(true);
+        }
+        
     }
 
     private void Start()
@@ -54,6 +66,7 @@ public class SkillSlot : MonoBehaviour, IPointerClickHandler
         //let the input manager know
 
     }
+
 
 
 }
