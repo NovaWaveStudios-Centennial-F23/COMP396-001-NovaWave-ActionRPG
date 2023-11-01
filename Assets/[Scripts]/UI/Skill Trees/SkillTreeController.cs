@@ -4,6 +4,7 @@
  */
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class SkillTreeController : MonoBehaviour
@@ -113,8 +114,13 @@ public class SkillTreeController : MonoBehaviour
         }
         else
         {
-            return new Dictionary<Stats.Stat, Stats>();
+            return null;
         }
+    }
+
+    public List<string> GetSkills()
+    {
+        return skillTreeModifiers.Keys.ToList();
     }
 
     //for testing

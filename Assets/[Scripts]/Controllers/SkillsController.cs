@@ -15,7 +15,7 @@ public class SkillsController : MonoBehaviour
 
     [Header("Prefabs")]
     [SerializeField] private GameObject player;
-    [SerializeField] private GameObject fireballPrefab;
+    [SerializeField] private List<GameObject> fireballPrefab;
     [SerializeField] private GameObject frostNovaPrefab;
 
     [Header("Others")]
@@ -65,7 +65,7 @@ public class SkillsController : MonoBehaviour
         activeSkillSO = Resources.Load<ActiveSkillSO>("Skills/" + skill + "/" + skill + "Stats");
         CalculationController.Instance.CalculateSkillStats(skill, activeSkillSO);
 
-        GameObject fireball = Instantiate(fireballPrefab, player.transform.position, Quaternion.identity);
+        GameObject fireball = Instantiate(activeSkillSO.prefab, player.transform.position, Quaternion.identity);
         fireball.GetComponent<Fireball>().fireball = activeSkillSO;
         fireball.GetComponent<Fireball>().direction = mousePosition;
         fireballCooldown = true;
