@@ -1,18 +1,28 @@
+// Author: Mithul Koshy
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackInput : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    InteractInput interactInput;
+    AttackHandler attackHandler;
+
+    private void Awake()
     {
-        
+        interactInput=GetComponent<InteractInput>();
+        attackHandler=GetComponent<AttackHandler>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if(Input.GetMouseButtonDown(0))
+        {
+            if (interactInput.hoveringObject != null)
+            {
+                attackHandler.Attack(interactInput.hoveringObject);
+            }
+        }
     }
-}
+
+} 

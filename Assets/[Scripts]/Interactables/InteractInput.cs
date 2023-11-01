@@ -1,3 +1,4 @@
+// Author: Mithul Koshy
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,10 @@ using UnityEngine;
 public class InteractInput : MonoBehaviour
 {
     [SerializeField] TMPro.TextMeshProUGUI textOnScreen;
-    InteractableObject hoveringObject;
+
+    [HideInInspector]
+    public InteractableObject hoveringObject;
+
     void Update()
     {
         CheckInteractObject();
