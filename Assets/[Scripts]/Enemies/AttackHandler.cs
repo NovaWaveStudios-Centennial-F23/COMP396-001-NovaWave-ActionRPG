@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class AttackHandler : MonoBehaviour
 {
+    Stats stats;
     [SerializeField] float attackRange = 1f;
     Animator animator;
     CharacterMovement characterMovement;
@@ -16,6 +17,7 @@ public class AttackHandler : MonoBehaviour
     {
         animator = GetComponentInParent<Animator>();
         characterMovement = GetComponent<CharacterMovement>();
+        //Stats stats = GetComponent<Stats>();
     }
     internal void Attack(InteractableObject target)
     {
@@ -38,6 +40,9 @@ public class AttackHandler : MonoBehaviour
         {
             characterMovement.Stop();
             animator.SetTrigger("Attack");
+            //Code to be modified
+            //Stats targetCharactertoAttack = target.GetComponent<Stats.Stat.Health>;
+            //targetCharactertoAttack.TakeDamage(character.TakeStats(Statistic.Damage).value);
             target = null;
 
         }
