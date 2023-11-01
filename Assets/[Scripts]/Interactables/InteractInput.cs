@@ -11,7 +11,8 @@ public class InteractInput : MonoBehaviour
     GameObject currentHoverOverObject;
     [HideInInspector]
     public InteractableObject hoveringObject;
-    CharacterDamage hoveringOverCharacter;
+    [HideInInspector]
+    public CharacterDamage hoveringOverCharacter;
 
     void Update()
     {

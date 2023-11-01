@@ -1,18 +1,22 @@
 // Author: Mithul Koshy
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class AttackHandler : MonoBehaviour
 {
     float damageAmount = 10f;
     //Stats stats;
     [SerializeField] float attackRange = 1f;
+    [SerializeField] float defaultTimeToAttack = 2f;
+    float attackTimer;
+
     Animator animator;
     CharacterMovement characterMovement;
-    UIPoolBar uiPoolBar;
-    InteractableObject target;
+    CharacterDamage target;
 
     private void Awake()
     {
@@ -21,7 +25,7 @@ public class AttackHandler : MonoBehaviour
         //Stats stats = GetComponent<Stats>();
         CharacterDamage characterDamage = GetComponent<CharacterDamage>();
     }
-    internal void Attack(InteractableObject target)
+    internal void Attack(CharacterDamage target)
     {
         this.target = target;
         ProcessAttack();
@@ -29,9 +33,19 @@ public class AttackHandler : MonoBehaviour
 
     private void Update()
     {
+        AttackTimerTick();
         if(target != null)
         {
             ProcessAttack();
+        }
+    }
+
+    private void AttackTimerTick()
+    {
+        if (attackTimer>0f)
+        {
+            attackTimer -= Time.deltaTime;
+
         }
     }
 
@@ -40,10 +54,14 @@ public class AttackHandler : MonoBehaviour
         float distance = Vector3.Distance(transform.position, target.transform.position);
         if (distance < attackRange)
         {
+            if(attackTimer>0f)
+            {
+                return;
+            }
+            attackTimer = defaultTimeToAttack;
             characterMovement.Stop();
             animator.SetTrigger("Attack");
-            CharacterDamage targetCharactertoAttack = target.GetComponent<CharacterDamage>();
-            targetCharactertoAttack.TakeDamage(damageAmount);
+            target.TakeDamage(damageAmount);
 
             //Code to be modified
             //Stats targetCharactertoAttack = target.GetComponent<Stats.Stat.Health>;

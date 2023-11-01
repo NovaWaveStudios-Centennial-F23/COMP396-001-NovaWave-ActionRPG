@@ -18,9 +18,9 @@ public class AttackInput : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
-            if (interactInput.hoveringObject != null)
+            if (interactInput.hoveringOverCharacter != null)
             {
-                attackHandler.Attack(interactInput.hoveringObject);
+                attackHandler.Attack(interactInput.hoveringOverCharacter);
             }
         }
     }
