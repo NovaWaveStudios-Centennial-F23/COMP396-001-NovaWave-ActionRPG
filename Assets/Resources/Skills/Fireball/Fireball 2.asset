@@ -19,8 +19,8 @@ MonoBehaviour:
     maxValue: 60
   manaCost:
     stat: 28
-    minValue: 10
-    maxValue: 10
+    minValue: 12
+    maxValue: 12
   cooldown:
     stat: 29
     minValue: 0.21

@@ -42,7 +42,6 @@ public class CharacterCreatorUI : MonoBehaviour
         {
             classSelector.OnCharacterSelected += ShowClassInfo;
         }
-
         
     }
 
@@ -53,6 +52,7 @@ public class CharacterCreatorUI : MonoBehaviour
         cancelButton.gameObject.SetActive(true);
         HideCharacterInfo();
     }
+
 
     private void ShowClassInfo(ClassDescriptionSO data)
     {
@@ -100,17 +100,8 @@ public class CharacterCreatorUI : MonoBehaviour
         characterNameInput.text = "";
         characterNameInput.gameObject.SetActive(false);
         comingSoonText.gameObject.SetActive(false);
-    }
 
-    public void CancelCharacterCreation()
-    {
-        gameObject.SetActive(false);
-    }
-
-    public void StartGameSinglePlayer()
-    {
 
     }
-
 
 }
