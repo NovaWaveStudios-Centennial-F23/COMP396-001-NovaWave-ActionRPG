@@ -1,4 +1,3 @@
-using System.Security.AccessControl;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,10 +5,11 @@ using UnityEngine;
 public enum ItemType
 {
     // Need to add more specific item types
-    // and marge with gear types from gearSO
+    // also marge with gear types from gearSO?
     Consumable,
     Misc,
-    Default,
+
+    // gear for testing(should be removed)
     Wand,
     Staff,
     Shield,
@@ -19,22 +19,30 @@ public enum ItemType
     Boots
 }
 
-public abstract class ItemSO : ScriptableObject
+// Change this later
+[CreateAssetMenu(fileName = "New Item Object", menuName = "ScriptableObejcts/Create New Item Object")]
+public class ItemSO : ScriptableObject
 {
     // Check properties for all type of items
     public Sprite icon;
+    public bool stackable;
     public ItemType itemType;
-    public int Id;
     [TextArea(15, 20)]
     public string description;
+    public Item data = new Item();
 
+    public Item CreateItem()
+    {
+        Item newItem = new Item(this);
+        return newItem;
+    }
 }
 
 [System.Serializable]
 public class Item
 {
     public string Name;
-    public int Id;
+    public int Id = -1;
 
     // Constructer
     public Item()
@@ -46,6 +54,6 @@ public class Item
     public Item(ItemSO item)
     {
         Name = item.name;
-        Id = item.Id;
+        Id = item.data.Id;  // change here to get instance id?
     }
 }

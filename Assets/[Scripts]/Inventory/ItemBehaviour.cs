@@ -6,17 +6,8 @@ public class ItemBehaviour : MonoBehaviour, ISerializationCallbackReceiver
 {
     public ItemSO item;
 
-    public void OnAfterDeserialize()
-    {
-        //throw new System.NotImplementedException();
-    }
+    // need method to click item to pickup
 
-    // Might not needed
-    // Get item icon from child
-    public void OnBeforeSerialize()
-    {
-        // GetComponentInChildren<SpriteRenderer>().sprite = item.icon;
-        // EditorUtility.SetDirty(GetComponentInChildren<SpriteRenderer>());
-    }
-
+    public void OnAfterDeserialize() {}
+    public void OnBeforeSerialize() {}
 }

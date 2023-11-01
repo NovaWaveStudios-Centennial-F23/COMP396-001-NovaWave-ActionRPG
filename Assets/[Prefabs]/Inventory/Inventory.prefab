@@ -126,7 +126,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28d9651840b10624e897f648e61515b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   inventory: {fileID: 11400000, guid: 2a848fb86c074424586c68c0c7aa222c, type: 2}
   inventoryIcon: {fileID: 145341717808876369, guid: d0340974e8b5292498d2ea91388aaf7d, type: 3}
   X_START: -95
@@ -242,7 +241,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4fdea83fdadfbd4bab0461b80a69e8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   inventory: {fileID: 11400000, guid: 930976c7aeed33849a436b9775ee9329, type: 2}
   slots:
   - {fileID: 3825678046222258003}
@@ -595,7 +593,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 145341717808876369, guid: d0340974e8b5292498d2ea91388aaf7d, type: 3}
       propertyPath: m_Name
-      value: WeaponSlot
+      value: RightSlot
       objectReference: {fileID: 0}
     - target: {fileID: 4813978413639203859, guid: d0340974e8b5292498d2ea91388aaf7d, type: 3}
       propertyPath: m_Pivot.x
@@ -809,7 +807,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 145341717808876369, guid: d0340974e8b5292498d2ea91388aaf7d, type: 3}
       propertyPath: m_Name
-      value: ShieldSlot
+      value: LeftSlot
       objectReference: {fileID: 0}
     - target: {fileID: 4813978413639203859, guid: d0340974e8b5292498d2ea91388aaf7d, type: 3}
       propertyPath: m_Pivot.x
