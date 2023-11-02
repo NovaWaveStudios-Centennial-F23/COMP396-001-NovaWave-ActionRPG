@@ -12,14 +12,15 @@ public class SkillSelectionButton : MonoBehaviour, IPointerClickHandler, IPointe
     [SerializeField]
     Image icon;
 
+    public event Action<string> OnSkillSelected = delegate { };
     private void Start()
     {
         icon.color = UIConstants.deselectedSkillColor;
     }
 
     public void OnPointerClick(PointerEventData eventData)
-    { 
-
+    {
+        OnSkillSelected(skillName);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -40,7 +41,16 @@ public class SkillSelectionButton : MonoBehaviour, IPointerClickHandler, IPointe
 
     private void UpdateSprite()
     {
-        icon.sprite = ActiveSkillUIData.Instance.GetSprite(skillName);
+        //currently this will throw an error if it is active when scene is generated since instance has not been set yet when attempting to query
+        try
+        {
+            icon.sprite = ActiveSkillUIData.Instance.GetSprite(skillName);
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e);
+        }
+
     }
 
 }

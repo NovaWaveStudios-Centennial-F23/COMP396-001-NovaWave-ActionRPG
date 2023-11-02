@@ -11,6 +11,9 @@ using UnityEngine.UI;
 
 public class SkillSlot : MonoBehaviour, IPointerClickHandler
 {
+    //used to track what instance of this is displaying 
+    public static SkillSlot displayingSkillSelection;
+
     [SerializeField]
     [Tooltip("The skill will activate using this key")]
     KeyCode activationKey;
@@ -41,15 +44,14 @@ public class SkillSlot : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         //show an option of all skills the player has unlocked
-        if (!tooltip.activeInHierarchy)
-        {
-            tooltip.SetActive(true);
-        }
+        ShowToolTip();
         
     }
 
     private void Start()
     {
+        //ensure tooltip is hidden
+        HideToolTip();
         txtKeyText.text = activationKey.ToString();
         //testing
         
@@ -57,14 +59,35 @@ public class SkillSlot : MonoBehaviour, IPointerClickHandler
 
     public void SetSkill(string skill)
     {
+        //Debug.Log($"Setting skill {skill} with {activationKey}");
+
+        HideToolTip();
         //guards?
         selectedSkill = skill;
 
         //change the icon image
-        iconImage.sprite = ActiveSkillUIData.Instance.GetSprite(typeof(Fireball).ToString());
+        iconImage.sprite = ActiveSkillUIData.Instance.GetSprite(skill);
 
         //let the input manager know
+        InputController.Instance.RegisterSpell(activationKey, skill);
+    }
 
+    public void HideToolTip()
+    {
+        tooltip.SetActive(false);
+    }
+
+    private void ShowToolTip()
+    {
+        if (!tooltip.activeInHierarchy)
+        {
+            if(displayingSkillSelection != null)
+            {
+                displayingSkillSelection.HideToolTip();
+            }
+            tooltip.SetActive(true);
+            displayingSkillSelection = this;
+        }
     }
 
 

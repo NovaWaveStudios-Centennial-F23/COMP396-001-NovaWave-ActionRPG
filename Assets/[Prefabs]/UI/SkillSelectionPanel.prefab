@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00de15d9ff6dce84d83d78277d8157de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillSelectionButton: {fileID: 7833863661456696183, guid: bdcdcb3bfc5da3f488bb05e40f432803, type: 3}
+  skillSelectionButtonPrefab: {fileID: 7833863661456696183, guid: bdcdcb3bfc5da3f488bb05e40f432803, type: 3}
   skillSelectionContainer: {fileID: 324650390872201970}
 --- !u!1001 &5924373207446580277
 PrefabInstance:
