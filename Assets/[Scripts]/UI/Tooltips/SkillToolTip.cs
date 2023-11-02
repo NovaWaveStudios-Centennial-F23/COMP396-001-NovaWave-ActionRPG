@@ -31,13 +31,13 @@ public class SkillToolTip : ToolTipHandler
     TextMeshProUGUI txtNextSkillDescription;
 
 
-    private List<TextMeshProUGUI> optionaltooltipElements;
+    private List<TextMeshProUGUI> optionalTooltipElements;
 
     private bool isActiveSkill = false;
 
     private void Awake()
     {
-        optionaltooltipElements = new List<TextMeshProUGUI>()
+        optionalTooltipElements = new List<TextMeshProUGUI>()
         {
             txtManaCost,
             txtCdr,
@@ -55,7 +55,7 @@ public class SkillToolTip : ToolTipHandler
         DisplayLevel(node.GetCurrentLevel(), node.maxLevel);
 
         //turn off all optional elements
-        foreach(var t in optionaltooltipElements)
+        foreach(var t in optionalTooltipElements)
         {
             t.gameObject.SetActive(false);
         }
@@ -76,19 +76,20 @@ public class SkillToolTip : ToolTipHandler
                 skillInfo = node.GetCurrentSkillSO() as ActiveSkillSO;
             }
 
-            Stats baseDamage = null;
+            Stats skillDamage = null;
             Stats manaCost = null;
             Stats cooldown = null;
 
             foreach(Stats s in skillInfo.allStats)
             {
-                if(s.stat == Stats.Stat.BaseDamage)
+                if(s.stat == Stats.Stat.SkillDamage)
                 {
-                    baseDamage = s;
+                    skillDamage = s;
                 }
                 else if(s.stat == Stats.Stat.ManaCost)
                 {
                     manaCost = s;
+
                 }else if(s.stat == Stats.Stat.Cooldown)
                 {
                     cooldown = s;
@@ -97,7 +98,7 @@ public class SkillToolTip : ToolTipHandler
 
             DisplayMana(manaCost);
             DisplayCoolDown(cooldown);
-            DisplaySkillDescription(baseDamage);
+            DisplaySkillDescription(skillDamage);
 
             if (node.GetCurrentSkillSO() != null && node.GetNextLevelSO() != null)
             {

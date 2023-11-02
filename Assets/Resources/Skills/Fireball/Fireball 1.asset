@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad57ff6f3eadd7042bd134f46f7574e7, type: 3}
   m_Name: Fireball 1
   m_EditorClassIdentifier: 
+  prefab: {fileID: 0}
   damageType: 1
   miscStats:
-  - stat: 0
-    minValue: 77.5
-    maxValue: 55
+  - stat: 27
+    minValue: 20
+    maxValue: 50
   - stat: 33
     minValue: 15
     maxValue: 0

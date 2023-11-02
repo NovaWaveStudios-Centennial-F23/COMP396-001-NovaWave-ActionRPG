@@ -4,11 +4,12 @@
  */
 
 
+using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public PlayerController Instance;
+    public static PlayerController Instance;
 
     private void Awake()
     {
@@ -25,6 +26,16 @@ public class PlayerController : MonoBehaviour
     public int PlayerSkillPoints { get; private set; }
     public int SkillSkillPoints {  get; private set; }
 
+    public event Action<int> OnPlayerSkillPointsChange = delegate { };
+    public event Action<int> OnSkillSkillPointsChange = delegate { };
+
+    private void Start()
+    {
+        //for testing
+        AddPlayerSkillPoints(10);
+        AddSkillSkillPoints(5);
+    }
+
 
     /// <summary>
     /// Attempts to spend the specified number of points. (spends 1 point by default)
@@ -36,6 +47,7 @@ public class PlayerController : MonoBehaviour
         if(PlayerSkillPoints >= amount)
         {
             PlayerSkillPoints -= amount;
+            OnPlayerSkillPointsChange(PlayerSkillPoints);
             return true;
         }
         else
@@ -54,12 +66,25 @@ public class PlayerController : MonoBehaviour
         if (SkillSkillPoints >= amount)
         {
             SkillSkillPoints -= amount;
+            OnSkillSkillPointsChange(SkillSkillPoints);
             return true;
         }
         else
         {
             return false;
         }
+    }
+
+    public void AddSkillSkillPoints(int amount)
+    {
+        SkillSkillPoints += amount;
+        OnSkillSkillPointsChange(SkillSkillPoints);
+    }
+
+    public void AddPlayerSkillPoints(int amount)
+    {
+        PlayerSkillPoints += amount;
+        OnPlayerSkillPointsChange(PlayerSkillPoints);
     }
 
 
