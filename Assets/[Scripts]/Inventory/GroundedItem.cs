@@ -6,7 +6,5 @@ using UnityEngine.EventSystems;
 public class GroundedItem : MonoBehaviour
 {
     public ItemSO item;
-
-    // need to make methods to pickuo items by mouse click
-
+    
 }
