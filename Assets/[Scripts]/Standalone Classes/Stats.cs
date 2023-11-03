@@ -129,28 +129,21 @@ public class Stats
 
         switch (stat)
         {
-            case Stat.BaseDamage:
-                if (!isActiveSkill)
-                {
-                    ans += minValue >= 0 ? "+" : "-";
-                }
-                else
-                {
-                    ans += "Deals ";
-                }
-                ans += $"{minValue} to {maxValue}% of your attack";
-
+            case Stat.SkillDamage:
+                //only shows for skills
+                ans += $"Deals {minValue} + {maxValue}% of your base attack";
                 break;
+
             case Stat.Health:
-                ans += maxValue >= 0 ? "+" : "-";
+                ans += maxValue >= 0 ? "+" : "";//note we don't actually need to put a minus sign because it will already be there
                 ans += $"{maxValue} to maximum health";
                 break;
             case Stat.Mana:
-                ans += maxValue >= 0 ? "+" : "-";
+                ans += maxValue >= 0 ? "+" : "";
                 ans += $"{maxValue} to maximum mana";
                 break;
             case Stat.Armor:
-                ans += maxValue >= 0 ? "+" : "-";
+                ans += maxValue >= 0 ? "+" : "";
                 ans += $"{maxValue} to armour";
                 break;
             case Stat.ManaCost:

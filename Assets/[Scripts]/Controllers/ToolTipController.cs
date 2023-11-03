@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class ToolTipController : MonoBehaviour
 {
-    public static ToolTipController Instance { get;  private set; }
+    public static ToolTipController Instance;
 
     [SerializeField]
     RectTransform skillTooltip;
@@ -29,6 +29,7 @@ public class ToolTipController : MonoBehaviour
         else
         {
             Instance = this;
+            DontDestroyOnLoad(this);
         }
     }
 

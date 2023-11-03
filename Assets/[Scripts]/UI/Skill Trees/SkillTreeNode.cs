@@ -30,6 +30,7 @@ public class SkillTreeNode : MonoBehaviour, IPointerClickHandler, IPointerEnterH
     //variables
     public int maxLevel { get; private set; }
     public bool isActiveSkill { get; private set; }
+    private bool isPlayerSkillTree;
     private int currentLevel = 0;
     List<SkillSO> dataObjects;
     //used for de-allocating skills, it will check dependancies before unallocating the skill
@@ -40,12 +41,14 @@ public class SkillTreeNode : MonoBehaviour, IPointerClickHandler, IPointerEnterH
 
     private void Start()
     {
+
         dataObjects = nodeData.skills;
         maxLevel = dataObjects.Count;
         image = iconGO.GetComponent<Image>();
         outline = outlineGO.GetComponent<Image>();
         image.sprite = nodeData.icon;
         levelText = levelIndicatorGO.GetComponentInChildren<TextMeshProUGUI>();
+
         if (nodeData.skills[0].GetType() == typeof(ActiveSkillSO))
         {
             isActiveSkill = true;
@@ -59,6 +62,16 @@ public class SkillTreeNode : MonoBehaviour, IPointerClickHandler, IPointerEnterH
         {
             node.AddDependancy(this);
         }
+
+        if (nodeData.skillTreeType == "Player")
+        {
+            isPlayerSkillTree = true;
+        }
+        else
+        {
+            isPlayerSkillTree = false;
+        }
+
         UpdateAppearance();
     }
 
@@ -92,11 +105,19 @@ public class SkillTreeNode : MonoBehaviour, IPointerClickHandler, IPointerEnterH
 
     private void RefundSkill()
     {
+
         //check if its possible to refund or deallocate skill point
         if(currentLevel > 0)
         {
+            if (isPlayerSkillTree)
+            {
+                PlayerController.Instance.AddPlayerSkillPoints(1);
+            }
+            else
+            {
+                PlayerController.Instance.AddSkillSkillPoints(1);
+            }
             currentLevel--;
-            //give player skillpoint
 
             //broadcasting event whenever skill level changes
             OnSkillLevelChanged(currentLevel);
@@ -110,9 +131,25 @@ public class SkillTreeNode : MonoBehaviour, IPointerClickHandler, IPointerEnterH
         //check if its possible to add additional level into this skill
         if(currentLevel < maxLevel)
         {
-            currentLevel++;
-            //broadcasting event whenever skill level changes
-            OnSkillLevelChanged(currentLevel);
+            if (isPlayerSkillTree)
+            {
+                if (PlayerController.Instance.SpendPlayerSkillPoints(1))
+                {
+                    currentLevel++;
+                    //broadcasting event whenever skill level changes
+                    OnSkillLevelChanged(currentLevel);
+                }
+            }
+            else
+            {
+                if (PlayerController.Instance.SpendSkillSkillPoints(1))
+                {
+                    currentLevel++;
+                    //broadcasting event whenever skill level changes
+                    OnSkillLevelChanged(currentLevel);
+                }
+            }
+            
         }
     }
 
@@ -123,6 +160,7 @@ public class SkillTreeNode : MonoBehaviour, IPointerClickHandler, IPointerEnterH
             if (PassedPrequisites())
             {
                 PurchaseSkill();
+                SkillTreeController.instance.RecalculateModifiers();
             }
         }
         else if (eventData.button == PointerEventData.InputButton.Right)
@@ -130,6 +168,7 @@ public class SkillTreeNode : MonoBehaviour, IPointerClickHandler, IPointerEnterH
             if (currentLevel > 1 || PassedDependancies())
             {
                 RefundSkill();
+                SkillTreeController.instance.RecalculateModifiers();
             }
         }
 

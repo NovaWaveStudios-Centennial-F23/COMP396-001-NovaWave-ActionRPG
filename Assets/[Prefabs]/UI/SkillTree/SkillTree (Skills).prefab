@@ -144,7 +144,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2901795467998962623}
   m_Layer: 5
-  m_Name: SkillNodes
+  m_Name: SkillNodes(skills)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -180,6 +180,7 @@ GameObject:
   - component: {fileID: 379970922756040668}
   - component: {fileID: 2652223308673067408}
   - component: {fileID: 4070057693372504124}
+  - component: {fileID: 6359799973683198821}
   m_Layer: 5
   m_Name: SkillPointsCounter
   m_TagString: Untagged
@@ -245,6 +246,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6359799973683198821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979201173283263151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dc43b662e88d2e47851104289cd380e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPlayerSkillTree: 0
+  txtSkillPointsDisplay: {fileID: 1795215782995581390}
 --- !u!1 &2627524229055209194
 GameObject:
   m_ObjectHideFlags: 0
