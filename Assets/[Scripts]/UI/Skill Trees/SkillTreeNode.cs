@@ -174,7 +174,7 @@ public class SkillTreeNode : MonoBehaviour, IPointerClickHandler, IPointerEnterH
 
         UpdateAppearance();
 
-        ToolTipController.Instance.ShowSkillToolTip(this);
+        ShowToolTip();
     }
 
     private bool PassedPrequisites()
@@ -240,12 +240,14 @@ public class SkillTreeNode : MonoBehaviour, IPointerClickHandler, IPointerEnterH
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        ToolTipController.Instance.ShowSkillToolTip(this);
+        ShowToolTip();
+        
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         ToolTipController.Instance.CloseTooltips();
+
     }
 
     public SkillTreeNodeSO GetNodeData()
@@ -292,6 +294,18 @@ public class SkillTreeNode : MonoBehaviour, IPointerClickHandler, IPointerEnterH
         foreach(SkillTreeNode node in prerequisites)
         {
             Gizmos.DrawLine(transform.position, node.transform.position);
+        }
+    }
+
+    private void ShowToolTip()
+    {
+        if (isPlayerSkillTree)
+        {
+            ToolTipController.Instance.ShowPlayerSkillTooltip(this);
+        }
+        else
+        {
+            ToolTipController.Instance.ShowSkillToolTip(this);
         }
     }
 }

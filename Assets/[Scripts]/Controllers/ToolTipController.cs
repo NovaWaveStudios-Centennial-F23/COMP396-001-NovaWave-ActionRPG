@@ -13,6 +13,9 @@ public class ToolTipController : MonoBehaviour
     RectTransform skillTooltip;
 
     [SerializeField]
+    RectTransform playerSkillTooltip;
+
+    [SerializeField]
     RectTransform nodeTooltip;
 
     [SerializeField]
@@ -35,9 +38,11 @@ public class ToolTipController : MonoBehaviour
 
     private void Start()
     {
+
         toolTips = new List<RectTransform>
         {
             skillTooltip,
+            playerSkillTooltip,
             nodeTooltip,
             gearTooltip
         };
@@ -59,6 +64,15 @@ public class ToolTipController : MonoBehaviour
             t.gameObject.SetActive(false);
         }
     }
+
+    public void ShowPlayerSkillTooltip(SkillTreeNode node)
+    {
+        CloseTooltips();
+        playerSkillTooltip.GetComponent<SkillToolTip>().DisplayDetails(node);
+        playerSkillTooltip.gameObject.SetActive(true);
+    }
+
+
 
 
 }
