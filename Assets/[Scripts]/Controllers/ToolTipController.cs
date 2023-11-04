@@ -7,10 +7,13 @@ using UnityEngine;
 
 public class ToolTipController : MonoBehaviour
 {
-    public static ToolTipController Instance { get;  private set; }
+    public static ToolTipController Instance;
 
     [SerializeField]
     RectTransform skillTooltip;
+
+    [SerializeField]
+    RectTransform playerSkillTooltip;
 
     [SerializeField]
     RectTransform nodeTooltip;
@@ -29,14 +32,17 @@ public class ToolTipController : MonoBehaviour
         else
         {
             Instance = this;
+            DontDestroyOnLoad(this);
         }
     }
 
     private void Start()
     {
+
         toolTips = new List<RectTransform>
         {
             skillTooltip,
+            playerSkillTooltip,
             nodeTooltip,
             gearTooltip
         };
@@ -58,6 +64,15 @@ public class ToolTipController : MonoBehaviour
             t.gameObject.SetActive(false);
         }
     }
+
+    public void ShowPlayerSkillTooltip(SkillTreeNode node)
+    {
+        CloseTooltips();
+        playerSkillTooltip.GetComponent<SkillToolTip>().DisplayDetails(node);
+        playerSkillTooltip.gameObject.SetActive(true);
+    }
+
+
 
 
 }

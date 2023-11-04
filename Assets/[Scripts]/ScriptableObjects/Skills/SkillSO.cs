@@ -18,6 +18,7 @@ public class SkillSO : ScriptableObject
         None
     }
 
+    public GameObject prefab;
     public DamageType damageType;
     public List<Stats> allStats { get; private set; } = new List<Stats>();  
     public List<Stats> miscStats = new List<Stats>();

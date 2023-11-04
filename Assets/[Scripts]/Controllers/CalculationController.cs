@@ -61,10 +61,10 @@ public class CalculationController : MonoBehaviour
                 case Stats.Stat.BaseDamage:
                     CalculateSkillDamage(skill);
                     break;
-                case Stats.Stat.Cooldown:
+                /*case Stats.Stat.Cooldown:
                     PercentageSubtraction(skill, Stats.Stat.Cooldown, Stats.Stat.CooldownReductionP);
                     break;
-                /*case Stats.Stat.ManaCost:
+                case Stats.Stat.ManaCost:
                     PercentageSubtraction(skill, Stats.Stat.ManaCost, Stats.Stat.ManaCostRecutionP);
                     break;*/
                 case Stats.Stat.CastTIme:

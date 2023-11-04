@@ -4,6 +4,7 @@
  */
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class SkillTreeController : MonoBehaviour
@@ -26,10 +27,6 @@ public class SkillTreeController : MonoBehaviour
 
     [SerializeField]
     private Dictionary<string, Dictionary<Stats.Stat, Stats>> skillTreeModifiers = new Dictionary<string, Dictionary<Stats.Stat, Stats>>();
-
-
-    [Obsolete("this property will be removed, talk to Charlie for alternatives")]
-    private SkillTree skillTree;
 
     private void Awake()
     {
@@ -92,19 +89,6 @@ public class SkillTreeController : MonoBehaviour
         }
     }
 
-    [Obsolete("Will be removed, talk to Charlie for more details")]
-    public Dictionary<Stats.Stat, Stats> GetStats()
-    {
-        //deprecated
-        return null;
-    }
-
-    [Obsolete("This function will be removed, talk to Charlie for alternatives")]
-    public SkillTree GetSkillTree()
-    {
-        return skillTree;
-    }
-
     public Dictionary<Stats.Stat, Stats> GetModifiers(string skillType)
     {
         if (skillTreeModifiers.ContainsKey(skillType))
@@ -113,8 +97,13 @@ public class SkillTreeController : MonoBehaviour
         }
         else
         {
-            return new Dictionary<Stats.Stat, Stats>();
+            return null;
         }
+    }
+
+    public List<string> GetSkills()
+    {
+        return skillTreeModifiers.Keys.ToList();
     }
 
     //for testing
@@ -131,8 +120,6 @@ public class SkillTreeController : MonoBehaviour
         {
             Debug.Log("Could not find base damage of fireball");
         }
-
-        
     }
 
 
