@@ -12,7 +12,7 @@ public class InteractInput : MonoBehaviour
     [HideInInspector]
     public InteractableObject hoveringObject;
     [HideInInspector]
-    public CharacterDamage hoveringOverCharacter;
+    public Health hoveringOverCharacter;
 
     void Update()
     {
@@ -51,7 +51,7 @@ public class InteractInput : MonoBehaviour
         if (interactableObject != null)
         {
             hoveringObject = interactableObject;
-            hoveringOverCharacter = interactableObject.GetComponent<CharacterDamage>();
+            hoveringOverCharacter = interactableObject.GetComponent<Health>();
             textOnScreen.text = hoveringObject.objectName;
         }
         else

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class CharacterHealthUI : MonoBehaviour
 {
-    CharacterDamage character;
+    Health character;
 
     private void Awake()
     {
-        character = GetComponent<CharacterDamage>();
+        character = GetComponent<Health>();
 
     }
 

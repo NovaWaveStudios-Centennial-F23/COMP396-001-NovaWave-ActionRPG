@@ -16,16 +16,16 @@ public class AttackHandler : MonoBehaviour
 
     Animator animator;
     CharacterMovement characterMovement;
-    CharacterDamage target;
+    Health target;
 
     private void Awake()
     {
         animator = GetComponentInParent<Animator>();
         characterMovement = GetComponent<CharacterMovement>();
         //Stats stats = GetComponent<Stats>();
-        CharacterDamage characterDamage = GetComponent<CharacterDamage>();
+        Health characterDamage = GetComponent<Health>();
     }
-    internal void Attack(CharacterDamage target)
+    internal void Attack(Health target)
     {
         this.target = target;
         ProcessAttack();
