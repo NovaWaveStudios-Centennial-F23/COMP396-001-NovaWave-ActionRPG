@@ -3442,10 +3442,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inventory
       objectReference: {fileID: 0}
-    - target: {fileID: 1583485540968759317, guid: 26039ca39b38fb243a4ea657ac0da7da, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3939,6 +3935,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1451240670}
     m_Modifications:
+    - target: {fileID: 1659731742800029384, guid: 186f10540a4a13b43b88c049ea3aca4f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 872.3303
+      objectReference: {fileID: 0}
     - target: {fileID: 3084290662728725717, guid: 186f10540a4a13b43b88c049ea3aca4f, type: 3}
       propertyPath: m_Name
       value: SkillNodes(player)
