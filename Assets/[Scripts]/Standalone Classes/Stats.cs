@@ -16,13 +16,13 @@ public class Stats
         Mana,                   // Unit Mana
         Armor,                  // Unit Armor (blocks some amount of damage inflicted on self)
         BlockChanceP,           // Unit block chance percentage (chance to completely block an attack)
-        DamageReflectP,         // Unit damage reflect percentage (reflect a percentage of damage inflicted on self)
+        DamageReflectP,         // Unit damage reflect percentage (reflect a percentage of damage taken back to attacker)
         CritRateP,              // Unit crit rate percentage (chance to land critical hits)
         CritDamageP,            // Unit crit damage percentage (the percentage of extra damage dealt on critical hits)
         MovementSpeed,          // Unit movement speed
         CooldownReductionP,     // Unit cooldown reduction percentage (reduces the amount of cooldown on all spells)
         ManaCostRecutionP,      // Player mana cost reduction percentage (reduces the mana cost of all spells)
-        CastSpeedP,             // Unit cast speed percentage (decreases the cast speel for all spells)
+        CastSpeedP,             // Unit cast speed percentage (increases the cast speed for all spells)
         DoubleCastP,            // Unit double cast percentage (chance to cast a spell twice)
         DropRateP,              // Player drop rate percentage (increases the chance to drop an item)
         ItemRarityP,            // Player item rarity (increases the chance of getting higher tier loot)
@@ -49,7 +49,19 @@ public class Stats
         Burning,                // [Subject to removal] (More of a state than a stat)
         Slowness,               // [Subject to removal] (More of a state than a stat)
         Stun,                   // [Subject to removal] (More of a state than a stat)
-        FireballDoubleCast      // [Subject to removal] (Is a skill tree node, not particularly a stat)
+        FireballDoubleCast,     // [Subject to removal] (Is a skill tree/effect node, not particularly a stat)
+        HealthP,                // Unit health percentage
+        ManaP,                  // Unit mana percentage
+        ArmorP,                 // Unit mrmour percentage
+        MovmentSpeedP,          // Unit movement speed percentage
+        ManaRegen,              // Unit mana regeneration
+        ManaRegenP,             // Unit mana regeneration percentage
+        HealthRegen,            // Unit health regenration
+        HealthRegenP,           // Unit health regeneration percentage
+        LifeRecoveryP,          // Unit amount of health recovered percentage
+        DamageWWantP,           // Player damage with wand equipped percentage
+        DamageWStaffP,          // Player damage with staff equpped percentage
+        DamageWSheildP,         // Player damage with shield equipped percentage
     }
 
     public Stat stat;
@@ -129,11 +141,10 @@ public class Stats
 
         switch (stat)
         {
-            case Stat.SkillDamage:
-                //only shows for skills
-                ans += $"Deals {minValue} + {maxValue}% of your base attack";
+            case Stat.BaseDamage:
+                ans += maxValue >= 0 ? "+" : "";
+                ans += $"{maxValue} to base damage";
                 break;
-
             case Stat.Health:
                 ans += maxValue >= 0 ? "+" : "";//note we don't actually need to put a minus sign because it will already be there
                 ans += $"{maxValue} to maximum health";
@@ -151,6 +162,10 @@ public class Stats
                 break;
             case Stat.Cooldown:
                 ans += $"Cooldown: {maxValue:0.00}s";
+                break;
+            case Stat.SkillDamage:
+                //only shows for skills
+                ans += $"Deals {minValue} + {maxValue}% of base attack";
                 break;
             default: return $"Unimplemented ToString method for ${nameof(stat)}";
         }

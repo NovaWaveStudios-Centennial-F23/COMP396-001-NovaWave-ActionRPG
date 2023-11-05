@@ -57,7 +57,9 @@ public class SkillToolTip : ToolTipHandler
         //turn off all optional elements
         foreach(var t in optionalTooltipElements)
         {
+
             t.gameObject.SetActive(false);
+
         }
 
         

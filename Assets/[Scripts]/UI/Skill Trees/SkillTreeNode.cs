@@ -111,11 +111,11 @@ public class SkillTreeNode : MonoBehaviour, IPointerClickHandler, IPointerEnterH
         {
             if (isPlayerSkillTree)
             {
-                PlayerController.Instance.AddPlayerSkillPoints(1);
+                PlayerController.Instance.RefundPlayerSkillPoints(1);
             }
             else
             {
-                PlayerController.Instance.AddSkillSkillPoints(1);
+                PlayerController.Instance.RefundSkillSkillPoints(1);
             }
             currentLevel--;
 
