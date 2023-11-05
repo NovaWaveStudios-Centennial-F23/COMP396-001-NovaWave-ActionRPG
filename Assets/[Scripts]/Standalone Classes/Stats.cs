@@ -227,57 +227,57 @@ public class Stats
 
             case Stat.FireDamageP:
                 ans += minValue >= 0 ? "+" : "";
-                ans += $"{minValue}% to fire damage percentage";
+                ans += $"{minValue}% to fire damage";
                 break;
 
             case Stat.FrostDamageP:
                 ans += minValue >= 0 ? "+" : "";
-                ans += $"{minValue}% to frost damage percentage";
+                ans += $"{minValue}% to frost damage";
                 break;
 
             case Stat.ElectroDamageP:
                 ans += minValue >= 0 ? "+" : "";
-                ans += $"{minValue}% to electro damage percentage";
+                ans += $"{minValue}% to electro damage";
                 break;
 
             case Stat.ElementalDamageP:
                 ans += minValue >= 0 ? "+" : "";
-                ans += $"{minValue}% to elemental damage percentage";
+                ans += $"{minValue}% to elemental damage";
                 break;
 
             case Stat.FireResP:
                 ans += minValue >= 0 ? "+" : "";
-                ans += $"{minValue}% to fire resistance percentage";
+                ans += $"{minValue}% to fire resistance";
                 break;
 
             case Stat.FrostResP:
                 ans += minValue >= 0 ? "+" : "";
-                ans += $"{minValue}% to frost resistance percentage";
+                ans += $"{minValue}% to frost resistance";
                 break;
 
             case Stat.ElectroResP:
                 ans += minValue >= 0 ? "+" : "";
-                ans += $"{minValue}% to electro resistance percentage";
+                ans += $"{minValue}% to electro resistance";
                 break;
 
             case Stat.ElementalResP:
                 ans += minValue >= 0 ? "+" : "";
-                ans += $"{minValue}% to elemental resistance percentage";
+                ans += $"{minValue}% to elemental resistance";
                 break;
 
             case Stat.FireAffinity:
                 ans += minValue >= 0 ? "+" : "";
-                ans += $"{minValue}+ to fire affinity";
+                ans += $"{minValue} to fire affinity";
                 break;
 
             case Stat.FrostAffinity:
                 ans += minValue >= 0 ? "+" : "";
-                ans += $"{minValue}+ to frost affinity";
+                ans += $"{minValue} to frost affinity";
                 break;
 
             case Stat.ElectroAffinity:
                 ans += minValue >= 0 ? "+" : "";
-                ans += $"{minValue}+ to electro affinity";
+                ans += $"{minValue} to electro affinity";
                 break;           
             
             case Stat.SkillDamage:
@@ -314,7 +314,7 @@ public class Stats
                 break;
 
             case Stat.Slowness:
-                ans += $"Slowness: {minValue}";
+                ans += $"Slow: {minValue}";
                 break;
 
             case Stat.Stun:
@@ -326,50 +326,62 @@ public class Stats
                 break;
 
             case Stat.HealthP:
+                ans += minValue >= 0 ? "+" : "";
                 ans += $"{minValue}% of maximum health";
                 break;
 
             case Stat.ManaP:
+                ans += minValue >= 0 ? "+" : "";
                 ans += $"{minValue}% of maximum mana";
                 break;
 
             case Stat.ArmorP:
+                ans += minValue >= 0 ? "+" : "";
                 ans += $"{minValue}% of armor";
                 break;
 
             case Stat.MovementSpeedP:
+                ans += minValue >= 0 ? "+" : "";
                 ans += $"{minValue}% of movement speed";
                 break;
 
             case Stat.ManaRegen:
-                ans += $"{minValue} mana regeneration";
+                ans += minValue >= 0 ? "+" : "";
+                ans += $"{minValue} mana regenerated per second";
                 break;
 
             case Stat.ManaRegenP:
+                ans += minValue >= 0 ? "+" : "";
                 ans += $"{minValue}% of mana regeneration";
                 break;
 
             case Stat.HealthRegen:
-                ans += $"{minValue} health regeneration";
+                ans += minValue >= 0 ? "+" : "";
+                ans += $"{minValue} health regenerated per second";
                 break;
 
             case Stat.HealthRegenP:
-                ans += $"{minValue}% of health regeneration";
+                ans += minValue >= 0 ? "+" : "";
+                ans += $"{minValue}% health regeneration";
                 break;
 
             case Stat.LifeRecoveryP:
+                ans += minValue >= 0 ? "+" : "";
                 ans += $"{minValue}% life recovery";
                 break;
 
             case Stat.DamageWWantP:
+                ans += minValue >= 0 ? "+" : "";
                 ans += $"{minValue}% damage with wand equipped";
                 break;
 
             case Stat.DamageWStaffP:
+                ans += minValue >= 0 ? "+" : "";
                 ans += $"{minValue}% damage with staff equipped";
                 break;
 
             case Stat.DamageWSheildP:
+                ans += minValue >= 0 ? "+" : "";
                 ans += $"{minValue}% damage with shield equipped";
                 break;
 
