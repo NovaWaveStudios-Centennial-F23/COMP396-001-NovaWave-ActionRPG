@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
 
     public event Action<int> OnPlayerSkillPointsChange = delegate { };
     public event Action<int> OnSkillSkillPointsChange = delegate { };
-
+    public event Action<int> OnLevelChange = delegate { };
     private void Start()
     {
         //for testing
@@ -107,6 +107,7 @@ public class PlayerController : MonoBehaviour
     private void HandleLevelUp()
     {
         CurrentLevel++;
+        OnLevelChange(CurrentLevel);
 
         PlayerSkillPoints++;
 
