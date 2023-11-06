@@ -163,121 +163,117 @@ public class Stats
 
             case Stat.BlockChanceP:
                 ans += minValue >= 0 ? "+" : "";
-                ans += $"{minValue}% to damage reflect percentage";
+                ans += $"{minValue}% chance to block attack damage";
                 break;
 
             case Stat.DamageReflectP:
                 ans += minValue >= 0 ? "+" : "";
-                ans += $"{minValue}% to reflect percentage";
+                ans += $"{minValue}% chance to reflect damage";
                 break;
 
             case Stat.CritRateP:
                 ans += minValue >= 0 ? "+" : "";
-                ans += $"{minValue}% to crit rate percentage";
+                ans += $"{minValue}% critical chance";
                 break;
 
             case Stat.CritDamageP:
                 ans += minValue >= 0 ? "+" : "";
-                ans += $"{minValue}% to crit damage percentage";
-                break;
-
-            case Stat.ManaCost:
-                ans += $"Mana: {minValue}";
+                ans += $"{minValue}% critical damage";
                 break;
 
             case Stat.MovementSpeed:
                 ans += minValue >= 0 ? "+" : "";
-                ans += $"{minValue} to movement speed";
+                ans += $"{minValue} movement speed";
                 break;
 
             case Stat.CooldownReductionP:
                 ans += minValue >= 0 ? "+" : "";
-                ans += $"{minValue}% to cooldown reduction percentage";
+                ans += $"{minValue}% cooldown reduction";
                 break;
 
             case Stat.ManaCostRecutionP:
                 ans += minValue >= 0 ? "+" : "";
-                ans += $"{minValue}% to mana cost reduction percentage";
+                ans += $"{minValue}% mana cost reduction";
                 break;
 
             case Stat.CastSpeedP:
                 ans += minValue >= 0 ? "+" : "";
-                ans += $"{minValue}% to cast speed percentage";
+                ans += $"{minValue}% cast speed";
                 break;
 
             case Stat.DoubleCastP:
                 ans += minValue >= 0 ? "+" : "";
-                ans += $"{minValue}% to double drop percentage";
+                ans += $"{minValue}% chance to double cast";
                 break;
 
             case Stat.DropRateP:
                 ans += minValue >= 0 ? "+" : "";
-                ans += $"{minValue}% to drop player rate percentage";
+                ans += $"{minValue}% drop rate";
                 break;
 
             case Stat.ItemRarityP:
                 ans += minValue >= 0 ? "+" : "";
-                ans += $"{minValue}% to item rarity";
+                ans += $"{minValue}% item rarity";
                 break;
 
             case Stat.SpellDamageP:
                 ans += minValue >= 0 ? "+" : "";
-                ans += $"{minValue}% to spell damage";
+                ans += $"{minValue}% spell damage";
                 break;
 
             case Stat.FireDamageP:
                 ans += minValue >= 0 ? "+" : "";
-                ans += $"{minValue}% to fire damage";
+                ans += $"{minValue}% fire damage";
                 break;
 
             case Stat.FrostDamageP:
                 ans += minValue >= 0 ? "+" : "";
-                ans += $"{minValue}% to frost damage";
+                ans += $"{minValue}% frost damage";
                 break;
 
             case Stat.ElectroDamageP:
                 ans += minValue >= 0 ? "+" : "";
-                ans += $"{minValue}% to electro damage";
+                ans += $"{minValue}% electro damage";
                 break;
 
             case Stat.ElementalDamageP:
                 ans += minValue >= 0 ? "+" : "";
-                ans += $"{minValue}% to elemental damage";
+                ans += $"{minValue}% elemental damage";
                 break;
 
             case Stat.FireResP:
                 ans += minValue >= 0 ? "+" : "";
-                ans += $"{minValue}% to fire resistance";
+                ans += $"{minValue}% fire resistance";
                 break;
 
             case Stat.FrostResP:
                 ans += minValue >= 0 ? "+" : "";
-                ans += $"{minValue}% to frost resistance";
+                ans += $"{minValue}% frost resistance";
                 break;
 
             case Stat.ElectroResP:
                 ans += minValue >= 0 ? "+" : "";
-                ans += $"{minValue}% to electro resistance";
+                ans += $"{minValue}% electro resistance";
                 break;
 
             case Stat.ElementalResP:
                 ans += minValue >= 0 ? "+" : "";
-                ans += $"{minValue}% to elemental resistance";
+                ans += $"{minValue}% elemental resistance";
                 break;
 
             case Stat.FireAffinity:
                 ans += minValue >= 0 ? "+" : "";
-                ans += $"{minValue} to fire affinity";
+                ans += $"{minValue} fire affinity";
                 break;
 
             case Stat.FrostAffinity:
                 ans += minValue >= 0 ? "+" : "";
-                ans += $"{minValue} to frost affinity";
+                ans += $"{minValue} frost affinity";
                 break;
 
             case Stat.ElectroAffinity:
                 ans += minValue >= 0 ? "+" : "";
-                ans += $"{minValue} to electro affinity";
+                ans += $"{minValue} electro affinity";
                 break;           
             
             case Stat.SkillDamage:
@@ -285,24 +281,80 @@ public class Stats
                 ans += $"Deals {minValue} + {maxValue}% of base attack";
                 break;
 
-            case Stat.Cooldown:
-                ans += $"Cooldown: {minValue:0.00}s";
+            case Stat.ManaCost:
+                if (!isActiveSkill)
+                {
+                    ans += minValue >= 0 ? "+" : "";
+                    ans += $"{minValue} to skill mana cost";
+                }
+                else
+                {
+                    ans += $"Mana: {minValue}";
+                }
+                break;
+
+            case Stat.Cooldown:                
+                if (!isActiveSkill)
+                {
+                    ans += minValue >= 0 ? "+" : "";
+                    ans += $"{minValue} to skill cooldown";
+                }
+                else
+                {
+                    ans += $"Cooldown: {minValue:0.00}s";
+                }
                 break;
 
             case Stat.AOE:
-                ans += $"Skill area of effect: {minValue}";
+                if (!isActiveSkill)
+                {
+                    ans += minValue >= 0 ? "+" : "";
+                    ans += $"{minValue} to skill area of effect";
+                }
+                else
+                {
+                    ans += $"AOE: {minValue}";
+                }
+                
                 break;
 
             case Stat.CastTime:
-                ans += $"Skill cast time: {minValue}";
+                if (!isActiveSkill)
+                {
+                    ans += minValue >= 0 ? "+" : "";
+                    ans += $"{minValue} to skill cast time.";
+                }
+                else
+                {
+                    ans += $"Skill cast time: {minValue}";
+                }
+                
                 break;
 
             case Stat.Duration:
-                ans += $"Skill duration: {minValue}";
+                if (!isActiveSkill)
+                {
+                    ans += minValue >= 0 ? "+" : "";
+                    ans += $"{minValue} to skill duration.";
+                }
+                else
+                {
+                    ans += $"Skill duration: {minValue}";
+                }
+                
                 break;
 
             case Stat.ProjectileSpeed:
-                ans += $"Skill projectile speed: {minValue}";
+                if (!isActiveSkill)
+                {
+                    ans += minValue >= 0 ? "+" : "";
+                    ans += $"{minValue} to skill projectile speed.";
+                }
+                else
+                {
+                    ans += $"Skill projectile speed: {minValue}";
+                }
+                
                 break;
 
             case Stat.Range:
@@ -327,22 +379,22 @@ public class Stats
 
             case Stat.HealthP:
                 ans += minValue >= 0 ? "+" : "";
-                ans += $"{minValue}% of maximum health";
+                ans += $"{minValue}% maximum health";
                 break;
 
             case Stat.ManaP:
                 ans += minValue >= 0 ? "+" : "";
-                ans += $"{minValue}% of maximum mana";
+                ans += $"{minValue}% maximum mana";
                 break;
 
             case Stat.ArmorP:
                 ans += minValue >= 0 ? "+" : "";
-                ans += $"{minValue}% of armor";
+                ans += $"{minValue}% armor";
                 break;
 
             case Stat.MovementSpeedP:
                 ans += minValue >= 0 ? "+" : "";
-                ans += $"{minValue}% of movement speed";
+                ans += $"{minValue}% movement speed";
                 break;
 
             case Stat.ManaRegen:
@@ -352,7 +404,7 @@ public class Stats
 
             case Stat.ManaRegenP:
                 ans += minValue >= 0 ? "+" : "";
-                ans += $"{minValue}% of mana regeneration";
+                ans += $"{minValue}% mana regeneration";
                 break;
 
             case Stat.HealthRegen:

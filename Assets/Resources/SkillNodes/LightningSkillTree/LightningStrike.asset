@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0805b25fee546d54698c0b2704bec57a, type: 3}
+  m_Name: LightningStrike
+  m_EditorClassIdentifier: 
+  skills:
+  - {fileID: 11400000, guid: d37ffba625cdf6e47930c8c832357efe, type: 2}
+  - {fileID: 11400000, guid: 1573df516808640458f8ab2bf0e4d59f, type: 2}
+  - {fileID: 11400000, guid: 39fa5bd21e102c34382bd48b4bd5a73d, type: 2}
+  - {fileID: 11400000, guid: a173fa34eea377d49b6f6957eb66675b, type: 2}
+  - {fileID: 11400000, guid: f8fc658badab7a04eb6d911b9b15d83a, type: 2}
+  skillTreeType: LightningStrike
+  skillName: Lightning Strike
+  icon: {fileID: 21300000, guid: 4168b2c35ad62864e89c31b4f92d348f, type: 3}
