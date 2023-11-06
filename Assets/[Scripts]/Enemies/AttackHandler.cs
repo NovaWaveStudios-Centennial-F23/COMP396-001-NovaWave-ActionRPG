@@ -1,30 +1,28 @@
-// Author: Mithul Koshy
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 
 public class AttackHandler : MonoBehaviour
 {
-    float damageAmount = 50f;
-    //Stats stats;
-    [SerializeField] float attackRange = 1f;
-    [SerializeField] float defaultTimeToAttack = 2f;
-    float attackTimer;
+    // Base damage amounts for different targets
+    [SerializeField] private float playerDamageAmount = 30f;
+    [SerializeField] private float enemyDamageAmount = 50f;
 
-    Animator animator;
-    CharacterMovement characterMovement;
-    Health target;
+    [SerializeField] private float attackRange = 1f;
+    [SerializeField] private float defaultTimeToAttack = 2f;
+    private float attackTimer;
+
+    private Animator animator;
+    private CharacterMovement characterMovement;
+    private Health target;
 
     private void Awake()
     {
         animator = GetComponentInParent<Animator>();
         characterMovement = GetComponent<CharacterMovement>();
-        //Stats stats = GetComponent<Stats>();
-        Health characterDamage = GetComponent<Health>();
     }
+
     internal void Attack(Health target)
     {
         this.target = target;
@@ -34,7 +32,7 @@ public class AttackHandler : MonoBehaviour
     private void Update()
     {
         AttackTimerTick();
-        if(target != null)
+        if (target != null)
         {
             ProcessAttack();
         }
@@ -42,10 +40,9 @@ public class AttackHandler : MonoBehaviour
 
     private void AttackTimerTick()
     {
-        if (attackTimer>0f)
+        if (attackTimer > 0f)
         {
             attackTimer -= Time.deltaTime;
-
         }
     }
 
@@ -54,20 +51,19 @@ public class AttackHandler : MonoBehaviour
         float distance = Vector3.Distance(transform.position, target.transform.position);
         if (distance < attackRange)
         {
-            if(attackTimer>0f)
+            if (attackTimer > 0f)
             {
                 return;
             }
             attackTimer = defaultTimeToAttack;
             characterMovement.Stop();
             animator.SetTrigger("Attack");
+
+            // Determine damage amount based on the target's tag
+            float damageAmount = target.gameObject.CompareTag("Player") ? playerDamageAmount : enemyDamageAmount;
+
             target.TakeDamage(damageAmount);
-
-            //Code to be modified
-            //Stats targetCharactertoAttack = target.GetComponent<Stats.Stat.Health>;
-            //targetCharactertoAttack.TakeDamage(character.TakeStats(Statistic.Damage).value);
             target = null;
-
         }
         else
         {

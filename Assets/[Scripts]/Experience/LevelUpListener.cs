@@ -23,6 +23,5 @@ public class LevelUpListener : MonoBehaviour
     private void HandleLevelUp()
     {
         Debug.Log("Player leveled up! Now at level: " + experienceManager.CurrentLevel);
-        // Here you could add some effects, update UI, etc.
     }
 }

@@ -10,14 +10,34 @@ public class Health : MonoBehaviour
     // You may want to set these in the inspector or in a Start() method if they are constant
     private void Start()
     {
-        if (lifepool == null)
         {
-            lifepool = new ValuePool
+            // Initialize lifepool differently based on the tag of the GameObject
+            if (gameObject.CompareTag("Player"))
             {
-                maxValue = 100f,
-                currentValue = 100f // Initialize currentValue to the maximum value
-            };
+                lifepool = new ValuePool
+                {
+                    maxValue = 2000f, // Player has more health, for example
+                    currentValue = 2000f
+                };
+            }
+            else if (gameObject.CompareTag("Enemy"))
+            {
+                lifepool = new ValuePool
+                {
+                    maxValue = 100f, // Enemy has less health
+                    currentValue = 100f
+                };
+            }
+            else
+            {
+                lifepool = new ValuePool
+                {
+                    maxValue = 100f, // Default health value
+                    currentValue = 100f
+                };
+            }
         }
+
     }
 
     // This method is used to apply damage to the character
@@ -35,7 +55,7 @@ public class Health : MonoBehaviour
     // Method to handle death logic
     private void Die()
     {
-        StartCoroutine(ReloadCurrentSceneWithDelay());
+        //StartCoroutine(ReloadCurrentSceneWithDelay());
         Debug.Log(gameObject.name + " has died.");
 
         // Play death animation
@@ -51,15 +71,16 @@ public class Health : MonoBehaviour
         if (experienceManager != null)
         {
             experienceManager.AddExperience(50); // Replace 50 with the actual experience value you want to give
+            Debug.Log("Exp",experienceManager);
         }
-        ReloadCurrentSceneWithDelay();
+        //ReloadCurrentSceneWithDelay();
         // Destroy(gameObject, 2f); // Waits for 2 seconds before destroying the game object
     }
 
-    private IEnumerator ReloadCurrentSceneWithDelay()
+/*    private IEnumerator ReloadCurrentSceneWithDelay()
     {
         yield return new WaitForSeconds(reloadDelay);
         string sceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(sceneName);
-    }
+    }*/
 }

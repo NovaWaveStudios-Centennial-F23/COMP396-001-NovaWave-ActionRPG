@@ -36,7 +36,6 @@ public class ExperienceManager : MonoBehaviour
 
     private int CalculateExperienceForNextLevel(int level)
     {
-        // Simple formula, can be replaced with something more complex
         return 100 * level;
     }
 }
