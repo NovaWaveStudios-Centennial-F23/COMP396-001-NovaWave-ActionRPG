@@ -8,7 +8,7 @@ using UnityEngine.TextCore.Text;
 
 public class AttackHandler : MonoBehaviour
 {
-    float damageAmount = 10f;
+    float damageAmount = 50f;
     //Stats stats;
     [SerializeField] float attackRange = 1f;
     [SerializeField] float defaultTimeToAttack = 2f;
