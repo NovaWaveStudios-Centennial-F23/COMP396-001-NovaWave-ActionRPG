@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0805b25fee546d54698c0b2704bec57a, type: 3}
+  m_Name: FireballSupportRight2
+  m_EditorClassIdentifier: 
+  skills:
+  - {fileID: 11400000, guid: 12b98bbf1b02cc84492c2db9bd6a163e, type: 2}
+  - {fileID: 11400000, guid: 949acfe75ebb3d745a90684636817abb, type: 2}
+  - {fileID: 11400000, guid: 467fef594c8a85f4b938755a69be338e, type: 2}
+  skillTreeType: Fireball
+  skillName: Exploitive Rune
+  icon: {fileID: 21300000, guid: ea9f20372ba12c641979acfd07f83161, type: 3}

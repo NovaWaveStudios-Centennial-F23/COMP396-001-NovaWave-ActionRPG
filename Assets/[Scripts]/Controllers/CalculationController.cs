@@ -67,8 +67,8 @@ public class CalculationController : MonoBehaviour
                 case Stats.Stat.ManaCost:
                     PercentageSubtraction(skill, Stats.Stat.ManaCost, Stats.Stat.ManaCostRecutionP);
                     break;*/
-                case Stats.Stat.CastTIme:
-                    PercentageSubtraction(skill, Stats.Stat.CastTIme, Stats.Stat.CastSpeedP);
+                case Stats.Stat.CastTime:
+                    PercentageSubtraction(skill, Stats.Stat.CastTime, Stats.Stat.CastSpeedP);
                     break;
                 default:
                     break;

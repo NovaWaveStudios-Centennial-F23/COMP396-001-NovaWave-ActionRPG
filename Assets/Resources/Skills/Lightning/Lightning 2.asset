@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad57ff6f3eadd7042bd134f46f7574e7, type: 3}
+  m_Name: Lightning 2
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 0}
+  damageType: 3
+  miscStats:
+  - stat: 27
+    minValue: 25
+    maxValue: 60
+  - stat: 31
+    minValue: 0.05
+    maxValue: 0.05
+  manaCost:
+    stat: 28
+    minValue: 15
+    maxValue: 15
+  cooldown:
+    stat: 29
+    minValue: 0.32
+    maxValue: 0.32

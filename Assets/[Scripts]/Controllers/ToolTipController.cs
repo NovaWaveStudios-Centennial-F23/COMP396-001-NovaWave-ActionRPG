@@ -68,8 +68,9 @@ public class ToolTipController : MonoBehaviour
     public void ShowPlayerSkillTooltip(SkillTreeNode node)
     {
         CloseTooltips();
-        playerSkillTooltip.GetComponent<SkillToolTip>().DisplayDetails(node);
         playerSkillTooltip.gameObject.SetActive(true);
+        playerSkillTooltip.GetComponent<SkillToolTip>().DisplayDetails(node);
+        
     }
 
 

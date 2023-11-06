@@ -16,8 +16,8 @@ public abstract class UserInterface : MonoBehaviour
     public Dictionary<GameObject, InventorySlot> slotsOnInterface = new Dictionary<GameObject, InventorySlot>();
 
     // Value for slot size
-    public int xSlot = 30;
-    public int ySlot = 30;
+    public int xSlot = 80;
+    public int ySlot = 80;
 
     // Start is called before the first frame update
     void Start()

@@ -3,10 +3,14 @@
  * Used as an API to get player information
  */
 
-
 using System;
 using UnityEngine;
+using static UnityEngine.UIElements.UxmlAttributeDescription;
 
+/// <summary>
+/// Used to track changes in player information
+/// Handles changes to the player's state
+/// </summary>
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance;
@@ -21,24 +25,27 @@ public class PlayerController : MonoBehaviour
         {
             Instance = this;
         }
+
+        ResetInfo();
     }
 
+    public int CurrentLevel { get; private set; }
     public int PlayerSkillPoints { get; private set; }
     public int SkillSkillPoints {  get; private set; }
 
     public event Action<int> OnPlayerSkillPointsChange = delegate { };
     public event Action<int> OnSkillSkillPointsChange = delegate { };
-
+    public event Action<int> OnLevelChange = delegate { };
     private void Start()
     {
         //for testing
-        AddPlayerSkillPoints(10);
-        AddSkillSkillPoints(5);
+        RefundPlayerSkillPoints(10);
+        RefundSkillSkillPoints(5);
     }
 
 
     /// <summary>
-    /// Attempts to spend the specified number of points. (spends 1 point by default)
+    /// Attempts to spend the specified number of points from the player controller. (spends 1 point by default)
     /// </summary>
     /// <param name="amount"></param>
     /// <returns></returns>
@@ -57,7 +64,7 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// Attempts to spend the specified number of points. (spends 1 point by default)
+    /// Attempts to spend the specified number of points from the player controller. (spends 1 point by default)
     /// </summary>
     /// <param name="amount"></param>
     /// <returns></returns>
@@ -75,16 +82,48 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void AddSkillSkillPoints(int amount)
+    /// <summary>
+    /// Adds the specified amount of points to the player controller
+    /// </summary>
+    /// <param name="amount"></param>
+    public void RefundSkillSkillPoints(int amount)
     {
         SkillSkillPoints += amount;
         OnSkillSkillPointsChange(SkillSkillPoints);
     }
 
-    public void AddPlayerSkillPoints(int amount)
+    /// <summary>
+    /// Adds the specified amount of points to the player controller
+    /// </summary>
+    /// <param name="amount"></param>
+    public void RefundPlayerSkillPoints(int amount)
     {
         PlayerSkillPoints += amount;
         OnPlayerSkillPointsChange(PlayerSkillPoints);
+    }
+
+
+    //used to handle the level up event in Experience Manager
+    private void HandleLevelUp()
+    {
+        CurrentLevel++;
+        OnLevelChange(CurrentLevel);
+
+        PlayerSkillPoints++;
+
+        //gives a skill skill point every other level
+        if(CurrentLevel % 2 == 0)
+        {
+            SkillSkillPoints++;
+        }
+    }
+
+
+    void ResetInfo()
+    {
+        PlayerSkillPoints = 0;
+        SkillSkillPoints = 1;
+        CurrentLevel = 1;
     }
 
 

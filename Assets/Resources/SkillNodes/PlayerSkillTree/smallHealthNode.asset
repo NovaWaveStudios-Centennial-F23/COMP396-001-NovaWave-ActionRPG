@@ -16,4 +16,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a6a94a64b38380f48b751ba2d3415421, type: 2}
   skillTreeType: Player
   skillName: Small Bounus Health
-  icon: {fileID: 21300000, guid: ac73d266cd76062489578b14487eafe5, type: 3}
+  icon: {fileID: 21300000, guid: bb66e925d79c0194b870c06c5697e3cb, type: 3}
