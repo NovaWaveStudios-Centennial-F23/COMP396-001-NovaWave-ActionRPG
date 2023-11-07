@@ -20,7 +20,7 @@ public class SkillSO : ScriptableObject
 
     public GameObject prefab;
     public DamageType damageType;
-    public List<Stats> allStats { get; private set; } = new List<Stats>();  
+    public List<Stats> allStats { get; set; } = new List<Stats>();  
     public List<Stats> miscStats = new List<Stats>();
 
     protected virtual void OnValidate()

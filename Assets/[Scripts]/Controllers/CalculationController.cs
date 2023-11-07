@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using static SkillTreeController;
@@ -40,35 +41,28 @@ public class CalculationController : MonoBehaviour
     public void CalculateSkillStats(string skillTree, ActiveSkillSO skill)
     {
         SetModifiers(skillTree);
-        Debug.Log(skillTreeModifiers.Keys.Count);
-
-        //Add stats to an active skill scriptable object
-        foreach (Stats s in skillTreeModifiers.Values)
-        {
-            if (!skill.allStats.Contains(s))
-            {
-                skill.allStats.Add(s);
-            }
-            skill.allStats.Find(x => x.stat == s.stat).minValue = s.minValue;
-            skill.allStats.Find(x => x.stat == s.stat).maxValue = s.maxValue;
-        }
+        
+        skill.allStats = new List<Stats>(skillTreeModifiers.Values);        
 
         for (int i = 0; i < skill.allStats.Count; i++)
         {
             switch (skill.allStats[i].stat)
             {
-                case Stats.Stat.SkillDamage:
-                    CalculateSkillDamage(skill);
-                    break;
-                /*case Stats.Stat.Cooldown:
+                case Stats.Stat.Cooldown:
                     PercentageSubtraction(skill, Stats.Stat.Cooldown, Stats.Stat.CooldownReductionP);
                     break;
                 case Stats.Stat.ManaCost:
                     PercentageSubtraction(skill, Stats.Stat.ManaCost, Stats.Stat.ManaCostRecutionP);
-                    break;*/
-               /* case Stats.Stat.CastTime:
+                    break;
+                case Stats.Stat.CastTime:
                     PercentageSubtraction(skill, Stats.Stat.CastTime, Stats.Stat.CastSpeedP);
-                    break;*/
+                    break;
+                case Stats.Stat.CritRateP:
+                    Addition(skill, Stats.Stat.CritRateP);
+                    break;
+                case Stats.Stat.CritDamageP:
+                    Addition(skill, Stats.Stat.CritDamageP);
+                    break;
                 default:
                     break;
             }
@@ -78,12 +72,24 @@ public class CalculationController : MonoBehaviour
     private void SetModifiers(string skillTree)
     {
         playerModifiers = StatsController.Instance.GetAllPlayerModifiers();
-        skillTreeModifiers = SkillTreeController.instance.GetModifiers(skillTree);
+
+        // Creating a deep copy of the modifiers dictionary
+        foreach (var kvp in SkillTreeController.instance.GetModifiers(skillTree))
+        {
+            Stats.Stat key = kvp.Key;
+            Stats value = new Stats
+            {
+                stat = kvp.Value.stat,
+                minValue = kvp.Value.minValue,
+                maxValue = kvp.Value.maxValue
+            };
+            skillTreeModifiers[key] = value;
+        }
     }
 
-    private void CalculateSkillDamage(ActiveSkillSO skill)
+    public void CalculateSkillDamage(ActiveSkillSO skill)
     {
-        // Calculate base damage of the skill [Should be changed to skill damage]
+        // Calculate base damage of the skill
         float skillDamage = skillTreeModifiers[Stats.Stat.SkillDamage].minValue + (skillTreeModifiers[Stats.Stat.SkillDamage].maxValue / 100) * playerModifiers[Stats.Stat.BaseDamage].minValue;
 
         // Check for the elemental damage stat
@@ -93,32 +99,56 @@ public class CalculationController : MonoBehaviour
         Enum.TryParse(str, out stat);
 
         // Additional elemental damage
-        //float elementalDamage = (playerModifiers[stat].minValue / 100) * playerModifiers[Stats.Stat.BaseDamage].minValue;
-        //float totalDamage = skillDamage + elementalDamage;
+        float elementalDamage = ((playerModifiers[stat].minValue + skillTreeModifiers[stat].minValue) / 100) * playerModifiers[Stats.Stat.BaseDamage].minValue;
+        float totalDamage = skillDamage + elementalDamage;
 
-        // [Should be changed to skill damage]
-        skill.allStats.Find(x => x.stat == Stats.Stat.SkillDamage).minValue = skillDamage;
+        // Apply calculated damage
+        skill.allStats.Find(x => x.stat == Stats.Stat.SkillDamage).minValue = totalDamage;
         skill.allStats.Find(x => x.stat == Stats.Stat.SkillDamage).maxValue = skillTreeModifiers[Stats.Stat.SkillDamage].maxValue;
     }
 
     private void PercentageSubtraction(SkillSO skill, Stats.Stat mainStat, Stats.Stat subStat)
     {
-        float skillCooldown = (1 - playerModifiers[subStat].minValue) * skillTreeModifiers[mainStat].minValue;
+        float value = (1 - playerModifiers[subStat].minValue) * skillTreeModifiers[mainStat].minValue;
 
-        skill.allStats.Find(x => x.stat == mainStat).minValue = skillCooldown;
+        skill.allStats.Find(x => x.stat == mainStat).minValue = value;
     }
 
     private void PercentageAddition(SkillSO skill, Stats.Stat mainStat, Stats.Stat subStat)
     {
-        float skillCooldown = (1 + playerModifiers[subStat].minValue) * skillTreeModifiers[mainStat].minValue;
+        float value = (1 + playerModifiers[subStat].minValue) * skillTreeModifiers[mainStat].minValue;
 
-        skill.allStats.Find(x => x.stat == mainStat).minValue = skillCooldown;
+        skill.allStats.Find(x => x.stat == mainStat).minValue = value;
     }
 
-    public float DamageTaken()
+    private void Addition(SkillSO skill, Stats.Stat mainStat)
     {
+        float value = skillTreeModifiers[mainStat].minValue + playerModifiers[mainStat].minValue;
 
+        skill.allStats.Find(x => x.stat == mainStat).minValue = value;
+    }
 
-        return 0;
+    public float DamageOutput(ActiveSkillSO skill)
+    {
+        float damage = skill.allStats.Find(x => x.stat == Stats.Stat.SkillDamage).minValue;
+
+        // Check for critical hit
+        bool crit = false;
+        float random = UnityEngine.Random.value;
+        if (random <= skill.allStats.Find(x => x.stat == Stats.Stat.CritRateP).minValue / 100)
+        {
+            crit = true;
+        }    
+
+        if (crit)
+        {
+            damage *= (1 + skill.allStats.Find(x => x.stat == Stats.Stat.CritDamageP).minValue / 100);
+            Debug.Log("Crit");
+            return damage;
+        }
+        else
+        {
+            return damage;
+        }
     }
 }
