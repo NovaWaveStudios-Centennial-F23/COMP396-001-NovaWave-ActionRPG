@@ -53,7 +53,7 @@ public class Stats
         HealthP,                // Unit health percentage
         ManaP,                  // Unit mana percentage
         ArmorP,                 // Unit mrmour percentage
-        MovementSpeedP,          // Unit movement speed percentage
+        MovementSpeedP,         // Unit movement speed percentage
         ManaRegen,              // Unit mana regeneration
         ManaRegenP,             // Unit mana regeneration percentage
         HealthRegen,            // Unit health regenration

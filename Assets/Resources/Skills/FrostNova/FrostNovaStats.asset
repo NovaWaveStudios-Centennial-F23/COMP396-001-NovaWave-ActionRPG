@@ -10,20 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad57ff6f3eadd7042bd134f46f7574e7, type: 3}
-  m_Name: FireballStats
+  m_Name: FrostNovaStats
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1079946990457772, guid: 661f61a86de0fc24bbd8a86ca55a15c6, type: 3}
-  damageType: 1
-  miscStats:
-  - stat: 27
-    minValue: 45
-    maxValue: 50
-  - stat: 33
-    minValue: 15
-    maxValue: 10
-  - stat: 34
-    minValue: 100
-    maxValue: 0
+  prefab: {fileID: 1612411718768874, guid: eaa76516df08ead429405072a0652c47, type: 3}
+  damageType: 2
+  miscStats: []
   manaCost:
     stat: 28
     minValue: 0

@@ -15,13 +15,11 @@ public class SkillsController : MonoBehaviour
 
     [Header("Prefabs")]
     [SerializeField] private GameObject player;
-    [SerializeField] private List<GameObject> fireballPrefab;
-    [SerializeField] private GameObject frostNovaPrefab;
 
     [Header("Others")]
     [SerializeField] private LayerMask groundMask;
 
-    private Vector3 mousePosition;
+    public Vector3 mousePosition;
 
     void Awake()
     {
@@ -37,7 +35,15 @@ public class SkillsController : MonoBehaviour
 
     void Update()
     {
-        SkillCast(nameof(Fireball));
+        Raycast();
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            SkillCast(nameof(Fireball));
+        }
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            SkillCast(nameof(FrostNova));
+        }
     }
 
     private void Raycast()
@@ -52,22 +58,10 @@ public class SkillsController : MonoBehaviour
 
     public void SkillCast(string skill)
     {
-        //FIREBALL
-        Raycast();
-        if (Input.GetKeyDown(KeyCode.E) && !fireballCooldown)
-        {
-            InitActiveSkill(skill);
-        }
-    }
-
-    private void InitActiveSkill(string skill)
-    {
         activeSkillSO = Resources.Load<ActiveSkillSO>("Skills/" + skill + "/" + skill + "Stats");
         CalculationController.Instance.CalculateSkillStats(skill, activeSkillSO);
 
-        GameObject fireball = Instantiate(activeSkillSO.prefab, player.transform.position, Quaternion.identity);
-        fireball.GetComponent<Fireball>().fireball = activeSkillSO;
-        fireball.GetComponent<Fireball>().direction = mousePosition;
-        fireballCooldown = true;
+        GameObject activeSkill = Instantiate(activeSkillSO.prefab, player.transform.position, Quaternion.identity);
+        activeSkill.GetComponent<Skill>().skillSO = activeSkillSO;
     }
 }

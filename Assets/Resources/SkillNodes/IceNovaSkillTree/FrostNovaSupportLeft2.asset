@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0805b25fee546d54698c0b2704bec57a, type: 3}
+  m_Name: FrostNovaSupportLeft2
+  m_EditorClassIdentifier: 
+  skills:
+  - {fileID: 11400000, guid: 0f36d56c37b7d3b47891388d2d5e6a0a, type: 2}
+  - {fileID: 11400000, guid: c59e640bc90165b4ab401ec56b073cf6, type: 2}
+  - {fileID: 11400000, guid: 23caff44a3da65f49a7de52fd10f6e21, type: 2}
+  skillTreeType: FrostNova
+  skillName: Rapid Casting Rune
+  icon: {fileID: 21300000, guid: 42221e98651fa2c43affddfe466bc7c3, type: 3}
