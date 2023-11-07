@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad57ff6f3eadd7042bd134f46f7574e7, type: 3}
+  m_Name: FrostNova 1
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 0}
+  damageType: 0
+  miscStats:
+  - stat: 27
+    minValue: 30
+    maxValue: 40
+  - stat: 30
+    minValue: 10
+    maxValue: 10
+  - stat: 31
+    minValue: 0.01
+    maxValue: 0.01
+  manaCost:
+    stat: 28
+    minValue: 10
+    maxValue: 10
+  cooldown:
+    stat: 29
+    minValue: 0.8
+    maxValue: 0.8

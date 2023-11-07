@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0805b25fee546d54698c0b2704bec57a, type: 3}
+  m_Name: FrostNovaSupportRight2
+  m_EditorClassIdentifier: 
+  skills:
+  - {fileID: 11400000, guid: 540f13de81de8ed409af00110cfb70a8, type: 2}
+  - {fileID: 11400000, guid: c8f9c06bfc015ba45b8a4fc51f73b34b, type: 2}
+  - {fileID: 11400000, guid: 4deece9246fa3ee428e979b1c42466b3, type: 2}
+  skillTreeType: FrostNova
+  skillName: Snap Freeeze Rune
+  icon: {fileID: 21300000, guid: 5f0e112c84fd7a548ab7eeeb6b0dfa6b, type: 3}
