@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: KinghtClass
   m_EditorClassIdentifier: 
   className: Knight
-  classDescription: Sturdy fellas found throught the Mystic Realms. A balanced fighter
+  classDescription: A common sight throughout the Mystic Realms. A balanced fighter
     that can both take punishment as well as deal it out.
   isAvaliable: 0

@@ -1442,7 +1442,7 @@ MonoBehaviour:
   txtHeading: {fileID: 763662793}
   characterOptionPrefab: {fileID: 2252597129557478405, guid: 592c5aa0f2b5c624893772205c27200e, type: 3}
   characterSelectionHandler: {fileID: 493041018}
-  generateFakeData: 1
+  generateFakeData: 0
 --- !u!1 &516325056
 GameObject:
   m_ObjectHideFlags: 0
@@ -1744,7 +1744,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 567048661}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 647020739}
+        m_TargetAssemblyTypeName: NetworkingTest.GameListScene, Assembly-CSharp
+        m_MethodName: LoadLevelOne
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &567048661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4090,7 +4102,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1904890323955080235, guid: 658c2399a6bca1945924a29506bb7990, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3433001930737640546, guid: 658c2399a6bca1945924a29506bb7990, type: 3}
       propertyPath: m_LocalPosition.x
