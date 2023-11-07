@@ -20,6 +20,7 @@ public class SkillsController : MonoBehaviour
     [Header("Others")]
     [SerializeField] private LayerMask groundMask;
 
+    private Dictionary<string, float> activeSkillCooldown;
     public Vector3 mousePosition;
 
     void Awake()
@@ -34,16 +35,25 @@ public class SkillsController : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        activeSkillCooldown = new Dictionary<string, float>();
+    }
+
     void Update()
     {
         Raycast();
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && !activeSkillCooldown.ContainsKey(nameof(Fireball)))
         {
-            SkillCast(nameof(Fireball));
+            SkillCastProjectile(nameof(Fireball));
         }
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W) && !activeSkillCooldown.ContainsKey(nameof(FrostNova)))
         {
-            SkillCast(nameof(FrostNova));
+            SkillCastPlayer(nameof(FrostNova));
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            SkillCastLocation(nameof(LightningStrike));
         }
     }
 
@@ -57,12 +67,55 @@ public class SkillsController : MonoBehaviour
         }
     }
 
-    public void SkillCast(string skill)
+    public void SkillCastProjectile(string skill)
     {
         activeSkillSO = Resources.Load<ActiveSkillSO>("Skills/" + skill + "/" + skill + "Stats");
         CalculationController.Instance.CalculateSkillStats(skill, activeSkillSO);
 
         GameObject activeSkill = Instantiate(activeSkillSO.prefab, projectileSpawner.transform.position, Quaternion.identity);
         activeSkill.GetComponent<Skill>().skillSO = activeSkillSO;
+
+        CalculationController.Instance.CalculateSkillDamage(activeSkillSO);
+
+        activeSkillCooldown.Add(skill, activeSkillSO.allStats.Find(x => x.stat == Stats.Stat.Cooldown).minValue);
+    }
+
+    public void SkillCastPlayer(string skill)
+    {
+        activeSkillSO = Resources.Load<ActiveSkillSO>("Skills/" + skill + "/" + skill + "Stats");
+        CalculationController.Instance.CalculateSkillStats(skill, activeSkillSO);
+
+        GameObject activeSkill = Instantiate(activeSkillSO.prefab, player.transform.position, Quaternion.identity);
+        activeSkill.GetComponent<Skill>().skillSO = activeSkillSO;
+
+        activeSkillCooldown.Add(skill, activeSkillSO.allStats.Find(x => x.stat == Stats.Stat.Cooldown).minValue);
+    }
+
+    public void SkillCastLocation(string skill)
+    {
+        activeSkillSO = Resources.Load<ActiveSkillSO>("Skills/" + skill + "/" + skill + "Stats");
+        CalculationController.Instance.CalculateSkillStats(skill, activeSkillSO);
+
+        GameObject activeSkill = Instantiate(activeSkillSO.prefab, mousePosition, Quaternion.identity);
+        activeSkill.GetComponent<Skill>().skillSO = activeSkillSO;
+
+        activeSkillCooldown.Add(skill, activeSkillSO.allStats.Find(x => x.stat == Stats.Stat.Cooldown).minValue);
+    }
+
+    public void SetSkillCooldown(string skill, float cooldown)
+    {
+        if (cooldown <= 0)
+        {
+            activeSkillCooldown.Remove(skill);
+        }
+        else
+        {
+            activeSkillCooldown[skill] = cooldown;
+        }
+    }
+
+    public float GetSkillCooldown(string skill)
+    {
+        return activeSkillCooldown[skill];
     }
 }

@@ -19,16 +19,25 @@ MonoBehaviour:
     minValue: 30
     maxValue: 40
   - stat: 30
-    minValue: 10
+    minValue: 50
     maxValue: 10
   - stat: 31
     minValue: 0.01
     maxValue: 0.01
+  - stat: 32
+    minValue: 10
+    maxValue: 4
+  - stat: 6
+    minValue: 20
+    maxValue: 20
+  - stat: 7
+    minValue: 100
+    maxValue: 100
   manaCost:
     stat: 28
     minValue: 10
     maxValue: 10
   cooldown:
     stat: 29
-    minValue: 0.8
-    maxValue: 0.8
+    minValue: 10
+    maxValue: 6
