@@ -12,22 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad57ff6f3eadd7042bd134f46f7574e7, type: 3}
   m_Name: FireballStats
   m_EditorClassIdentifier: 
+  prefab: {fileID: 1079946990457772, guid: 661f61a86de0fc24bbd8a86ca55a15c6, type: 3}
   damageType: 1
   miscStats:
-  - stat: 0
-    minValue: 0
-    maxValue: 0
+  - stat: 27
+    minValue: 45
+    maxValue: 50
   - stat: 33
     minValue: 15
-    maxValue: 0
+    maxValue: 10
   - stat: 34
     minValue: 100
     maxValue: 0
   manaCost:
     stat: 28
-    minValue: 11
-    maxValue: 11
+    minValue: 0
+    maxValue: 0
   cooldown:
     stat: 29
-    minValue: 0.21
-    maxValue: 0.21
+    minValue: 0
+    maxValue: 0

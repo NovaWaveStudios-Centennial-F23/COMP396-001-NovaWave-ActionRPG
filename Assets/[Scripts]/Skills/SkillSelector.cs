@@ -27,6 +27,7 @@ public class SkillSelectorDrawer : PropertyDrawer
 
             // Create an array of class names
             var skillTypeNames = skillTypes.Select(type => type.Name).ToArray();
+
             //Adding player (the default option)
             var allTypeNames = new string[skillTypeNames.Length + 1];
             allTypeNames[0] = "Player";
