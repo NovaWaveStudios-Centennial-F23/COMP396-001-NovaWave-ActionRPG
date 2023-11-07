@@ -1940,6 +1940,9 @@ MonoBehaviour:
   - stat: 7
     minValue: 0
     maxValue: 0
+  - stat: 11
+    minValue: 0
+    maxValue: 0
   equippedGear: {fileID: 1924580507}
 --- !u!1 &1285277574
 GameObject:
@@ -2494,7 +2497,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 63
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

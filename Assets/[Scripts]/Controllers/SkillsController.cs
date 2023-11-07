@@ -47,7 +47,7 @@ public class SkillsController : MonoBehaviour
         {
             SkillCastProjectile(nameof(Fireball));
         }
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W) && !activeSkillCooldown.ContainsKey(nameof(FrostNova)))
         {
             SkillCastPlayer(nameof(FrostNova));
         }
@@ -104,6 +104,7 @@ public class SkillsController : MonoBehaviour
 
     public void SetSkillCooldown(string skill, float cooldown)
     {
+        Debug.Log(activeSkillCooldown[skill]);
         if (cooldown <= 0)
         {
             activeSkillCooldown.Remove(skill);

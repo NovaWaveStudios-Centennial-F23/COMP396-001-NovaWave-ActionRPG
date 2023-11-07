@@ -5,16 +5,12 @@ using static UnityEngine.ParticleSystem;
 
 public class Fireball : Skill
 {
-    public Vector3 direction;
-
+    private Vector3 direction;
     private Rigidbody rb;
-    private float cooldown;
-    private List<GameObject> enemies;
-    private SphereCollider AOE;
 
     void Start()
     {
-        SetInitialValues();
+        SetIntitialValues();
     }
 
     void Update()
@@ -24,10 +20,10 @@ public class Fireball : Skill
 
     void FixedUpdate()
     {        
-        FireballProjectile();
+        MovementBehaviour();
     }
 
-    private void SetInitialValues()
+    public override void SetIntitialValues()
     {
         rb = GetComponent<Rigidbody>();
 
@@ -46,18 +42,23 @@ public class Fireball : Skill
         AOE.radius = skillSO.allStats.Find(x => x.stat == Stats.Stat.AOE).minValue / 10;
     }
 
-    private void FireballProjectile()
+    public override void MovementBehaviour()
     {
-        transform.forward = direction;        
+        transform.forward = direction;
         rb.velocity = transform.forward * skillSO.allStats.Find(x => x.stat == Stats.Stat.ProjectileSpeed).minValue;
     }
 
-    private void CalculateCooldown()
+    public override void CalculateCooldown()
     {
         // Live cooldown counter
         cooldown -= Time.deltaTime;
         SkillsController.Instance.SetSkillCooldown(nameof(Fireball), cooldown);
-    }    
+
+        if (cooldown <= -0.1)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void OnCollisionEnter(Collision other)
     {
@@ -72,6 +73,9 @@ public class Fireball : Skill
                 Debug.Log(" Damage to each: " + damage / 2);
             }
         }
+
+        // Make Game Object invisible
+        gameObject.layer = 6;
     }
 
     private void OnTriggerEnter(Collider other)

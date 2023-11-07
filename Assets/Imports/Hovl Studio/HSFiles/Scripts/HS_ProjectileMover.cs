@@ -86,7 +86,5 @@ public class HS_ProjectileMover : MonoBehaviour
                 Destroy(detachedPrefab, 1);
             }
         }
-        //Destroy projectile on collision
-        gameObject.SetActive(false);
     }
 }

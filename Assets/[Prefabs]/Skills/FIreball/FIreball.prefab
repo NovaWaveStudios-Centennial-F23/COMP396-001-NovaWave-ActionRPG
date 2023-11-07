@@ -4933,7 +4933,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1079946990457772}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
@@ -5049,7 +5049,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillSO: {fileID: 0}
-  direction: {x: 0, y: 0, z: 0}
+  cooldown: 0
+  enemies: []
+  AOE: {fileID: 0}
 --- !u!135 &6400155886251943743
 SphereCollider:
   m_ObjectHideFlags: 0

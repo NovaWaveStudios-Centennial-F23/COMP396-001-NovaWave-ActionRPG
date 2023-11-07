@@ -24,11 +24,14 @@ MonoBehaviour:
   - stat: 31
     minValue: 0.01
     maxValue: 0.01
+  - stat: 32
+    minValue: 4
+    maxValue: 4
   manaCost:
     stat: 28
     minValue: 10
     maxValue: 10
   cooldown:
     stat: 29
-    minValue: 0.8
-    maxValue: 0.8
+    minValue: 6
+    maxValue: 6
