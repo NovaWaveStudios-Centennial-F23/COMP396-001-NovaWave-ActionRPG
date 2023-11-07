@@ -9,6 +9,7 @@ public class FrostNova : Skill
         yield return new WaitForSeconds(skillSO.allStats.Find(x => x.stat == Stats.Stat.Duration).minValue + 0.1f);
 
         gameObject.layer = 6;
+        AOE.enabled = false;
         foreach (Transform child in gameObject.transform)
         {
             child.gameObject.layer = 6;
@@ -19,7 +20,11 @@ public class FrostNova : Skill
         while (true)
         {
             yield return new WaitForSeconds(0.5f);
-            //Debug.Log("damage");
+            damage = CalculationController.Instance.DamageOutput(skillSO);
+            foreach (GameObject g in enemies)
+            {
+                Debug.Log(damage);
+            }
         }        
     }
 

@@ -70,7 +70,7 @@ public class Fireball : Skill
     private void OnCollisionEnter(Collision other)
     {
         // Damage Output
-        float damage = CalculationController.Instance.DamageOutput(skillSO);
+        damage = CalculationController.Instance.DamageOutput(skillSO);
         if (other.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("Enemy hit, Damage: " + damage);

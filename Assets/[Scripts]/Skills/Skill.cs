@@ -8,6 +8,7 @@ public abstract class Skill : MonoBehaviour
     public float cooldown;
     public List<GameObject> enemies;
     public SphereCollider AOE;
+    public float damage;
 
     public abstract void SetIntitialValues();
     public abstract void MovementBehaviour();

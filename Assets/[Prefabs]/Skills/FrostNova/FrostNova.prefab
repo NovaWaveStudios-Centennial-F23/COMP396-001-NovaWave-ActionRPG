@@ -14733,6 +14733,7 @@ MonoBehaviour:
   cooldown: 0
   enemies: []
   AOE: {fileID: 0}
+  damage: 0
 --- !u!135 &3579645713156424088
 SphereCollider:
   m_ObjectHideFlags: 0
