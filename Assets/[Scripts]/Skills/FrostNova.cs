@@ -6,7 +6,7 @@ public class FrostNova : Skill
 {
     IEnumerator Duration()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(10);
         Destroy(this.gameObject);
     }
 
@@ -19,6 +19,6 @@ public class FrostNova : Skill
     // Update is called once per frame
     void Update()
     {
-        
+        transform.position = SkillsController.Instance.player.transform.position;
     }
 }

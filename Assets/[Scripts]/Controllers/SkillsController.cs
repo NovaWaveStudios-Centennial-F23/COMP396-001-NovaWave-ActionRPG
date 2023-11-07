@@ -14,7 +14,8 @@ public class SkillsController : MonoBehaviour
     [SerializeField] private ActiveSkillSO activeSkillSO;
 
     [Header("Prefabs")]
-    [SerializeField] private GameObject player;
+    [SerializeField] public GameObject player;
+    [SerializeField] private GameObject projectileSpawner;
 
     [Header("Others")]
     [SerializeField] private LayerMask groundMask;
@@ -61,7 +62,7 @@ public class SkillsController : MonoBehaviour
         activeSkillSO = Resources.Load<ActiveSkillSO>("Skills/" + skill + "/" + skill + "Stats");
         CalculationController.Instance.CalculateSkillStats(skill, activeSkillSO);
 
-        GameObject activeSkill = Instantiate(activeSkillSO.prefab, player.transform.position, Quaternion.identity);
+        GameObject activeSkill = Instantiate(activeSkillSO.prefab, projectileSpawner.transform.position, Quaternion.identity);
         activeSkill.GetComponent<Skill>().skillSO = activeSkillSO;
     }
 }

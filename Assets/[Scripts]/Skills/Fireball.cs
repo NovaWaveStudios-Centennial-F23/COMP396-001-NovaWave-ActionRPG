@@ -17,19 +17,22 @@ public class Fireball : Skill
 
     void Start()
     {
-        direction = SkillsController.Instance.mousePosition;
+        direction = SkillsController.Instance.mousePosition - transform.position;
+        Debug.Log(direction);
         rb = GetComponent<Rigidbody>();
         StartCoroutine(Cooldown());
     }
 
     void FixedUpdate()
     {
+        
         ShootFireball();
     }
 
     private void ShootFireball()
     {
-        transform.forward = (direction * skillSO.allStats.Find(x => x.stat == Stats.Stat.Range).minValue) - transform.position;
+        transform.forward = direction;
+        
         rb.velocity = transform.forward * skillSO.allStats.Find(x => x.stat == Stats.Stat.ProjectileSpeed).minValue;
     }
 
