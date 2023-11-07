@@ -24,6 +24,9 @@ MonoBehaviour:
   - stat: 34
     minValue: 100
     maxValue: 0
+  - stat: 32
+    minValue: 4
+    maxValue: 0
   manaCost:
     stat: 28
     minValue: 11

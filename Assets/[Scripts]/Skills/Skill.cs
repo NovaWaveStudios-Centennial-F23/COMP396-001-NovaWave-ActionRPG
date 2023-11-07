@@ -12,4 +12,5 @@ public abstract class Skill : MonoBehaviour
     public abstract void SetIntitialValues();
     public abstract void MovementBehaviour();
     public abstract void CalculateCooldown();
+    public abstract IEnumerator Duration();
 }

@@ -104,7 +104,6 @@ public class SkillsController : MonoBehaviour
 
     public void SetSkillCooldown(string skill, float cooldown)
     {
-        Debug.Log(activeSkillCooldown[skill]);
         if (cooldown <= 0)
         {
             activeSkillCooldown.Remove(skill);
@@ -114,7 +113,7 @@ public class SkillsController : MonoBehaviour
             activeSkillCooldown[skill] = cooldown;
         }
     }
-    
+
     public float GetSkillCooldown(string skill)
     {
         return activeSkillCooldown[skill];

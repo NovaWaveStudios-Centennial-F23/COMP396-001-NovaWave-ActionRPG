@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FrostNova : Skill
 {
-    IEnumerator Duration()
+    public override IEnumerator Duration()
     {
         yield return new WaitForSeconds(skillSO.allStats.Find(x => x.stat == Stats.Stat.Duration).minValue + 0.1f);
 
@@ -14,7 +14,6 @@ public class FrostNova : Skill
             child.gameObject.layer = 6;
         }
     }
-
     IEnumerator DealDamage()
     {
         while (true)

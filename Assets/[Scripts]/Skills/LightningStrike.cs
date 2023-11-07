@@ -9,6 +9,11 @@ public class LightningStrike : Skill
         throw new System.NotImplementedException();
     }
 
+    public override IEnumerator Duration()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public override void MovementBehaviour()
     {
         throw new System.NotImplementedException();

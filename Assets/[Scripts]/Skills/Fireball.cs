@@ -8,9 +8,16 @@ public class Fireball : Skill
     private Vector3 direction;
     private Rigidbody rb;
 
+    public override IEnumerator Duration()
+    {
+        yield return new WaitForSeconds(skillSO.allStats.Find(x => x.stat == Stats.Stat.Duration).minValue + 0.1f);
+        gameObject.layer = 6;
+    }
+
     void Start()
     {
         SetIntitialValues();
+        StartCoroutine(Duration());
     }
 
     void Update()
@@ -54,7 +61,7 @@ public class Fireball : Skill
         cooldown -= Time.deltaTime;
         SkillsController.Instance.SetSkillCooldown(nameof(Fireball), cooldown);
 
-        if (cooldown <= -0.1)
+        if (cooldown <= -0.1 && gameObject.layer == 6)
         {
             Destroy(gameObject);
         }
