@@ -10,7 +10,7 @@ namespace NetworkingTest
     {
         public void StartGame()
         {
-            SceneManager.LoadScene("GameList");
+            SceneManager.LoadScene("CharacterSelectionMenu");
         }
     }
 }
