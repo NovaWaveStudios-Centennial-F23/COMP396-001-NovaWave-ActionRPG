@@ -104,21 +104,26 @@ public class InGameUIManager : MonoBehaviour
         {
             p.SetActive(false);
         }
+
+        ToolTipController.Instance.CloseTooltips();
     }
 
     public void CloseInventory()
     {
         inventoryPanel.SetActive(false);
+        ToolTipController.Instance.CloseTooltips();
     }
 
     public void ClosePlayerSkillTree()
     {
         playerSkillTreePanel.SetActive(false);
+        ToolTipController.Instance.CloseTooltips();
     }
 
     public void CloseSkillSkillTree()
     {
         skillSkillTreePanel.SetActive(false);
+        ToolTipController.Instance.CloseTooltips();
     }
 
 }
