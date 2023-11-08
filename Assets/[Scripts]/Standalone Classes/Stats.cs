@@ -62,6 +62,9 @@ public class Stats
         DamageWWantP,           // Player damage with wand equipped percentage
         DamageWStaffP,          // Player damage with staff equpped percentage
         DamageWSheildP,         // Player damage with shield equipped percentage
+        Dexterity,              // Player attribute
+        Strength,               // Player attribute
+        Intelligence,           // Player attribute
     }
 
     public Stat stat;
@@ -163,7 +166,7 @@ public class Stats
 
             case Stat.BlockChanceP:
                 ans += minValue >= 0 ? "+" : "";
-                ans += $"{minValue}% chance to block attack damage";
+                ans += $"{minValue}% chance to block attack damage when equipped with shield";
                 break;
 
             case Stat.DamageReflectP:
@@ -435,6 +438,21 @@ public class Stats
             case Stat.DamageWSheildP:
                 ans += minValue >= 0 ? "+" : "";
                 ans += $"{minValue}% damage with shield equipped";
+                break;
+
+            case Stat.Dexterity:
+                ans += minValue >= 0 ? "+" : "";
+                ans += $"{minValue} to Dexterity";
+                break;
+
+            case Stat.Strength:
+                ans += minValue >= 0 ? "+" : "";
+                ans += $"{minValue} to Strength";
+                break;
+
+            case Stat.Intelligence:
+                ans += minValue >= 0 ? "+" : "";
+                ans += $"{minValue} to Intelligence";
                 break;
 
             default: return $"Unimplemented ToString method for ${nameof(stat)}";

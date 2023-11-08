@@ -13,33 +13,32 @@ public class ExperienceIndicator : MonoBehaviour
     
     private void Start()
     {
-        //StartCoroutine(Initialize());
+        StartCoroutine(Initialize());
     }
 
 
-    //IEnumerator Initialize()
-    //{
-    //    TODO: Reference experience manager
-    //    while (___ == null)
-    //    {
-            //yield return new WaitForSeconds(0.1f);
-    //    }
-    //    
-
-    //    TODO: Subscribe to exp gain event
-
-    //}
-
-    private void HandleExpGain(float currentExp, float maxExp)
+    IEnumerator Initialize()
     {
-        float fillamount = currentExp / maxExp;
+    
+        while (ExperienceManager.Instance == null)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
 
+        ExperienceManager.Instance.OnExpGain += HandleExpGain;
+        HandleExpGain(ExperienceManager.Instance.CurrentExperience);
+    }
+
+    private void HandleExpGain(int currentExp)
+    {
+        float fillamount = ((float)currentExp / (float)ExperienceManager.Instance.ExperienceToNextLevel);
         expBar.fillAmount = fillamount;
     }
 
     private void OnDestroy()
     {
         //TODO: Unsubscribe from exp gain event
+        ExperienceManager.Instance.OnExpGain -= HandleExpGain;
     }
 
 

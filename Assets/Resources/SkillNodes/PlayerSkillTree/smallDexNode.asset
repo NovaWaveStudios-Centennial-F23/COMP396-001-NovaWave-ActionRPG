@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0805b25fee546d54698c0b2704bec57a, type: 3}
-  m_Name: smallHealthNode
+  m_Name: smallDexNode
   m_EditorClassIdentifier: 
-  skills:
-  - {fileID: 11400000, guid: a6a94a64b38380f48b751ba2d3415421, type: 2}
+  skills: []
   skillTreeType: Player
-  skillName: Small Bounus Health
-  icon: {fileID: 21300000, guid: 3835debd002d7ca4bb666f7734341d5e, type: 3}
+  skillName: Minor Dexterity Training
+  icon: {fileID: 21300000, guid: a389f4a44f36d2d4284c17d34890d89a, type: 3}

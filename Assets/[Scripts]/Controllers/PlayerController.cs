@@ -41,6 +41,8 @@ public class PlayerController : MonoBehaviour
         //for testing
         RefundPlayerSkillPoints(10);
         RefundSkillSkillPoints(5);
+
+        ExperienceManager.Instance.OnLevelUp += HandleLevelUp;
     }
 
 

@@ -1,7 +1,5 @@
 // Author: Mithul Koshy
-using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
@@ -68,11 +66,10 @@ public class Health : MonoBehaviour
         }
 
         // Add XP to player's experience
-        ExperienceManager experienceManager = FindObjectOfType<ExperienceManager>();
-        if (experienceManager != null)
+        if (ExperienceManager.Instance != null)
         {
-            experienceManager.AddExperience(50); // Replace 50 with the actual experience value you want to give
-            Debug.Log("Exp",experienceManager);
+            ExperienceManager.Instance.AddExperience(5); // Replace 50 with the actual experience value you want to give
+            Debug.Log("addedExp");
         }
         //ReloadCurrentSceneWithDelay();
          Destroy(gameObject, 2f); // Waits for 2 seconds before destroying the game object

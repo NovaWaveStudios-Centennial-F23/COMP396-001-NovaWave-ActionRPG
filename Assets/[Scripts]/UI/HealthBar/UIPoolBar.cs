@@ -22,14 +22,12 @@ public class UIPoolBar : MonoBehaviour
     {
         this.targetPool = targetPool;
         gameObject.SetActive(true);
-
     }
 
     public void Clear()
     {
         this.targetPool = null;
         gameObject.SetActive(false);
-
     }
 
     private void Update()
@@ -39,7 +37,5 @@ public class UIPoolBar : MonoBehaviour
             bar.fillAmount = Mathf.InverseLerp(0f, targetPool.maxValue, targetPool.currentValue);
         }
     }
-
-
 
 }
