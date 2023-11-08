@@ -73,11 +73,11 @@ public class Fireball : Skill
         damage = CalculationController.Instance.DamageOutput(skillSO);
         if (other.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("Enemy hit, Damage: " + damage);
+            other.gameObject.GetComponent<Health>().TakeDamage(damage);
 
             foreach (GameObject g in enemies)
             {
-                Debug.Log(" Damage to each: " + damage / 2);
+                g.gameObject.GetComponent<Health>().TakeDamage(damage / 2);
             }
         }
 

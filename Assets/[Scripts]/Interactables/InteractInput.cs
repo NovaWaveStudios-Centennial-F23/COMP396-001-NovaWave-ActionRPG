@@ -69,7 +69,7 @@ public class InteractInput : MonoBehaviour
         if(hoveringOverCharacter != null)
         {
             hpBar.Show(hoveringOverCharacter.lifepool);
-            Debug.Log(hoveringOverCharacter.lifepool);
+            //Debug.Log(hoveringOverCharacter.lifepool);
         }
         else
         {

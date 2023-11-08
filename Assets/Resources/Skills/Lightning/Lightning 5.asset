@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 0}
   damageType: 3
+  skillType: 2
   miscStats:
   - stat: 27
     minValue: 120

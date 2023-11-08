@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: FrostNova 3
   m_EditorClassIdentifier: 
   prefab: {fileID: 0}
-  damageType: 0
+  damageType: 2
+  skillType: 1
   miscStats:
   - stat: 27
     minValue: 40

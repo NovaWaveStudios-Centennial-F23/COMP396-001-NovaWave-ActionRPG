@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 1612411718768874, guid: eaa76516df08ead429405072a0652c47, type: 3}
   damageType: 2
+  skillType: 1
   miscStats: []
   manaCost:
     stat: 28

@@ -23,7 +23,7 @@ public class FrostNova : Skill
             damage = CalculationController.Instance.DamageOutput(skillSO);
             foreach (GameObject g in enemies)
             {
-                Debug.Log(damage);
+                g.GetComponent<Health>().TakeDamage(damage);
             }
         }        
     }

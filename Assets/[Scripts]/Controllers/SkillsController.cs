@@ -64,6 +64,7 @@ public class SkillsController : MonoBehaviour
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundMask))
         {
             mousePosition = hit.point;
+            mousePosition.y = projectileSpawner.transform.position.y;
         }
     }
 

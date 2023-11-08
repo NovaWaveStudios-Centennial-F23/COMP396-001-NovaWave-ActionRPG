@@ -8,7 +8,6 @@ using System.Reflection;
 [CreateAssetMenu(fileName = "SkillSciptableObject", menuName = "ScriptableObejcts/Create New Skill")]
 public class SkillSO : ScriptableObject
 {
-
     public enum DamageType
     {
         Normal,
@@ -18,8 +17,16 @@ public class SkillSO : ScriptableObject
         None
     }
 
+    public enum SkillType
+    {
+        Projectile,
+        OnPlayer,
+        OnMouse
+    }
+
     public GameObject prefab;
     public DamageType damageType;
+    public SkillType skillType;
     public List<Stats> allStats { get; set; } = new List<Stats>();  
     public List<Stats> miscStats = new List<Stats>();
 
