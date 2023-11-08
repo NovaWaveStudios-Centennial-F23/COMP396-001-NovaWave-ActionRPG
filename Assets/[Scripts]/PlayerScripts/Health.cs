@@ -63,7 +63,8 @@ public class Health : MonoBehaviour
         if (animator != null)
         {
             animator.SetTrigger("Die");
-
+         
+            
         }
 
         // Add XP to player's experience
@@ -74,7 +75,7 @@ public class Health : MonoBehaviour
             Debug.Log("Exp",experienceManager);
         }
         //ReloadCurrentSceneWithDelay();
-        // Destroy(gameObject, 2f); // Waits for 2 seconds before destroying the game object
+         Destroy(gameObject, 2f); // Waits for 2 seconds before destroying the game object
     }
 
 /*    private IEnumerator ReloadCurrentSceneWithDelay()
