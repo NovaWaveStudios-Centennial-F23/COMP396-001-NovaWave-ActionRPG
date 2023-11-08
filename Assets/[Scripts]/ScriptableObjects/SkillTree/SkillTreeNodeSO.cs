@@ -1,9 +1,7 @@
 /* Created by Han Bi
  * used for details about the skill tree node
  */
-
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,7 +12,7 @@ public class SkillTreeNodeSO : ScriptableObject
     public List<SkillSO> skills = new();
 
     [SkillSelector]
-    public string skillTreeType;
+    public string skillTreeType;    
 
     public bool isActiveSkill { get; private set; }
 
