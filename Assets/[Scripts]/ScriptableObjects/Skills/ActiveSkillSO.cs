@@ -9,9 +9,9 @@ public class ActiveSkillSO : SkillSO
     public Stats manaCost = new(Stats.Stat.ManaCost);
     public Stats cooldown = new(Stats.Stat.Cooldown);
 
-    protected override void OnValidate()
+    protected override void Awake()
     {
-        base.OnValidate();
+        base.Awake();
         allStats.Add(manaCost);
         allStats.Add(cooldown);
     }
