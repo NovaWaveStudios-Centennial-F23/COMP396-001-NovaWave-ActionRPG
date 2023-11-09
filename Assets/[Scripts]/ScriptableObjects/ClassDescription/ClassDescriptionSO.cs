@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+[System.Serializable]
 [CreateAssetMenu(fileName = "Class Description", menuName = "Scriptable Object/Class Description")]
 public class ClassDescriptionSO : ScriptableObject
 {

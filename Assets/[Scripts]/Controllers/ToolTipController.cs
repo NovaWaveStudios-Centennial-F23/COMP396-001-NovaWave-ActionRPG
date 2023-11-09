@@ -10,18 +10,18 @@ public class ToolTipController : MonoBehaviour
     public static ToolTipController Instance;
 
     [SerializeField]
-    RectTransform skillTooltip;
+    GameObject skillTooltip;
 
     [SerializeField]
-    RectTransform playerSkillTooltip;
+    GameObject playerSkillTooltip;
 
     [SerializeField]
-    RectTransform nodeTooltip;
+    GameObject nodeTooltip;
 
     [SerializeField]
-    RectTransform gearTooltip;
+    GameObject gearTooltip;
 
-    private List<RectTransform> toolTips;
+    private List<GameObject> toolTips = new();
 
     private void Awake()
     {
@@ -39,7 +39,7 @@ public class ToolTipController : MonoBehaviour
     private void Start()
     {
 
-        toolTips = new List<RectTransform>
+        toolTips = new List<GameObject>
         {
             skillTooltip,
             playerSkillTooltip,
@@ -53,22 +53,22 @@ public class ToolTipController : MonoBehaviour
     public void ShowSkillToolTip(SkillTreeNode node)
     {
         CloseTooltips();
-        skillTooltip.gameObject.SetActive(true);
+        skillTooltip.SetActive(true);
         skillTooltip.GetComponent<SkillToolTip>().DisplayDetails(node);
     }
 
 
     public void CloseTooltips()
     {
-        foreach(RectTransform t in toolTips) {            
-            t.gameObject.SetActive(false);
+        foreach(GameObject t in toolTips) {
+            t.SetActive(false);
         }
     }
 
     public void ShowPlayerSkillTooltip(SkillTreeNode node)
     {
         CloseTooltips();
-        playerSkillTooltip.gameObject.SetActive(true);
+        playerSkillTooltip.SetActive(true);
         playerSkillTooltip.GetComponent<SkillToolTip>().DisplayDetails(node);
         
     }
