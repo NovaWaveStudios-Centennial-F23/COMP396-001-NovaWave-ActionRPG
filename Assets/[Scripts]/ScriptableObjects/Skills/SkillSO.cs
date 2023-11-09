@@ -26,10 +26,24 @@ public class SkillSO : ScriptableObject
     public GameObject prefab;
     public DamageType damageType;
     public SkillType skillType;
-    public List<Stats> allStats { get { SynchronizeStats(); return _allStats; } set { _allStats = value; SynchronizeStats(); } }
-    public List<Stats> miscStats = new List<Stats>();
 
+    public List<Stats> miscStats = new List<Stats>();
     protected List<Stats> _allStats = new List<Stats>();
+
+    public List<Stats> allStats
+    {
+        get
+        {
+            if(_allStats.Count == 0)
+            {
+              SynchronizeStats();
+            }
+            
+            return _allStats;
+        }
+
+        set { _allStats = value; }
+    }
 
     protected virtual void OnValidate()
     {
@@ -39,6 +53,7 @@ public class SkillSO : ScriptableObject
     protected virtual void SynchronizeStats()
     {
         _allStats.Clear();
+
         foreach (Stats stat in miscStats)
         {
             _allStats.Add(stat);
