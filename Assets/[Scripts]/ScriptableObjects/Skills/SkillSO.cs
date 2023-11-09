@@ -1,10 +1,9 @@
-using System;
-using System.Collections;
+
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
-using System.Reflection;
 
+
+[System.Serializable]
 [CreateAssetMenu(fileName = "SkillSciptableObject", menuName = "ScriptableObejcts/Create New Skill")]
 public class SkillSO : ScriptableObject
 {
@@ -27,15 +26,37 @@ public class SkillSO : ScriptableObject
     public GameObject prefab;
     public DamageType damageType;
     public SkillType skillType;
-    public List<Stats> allStats { get; set; } = new List<Stats>();  
+
     public List<Stats> miscStats = new List<Stats>();
+    protected List<Stats> _allStats = new List<Stats>();
+
+    public List<Stats> allStats
+    {
+        get
+        {
+            if(_allStats.Count == 0)
+            {
+              SynchronizeStats();
+            }
+            
+            return _allStats;
+        }
+
+        set { _allStats = value; }
+    }
 
     protected virtual void Awake()
     {
-        allStats.Clear();
+        SynchronizeStats();
+    }
+
+    protected virtual void SynchronizeStats()
+    {
+        _allStats.Clear();
+
         foreach (Stats stat in miscStats)
         {
-            allStats.Add(stat);
+            _allStats.Add(stat);
         }
     }
 }

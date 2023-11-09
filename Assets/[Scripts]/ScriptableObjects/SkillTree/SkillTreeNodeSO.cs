@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+[System.Serializable]
 [CreateAssetMenu(fileName = "SkillNode", menuName = "Scriptable Object/Skill Node")]
 public class SkillTreeNodeSO : ScriptableObject
 {
@@ -21,19 +21,6 @@ public class SkillTreeNodeSO : ScriptableObject
 
     private void OnValidate()
     {
-        //make sure that list of skills are of the same type
-        if(skills.Count > 0)
-        {
-            Type t = skills[0].GetType();
-            foreach(SkillSO skill in skills)
-            {
-                if(skill.GetType() != t)
-                {
-                    Debug.LogWarning($"Warning: there are different SkillTypes in the skill list of the {this.name} {nameof(SkillTreeNodeSO)}");
-                }
-            }
-        }
-
         //check skills list to see if this Node represents a passive skill or not
         if(skills.Count > 0)
         {
