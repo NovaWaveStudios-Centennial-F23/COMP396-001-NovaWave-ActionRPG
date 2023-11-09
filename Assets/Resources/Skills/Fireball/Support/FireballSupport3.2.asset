@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 0}
   damageType: 0
+  skillType: 0
   miscStats:
   - stat: 28
     minValue: 7
     maxValue: 7
   - stat: 6
-    minValue: 20
-    maxValue: 20
+    minValue: 15
+    maxValue: 15
