@@ -1,7 +1,8 @@
-
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
+
 [CreateAssetMenu(fileName = "SkillSciptableObject", menuName = "ScriptableObejcts/Create New Skill/Active Skil")]
 public class ActiveSkillSO : SkillSO
 {
@@ -13,12 +14,5 @@ public class ActiveSkillSO : SkillSO
         base.Awake();
         allStats.Add(manaCost);
         allStats.Add(cooldown);
-    }
-
-    protected override void SynchronizeStats()
-    {
-        base.SynchronizeStats();
-        _allStats.Add(manaCost);
-        _allStats.Add(cooldown);
     }
 }
