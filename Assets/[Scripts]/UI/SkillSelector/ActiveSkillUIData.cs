@@ -30,7 +30,7 @@ public class ActiveSkillUIData : MonoBehaviour
         foreach (SkillTreeNodeSO resource in resources) 
         {
             //check to see if node is for an active skill
-            if (resource.isActiveSkill)
+            if (resource.skills[0].GetType() == typeof(ActiveSkillSO))
             {
                 activeSkills.Add(resource.skillTreeType, resource);
             }

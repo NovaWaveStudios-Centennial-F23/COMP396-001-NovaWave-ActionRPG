@@ -12,26 +12,9 @@ public class SkillTreeNodeSO : ScriptableObject
     public List<SkillSO> skills = new();
 
     [SkillSelector]
-    public string skillTreeType;    
-
-    public bool isActiveSkill { get; private set; }
-
+    public string skillTreeType;
     public string skillName;
     public Sprite icon;
 
-    private void OnValidate()
-    {
-        //check skills list to see if this Node represents a passive skill or not
-        if(skills.Count > 0)
-        {
-            if (skills[0].GetType() == typeof(ActiveSkillSO))
-            {
-                isActiveSkill = true;
-            }
-            else
-            {
-                isActiveSkill = false;
-            }
-        }
-    }
+
 }
