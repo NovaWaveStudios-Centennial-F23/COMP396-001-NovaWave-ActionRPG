@@ -8,6 +8,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static Stats;
+using static StatFinder;
 
 public class StatsController : MonoBehaviour
 {
@@ -17,10 +19,9 @@ public class StatsController : MonoBehaviour
     [SerializeField] private List<Stats> playerStats;
     [SerializeField] private EquippedGear equippedGear;
 
-    private Dictionary<Stats.Stat, Stats> playerModifiers;
-    private Dictionary<Stats.Stat, Stats> skillTreeModifiers;
-    private Dictionary<Stats.Stat, Stats> gearStats;
-    private List<Stats> initialPlayerStats;
+    private Dictionary<Stat, Stats> playerModifiers;
+    private Dictionary<Stat, Stats> skillTreeModifiers;
+    private Dictionary<Stat, Stats> gearStats;
 
     void Awake()
     {
@@ -36,24 +37,16 @@ public class StatsController : MonoBehaviour
 
     private void Start()
     {
-        skillTreeModifiers = new Dictionary<Stats.Stat, Stats>();
-        gearStats = new Dictionary<Stats.Stat, Stats>();
+        skillTreeModifiers = new Dictionary<Stat, Stats>();
+        gearStats = new Dictionary<Stat, Stats>();
         InitPlayerModifiers();
-        initialPlayerStats = GetAllPlayerStats();
-    }
-
-    void Update()
-    {
-        // Manual Test to calculate player stats
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            CalculatePlayerStats();
-        }
+        playerStats = GetAllPlayerStats();
+        CalculatePlayerStats();
     }
 
     private void InitPlayerModifiers()
     {
-        playerModifiers = new Dictionary<Stats.Stat, Stats>();
+        playerModifiers = new Dictionary<Stat, Stats>();
 
         foreach (Stats s in playerStats)
         {
@@ -63,39 +56,38 @@ public class StatsController : MonoBehaviour
 
     private void CalculatePlayerStats()
     {
-        skillTreeModifiers = SkillTreeController.instance.GetModifiers("Fireball");
+        //skillTreeModifiers = SkillTreeController.instance.GetModifiers("Player");
         CalculateGearStats();
 
         // Duplicate dict to traverse through it
-        Dictionary<Stats.Stat, Stats> dict = new Dictionary<Stats.Stat, Stats>(GetAllPlayerModifiers());
+        Dictionary<Stat, Stats> dict = new Dictionary<Stat, Stats>(GetAllPlayerModifiers());
 
         // Change player stats based on skill tree stats and gear stats
-        foreach (Stats.Stat s in dict.Keys)
+        foreach (Stat s in dict.Keys)
         {
             bool hasGearStat = gearStats.ContainsKey(s);
             bool hasSkillTreeStat = skillTreeModifiers.ContainsKey(s);
 
             if (hasGearStat && hasSkillTreeStat)
             {
-                Stats result = initialPlayerStats.Find(x => x.stat == s) + gearStats[s] + skillTreeModifiers[s];
+                Stats result = playerStats.Find(x => x.stat == s) + gearStats[s] + skillTreeModifiers[s];
                 SetPlayerModifier(s, result);
             }
             else if (!hasGearStat && hasSkillTreeStat)
             {
-                Stats result = initialPlayerStats.Find(x => x.stat == s) + skillTreeModifiers[s];
+                Stats result = playerStats.Find(x => x.stat == s) + skillTreeModifiers[s];
                 SetPlayerModifier(s, result);
 
             }
             else if (hasGearStat && !hasSkillTreeStat)
             {
-                Stats result = initialPlayerStats.Find(x => x.stat == s) + gearStats[s];
+                Stats result = playerStats.Find(x => x.stat == s) + gearStats[s];
                 SetPlayerModifier(s, result);
             }
         }
 
         Debug.Log(GetAllPlayerModifiers()[0].minValue);
         Debug.Log(GetAllPlayerModifiers()[0].maxValue);
-        SkillTreeController.instance.Test();
         Debug.Log(skillTreeModifiers.Count);
     }
 
@@ -103,7 +95,7 @@ public class StatsController : MonoBehaviour
     {
         this.gearStats.Clear();
         List<Gear> gears = new List<Gear>();
-        Dictionary<Stats.Stat, Stats> gearStats = new Dictionary<Stats.Stat, Stats>();
+        Dictionary<Stat, Stats> gearStats = new Dictionary<Stat, Stats>();
 
         // List of equipped gear (Cannot be a list)
         if (equippedGear.wand != null)
@@ -138,7 +130,7 @@ public class StatsController : MonoBehaviour
         //Calculate all stats from gear
         foreach (Gear g in gears)
         {
-            foreach (Stats.Stat s in g.GetGearStats().Keys)
+            foreach (Stat s in g.GetGearStats().Keys)
             {
                 if (gearStats.ContainsKey(s))
                 {
@@ -156,7 +148,7 @@ public class StatsController : MonoBehaviour
         this.gearStats = gearStats;
     }
 
-    public Dictionary<Stats.Stat, Stats> GetAllPlayerModifiers()
+    public Dictionary<Stat, Stats> GetAllPlayerModifiers()
     {
         return playerModifiers;
     }
@@ -166,10 +158,10 @@ public class StatsController : MonoBehaviour
         return playerStats;
     }
 
-    public Stats GetPlayerModifier(Stats.Stat stat)
+    public Stats GetPlayerModifier(Stat stat)
     {
         Stats st = null;
-        foreach (Stats.Stat s in playerModifiers.Keys)
+        foreach (Stat s in playerModifiers.Keys)
         {
             if (s == stat)
             {
@@ -179,7 +171,7 @@ public class StatsController : MonoBehaviour
         return st;
     }
 
-    public void SetPlayerModifier(Stats.Stat stat, Stats value)
+    public void SetPlayerModifier(Stat stat, Stats value)
     {
         foreach (Stats s in playerStats)
         {

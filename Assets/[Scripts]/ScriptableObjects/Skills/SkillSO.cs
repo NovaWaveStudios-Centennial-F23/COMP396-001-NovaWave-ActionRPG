@@ -30,6 +30,15 @@ public class SkillSO : ScriptableObject
     public List<Stats> allStats { get; set; } = new List<Stats>();
     public List<Stats> miscStats = new List<Stats>();
 
+    protected virtual void OnValidate()
+    {
+        allStats.Clear();
+        foreach (Stats stat in miscStats)
+        {
+            allStats.Add(stat);
+        }
+    }
+
     protected virtual void Awake()
     {
         allStats.Clear();
