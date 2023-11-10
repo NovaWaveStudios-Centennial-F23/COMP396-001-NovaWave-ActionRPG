@@ -4,6 +4,8 @@
  */
 
 using System;
+using System.ComponentModel;
+using System.Reflection;
 using Unity.VisualScripting;
 
 [System.Serializable]

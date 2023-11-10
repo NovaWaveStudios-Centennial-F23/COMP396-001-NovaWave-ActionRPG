@@ -29,7 +29,7 @@ public class InputController : MonoBehaviour
             if(Input.GetKeyDown(key))
             {
                 //Debug.Log($"{key} detected: attempting to cast {keySpellPair[key]}");
-                SkillsController.Instance.SkillCastProjectile(keySpellPair[key]);
+                SkillsController.Instance.SkillCast(keySpellPair[key]);
             }
         }
     }

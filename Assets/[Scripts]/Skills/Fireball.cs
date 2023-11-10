@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.ParticleSystem;
+using static Stats;
+using static StatFinder;
 
 public class Fireball : Skill
 {
@@ -10,7 +12,7 @@ public class Fireball : Skill
 
     public override IEnumerator Duration()
     {
-        yield return new WaitForSeconds(skillSO.allStats.Find(x => x.stat == Stats.Stat.Duration).minValue + 0.1f);
+        yield return new WaitForSeconds(FindStat(skillSO, Stat.Duration).minValue + 0.1f);
         gameObject.layer = 6;
     }
 
@@ -45,14 +47,14 @@ public class Fireball : Skill
 
         enemies = new List<GameObject>();
         direction = SkillsController.Instance.mousePosition - transform.position;
-        cooldown = skillSO.allStats.Find(x => x.stat == Stats.Stat.Cooldown).minValue;
-        AOE.radius = skillSO.allStats.Find(x => x.stat == Stats.Stat.AOE).minValue / 10;
+        cooldown = FindStat(skillSO, Stat.Cooldown).minValue;
+        AOE.radius = FindStat(skillSO, Stat.AOE).minValue / 10;
     }
 
     public override void MovementBehaviour()
     {
         transform.forward = direction;
-        rb.velocity = transform.forward * skillSO.allStats.Find(x => x.stat == Stats.Stat.ProjectileSpeed).minValue;
+        rb.velocity = transform.forward * FindStat(skillSO, Stat.ProjectileSpeed).minValue;
     }
 
     public override void CalculateCooldown()
@@ -74,10 +76,14 @@ public class Fireball : Skill
         if (other.gameObject.CompareTag("Enemy"))
         {
             other.gameObject.GetComponent<Health>().TakeDamage(damage);
-
+            Debug.Log(damage);
             foreach (GameObject g in enemies)
             {
-                g.gameObject.GetComponent<Health>().TakeDamage(damage / 2);
+                if (g != other.gameObject)
+                {
+                    g.gameObject.GetComponent<Health>().TakeDamage(damage / 2);
+                    Debug.Log(damage / 2);
+                }
             }
         }
 
