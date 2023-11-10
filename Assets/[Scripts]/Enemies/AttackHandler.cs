@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -48,26 +47,52 @@ public class AttackHandler : MonoBehaviour
 
     private void ProcessAttack()
     {
-        float distance = Vector3.Distance(transform.position, target.transform.position);
-        if (distance < attackRange)
+        if (target == null)
         {
-            if (attackTimer > 0f)
-            {
-                return;
-            }
+            return;
+        }
+
+        float distance = Vector3.Distance(transform.position, target.transform.position);
+
+        if (attackTimer > 0f)
+        {
+            return;
+        }
+
+        // Determine damage amount based on the attacker's tag
+        float damageAmount = 0f;
+
+        if (gameObject.CompareTag("Player") && target.gameObject.CompareTag("Enemy"))
+        {
+            // Player attacks enemy
+            damageAmount = playerDamageAmount;
+        }
+        else if (gameObject.CompareTag("Enemy") && target.gameObject.CompareTag("Player"))
+        {
+            // Enemy attacks player
+            damageAmount = enemyDamageAmount;
+        }
+
+        if (damageAmount > 0f && distance < attackRange)
+        {
             attackTimer = defaultTimeToAttack;
             characterMovement.Stop();
             animator.SetTrigger("Attack");
-
-            // Determine damage amount based on the target's tag
-            float damageAmount = target.gameObject.CompareTag("Player") ? playerDamageAmount : enemyDamageAmount;
-
             target.TakeDamage(damageAmount);
-            target = null;
         }
         else
         {
-            characterMovement.SetDestination(target.transform.position);
+            // Limit the maximum distance to move towards the target
+            float maxMoveDistance = 4f;
+            Vector3 directionToTarget = (target.transform.position - transform.position).normalized;
+            Vector3 targetPosition = transform.position + directionToTarget * Mathf.Min(distance, maxMoveDistance);
+            characterMovement.SetDestination(targetPosition);
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }
