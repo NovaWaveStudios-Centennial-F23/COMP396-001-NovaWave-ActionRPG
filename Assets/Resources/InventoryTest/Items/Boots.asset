@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Boots
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 00db08e70a0fdc64b96a18dc907fca34, type: 3}
+  groundPrefab: {fileID: 168832, guid: 3d46dd40c8a0b11449b521ae928abf22, type: 3}
   stackable: 0
   itemType: 8
-  description: 
+  description: test for tooltip
   data:
     Name: Boots
     Id: -1

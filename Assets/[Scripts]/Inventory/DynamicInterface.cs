@@ -1,3 +1,9 @@
+/*
+    Author: Yusuke Kuroki
+
+    This is an inventory script that extends UserInterface.
+*/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
