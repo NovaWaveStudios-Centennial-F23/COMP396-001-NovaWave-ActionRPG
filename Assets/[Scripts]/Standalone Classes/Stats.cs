@@ -4,9 +4,11 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
 using Unity.VisualScripting;
+using static SkillTreeController;
 
 [System.Serializable]
 public class Stats
@@ -90,6 +92,38 @@ public class Stats
 
         return ans;
 
+    }
+
+    public static Dictionary<Stat, Stats> AddDictionaries(Dictionary<Stat, Stats> main, Dictionary<Stat, Stats> other)
+    {
+        Dictionary<Stat, Stats> ans = new Dictionary<Stat, Stats>();
+        
+        foreach (var kvp in main)
+        {
+            Stat key = kvp.Key;
+            Stats value = new Stats
+            {
+                stat = kvp.Value.stat,
+                minValue = kvp.Value.minValue,
+                maxValue = kvp.Value.maxValue
+            };
+            ans[key] = value;
+        }
+
+        foreach (Stat s in other.Keys)
+        {
+            if (ans.ContainsKey(s))
+            {
+                ans[s].minValue += other[s].minValue;
+                ans[s].maxValue += other[s].maxValue;
+            }
+            else
+            {
+                ans.Add(s, other[s]);
+            }
+        }
+
+        return ans;
     }
 
     public override bool Equals(object obj) => this.Equals(obj as Stats);

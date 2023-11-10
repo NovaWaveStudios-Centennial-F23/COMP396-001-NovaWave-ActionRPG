@@ -40,7 +40,6 @@ public class StatsController : MonoBehaviour
         skillTreeModifiers = new Dictionary<Stat, Stats>();
         gearStats = new Dictionary<Stat, Stats>();
         InitPlayerModifiers();
-        playerStats = GetAllPlayerStats();
         CalculatePlayerStats();
     }
 
@@ -59,43 +58,16 @@ public class StatsController : MonoBehaviour
         //skillTreeModifiers = SkillTreeController.instance.GetModifiers("Player");
         CalculateGearStats();
 
-        // Duplicate dict to traverse through it
-        Dictionary<Stat, Stats> dict = new Dictionary<Stat, Stats>(GetAllPlayerModifiers());
-
-        // Change player stats based on skill tree stats and gear stats
-        foreach (Stat s in dict.Keys)
-        {
-            bool hasGearStat = gearStats.ContainsKey(s);
-            bool hasSkillTreeStat = skillTreeModifiers.ContainsKey(s);
-
-            if (hasGearStat && hasSkillTreeStat)
-            {
-                Stats result = playerStats.Find(x => x.stat == s) + gearStats[s] + skillTreeModifiers[s];
-                SetPlayerModifier(s, result);
-            }
-            else if (!hasGearStat && hasSkillTreeStat)
-            {
-                Stats result = playerStats.Find(x => x.stat == s) + skillTreeModifiers[s];
-                SetPlayerModifier(s, result);
-
-            }
-            else if (hasGearStat && !hasSkillTreeStat)
-            {
-                Stats result = playerStats.Find(x => x.stat == s) + gearStats[s];
-                SetPlayerModifier(s, result);
-            }
-        }
-
-        Debug.Log(GetAllPlayerModifiers()[0].minValue);
-        Debug.Log(GetAllPlayerModifiers()[0].maxValue);
-        Debug.Log(skillTreeModifiers.Count);
+        // Change player modifiers based on skill tree stats and gear stats
+        playerModifiers = AddDictionaries(playerModifiers, skillTreeModifiers);
+        playerModifiers = AddDictionaries(playerModifiers, gearStats);
     }
 
     private void CalculateGearStats()
     {
         this.gearStats.Clear();
         List<Gear> gears = new List<Gear>();
-        Dictionary<Stat, Stats> gearStats = new Dictionary<Stat, Stats>();
+        Dictionary<Stat, Stats> tempGearStats = new Dictionary<Stat, Stats>();
 
         // List of equipped gear (Cannot be a list)
         if (equippedGear.wand != null)
@@ -145,7 +117,7 @@ public class StatsController : MonoBehaviour
             }
         }
 
-        this.gearStats = gearStats;
+        this.gearStats = tempGearStats;
     }
 
     public Dictionary<Stat, Stats> GetAllPlayerModifiers()
@@ -181,8 +153,8 @@ public class StatsController : MonoBehaviour
             }
             else
             {
-                Debug.Log(s.stat + "doesn't exist in player stats");
+                Debug.Log(s.stat + " doesn't exist in player stats");
             }
         }
-    }
+    }    
 }
