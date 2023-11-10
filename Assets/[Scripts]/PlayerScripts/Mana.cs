@@ -9,12 +9,21 @@ public class Mana : MonoBehaviour
 {
     private ValuePool manaPool;
     public event Action<ValuePool> PoolChanged;
+
+    [SerializeField] float manaRegen; 
+    //will need to get this value from calculation controller
+
     // Start is called before the first frame update
     void Start()
     {
         //TODO: Need some way of getting the max mana the player should have.
 
         manaPool = new ValuePool { maxValue = 100f, currentValue = 100f };
+    }
+
+    private void Update()
+    {
+        GainMana(manaRegen * Time.deltaTime);
     }
 
     /// <summary>
@@ -36,6 +45,7 @@ public class Mana : MonoBehaviour
             return true;
         }
     }
+
     /// <summary>
     /// Used for giving the player mana
     /// </summary>
