@@ -129,6 +129,8 @@ MonoBehaviour:
   inventory: {fileID: 11400000, guid: 2a848fb86c074424586c68c0c7aa222c, type: 2}
   xSlot: 80
   ySlot: 80
+  player: {fileID: 0}
+  groundedItem: {fileID: 7006348394643442827, guid: 922dba4201685964281e7921a726fb9b, type: 3}
   inventoryIcon: {fileID: 145341717808876369, guid: d0340974e8b5292498d2ea91388aaf7d, type: 3}
   X_START: -250
   Y_START: 350
@@ -246,6 +248,8 @@ MonoBehaviour:
   inventory: {fileID: 11400000, guid: 930976c7aeed33849a436b9775ee9329, type: 2}
   xSlot: 80
   ySlot: 80
+  player: {fileID: 0}
+  groundedItem: {fileID: 7006348394643442827, guid: 922dba4201685964281e7921a726fb9b, type: 3}
   slots:
   - {fileID: 3825678046222258003}
   - {fileID: 7681971406847439496}

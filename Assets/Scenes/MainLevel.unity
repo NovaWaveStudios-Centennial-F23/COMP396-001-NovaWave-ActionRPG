@@ -37913,6 +37913,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reloadDelay: 5
+  healthRegen: 10
 --- !u!114 &1126410853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37982,6 +37983,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseInput: {fileID: 744135791}
+  uiLayerMask:
+    serializedVersion: 2
+    m_Bits: 32
 --- !u!114 &1126410858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38072,6 +38076,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d06156a57aa08a947be9064a19eac01b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manaRegen: 10
 --- !u!1 &1127902009
 GameObject:
   m_ObjectHideFlags: 0

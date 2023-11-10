@@ -1,3 +1,13 @@
+/*
+    Author: Yusuke Kuroki
+
+    This SO is for item/gear creation.
+
+    Tasks:
+    - How to integrate with Gear SO
+      -> make SO as abstract class and make item/gear SO inherit from it?
+*/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,6 +35,7 @@ public class ItemSO : ScriptableObject
 {
     // Check properties for all type of items
     public Sprite icon;
+    public GameObject groundPrefab;
     public bool stackable;
     public ItemType itemType;
     [TextArea(15, 20)]

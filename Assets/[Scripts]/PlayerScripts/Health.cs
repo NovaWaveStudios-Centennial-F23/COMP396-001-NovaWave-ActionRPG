@@ -5,6 +5,9 @@ public class Health : MonoBehaviour
 {
     public ValuePool lifepool; // Assuming this is your character's health pool
     public float reloadDelay = 5.0f; // Time in seconds before the scene reloads
+
+    [SerializeField]
+    float healthRegen;//will need to get this from calculator later
     // You may want to set these in the inspector or in a Start() method if they are constant
     private void Start()
     {
@@ -36,6 +39,14 @@ public class Health : MonoBehaviour
             }
         }
 
+    }
+
+    private void Update()
+    {
+        if(lifepool.currentValue < lifepool.maxValue)
+        {
+            lifepool.currentValue += healthRegen * Time.deltaTime;
+        }
     }
 
     // This method is used to apply damage to the character

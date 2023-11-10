@@ -46,12 +46,14 @@ public class PlayerForInventory : MonoBehaviour
         RaycastHit hit = new RaycastHit();
         if (Physics.Raycast(ray, out hit))
         {
-            clickedObject = hit.collider.gameObject;
+            
+            // get parent object(groundedItem) from clicked object
+            clickedObject = hit.collider.gameObject.transform.parent.gameObject;
 
             var groundItem = clickedObject.GetComponent<GroundedItem>();
             if (groundItem)
             {
-                Item _item = new Item(groundItem.item);
+                Item _item = new Item(groundItem.itemSO);
                 if (inventory.AddItem(_item, 1))
                 {
                     Destroy(clickedObject);

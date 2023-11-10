@@ -1,3 +1,13 @@
+/*
+    Author: Yusuke Kuroki
+    
+    This script is main inventory script. It cannot be use directory, but can be extended.
+
+    Tasks:
+    - Check if item is stackable and separate if needed(or separate right/left click)
+    - Check if item is stackable then remove item all or one by one
+*/
+
 using System.Diagnostics;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,6 +28,10 @@ public abstract class UserInterface : MonoBehaviour
     // Value for slot size
     public int xSlot = 80;
     public int ySlot = 80;
+
+    // properties for dropping item
+    public GameObject player;
+    public GroundedItem groundedItem;
 
     // Start is called before the first frame update
     void Start()
@@ -103,7 +117,6 @@ public abstract class UserInterface : MonoBehaviour
         /* Tasks:
             - Check if item is stackable and separate if needed(or separate right/left click)
             - Check if item is stackable then remove item all or one by one
-            - Spawn removed item to field(probablly need to check inventory script as well)
         */
 
         // Destroy dragged item
@@ -111,7 +124,12 @@ public abstract class UserInterface : MonoBehaviour
 
         if (MouseData.interfaceMouseIsOver == null)
         {
-            // Remove dragged item
+            // Instantiate item to field
+            ItemSO droppedItemData = slotsOnInterface[obj].ItemObject;
+            groundedItem.itemSO = droppedItemData;
+            Instantiate(groundedItem, player.transform.position, Quaternion.identity);
+
+            // Remove dragged item from inventory
             slotsOnInterface[obj].RemoveItem();
             return;
         }
