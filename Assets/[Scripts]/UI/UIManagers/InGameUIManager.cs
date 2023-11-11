@@ -20,6 +20,12 @@ public class InGameUIManager : MonoBehaviour
     [SerializeField]
     GameObject skillSkillTreePanel;
 
+    [SerializeField]
+    GameObject ingameMenuPanel;
+
+    [SerializeField]
+    GameObject playerHUDPanel;
+
     bool listenForInputs = false;
 
     private List<GameObject> panels;
@@ -29,18 +35,35 @@ public class InGameUIManager : MonoBehaviour
     {
         if(Instance != null && Instance != this)
         {
-            Destroy(gameObject);
+            Destroy(this);
         }
         else
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+
+        SceneManager.sceneLoaded += HandleSceneChange;
+    }
+
+    void HandleSceneChange(Scene currScene, LoadSceneMode mode)
+    {
+        
+        if(currScene.name == "StartMenu" || currScene.name == "CharacterSelectionMenu")
+        {
+            listenForInputs = false;
+        }
+        else
+        {
+            listenForInputs = true;
+        }
+        CloseAllPanels();
+        playerHUDPanel.SetActive(listenForInputs);
     }
 
     private void Start()
     {
-        panels = new List<GameObject>() { inventoryPanel, playerSkillTreePanel, skillSkillTreePanel };
+        panels = new List<GameObject>() { inventoryPanel, playerSkillTreePanel, skillSkillTreePanel, ingameMenuPanel };
         SceneManager.activeSceneChanged += HandleSceneChange;
         listenForInputs = ShouldCheckForInput(SceneManager.GetActiveScene());
         CloseAllPanels();
@@ -90,19 +113,45 @@ public class InGameUIManager : MonoBehaviour
         }
     }
 
+    bool AllWindowsClosed()
+    {
+        foreach(var panel in panels)
+        {
+            if(panel.activeInHierarchy)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     private void CheckCloseAll()
     {
         if(Input.GetKeyDown(InputReferences.closeAllWindowsKey))
         {
-            CloseAllPanels();
+            //if all windows are already closed
+            if (AllWindowsClosed())
+            {
+                ToggleInGameMenu();
+            }
+            else
+            {
+                CloseAllPanels();
+            }
+            
+            
         }
     }
 
     private void CloseAllPanels()
     {
-        foreach (GameObject p in panels)
+        if(panels != null)
         {
-            p.SetActive(false);
+            foreach (GameObject p in panels)
+            {
+                p.SetActive(false);
+            }
         }
 
         ToolTipController.Instance.CloseTooltips();
@@ -126,4 +175,67 @@ public class InGameUIManager : MonoBehaviour
         ToolTipController.Instance.CloseTooltips();
     }
 
+    public void ToggleInventory()
+    {
+        
+        if (!inventoryPanel.activeInHierarchy)
+        {
+            CloseAllPanels();
+            inventoryPanel.SetActive(true);
+        }
+        else
+        {
+            inventoryPanel.SetActive(false);
+        }
+        
+    }
+
+    public void TogglePlayerSkillTree()
+    {
+        if (!playerSkillTreePanel.activeInHierarchy)
+        {
+            CloseAllPanels();
+            playerSkillTreePanel.SetActive(true);
+        }
+        else
+        {
+            playerSkillTreePanel.SetActive(false);
+        }
+    }
+
+    public void ToggleSkillTree()
+    {
+        if (!skillSkillTreePanel.activeInHierarchy)
+        {
+            CloseAllPanels();
+            skillSkillTreePanel.SetActive(true);
+        }
+        else
+        {
+            skillSkillTreePanel.SetActive(false);
+        }
+    }
+
+    public void ToggleInGameMenu()
+    {
+        if (ingameMenuPanel.activeInHierarchy)
+        {
+            ingameMenuPanel.SetActive(false);
+        }
+        else
+        {
+            CloseAllPanels();
+            ingameMenuPanel.SetActive(true);
+        }
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("StartMenu");
+    }
+
+    public void QuitApplication()
+    {
+        Application.Quit();
+    }
 }

@@ -130,19 +130,27 @@ public class StatsController : MonoBehaviour
         //Calculate all stats from gear
         foreach (Gear g in gears)
         {
-            foreach (Stat s in g.GetGearStats().Keys)
+            try
             {
-                if (gearStats.ContainsKey(s))
+                foreach (Stat s in g.GetGearStats().Keys)
                 {
-                    gearStats[s] += g.GetGearStats()[s];
-                    break;
+                    if (gearStats.ContainsKey(s))
+                    {
+                        gearStats[s] += g.GetGearStats()[s];
+                        break;
+                    }
+                    else
+                    {
+                        gearStats.Add(s, g.GetGearStats()[s]);
+                        break;
+                    }
                 }
-                else
-                {
-                    gearStats.Add(s, g.GetGearStats()[s]);
-                    break;
-                }
+
+            }catch (Exception ex)
+            {
+                Debug.LogWarning($"{ex}");
             }
+            
         }
 
         this.gearStats = gearStats;
