@@ -22,7 +22,11 @@ public class ClassSelectButton : GroupButton
         }
         else if (!isActive)
         {
-            classModel.SetActive(false);
+            if(classModel != null)
+            {
+                classModel.SetActive(false);
+            }
+            
         }
     }
 

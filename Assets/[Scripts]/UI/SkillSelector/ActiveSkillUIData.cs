@@ -21,6 +21,7 @@ public class ActiveSkillUIData : MonoBehaviour
         else
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
 
         //get all skillNodes (since they connect UI with skill)

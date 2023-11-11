@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 
 public class InGameUIManager : MonoBehaviour
 {
-    InGameUIManager Instance;
+    public static InGameUIManager Instance;
 
     [SerializeField]
     GameObject inventoryPanel;
@@ -19,6 +19,12 @@ public class InGameUIManager : MonoBehaviour
 
     [SerializeField]
     GameObject skillSkillTreePanel;
+
+    [SerializeField]
+    GameObject ingameMenuPanel;
+
+    [SerializeField]
+    GameObject playerHUDPanel;
 
     bool listenForInputs = false;
 
@@ -36,29 +42,36 @@ public class InGameUIManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+
+        SceneManager.sceneLoaded += HandleSceneChange;
+    }
+
+    void HandleSceneChange(Scene currScene, LoadSceneMode mode)
+    {
+        
+        if(currScene.name == "StartMenu" || currScene.name == "CharacterSelectionMenu")
+        {
+            listenForInputs = false;
+        }
+        else
+        {
+            listenForInputs = true;
+        }
+        CloseAllPanels();
+        playerHUDPanel.SetActive(listenForInputs);
     }
 
     private void Start()
     {
-        panels = new List<GameObject>() { inventoryPanel, playerSkillTreePanel, skillSkillTreePanel };
-        SceneManager.activeSceneChanged += HandleSceneChange;
+        panels = new List<GameObject>() { inventoryPanel, playerSkillTreePanel, skillSkillTreePanel, ingameMenuPanel };
         listenForInputs = ShouldCheckForInput(SceneManager.GetActiveScene());
         CloseAllPanels();
+        ingameMenuPanel.SetActive(false);
     }
 
     private bool ShouldCheckForInput(Scene curScene)
     {
         return (curScene.buildIndex != 0 || curScene.buildIndex != 1);
-    }
-
-    private void HandleSceneChange(Scene prevScene, Scene curScene)
-    {
-        //hide all windows
-        listenForInputs = ShouldCheckForInput(curScene);
-        if(!listenForInputs)
-        {
-            //hide player HUD
-        }
     }
 
     private void Update()
@@ -90,19 +103,45 @@ public class InGameUIManager : MonoBehaviour
         }
     }
 
+    bool AllWindowsClosed()
+    {
+        foreach(var panel in panels)
+        {
+            if(panel.activeInHierarchy)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     private void CheckCloseAll()
     {
         if(Input.GetKeyDown(InputReferences.closeAllWindowsKey))
         {
-            CloseAllPanels();
+            //if all windows are already closed
+            if (AllWindowsClosed())
+            {
+                ToggleInGameMenu();
+            }
+            else
+            {
+                CloseAllPanels();
+            }
+            
+            
         }
     }
 
     private void CloseAllPanels()
     {
-        foreach (GameObject p in panels)
+        if(panels != null)
         {
-            p.SetActive(false);
+            foreach (GameObject p in panels)
+            {
+                p.SetActive(false);
+            }
         }
 
         ToolTipController.Instance.CloseTooltips();
@@ -126,4 +165,67 @@ public class InGameUIManager : MonoBehaviour
         ToolTipController.Instance.CloseTooltips();
     }
 
+    public void ToggleInventory()
+    {
+        
+        if (!inventoryPanel.activeInHierarchy)
+        {
+            CloseAllPanels();
+            inventoryPanel.SetActive(true);
+        }
+        else
+        {
+            inventoryPanel.SetActive(false);
+        }
+        
+    }
+
+    public void TogglePlayerSkillTree()
+    {
+        if (!playerSkillTreePanel.activeInHierarchy)
+        {
+            CloseAllPanels();
+            playerSkillTreePanel.SetActive(true);
+        }
+        else
+        {
+            playerSkillTreePanel.SetActive(false);
+        }
+    }
+
+    public void ToggleSkillTree()
+    {
+        if (!skillSkillTreePanel.activeInHierarchy)
+        {
+            CloseAllPanels();
+            skillSkillTreePanel.SetActive(true);
+        }
+        else
+        {
+            skillSkillTreePanel.SetActive(false);
+        }
+    }
+
+    public void ToggleInGameMenu()
+    {
+        if (ingameMenuPanel.activeInHierarchy)
+        {
+            ingameMenuPanel.SetActive(false);
+        }
+        else
+        {
+            CloseAllPanels();
+            ingameMenuPanel.SetActive(true);
+        }
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("StartMenu");
+    }
+
+    public void QuitApplication()
+    {
+        Application.Quit();
+    }
 }

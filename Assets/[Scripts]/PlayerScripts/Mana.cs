@@ -23,7 +23,10 @@ public class Mana : MonoBehaviour
 
     private void Update()
     {
-        GainMana(manaRegen * Time.deltaTime);
+        if(manaPool.currentValue < manaPool.maxValue)
+        {
+            GainMana(manaRegen * Time.deltaTime);
+        }
     }
 
     /// <summary>
