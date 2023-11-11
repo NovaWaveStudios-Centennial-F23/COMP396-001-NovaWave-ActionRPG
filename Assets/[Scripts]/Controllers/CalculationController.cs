@@ -105,7 +105,7 @@ public class CalculationController : MonoBehaviour
     {
         // Calculate base damage of the skill
         float skillDamage = FindStat(skillTreeModifiers, Stat.SkillDamage).minValue + (FindStat(skillTreeModifiers, Stat.SkillDamage).maxValue / 100) * FindStat(playerModifiers, Stat.BaseDamage).minValue;
-
+        
         // Additional elemental damage
         float totalDamage = skillDamage + CalculateElementalDamage(skill);
 
@@ -120,10 +120,16 @@ public class CalculationController : MonoBehaviour
         Enum element = skill.damageType;
         string statName = element.ToString() + "DamageP";
         Stat stat;
-        Enum.TryParse(statName, out stat);
-        
-        float elementalDamage = ((FindStat(playerModifiers, stat).minValue + FindStat(skillTreeModifiers, stat).minValue) / 100) * FindStat(skill, Stat.SkillDamage).minValue;
-        return elementalDamage;
+
+        if (Enum.TryParse(statName, out stat))
+        {
+            float elementalDamage = ((FindStat(playerModifiers, stat).minValue + FindStat(skillTreeModifiers, stat).minValue) / 100) * FindStat(skill, Stat.SkillDamage).minValue;
+            return elementalDamage;
+        }
+        else
+        {
+            return 0;
+        }
     }
 
     private float CalculateCrit(ActiveSkillSO skill)

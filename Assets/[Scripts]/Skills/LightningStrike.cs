@@ -23,11 +23,21 @@ public class LightningStrike : Skill
     {
         while (true)
         {
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(1f);
             damage = CalculationController.Instance.DamageOutput(skillSO);
             foreach (GameObject g in enemies)
             {
-                g.GetComponent<Health>().TakeDamage(damage);
+                try
+                {
+                    if (g.GetComponent<Health>().lifepool.currentValue >= 0)
+                    {
+                        g.GetComponent<Health>().TakeDamage(damage);
+                    }
+                }
+                catch
+                {
+                    continue;
+                }
             }
         }
     }

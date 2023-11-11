@@ -44,18 +44,6 @@ public class SkillsController : MonoBehaviour
     void Update()
     {
         Raycast();
-        if (Input.GetKeyDown(KeyCode.Q) && !activeSkillCooldown.ContainsKey(nameof(Fireball)))
-        {
-            SkillCast(nameof(Fireball));
-        }
-        if (Input.GetKeyDown(KeyCode.W) && !activeSkillCooldown.ContainsKey(nameof(FrostNova)))
-        {
-            SkillCast(nameof(FrostNova));
-        }
-        if (Input.GetKeyDown(KeyCode.E) && !activeSkillCooldown.ContainsKey(nameof(LightningStrike)))
-        {
-            SkillCast(nameof(LightningStrike));
-        }
     }
 
     private void Raycast()
@@ -71,34 +59,41 @@ public class SkillsController : MonoBehaviour
 
     public void SkillCast(string skill)
     {
-        // Set Skill Stats (Subject to change)
-        activeSkillSO = Resources.Load<ActiveSkillSO>("Skills/" + skill + "/" + skill + "Stats");
-        CalculationController.Instance.CalculateSkillStats(skill, activeSkillSO);
-
-        // Set Spawn Location
-        Vector3 spawnLocation = new Vector3(0, 0, 0);
-        switch (activeSkillSO.skillType)
+        if (!activeSkillCooldown.ContainsKey(skill))
         {
-            case SkillSO.SkillType.Projectile:
-                spawnLocation = projectileSpawner.transform.position;
-                break;
-            case SkillSO.SkillType.OnPlayer:
-                spawnLocation = player.transform.position;
-                break;
-            case SkillSO.SkillType.OnMouse:
-                spawnLocation = mousePosition;
-                break;
-            default:
-                Debug.Log("Please assign a skill type");
-                break;
+            // Set Skill Stats (Subject to change)
+            activeSkillSO = Resources.Load<ActiveSkillSO>("Skills/" + skill + "/" + skill + "Stats");
+            CalculationController.Instance.CalculateSkillStats(skill, activeSkillSO);
+
+            // Set Spawn Location
+            Vector3 spawnLocation = new Vector3(0, 0, 0);
+            switch (activeSkillSO.skillType)
+            {
+                case SkillSO.SkillType.Projectile:
+                    spawnLocation = projectileSpawner.transform.position;
+                    break;
+                case SkillSO.SkillType.OnPlayer:
+                    spawnLocation = player.transform.position;
+                    break;
+                case SkillSO.SkillType.OnMouse:
+                    spawnLocation = mousePosition;
+                    break;
+                default:
+                    Debug.Log("Please assign a skill type");
+                    break;
+            }
+
+            // Instantiate skill
+            GameObject activeSkill = Instantiate(activeSkillSO.prefab, spawnLocation, Quaternion.identity);
+            activeSkill.GetComponent<Skill>().skillSO = activeSkillSO;
+
+            // Activate Skill Cooldown
+            activeSkillCooldown.Add(skill, FindStat(activeSkillSO, Stat.Cooldown).minValue);
         }
-
-        // Instantiate skill
-        GameObject activeSkill = Instantiate(activeSkillSO.prefab, spawnLocation, Quaternion.identity);
-        activeSkill.GetComponent<Skill>().skillSO = activeSkillSO;
-
-        // Activate Skill Cooldown
-        activeSkillCooldown.Add(skill, FindStat(activeSkillSO, Stat.Cooldown).minValue);
+        else
+        {
+            Debug.Log(skill + " is on cooldown.");
+        }
     }    
 
     public void SetSkillCooldown(string skill, float cooldown)

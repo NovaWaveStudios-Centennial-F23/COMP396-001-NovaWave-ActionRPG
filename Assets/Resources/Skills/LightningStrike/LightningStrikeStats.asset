@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LightningStrikeStats
   m_EditorClassIdentifier: 
   prefab: {fileID: 1604970523841052, guid: 7857150e75ac7d245881c20f0db9d9ef, type: 3}
-  damageType: 0
+  damageType: 3
   skillType: 2
   miscStats: []
   manaCost:

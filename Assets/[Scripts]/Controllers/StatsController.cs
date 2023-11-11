@@ -57,10 +57,12 @@ public class StatsController : MonoBehaviour
     {
         //skillTreeModifiers = SkillTreeController.instance.GetModifiers("Player");
         CalculateGearStats();
+        Debug.Log(gearStats.Keys.Count);
 
         // Change player modifiers based on skill tree stats and gear stats
         playerModifiers = AddDictionaries(playerModifiers, skillTreeModifiers);
         playerModifiers = AddDictionaries(playerModifiers, gearStats);
+        Debug.Log(playerModifiers[0].minValue);
     }
 
     private void CalculateGearStats()
@@ -107,14 +109,14 @@ public class StatsController : MonoBehaviour
             {
                 foreach (Stat s in g.GetGearStats().Keys)
                 {
-                    if (gearStats.ContainsKey(s))
+                    if (tempGearStats.ContainsKey(s))
                     {
-                        gearStats[s] += g.GetGearStats()[s];
+                        tempGearStats[s] += g.GetGearStats()[s];
                         break;
                     }
                     else
                     {
-                        gearStats.Add(s, g.GetGearStats()[s]);
+                        tempGearStats.Add(s, g.GetGearStats()[s]);
                         break;
                     }
                 }
