@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class HS_RaycastInstance : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class HS_RaycastInstance : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
+            if (EventSystem.current.IsPointerOverGameObject())
+                return;
             if (Cam != null)
             {
                 RaycastHit hit;
