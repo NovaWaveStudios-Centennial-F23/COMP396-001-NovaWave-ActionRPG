@@ -4,11 +4,13 @@
 
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InputController : MonoBehaviour
 {
     public static InputController Instance { get; private set; }
     public Dictionary<KeyCode, string> keySpellPair = new Dictionary<KeyCode, string>();
+    private bool inGame;
     private void Awake()
     {
         if(Instance != null && Instance != this)
@@ -18,25 +20,43 @@ public class InputController : MonoBehaviour
         else
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        SceneManager.sceneLoaded += HandleSceneChange;
+    }
+
+    void HandleSceneChange(Scene scene, LoadSceneMode mode)
+    {
+        if(scene.name == "StartMenu" || scene.name == "CharacterSelectionMenu")
+        {
+           inGame = false;
+        }
+        else
+        {
+            inGame = true;
         }
     }
+    
 
     private void Update()
     {
-        //check if player is trying to cast spell
-        foreach(KeyCode key in keySpellPair.Keys)
+        if (inGame)
         {
-            if(Input.GetKeyDown(key))
+            //check if player is trying to cast spell
+            foreach (KeyCode key in keySpellPair.Keys)
             {
-                //Debug.Log($"{key} detected: attempting to cast {keySpellPair[key]}");
-                SkillsController.Instance.SkillCast(keySpellPair[key]);
+                if (Input.GetKeyDown(key))
+                {
+                    //Debug.Log($"{key} detected: attempting to cast {keySpellPair[key]}");
+                    SkillsController.Instance.SkillCast(keySpellPair[key]);
+                }
             }
         }
+
     }
 
     public void RegisterSpell(KeyCode key, string spellName)
     {
-        //Debug.Log($"registering: {key} with {spellName}");
         if (keySpellPair.ContainsKey(key))
         {
             keySpellPair[key] = spellName;
@@ -47,8 +67,10 @@ public class InputController : MonoBehaviour
         }
     }
 
-
-
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= HandleSceneChange;
+    }
 
 
 

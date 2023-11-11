@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 
 public class InGameUIManager : MonoBehaviour
 {
-    InGameUIManager Instance;
+    public static InGameUIManager Instance;
 
     [SerializeField]
     GameObject inventoryPanel;
@@ -35,7 +35,7 @@ public class InGameUIManager : MonoBehaviour
     {
         if(Instance != null && Instance != this)
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
         else
         {
@@ -64,24 +64,14 @@ public class InGameUIManager : MonoBehaviour
     private void Start()
     {
         panels = new List<GameObject>() { inventoryPanel, playerSkillTreePanel, skillSkillTreePanel, ingameMenuPanel };
-        SceneManager.activeSceneChanged += HandleSceneChange;
         listenForInputs = ShouldCheckForInput(SceneManager.GetActiveScene());
         CloseAllPanels();
+        ingameMenuPanel.SetActive(false);
     }
 
     private bool ShouldCheckForInput(Scene curScene)
     {
         return (curScene.buildIndex != 0 || curScene.buildIndex != 1);
-    }
-
-    private void HandleSceneChange(Scene prevScene, Scene curScene)
-    {
-        //hide all windows
-        listenForInputs = ShouldCheckForInput(curScene);
-        if(!listenForInputs)
-        {
-            //hide player HUD
-        }
     }
 
     private void Update()

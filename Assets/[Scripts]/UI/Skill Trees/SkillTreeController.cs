@@ -37,6 +37,7 @@ public class SkillTreeController : MonoBehaviour
         else
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
         }
     }
 
