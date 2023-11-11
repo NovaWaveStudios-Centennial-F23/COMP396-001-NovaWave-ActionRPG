@@ -30,3 +30,11 @@ MonoBehaviour:
     stat: 29
     minValue: 0.32
     maxValue: 0.32
+  duration:
+    stat: 32
+    minValue: 0
+    maxValue: 0
+  AOE:
+    stat: 30
+    minValue: 45
+    maxValue: 0
