@@ -20,16 +20,20 @@ public class PlayerForInventory : MonoBehaviour
     //     }
     // }
 
-    public InventorySO inventory;
-    public InventorySO equipment;
+    public GameObject inventoryUI;
 
-    private void OnApplicationQuit()
+    public void CloseInventory()
     {
-        inventory.Container.Clear();
-        equipment.Container.Clear();
+        inventoryUI.SetActive(false);
+    }
+
+    public void OpenInventory()
+    {
+        inventoryUI.SetActive(true);
     }
 
     // ========== Add below properties and methods to player script ==========
+    public InventorySO inventory;
     GameObject clickedObject;
 
     void Update()
@@ -60,6 +64,15 @@ public class PlayerForInventory : MonoBehaviour
                 }
             }
         }
+    }
+
+    // that part might be unnecessary
+    public InventorySO equipment;
+
+    private void OnApplicationQuit()
+    {
+        inventory.Container.Clear();
+        equipment.Container.Clear();
     }
 
     // ========== Add above properties and methods to player script ==========
