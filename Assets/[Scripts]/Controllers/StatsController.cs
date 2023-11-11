@@ -99,6 +99,7 @@ public class StatsController : MonoBehaviour
             gears.Add(equippedGear.boots);
         }
 
+        Debug.Log(gears.Count);
         //Calculate all stats from gear
         foreach (Gear g in gears)
         {

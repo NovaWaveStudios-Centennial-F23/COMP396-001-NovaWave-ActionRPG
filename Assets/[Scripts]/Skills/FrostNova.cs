@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Stats;
+using static StatFinder;
 
 public class FrostNova : Skill
 {
     public override IEnumerator Duration()
     {
-        yield return new WaitForSeconds(skillSO.allStats.Find(x => x.stat == Stats.Stat.Duration).minValue + 0.1f);
+        yield return new WaitForSeconds(FindStat(skillSO, Stat.Duration).minValue + 0.1f);
 
         gameObject.layer = 6;
         AOE.enabled = false;
@@ -47,8 +49,8 @@ public class FrostNova : Skill
     {
         AOE = GetComponent<SphereCollider>();
         enemies = new List<GameObject>();
-        cooldown = skillSO.allStats.Find(x => x.stat == Stats.Stat.Cooldown).minValue;
-        AOE.radius = skillSO.allStats.Find(x => x.stat == Stats.Stat.AOE).minValue / 10;
+        cooldown = FindStat(skillSO, Stat.Cooldown).minValue;
+        AOE.radius = FindStat(skillSO, Stat.AOE).minValue / 10;
     }
 
     public override void MovementBehaviour()

@@ -26,8 +26,6 @@ public class SkillsController : MonoBehaviour
     private Dictionary<string, float> activeSkillCooldown;
     public Vector3 mousePosition;
 
-    public event Action<string> OnSkillCast = delegate { };
-
     void Awake()
     {
         if (instance != null && instance != this)
@@ -56,7 +54,7 @@ public class SkillsController : MonoBehaviour
         {
             SkillCast(nameof(FrostNova));
         }
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && !activeSkillCooldown.ContainsKey(nameof(LightningStrike)))
         {
             SkillCast(nameof(LightningStrike));
         }

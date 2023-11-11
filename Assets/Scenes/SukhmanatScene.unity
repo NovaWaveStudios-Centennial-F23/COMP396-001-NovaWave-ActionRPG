@@ -270,6 +270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reloadDelay: 5
+  healthRegen: 0
 --- !u!1 &60185710
 GameObject:
   m_ObjectHideFlags: 0
@@ -507,6 +508,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reloadDelay: 5
+  healthRegen: 0
 --- !u!1001 &118035005
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -756,6 +758,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reloadDelay: 5
+  healthRegen: 0
 --- !u!1 &241729316
 GameObject:
   m_ObjectHideFlags: 0
@@ -1269,6 +1272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reloadDelay: 5
+  healthRegen: 0
 --- !u!1001 &863665910
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2090,9 +2094,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStats:
-  - stat: 0
-    minValue: 50
-    maxValue: 100
   - stat: 16
     minValue: 0
     maxValue: 0
@@ -2111,6 +2112,9 @@ MonoBehaviour:
   - stat: 11
     minValue: 0
     maxValue: 0
+  - stat: 0
+    minValue: 50
+    maxValue: 100
   equippedGear: {fileID: 1924580507}
 --- !u!1 &1285277574
 GameObject:
@@ -3007,6 +3011,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reloadDelay: 5
+  healthRegen: 0
 --- !u!1001 &1924164861
 PrefabInstance:
   m_ObjectHideFlags: 0
