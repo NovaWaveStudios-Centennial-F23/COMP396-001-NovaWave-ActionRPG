@@ -26,8 +26,8 @@ public abstract class UserInterface : MonoBehaviour
     public Dictionary<GameObject, InventorySlot> slotsOnInterface = new Dictionary<GameObject, InventorySlot>();
 
     // Value for slot size
-    public int xSlot = 80;
-    public int ySlot = 80;
+    public int xSlot = 100;
+    public int ySlot = 100;
 
     // properties for dropping item
     public GameObject player;
