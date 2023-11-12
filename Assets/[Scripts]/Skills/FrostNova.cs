@@ -6,6 +6,8 @@ using static StatFinder;
 
 public class FrostNova : Skill
 {
+    private ParticleSystem ps, psChild;
+
     public override IEnumerator Duration()
     {
         yield return new WaitForSeconds(FindStat(skillSO, Stat.Duration).minValue + 0.1f);
@@ -34,6 +36,7 @@ public class FrostNova : Skill
     void Start()
     {
         SetIntitialValues();
+        SetParticleSystem();
         StartCoroutine(DealDamage());
         StartCoroutine(Duration());
     }
@@ -50,7 +53,8 @@ public class FrostNova : Skill
         AOE = GetComponent<SphereCollider>();
         enemies = new List<GameObject>();
         cooldown = FindStat(skillSO, Stat.Cooldown).minValue;
-        AOE.radius = FindStat(skillSO, Stat.AOE).minValue / 10;
+        aoe = FindStat(skillSO, Stat.AOE).minValue;
+        AOE.radius = (0.1f * aoe) + 2;
     }
 
     public override void MovementBehaviour()
@@ -58,6 +62,29 @@ public class FrostNova : Skill
         transform.position = SkillsController.Instance.player.transform.position;
     }
 
+    private void SetParticleSystem()
+    {
+        ps = GetComponent<ParticleSystem>();
+
+        var shape = ps.shape;
+        shape.radius = aoe / 10;
+
+        foreach (Transform child in gameObject.transform)
+        {
+            psChild = child.GetComponent<ParticleSystem>();
+            var main = psChild.main;
+            if (child.gameObject.name == "ShockWave")
+            {
+                main.startSize = aoe / 5;
+            }
+            else
+            {
+                main.startSize = aoe / 2.5f;
+            }
+        }
+
+        ps.Play(true);
+    }
     public override void CalculateCooldown()
     {
         // Live cooldown counter

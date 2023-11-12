@@ -81,7 +81,6 @@ public class LightningStrike : Skill
 
     private void SetParticleSystem()
     {
-        // Get PS main and emission
         ps = GetComponent<ParticleSystem>();
         psChild = transform.Find("Smoke").gameObject.GetComponent<ParticleSystem>();
         psChild.transform.localScale = new Vector3(aoe / 50, 0.5f, aoe / 50);
