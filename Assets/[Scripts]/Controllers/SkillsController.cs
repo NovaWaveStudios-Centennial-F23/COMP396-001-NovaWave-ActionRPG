@@ -79,9 +79,9 @@ public class SkillsController : MonoBehaviour
             switch (activeSkillSO.skillType)
             {
                 case SkillSO.SkillType.Projectile:
-                    if(projectileSpawner == null)
+                    if (projectileSpawner == null)
                     {
-                        if(player == null)
+                        if (player == null)
                         {
                             player = GameObject.FindGameObjectWithTag("Player");
                         }
@@ -90,7 +90,7 @@ public class SkillsController : MonoBehaviour
                     spawnLocation = projectileSpawner.transform.position;
                     break;
                 case SkillSO.SkillType.OnPlayer:
-                    if(player == null)
+                    if (player == null)
                     {
                         player = GameObject.FindGameObjectWithTag("Player");
                     }
@@ -103,18 +103,24 @@ public class SkillsController : MonoBehaviour
                     Debug.Log("Please assign a skill type");
                     break;
             }
-
-            // Instantiate skill
-            GameObject activeSkill = Instantiate(activeSkillSO.prefab, spawnLocation, Quaternion.identity);
-            activeSkill.GetComponent<Skill>().skillSO = activeSkillSO;
-
-            // Activate Skill Cooldown
-            activeSkillCooldown.Add(skill, FindStat(activeSkillSO, Stat.Cooldown).minValue);
-            if(playerMana == null)
+            if (playerMana == null)
             {
                 playerMana = player.GetComponent<Mana>();
             }
-            playerMana.SpendMana(FindStat(activeSkillSO, Stat.ManaCost).minValue);
+
+            if (playerMana.SpendMana(FindStat(activeSkillSO, Stat.ManaCost).minValue))
+            {
+                // Instantiate skill
+                GameObject activeSkill = Instantiate(activeSkillSO.prefab, spawnLocation, Quaternion.identity);
+                activeSkill.GetComponent<Skill>().skillSO = activeSkillSO;
+
+                // Activate Skill Cooldown
+                activeSkillCooldown.Add(skill, FindStat(activeSkillSO, Stat.Cooldown).minValue);
+            }
+
+
+
+            
         }
         else
         {
