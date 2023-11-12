@@ -16,14 +16,16 @@ public class Mana : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //TODO: Need some way of getting the max mana the player should have.
-
         manaPool = new ValuePool { maxValue = 100f, currentValue = 100f };
     }
 
     private void Update()
     {
-        if(manaPool.currentValue < manaPool.maxValue)
+        if (manaPool == null)
+        {
+            manaPool = new ValuePool { maxValue = 100f, currentValue = 100f };
+        }
+        if (manaPool.currentValue < manaPool.maxValue)
         {
             GainMana(manaRegen * Time.deltaTime);
         }

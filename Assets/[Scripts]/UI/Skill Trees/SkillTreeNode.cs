@@ -83,12 +83,32 @@ public class SkillTreeNode : MonoBehaviour, IPointerClickHandler, IPointerEnterH
     {
         if (currentLevel > 0)
         {
+            if(image == null)
+            {
+                image = iconGO.GetComponent<Image>();
+            }
+
+            if (outline == null)
+            {
+                outline = outlineGO.GetComponent<Image>();
+            }
+
             image.color = UIConstants.selectedSkillColor;
             outline.color = UIConstants.selectedSkillOutline;
 
         }
         else
         {
+            if (image == null)
+            {
+                image = iconGO.GetComponent<Image>();
+            }
+
+            if (outline == null)
+            {
+                outline = outlineGO.GetComponent<Image>();
+            }
+
             image.color = UIConstants.deselectedSkillColor;
             outline.color = UIConstants.deselectedSkillOutline;
         }

@@ -17,8 +17,8 @@ public class Health : MonoBehaviour
             {
                 lifepool = new ValuePool
                 {
-                    maxValue = 500f, // Player has more health, for example
-                    currentValue = 500f
+                    maxValue = 1000f, // Player has more health, for example
+                    currentValue = 1000f
                 };
             }
             else if (gameObject.CompareTag("Enemy"))

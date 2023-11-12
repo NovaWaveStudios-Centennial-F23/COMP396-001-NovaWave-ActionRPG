@@ -23,6 +23,7 @@ public class SkillsController : MonoBehaviour
 
     private Dictionary<string, float> activeSkillCooldown;
     public Vector3 mousePosition;
+    private Mana playerMana;
 
     void Awake()
     {
@@ -53,6 +54,14 @@ public class SkillsController : MonoBehaviour
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundMask))
         {
             mousePosition = hit.point;
+            if (projectileSpawner == null)
+            {
+                if (player == null)
+                {
+                    player = GameObject.FindGameObjectWithTag("Player");
+                }
+                projectileSpawner = player.GetComponentInChildren<ProjectileSpawner>().gameObject;
+            }
             mousePosition.y = projectileSpawner.transform.position.y;
         }
     }
@@ -70,9 +79,21 @@ public class SkillsController : MonoBehaviour
             switch (activeSkillSO.skillType)
             {
                 case SkillSO.SkillType.Projectile:
+                    if(projectileSpawner == null)
+                    {
+                        if(player == null)
+                        {
+                            player = GameObject.FindGameObjectWithTag("Player");
+                        }
+                        projectileSpawner = player.GetComponentInChildren<ProjectileSpawner>().gameObject;
+                    }
                     spawnLocation = projectileSpawner.transform.position;
                     break;
                 case SkillSO.SkillType.OnPlayer:
+                    if(player == null)
+                    {
+                        player = GameObject.FindGameObjectWithTag("Player");
+                    }
                     spawnLocation = player.transform.position;
                     break;
                 case SkillSO.SkillType.OnMouse:
@@ -89,6 +110,11 @@ public class SkillsController : MonoBehaviour
 
             // Activate Skill Cooldown
             activeSkillCooldown.Add(skill, FindStat(activeSkillSO, Stat.Cooldown).minValue);
+            if(playerMana == null)
+            {
+                playerMana = player.GetComponent<Mana>();
+            }
+            playerMana.SpendMana(FindStat(activeSkillSO, Stat.ManaCost).minValue);
         }
         else
         {

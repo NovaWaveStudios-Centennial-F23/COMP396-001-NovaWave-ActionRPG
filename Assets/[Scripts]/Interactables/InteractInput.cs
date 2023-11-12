@@ -23,9 +23,6 @@ public class InteractInput : MonoBehaviour
             {
                 hoveringObject.Interact();
             }
-
-
-
         }
     }
 
@@ -40,7 +37,6 @@ public class InteractInput : MonoBehaviour
             {
                 currentHoverOverObject = hit.transform.gameObject;
                 UpdateInteractableObject(hit);
-
             }
         }
     }
@@ -52,6 +48,10 @@ public class InteractInput : MonoBehaviour
         {
             hoveringObject = interactableObject;
             hoveringOverCharacter = interactableObject.GetComponent<Health>();
+            if(textOnScreen == null)
+            {
+                textOnScreen = InGameUIManager.Instance.txtEnemyName;
+            }
             textOnScreen.text = hoveringObject.objectName;
         }
         else
@@ -68,11 +68,19 @@ public class InteractInput : MonoBehaviour
     {
         if(hoveringOverCharacter != null)
         {
+            if(hpBar == null)
+            {
+                hpBar = InGameUIManager.Instance.enemyHealthBarDisplay;
+            }
             hpBar.Show(hoveringOverCharacter.lifepool);
             //Debug.Log(hoveringOverCharacter.lifepool);
         }
         else
         {
+            if (hpBar == null)
+            {
+                hpBar = InGameUIManager.Instance.enemyHealthBarDisplay;
+            }
             hpBar.Clear();
         }
     }

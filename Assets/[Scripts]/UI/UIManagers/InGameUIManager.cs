@@ -4,6 +4,7 @@
  */
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -30,6 +31,10 @@ public class InGameUIManager : MonoBehaviour
 
     private List<GameObject> panels;
 
+    //temporary
+    public UIPoolBar playerHealthBar;
+    public UIPoolBar enemyHealthBarDisplay;
+    public TextMeshProUGUI txtEnemyName;
 
     private void Awake()
     {
@@ -58,6 +63,7 @@ public class InGameUIManager : MonoBehaviour
             listenForInputs = true;
         }
         CloseAllPanels();
+
         playerHUDPanel.SetActive(listenForInputs);
     }
 
@@ -94,6 +100,7 @@ public class InGameUIManager : MonoBehaviour
             if (panel.activeInHierarchy)
             {
                 panel.SetActive(false);
+                ToolTipController.Instance.CloseTooltips();
             }
             else
             {
@@ -143,8 +150,11 @@ public class InGameUIManager : MonoBehaviour
                 p.SetActive(false);
             }
         }
-
-        ToolTipController.Instance.CloseTooltips();
+        if(ToolTipController.Instance != null)
+        {
+            ToolTipController.Instance.CloseTooltips();
+        }
+        
     }
 
     public void CloseInventory()
