@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SkillPointTracker : MonoBehaviour
@@ -14,6 +15,18 @@ public class SkillPointTracker : MonoBehaviour
     private void Start()
     {
         StartCoroutine(GetPlayerControllerInstance());
+    }
+
+    void OnEnable()
+    {
+        if (isPlayerSkillTree)
+        {
+            HandleSkillChange(PlayerController.Instance.PlayerSkillPoints);
+        }
+        else
+        {
+            HandleSkillChange(PlayerController.Instance.SkillSkillPoints);
+        }
     }
 
     IEnumerator GetPlayerControllerInstance()

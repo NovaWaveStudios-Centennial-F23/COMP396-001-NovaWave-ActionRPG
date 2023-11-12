@@ -28,6 +28,7 @@ public class SkillTreeController : MonoBehaviour
     [SerializeField]
     private Dictionary<string, Dictionary<Stats.Stat, Stats>> skillTreeModifiers = new Dictionary<string, Dictionary<Stats.Stat, Stats>>();
 
+    public event Action OnSkillTreeChanged = delegate { };
     private void Awake()
     {
         if(instance != null && instance != this)
@@ -88,6 +89,8 @@ public class SkillTreeController : MonoBehaviour
                 }
             }
         }
+
+        OnSkillTreeChanged();
     }
 
     public Dictionary<Stats.Stat, Stats> GetModifiers(string skillType)
@@ -107,20 +110,28 @@ public class SkillTreeController : MonoBehaviour
         return skillTreeModifiers.Keys.ToList();
     }
 
-    //for testing
-    public void Test()
-    {
-        RecalculateModifiers();
-        Dictionary<Stats.Stat, Stats> modifiers = GetModifiers(nameof(Fireball));
 
-        if (modifiers.ContainsKey(Stats.Stat.BaseDamage))
+    public void LoadSkillTree(List<int> saveData)
+    {
+        int counter = 0;
+
+        foreach(var nodeArr in treeNodes)
         {
-            Debug.Log($"Fireball Base damage (max): {modifiers[Stats.Stat.BaseDamage].maxValue}");
+            foreach(var node in nodeArr)
+            {
+                if (saveData.Count > counter)
+                {
+                    node.SetLevel(saveData[counter]);
+                }
+                else
+                {
+                    node.SetLevel(0);
+                }
+                counter++;
+            }
         }
-        else
-        {
-            Debug.Log("Could not find base damage of fireball");
-        }
+
+        RecalculateModifiers();
     }
 
 

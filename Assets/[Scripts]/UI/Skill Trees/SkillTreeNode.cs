@@ -75,6 +75,10 @@ public class SkillTreeNode : MonoBehaviour, IPointerClickHandler, IPointerEnterH
         UpdateAppearance();
     }
 
+    private void OnEnable()
+    {
+        UpdateAppearance();
+    }
     void UpdateAppearance()
     {
         if (currentLevel > 0)
@@ -111,11 +115,11 @@ public class SkillTreeNode : MonoBehaviour, IPointerClickHandler, IPointerEnterH
         {
             if (isPlayerSkillTree)
             {
-                PlayerController.Instance.RefundPlayerSkillPoints(1);
+                PlayerController.Instance.AddPlayerSkillPoints(1);
             }
             else
             {
-                PlayerController.Instance.RefundSkillSkillPoints(1);
+                PlayerController.Instance.AddSkillSkillPoints(1);
             }
             currentLevel--;
 
@@ -307,5 +311,15 @@ public class SkillTreeNode : MonoBehaviour, IPointerClickHandler, IPointerEnterH
         {
             ToolTipController.Instance.ShowSkillToolTip(this);
         }
+    }
+
+
+    /// <summary>
+    /// Only use this when loading the game!
+    /// </summary>
+    /// <param name="level"></param>
+    public void SetLevel(int level)
+    {
+        currentLevel = level;
     }
 }

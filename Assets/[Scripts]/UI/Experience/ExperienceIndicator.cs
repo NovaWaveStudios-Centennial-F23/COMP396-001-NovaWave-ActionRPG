@@ -37,8 +37,11 @@ public class ExperienceIndicator : MonoBehaviour
 
     private void OnDestroy()
     {
-        //TODO: Unsubscribe from exp gain event
-        ExperienceManager.Instance.OnExpGain -= HandleExpGain;
+        if(ExperienceManager.Instance != null)
+        {
+            ExperienceManager.Instance.OnExpGain -= HandleExpGain;
+        }
+        
     }
 
 

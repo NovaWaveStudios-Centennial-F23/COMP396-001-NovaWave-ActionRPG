@@ -1,4 +1,5 @@
 //Author: Mithul Koshy
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,7 +15,6 @@ public class UIPoolBar : MonoBehaviour
     [SerializeField] Image bar;
 
     ValuePool targetPool;
-
 
     public void Show(ValuePool targetPool)
     {

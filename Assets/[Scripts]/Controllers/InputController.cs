@@ -67,6 +67,14 @@ public class InputController : MonoBehaviour
         }
     }
 
+    public void UnRegisterSpell(KeyCode key) 
+    {
+        if (keySpellPair.ContainsKey(key))
+        {
+            keySpellPair.Remove(key);
+        }
+    }
+
     private void OnDestroy()
     {
         SceneManager.sceneLoaded -= HandleSceneChange;

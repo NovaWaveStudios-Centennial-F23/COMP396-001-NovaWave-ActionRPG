@@ -35,7 +35,7 @@ public class SkillSlot : MonoBehaviour, IPointerClickHandler
     [SerializeField]
     GameObject skillSelectionButton;
 
-    //this is a reference of the skill that will be activated when key is pressed
+    //this is a reference of the skillname
     string selectedSkill;
 
     //broadcasts an event letting listener know that keys have changed
@@ -53,8 +53,7 @@ public class SkillSlot : MonoBehaviour, IPointerClickHandler
         //ensure tooltip is hidden
         HideToolTip();
         txtKeyText.text = activationKey.ToString();
-        //testing
-        
+                
     }
 
     public void SetSkill(string skill)
@@ -70,6 +69,32 @@ public class SkillSlot : MonoBehaviour, IPointerClickHandler
 
         //let the input manager know
         InputController.Instance.RegisterSpell(activationKey, skill);
+
+        //subscribe to the skillTreeController to see if anything changes
+        SkillTreeController.instance.OnSkillTreeChanged += HandleSkillTreeChange;
+    }
+
+    private void HandleSkillTreeChange()
+    {
+        List<string> activeSkills = SkillTreeController.instance.GetSkills();
+        bool skillEnabled = false;
+        foreach (string skill in activeSkills)
+        {
+            if(skill == selectedSkill)
+            {
+                skillEnabled = true;
+                break;
+            }
+        }
+
+        if (!skillEnabled)
+        {
+            InputController.Instance.UnRegisterSpell(activationKey);
+            selectedSkill = "";
+            iconImage.sprite = null;
+            SkillTreeController.instance.OnSkillTreeChanged -= HandleSkillTreeChange;
+        }
+
     }
 
     public void HideToolTip()
