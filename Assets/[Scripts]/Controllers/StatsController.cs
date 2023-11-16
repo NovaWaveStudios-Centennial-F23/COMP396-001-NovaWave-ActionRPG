@@ -143,18 +143,11 @@ public class StatsController : MonoBehaviour
 
     public Stats GetPlayerModifier(Stat stat)
     {
-        Stats st = null;
-        foreach (Stat s in playerModifiers.Keys)
-        {
-            if (s == stat)
-            {
-                st = playerModifiers[s];
-            }
-        }
+        Stats st = FindStat(playerModifiers, stat);
         return st;
     }
 
-    public void SetPlayerModifier(Stat stat, Stats value)
+    /*public void SetPlayerModifier(Stat stat, Stats value)
     {
         foreach (Stats s in playerStats)
         {
@@ -167,5 +160,5 @@ public class StatsController : MonoBehaviour
                 Debug.Log(s.stat + " doesn't exist in player stats");
             }
         }
-    }    
+    }*/    
 }
