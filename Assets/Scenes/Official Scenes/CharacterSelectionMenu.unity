@@ -1526,7 +1526,7 @@ MonoBehaviour:
   txtHeading: {fileID: 763662793}
   characterOptionPrefab: {fileID: 2252597129557478405, guid: 592c5aa0f2b5c624893772205c27200e, type: 3}
   characterSelectionHandler: {fileID: 493041018}
-  generateFakeData: 0
+  generateFakeData: 1
 --- !u!1 &516325056
 GameObject:
   m_ObjectHideFlags: 0
@@ -4612,7 +4612,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1904890323955080235, guid: 658c2399a6bca1945924a29506bb7990, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3433001930737640546, guid: 658c2399a6bca1945924a29506bb7990, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4659,20 +4659,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6119397205964976996, guid: 658c2399a6bca1945924a29506bb7990, type: 3}
-      propertyPath: sendRate
-      value: 30
+      propertyPath: onlineScene
+      value: Assets/Scenes/NetworkTestScenes/NetworkMainLevel.unity
       objectReference: {fileID: 0}
-    - target: {fileID: 6119397205964976996, guid: 658c2399a6bca1945924a29506bb7990, type: 3}
-      propertyPath: transport
-      value: 
-      objectReference: {fileID: 1768337204}
     - target: {fileID: 6119397205964976996, guid: 658c2399a6bca1945924a29506bb7990, type: 3}
       propertyPath: offlineScene
       value: Assets/Scenes/Official Scenes/StartMenu.unity
-      objectReference: {fileID: 0}
-    - target: {fileID: 6119397205964976996, guid: 658c2399a6bca1945924a29506bb7990, type: 3}
-      propertyPath: networkAddress
-      value: 192.168.0.18
       objectReference: {fileID: 0}
     - target: {fileID: 8286739328773828820, guid: 658c2399a6bca1945924a29506bb7990, type: 3}
       propertyPath: m_Enabled
@@ -6389,20 +6381,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1469647804}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e15118fa4a3abd34990169f0bf284ee1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PanelStart: {fileID: 1800037091}
-  PanelStop: {fileID: 1549941993}
   buttonHost: {fileID: 516325058}
   buttonServer: {fileID: 442260290}
   buttonClient: {fileID: 1144711775}
   buttonStop: {fileID: 1266915401}
   inputFieldAddress: {fileID: 1723475137}
-  serverText: {fileID: 900969650}
-  clientText: {fileID: 2134710143}
 --- !u!114 &1469647810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7139,17 +7127,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1760546561}
   m_CullTransparentMesh: 1
---- !u!114 &1768337204 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3562322178691162270, guid: 658c2399a6bca1945924a29506bb7990, type: 3}
-  m_PrefabInstance: {fileID: 1195687384}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b0fecffa3f624585964b0d0eb21b18e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1800037091
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,7 +4,6 @@ using QuickStart;
 
 namespace NetworkingTest
 {
-
     public class NetworkPlayerScript1 : NetworkBehaviour
     {
         public TextMesh playerNameText;
@@ -44,8 +43,7 @@ namespace NetworkingTest
                 activeWeapon = weaponArray[activeWeaponSynced].GetComponent<Weapon>();
                 if (isLocalPlayer)
                     sceneScript.UIAmmo(activeWeapon.weaponAmmo);
-            }
-                
+            }    
         }
 
         [Command]

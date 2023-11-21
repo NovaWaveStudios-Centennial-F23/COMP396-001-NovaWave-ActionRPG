@@ -60,6 +60,7 @@ public class SkillsController : MonoBehaviour
                 {
                     player = GameObject.FindGameObjectWithTag("Player");
                 }
+
                 projectileSpawner = player.GetComponentInChildren<ProjectileSpawner>().gameObject;
             }
             mousePosition.y = projectileSpawner.transform.position.y;

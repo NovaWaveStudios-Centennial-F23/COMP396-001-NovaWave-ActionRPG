@@ -1,7 +1,8 @@
 // Author: Mithul Koshy
+using Mirror;
 using UnityEngine;
 
-public class Health : MonoBehaviour
+public class Health : NetworkBehaviour
 {
     public ValuePool lifepool; // Assuming this is your character's health pool
     public float reloadDelay = 5.0f; // Time in seconds before the scene reloads

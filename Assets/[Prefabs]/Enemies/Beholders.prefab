@@ -42,6 +42,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8314395318840712340}
     m_Modifications:
+    - target: {fileID: 1882085480633979796, guid: a281aaaef0214dbbb7a0c5e5d4d370d1, type: 3}
+      propertyPath: _assetId
+      value: 729241354
+      objectReference: {fileID: 0}
     - target: {fileID: 4530003306004163418, guid: a281aaaef0214dbbb7a0c5e5d4d370d1, type: 3}
       propertyPath: m_Name
       value: BeholderPBRDefault (3)
@@ -175,6 +179,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8314395318840712340}
     m_Modifications:
+    - target: {fileID: 1882085480633979796, guid: a281aaaef0214dbbb7a0c5e5d4d370d1, type: 3}
+      propertyPath: _assetId
+      value: 729241354
+      objectReference: {fileID: 0}
     - target: {fileID: 4530003306004163418, guid: a281aaaef0214dbbb7a0c5e5d4d370d1, type: 3}
       propertyPath: m_Name
       value: BeholderPBRDefault (2)
@@ -308,6 +316,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8314395318840712340}
     m_Modifications:
+    - target: {fileID: 1882085480633979796, guid: a281aaaef0214dbbb7a0c5e5d4d370d1, type: 3}
+      propertyPath: _assetId
+      value: 729241354
+      objectReference: {fileID: 0}
     - target: {fileID: 4530003306004163418, guid: a281aaaef0214dbbb7a0c5e5d4d370d1, type: 3}
       propertyPath: m_Name
       value: BeholderPBRDefault (1)
@@ -357,13 +369,13 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4530003306004163418, guid: a281aaaef0214dbbb7a0c5e5d4d370d1, type: 3}
-      insertIndex: -1
+      insertIndex: 2
       addedObject: {fileID: 524533129088570035}
     - targetCorrespondingSourceObject: {fileID: 4530003306004163418, guid: a281aaaef0214dbbb7a0c5e5d4d370d1, type: 3}
-      insertIndex: -1
+      insertIndex: 3
       addedObject: {fileID: 6233734472772030838}
     - targetCorrespondingSourceObject: {fileID: 4530003306004163418, guid: a281aaaef0214dbbb7a0c5e5d4d370d1, type: 3}
-      insertIndex: -1
+      insertIndex: 4
       addedObject: {fileID: 1329466848243455482}
   m_SourcePrefab: {fileID: 100100000, guid: a281aaaef0214dbbb7a0c5e5d4d370d1, type: 3}
 --- !u!1 &5655479079676866771 stripped

@@ -34,6 +34,11 @@ public class CharacterMovementInput : MonoBehaviour
                 return;
             }
 
+            if(mouseInput == null)
+            {
+                mouseInput = Camera.main.GetComponent<MouseInput>();
+            }
+
             characterMovement.SetDestination(mouseInput.mouseInputPosition);
         }
     }
