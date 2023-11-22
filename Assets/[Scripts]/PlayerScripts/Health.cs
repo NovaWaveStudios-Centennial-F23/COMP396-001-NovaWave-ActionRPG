@@ -1,12 +1,13 @@
 // Author: Mithul Koshy
-using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
     public ValuePool lifepool; // Assuming this is your character's health pool
     public float reloadDelay = 5.0f; // Time in seconds before the scene reloads
+
+    [SerializeField]
+    float healthRegen;//will need to get this from calculator later
     // You may want to set these in the inspector or in a Start() method if they are constant
     private void Start()
     {
@@ -16,8 +17,8 @@ public class Health : MonoBehaviour
             {
                 lifepool = new ValuePool
                 {
-                    maxValue = 20000000f, // Player has more health, for example
-                    currentValue = 20000000f
+                    maxValue = 1000f, // Player has more health, for example
+                    currentValue = 1000f
                 };
             }
             else if (gameObject.CompareTag("Enemy"))
@@ -38,6 +39,14 @@ public class Health : MonoBehaviour
             }
         }
 
+    }
+
+    private void Update()
+    {
+        if(lifepool.currentValue < lifepool.maxValue)
+        {
+            lifepool.currentValue += healthRegen * Time.deltaTime;
+        }
     }
 
     // This method is used to apply damage to the character
@@ -63,18 +72,18 @@ public class Health : MonoBehaviour
         if (animator != null)
         {
             animator.SetTrigger("Die");
-
+         
+            
         }
 
         // Add XP to player's experience
-        ExperienceManager experienceManager = FindObjectOfType<ExperienceManager>();
-        if (experienceManager != null)
+        if (ExperienceManager.Instance != null)
         {
-            experienceManager.AddExperience(50); // Replace 50 with the actual experience value you want to give
-            Debug.Log("Exp",experienceManager);
+            ExperienceManager.Instance.AddExperience(5); // Replace 50 with the actual experience value you want to give
+            Debug.Log("addedExp");
         }
         //ReloadCurrentSceneWithDelay();
-        // Destroy(gameObject, 2f); // Waits for 2 seconds before destroying the game object
+         Destroy(gameObject, 2f); // Waits for 2 seconds before destroying the game object
     }
 
 /*    private IEnumerator ReloadCurrentSceneWithDelay()

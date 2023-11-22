@@ -13,14 +13,12 @@ MonoBehaviour:
   m_Name: FrostNova 2
   m_EditorClassIdentifier: 
   prefab: {fileID: 0}
-  damageType: 0
+  damageType: 2
+  skillType: 1
   miscStats:
   - stat: 27
     minValue: 35
     maxValue: 50
-  - stat: 30
-    minValue: 10
-    maxValue: 10
   - stat: 31
     minValue: 0.01
     maxValue: 0.01
@@ -30,5 +28,13 @@ MonoBehaviour:
     maxValue: 10
   cooldown:
     stat: 29
-    minValue: 0.8
-    maxValue: 0.8
+    minValue: 6
+    maxValue: 6
+  duration:
+    stat: 32
+    minValue: 5
+    maxValue: 0
+  AOE:
+    stat: 30
+    minValue: 15
+    maxValue: 0

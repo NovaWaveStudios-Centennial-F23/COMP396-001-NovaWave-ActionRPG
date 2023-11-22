@@ -75,16 +75,40 @@ public class SkillTreeNode : MonoBehaviour, IPointerClickHandler, IPointerEnterH
         UpdateAppearance();
     }
 
+    private void OnEnable()
+    {
+        UpdateAppearance();
+    }
     void UpdateAppearance()
     {
         if (currentLevel > 0)
         {
+            if(image == null)
+            {
+                image = iconGO.GetComponent<Image>();
+            }
+
+            if (outline == null)
+            {
+                outline = outlineGO.GetComponent<Image>();
+            }
+
             image.color = UIConstants.selectedSkillColor;
             outline.color = UIConstants.selectedSkillOutline;
 
         }
         else
         {
+            if (image == null)
+            {
+                image = iconGO.GetComponent<Image>();
+            }
+
+            if (outline == null)
+            {
+                outline = outlineGO.GetComponent<Image>();
+            }
+
             image.color = UIConstants.deselectedSkillColor;
             outline.color = UIConstants.deselectedSkillOutline;
         }
@@ -111,11 +135,11 @@ public class SkillTreeNode : MonoBehaviour, IPointerClickHandler, IPointerEnterH
         {
             if (isPlayerSkillTree)
             {
-                PlayerController.Instance.RefundPlayerSkillPoints(1);
+                PlayerController.Instance.AddPlayerSkillPoints(1);
             }
             else
             {
-                PlayerController.Instance.RefundSkillSkillPoints(1);
+                PlayerController.Instance.AddSkillSkillPoints(1);
             }
             currentLevel--;
 
@@ -307,5 +331,15 @@ public class SkillTreeNode : MonoBehaviour, IPointerClickHandler, IPointerEnterH
         {
             ToolTipController.Instance.ShowSkillToolTip(this);
         }
+    }
+
+
+    /// <summary>
+    /// Only use this when loading the game!
+    /// </summary>
+    /// <param name="level"></param>
+    public void SetLevel(int level)
+    {
+        currentLevel = level;
     }
 }

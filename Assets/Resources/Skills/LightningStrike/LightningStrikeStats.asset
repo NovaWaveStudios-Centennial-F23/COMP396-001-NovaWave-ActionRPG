@@ -10,22 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad57ff6f3eadd7042bd134f46f7574e7, type: 3}
-  m_Name: Lightning 4
+  m_Name: LightningStrikeStats
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 1604970523841052, guid: 7857150e75ac7d245881c20f0db9d9ef, type: 3}
   damageType: 3
-  miscStats:
-  - stat: 27
-    minValue: 95
-    maxValue: 85
-  - stat: 31
-    minValue: 0.05
-    maxValue: 0.05
+  skillType: 2
+  miscStats: []
   manaCost:
     stat: 28
-    minValue: 15
-    maxValue: 15
+    minValue: 0
+    maxValue: 0
   cooldown:
     stat: 29
-    minValue: 0.32
-    maxValue: 0.32
+    minValue: 0
+    maxValue: 0
+  duration:
+    stat: 32
+    minValue: 0
+    maxValue: 0
+  AOE:
+    stat: 30
+    minValue: 0
+    maxValue: 0

@@ -601,7 +601,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4047522997739552196
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1075,7 +1075,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0.5
+  m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1093,10 +1093,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 170e03ae957e6374aabe6c06be81fa45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillTooltip: {fileID: 7576781421243524945}
-  playerSkillTooltip: {fileID: 4047522997739552196}
-  nodeTooltip: {fileID: 1124550497015451955}
-  gearTooltip: {fileID: 6530581895075504778}
+  skillTooltip: {fileID: 6692107380262371114}
+  playerSkillTooltip: {fileID: 2911499209738624086}
+  nodeTooltip: {fileID: 3890104786722720439}
+  gearTooltip: {fileID: 5962482988535158889}
 --- !u!1 &3890104786722720439
 GameObject:
   m_ObjectHideFlags: 0
@@ -1902,7 +1902,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7576781421243524945
 RectTransform:
   m_ObjectHideFlags: 0

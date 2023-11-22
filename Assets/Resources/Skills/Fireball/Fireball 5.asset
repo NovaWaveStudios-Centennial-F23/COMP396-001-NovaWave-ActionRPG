@@ -14,15 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 0}
   damageType: 1
+  skillType: 0
   miscStats:
   - stat: 27
     minValue: 80
     maxValue: 85
   - stat: 33
     minValue: 15
-    maxValue: 0
-  - stat: 34
-    minValue: 100
     maxValue: 0
   manaCost:
     stat: 28
@@ -32,3 +30,11 @@ MonoBehaviour:
     stat: 29
     minValue: 0.21
     maxValue: 0.21
+  duration:
+    stat: 32
+    minValue: 5
+    maxValue: 5
+  AOE:
+    stat: 30
+    minValue: 10
+    maxValue: 10

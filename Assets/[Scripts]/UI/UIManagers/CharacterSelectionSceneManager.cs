@@ -3,10 +3,7 @@
  * handles which screen to show and makes sure relevant keys are being captured
  */
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Search;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class CharacterSelectionSceneManager : MonoBehaviour
 {

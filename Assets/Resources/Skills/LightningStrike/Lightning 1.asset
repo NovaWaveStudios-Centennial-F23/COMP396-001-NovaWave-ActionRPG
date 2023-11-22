@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad57ff6f3eadd7042bd134f46f7574e7, type: 3}
-  m_Name: Lightning 5
+  m_Name: Lightning 1
   m_EditorClassIdentifier: 
   prefab: {fileID: 0}
   damageType: 3
+  skillType: 2
   miscStats:
   - stat: 27
-    minValue: 120
-    maxValue: 95
+    minValue: 10
+    maxValue: 50
   - stat: 31
     minValue: 0.05
     maxValue: 0.05
@@ -27,5 +28,13 @@ MonoBehaviour:
     maxValue: 15
   cooldown:
     stat: 29
-    minValue: 0.32
-    maxValue: 0.32
+    minValue: 7
+    maxValue: 7
+  duration:
+    stat: 32
+    minValue: 5
+    maxValue: 0
+  AOE:
+    stat: 30
+    minValue: 25
+    maxValue: 0

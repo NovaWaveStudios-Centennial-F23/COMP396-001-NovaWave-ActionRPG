@@ -1,3 +1,16 @@
+/*
+    Author: Yusuke Kuroki
+
+    This script is SO for inventory and classes for managing inventory.
+    inventory SO is made as main inventory and equipment.
+    The SO for equipment need to set allowed items to prevent wrong item to be equipped.
+
+    Tasks:
+    - check the slot is left/right slot and one of slot has double handed weapon
+    - need to get left/right slot
+    - return false if item type is double handed
+*/
+
 using System.Diagnostics;
 using System.IO.Enumeration;
 using System.Runtime.Serialization;

@@ -2432,6 +2432,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b2deab0ebb930f4fbcd3735577ec9bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerDamageAmount: 30
+  enemyDamageAmount: 50
   attackRange: 3
   defaultTimeToAttack: 2
 --- !u!114 &3735827824892024538
@@ -2460,6 +2462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5b7da0cf39b40c45a71fb07c3332d08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reloadDelay: 5
 --- !u!114 &9187607832892254921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2874,6 +2877,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b2deab0ebb930f4fbcd3735577ec9bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerDamageAmount: 30
+  enemyDamageAmount: 50
   attackRange: 3
   defaultTimeToAttack: 2
 --- !u!114 &6999761075756460868
@@ -2902,6 +2907,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5b7da0cf39b40c45a71fb07c3332d08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reloadDelay: 5
 --- !u!114 &1410409800556567232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6191,6 +6197,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b2deab0ebb930f4fbcd3735577ec9bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerDamageAmount: 30
+  enemyDamageAmount: 50
   attackRange: 3
   defaultTimeToAttack: 2
 --- !u!114 &199842784839486987
@@ -6219,6 +6227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5b7da0cf39b40c45a71fb07c3332d08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reloadDelay: 5
 --- !u!114 &2828088824683055415
 MonoBehaviour:
   m_ObjectHideFlags: 0

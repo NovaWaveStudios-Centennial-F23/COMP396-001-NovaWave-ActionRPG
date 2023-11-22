@@ -4,7 +4,11 @@
  */
 
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Reflection;
 using Unity.VisualScripting;
+using static SkillTreeController;
 
 [System.Serializable]
 public class Stats
@@ -62,6 +66,9 @@ public class Stats
         DamageWWantP,           // Player damage with wand equipped percentage
         DamageWStaffP,          // Player damage with staff equpped percentage
         DamageWSheildP,         // Player damage with shield equipped percentage
+        Dexterity,              // Player attribute
+        Strength,               // Player attribute
+        Intelligence,           // Player attribute
     }
 
     public Stat stat;
@@ -85,6 +92,38 @@ public class Stats
 
         return ans;
 
+    }
+
+    public static Dictionary<Stat, Stats> AddDictionaries(Dictionary<Stat, Stats> main, Dictionary<Stat, Stats> other)
+    {
+        Dictionary<Stat, Stats> ans = new Dictionary<Stat, Stats>();
+        
+        foreach (var kvp in main)
+        {
+            Stat key = kvp.Key;
+            Stats value = new Stats
+            {
+                stat = kvp.Value.stat,
+                minValue = kvp.Value.minValue,
+                maxValue = kvp.Value.maxValue
+            };
+            ans[key] = value;
+        }
+
+        foreach (Stat s in other.Keys)
+        {
+            if (ans.ContainsKey(s))
+            {
+                ans[s].minValue += other[s].minValue;
+                ans[s].maxValue += other[s].maxValue;
+            }
+            else
+            {
+                ans.Add(s, other[s]);
+            }
+        }
+
+        return ans;
     }
 
     public override bool Equals(object obj) => this.Equals(obj as Stats);
@@ -163,7 +202,7 @@ public class Stats
 
             case Stat.BlockChanceP:
                 ans += minValue >= 0 ? "+" : "";
-                ans += $"{minValue}% chance to block attack damage";
+                ans += $"{minValue}% chance to block attack damage when equipped with shield";
                 break;
 
             case Stat.DamageReflectP:
@@ -435,6 +474,21 @@ public class Stats
             case Stat.DamageWSheildP:
                 ans += minValue >= 0 ? "+" : "";
                 ans += $"{minValue}% damage with shield equipped";
+                break;
+
+            case Stat.Dexterity:
+                ans += minValue >= 0 ? "+" : "";
+                ans += $"{minValue} to Dexterity";
+                break;
+
+            case Stat.Strength:
+                ans += minValue >= 0 ? "+" : "";
+                ans += $"{minValue} to Strength";
+                break;
+
+            case Stat.Intelligence:
+                ans += minValue >= 0 ? "+" : "";
+                ans += $"{minValue} to Intelligence";
                 break;
 
             default: return $"Unimplemented ToString method for ${nameof(stat)}";

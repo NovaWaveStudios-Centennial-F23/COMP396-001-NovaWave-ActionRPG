@@ -12,5 +12,11 @@ namespace NetworkingTest
         {
             SceneManager.LoadScene("MainMenu");
         }
+
+
+        public void LoadLevelOne()
+        {
+            SceneManager.LoadScene("MainLevel");
+        }
     }
 }

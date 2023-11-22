@@ -8,6 +8,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static Stats;
+using static StatFinder;
 
 public class StatsController : MonoBehaviour
 {
@@ -17,10 +19,9 @@ public class StatsController : MonoBehaviour
     [SerializeField] private List<Stats> playerStats;
     [SerializeField] private EquippedGear equippedGear;
 
-    private Dictionary<Stats.Stat, Stats> playerModifiers;
-    private Dictionary<Stats.Stat, Stats> skillTreeModifiers;
-    private Dictionary<Stats.Stat, Stats> gearStats;
-    private List<Stats> initialPlayerStats;
+    private Dictionary<Stat, Stats> playerModifiers;
+    private Dictionary<Stat, Stats> skillTreeModifiers;
+    private Dictionary<Stat, Stats> gearStats;
 
     void Awake()
     {
@@ -36,24 +37,15 @@ public class StatsController : MonoBehaviour
 
     private void Start()
     {
-        skillTreeModifiers = new Dictionary<Stats.Stat, Stats>();
-        gearStats = new Dictionary<Stats.Stat, Stats>();
+        skillTreeModifiers = new Dictionary<Stat, Stats>();
+        gearStats = new Dictionary<Stat, Stats>();
         InitPlayerModifiers();
-        initialPlayerStats = GetAllPlayerStats();
-    }
-
-    void Update()
-    {
-        // Manual Test to calculate player stats
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            CalculatePlayerStats();
-        }
+        CalculatePlayerStats();
     }
 
     private void InitPlayerModifiers()
     {
-        playerModifiers = new Dictionary<Stats.Stat, Stats>();
+        playerModifiers = new Dictionary<Stat, Stats>();
 
         foreach (Stats s in playerStats)
         {
@@ -63,47 +55,21 @@ public class StatsController : MonoBehaviour
 
     private void CalculatePlayerStats()
     {
-        skillTreeModifiers = SkillTreeController.instance.GetModifiers("Fireball");
+        //skillTreeModifiers = SkillTreeController.instance.GetModifiers("Player");
         CalculateGearStats();
+        Debug.Log(gearStats.Keys.Count);
 
-        // Duplicate dict to traverse through it
-        Dictionary<Stats.Stat, Stats> dict = new Dictionary<Stats.Stat, Stats>(GetAllPlayerModifiers());
-
-        // Change player stats based on skill tree stats and gear stats
-        foreach (Stats.Stat s in dict.Keys)
-        {
-            bool hasGearStat = gearStats.ContainsKey(s);
-            bool hasSkillTreeStat = skillTreeModifiers.ContainsKey(s);
-
-            if (hasGearStat && hasSkillTreeStat)
-            {
-                Stats result = initialPlayerStats.Find(x => x.stat == s) + gearStats[s] + skillTreeModifiers[s];
-                SetPlayerModifier(s, result);
-            }
-            else if (!hasGearStat && hasSkillTreeStat)
-            {
-                Stats result = initialPlayerStats.Find(x => x.stat == s) + skillTreeModifiers[s];
-                SetPlayerModifier(s, result);
-
-            }
-            else if (hasGearStat && !hasSkillTreeStat)
-            {
-                Stats result = initialPlayerStats.Find(x => x.stat == s) + gearStats[s];
-                SetPlayerModifier(s, result);
-            }
-        }
-
-        Debug.Log(GetAllPlayerModifiers()[0].minValue);
-        Debug.Log(GetAllPlayerModifiers()[0].maxValue);
-        SkillTreeController.instance.Test();
-        Debug.Log(skillTreeModifiers.Count);
+        // Change player modifiers based on skill tree stats and gear stats
+        playerModifiers = AddDictionaries(playerModifiers, skillTreeModifiers);
+        playerModifiers = AddDictionaries(playerModifiers, gearStats);
+        Debug.Log(playerModifiers[0].minValue);
     }
 
     private void CalculateGearStats()
     {
         this.gearStats.Clear();
         List<Gear> gears = new List<Gear>();
-        Dictionary<Stats.Stat, Stats> gearStats = new Dictionary<Stats.Stat, Stats>();
+        Dictionary<Stat, Stats> tempGearStats = new Dictionary<Stat, Stats>();
 
         // List of equipped gear (Cannot be a list)
         if (equippedGear.wand != null)
@@ -135,28 +101,37 @@ public class StatsController : MonoBehaviour
             gears.Add(equippedGear.boots);
         }
 
+        Debug.Log(gears.Count);
         //Calculate all stats from gear
         foreach (Gear g in gears)
         {
-            foreach (Stats.Stat s in g.GetGearStats().Keys)
+            try
             {
-                if (gearStats.ContainsKey(s))
+                foreach (Stat s in g.GetGearStats().Keys)
                 {
-                    gearStats[s] += g.GetGearStats()[s];
-                    break;
+                    if (tempGearStats.ContainsKey(s))
+                    {
+                        tempGearStats[s] += g.GetGearStats()[s];
+                        break;
+                    }
+                    else
+                    {
+                        tempGearStats.Add(s, g.GetGearStats()[s]);
+                        break;
+                    }
                 }
-                else
-                {
-                    gearStats.Add(s, g.GetGearStats()[s]);
-                    break;
-                }
+
+            }catch (Exception ex)
+            {
+                Debug.LogWarning($"{ex}");
             }
+            
         }
 
-        this.gearStats = gearStats;
+        this.gearStats = tempGearStats;
     }
 
-    public Dictionary<Stats.Stat, Stats> GetAllPlayerModifiers()
+    public Dictionary<Stat, Stats> GetAllPlayerModifiers()
     {
         return playerModifiers;
     }
@@ -166,20 +141,13 @@ public class StatsController : MonoBehaviour
         return playerStats;
     }
 
-    public Stats GetPlayerModifier(Stats.Stat stat)
+    public Stats GetPlayerModifier(Stat stat)
     {
-        Stats st = null;
-        foreach (Stats.Stat s in playerModifiers.Keys)
-        {
-            if (s == stat)
-            {
-                st = playerModifiers[s];
-            }
-        }
+        Stats st = FindStat(playerModifiers, stat);
         return st;
     }
 
-    public void SetPlayerModifier(Stats.Stat stat, Stats value)
+    /*public void SetPlayerModifier(Stat stat, Stats value)
     {
         foreach (Stats s in playerStats)
         {
@@ -189,8 +157,8 @@ public class StatsController : MonoBehaviour
             }
             else
             {
-                Debug.Log(s.stat + "doesn't exist in player stats");
+                Debug.Log(s.stat + " doesn't exist in player stats");
             }
         }
-    }
+    }*/    
 }

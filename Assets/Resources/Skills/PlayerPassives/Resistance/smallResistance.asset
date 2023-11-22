@@ -14,4 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 0}
   damageType: 0
-  miscStats: []
+  miscStats:
+  - stat: 23
+    minValue: 5
+    maxValue: 5

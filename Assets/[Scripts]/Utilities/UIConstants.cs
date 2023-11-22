@@ -26,24 +26,4 @@ public static class UIConstants
     public static readonly Color unselectedCharacterBorderColour = new Color(0.03529412f, 0.5215687f, 0.003921569f);
     public static readonly Color selectedCharacterBorderColour = new Color(1, 1, 1);
 
-    public static string SpellStringify(Stats stat)
-    {
-        string desc = "";
-        int average = Mathf.RoundToInt((stat.minValue + stat.maxValue) / 2);
-        int percentage = Mathf.RoundToInt((stat.minValue + stat.maxValue) / 0.02f);
-
-        switch (stat.stat)
-        {
-            case Stats.Stat.BaseDamage:
-                desc = $"deals increased {stat.minValue} to {stat.maxValue} of your base damage";
-                break;
-            default:
-                Debug.LogWarning($"{stat.stat} does not have a corresponding description in spells");
-                break;
-        }
-
-        return desc;
-    }
-
-
 }
