@@ -2813,6 +2813,7 @@ GameObject:
   - component: {fileID: 8530132553203190438}
   - component: {fileID: 6730746798496603608}
   - component: {fileID: 4093732789910670316}
+  - component: {fileID: 300668025612197081}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Player
@@ -3089,6 +3090,23 @@ MonoBehaviour:
   compressRotation: 0
   positionPrecision: 0.01
   scalePrecision: 0.01
+--- !u!114 &300668025612197081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7993852800081469894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80a0b15a1105acb409a87d86e0dfce16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  playerCamera: {fileID: 8942325554131568807}
+  projectileSpawner: {fileID: 6988133777774251576}
 --- !u!1 &8059493743287475498
 GameObject:
   m_ObjectHideFlags: 0
@@ -3228,7 +3246,7 @@ GameObject:
   - component: {fileID: 8693688764297755741}
   m_Layer: 0
   m_Name: Virtual Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -51,8 +51,8 @@ MonoBehaviour:
   autoStartServerBuild: 1
   autoConnectClientBuild: 0
   sendRate: 30
-  offlineScene: Assets/Networking Test/Scenes/Menu.unity
-  onlineScene: Assets/Networking Test/Scenes/NetworkTest1.unity
+  offlineScene: Assets/Scenes/Official Scenes/StartMenu.unity
+  onlineScene: Assets/Scenes/NetworkTestScenes/NetworkMainLevel.unity
   transport: {fileID: 8486320528775134924}
   networkAddress: 192.168.0.18
   maxConnections: 100

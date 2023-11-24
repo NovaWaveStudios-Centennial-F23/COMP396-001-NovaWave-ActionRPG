@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using static Stats;
 using static StatFinder;
+using Mirror;
 
-public class SkillsController : MonoBehaviour
+public class SkillsController : NetworkBehaviour
 {
     private static SkillsController instance;
     public static SkillsController Instance { get { return instance; } }
@@ -44,6 +45,7 @@ public class SkillsController : MonoBehaviour
 
     void Update()
     {
+        //why do we need this in update?
         Raycast();
     }
 
@@ -54,15 +56,6 @@ public class SkillsController : MonoBehaviour
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundMask))
         {
             mousePosition = hit.point;
-            if (projectileSpawner == null)
-            {
-                if (player == null)
-                {
-                    player = GameObject.FindGameObjectWithTag("Player");
-                }
-
-                projectileSpawner = player.GetComponentInChildren<ProjectileSpawner>().gameObject;
-            }
             mousePosition.y = projectileSpawner.transform.position.y;
         }
     }
@@ -112,22 +105,27 @@ public class SkillsController : MonoBehaviour
             if (playerMana.SpendMana(FindStat(activeSkillSO, Stat.ManaCost).minValue))
             {
                 // Instantiate skill
-                GameObject activeSkill = Instantiate(activeSkillSO.prefab, spawnLocation, Quaternion.identity);
-                activeSkill.GetComponent<Skill>().skillSO = activeSkillSO;
+                CmdCastSpell(spawnLocation);
 
                 // Activate Skill Cooldown
                 activeSkillCooldown.Add(skill, FindStat(activeSkillSO, Stat.Cooldown).minValue);
             }
 
-
-
-            
         }
         else
         {
             Debug.Log(skill + " is on cooldown.");
         }
-    }    
+    }
+
+    //not a player object, thus needs to set auth to false
+    [Command(requiresAuthority = false)]
+    private void CmdCastSpell(Vector3 spawnLocation)
+    {
+        GameObject activeSkill = Instantiate(activeSkillSO.prefab, spawnLocation, Quaternion.identity);
+        activeSkill.GetComponent<Skill>().skillSO = activeSkillSO;
+        NetworkServer.Spawn(activeSkill);
+    }
 
     public void SetSkillCooldown(string skill, float cooldown)
     {
@@ -144,5 +142,16 @@ public class SkillsController : MonoBehaviour
     public float GetSkillCooldown(string skill)
     {
         return activeSkillCooldown[skill];
+    }
+
+    /// <summary>
+    /// Used in multiplayer to make sure skills controller is tracking the correct player object
+    /// </summary>
+    /// <param name="player"></param>
+    /// <param name="projectileSpawner"></param>
+    public void Init(GameObject player, GameObject projectileSpawner)
+    {
+        this.player = player;
+        this.projectileSpawner = projectileSpawner;
     }
 }

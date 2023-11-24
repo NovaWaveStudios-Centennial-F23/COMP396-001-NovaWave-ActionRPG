@@ -1,4 +1,5 @@
 // Author: Mithul Koshy
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,17 +34,36 @@ public class InteractInput : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
+
             if(currentHoverOverObject!=hit.transform.gameObject)
             {
                 currentHoverOverObject = hit.transform.gameObject;
-                UpdateInteractableObject(hit);
+                try
+                {
+                    UpdateInteractableObject(hit);
+
+                }catch(Exception e)
+                {
+                    Debug.LogWarning(e);
+                }
+                
             }
         }
     }
 
     private void UpdateInteractableObject(RaycastHit hit)
     {
-        InteractableObject interactableObject = hit.transform.GetComponent<InteractableObject>();
+        InteractableObject interactableObject; 
+        try
+        {
+            interactableObject = hit.transform.GetComponent<InteractableObject>();
+        }
+        catch
+        {
+            interactableObject = null;
+        }
+        
+
         if (interactableObject != null)
         {
             hoveringObject = interactableObject;
@@ -56,6 +76,7 @@ public class InteractInput : MonoBehaviour
         }
         else
         {
+            
             hoveringOverCharacter = null;
             hoveringObject = null;
             textOnScreen.text = "";
