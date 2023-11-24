@@ -5,37 +5,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerForInventory : MonoBehaviour
+public class ItemController : MonoBehaviour
 {
-    // public void OnTriggerEnter(Collider other)
-    // {
-    //     var groundItem = other.GetComponent<GroundedItem>();
-    //     if (groundItem)
-    //     {
-    //         Item _item = new Item(groundItem.item);
-    //         if (inventory.AddItem(_item, 1))
-    //         {
-    //             Destroy(other.gameObject);
-    //         }
-    //     }
-    // }
-
-    public GameObject inventoryUI;
-
-    public void CloseInventory()
-    {
-        inventoryUI.SetActive(false);
-    }
-
-    public void OpenInventory()
-    {
-        inventoryUI.SetActive(true);
-    }
-
-    // ========== Add below properties and methods to player script ==========
     public InventorySO inventory;
     GameObject clickedObject;
 
+    // Spawn item on ground from enemy
+    // Spawn gear on ground from enemy
+    
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -44,13 +21,13 @@ public class PlayerForInventory : MonoBehaviour
         }
     }
 
+    // pick up item from ground
     private void OnItemClicked()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit = new RaycastHit();
         if (Physics.Raycast(ray, out hit))
         {
-            
             // get parent object(groundedItem) from clicked object
             clickedObject = hit.collider.gameObject.transform.parent.gameObject;
 
@@ -65,15 +42,4 @@ public class PlayerForInventory : MonoBehaviour
             }
         }
     }
-
-    // that part might be unnecessary
-    public InventorySO equipment;
-
-    private void OnApplicationQuit()
-    {
-        inventory.Container.Clear();
-        equipment.Container.Clear();
-    }
-
-    // ========== Add above properties and methods to player script ==========
 }
