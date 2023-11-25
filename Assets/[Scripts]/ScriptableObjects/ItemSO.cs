@@ -2,10 +2,6 @@
     Author: Yusuke Kuroki
 
     This SO is for item/gear creation.
-
-    Tasks:
-    - How to integrate with Gear SO
-      -> make SO as abstract class and make item/gear SO inherit from it?
 */
 
 using System.Collections;
@@ -14,19 +10,8 @@ using UnityEngine;
 
 public enum ItemType
 {
-    // Need to add more specific item types
-    // also marge with gear types from gearSO?
     Consumable,
-    Misc,
-
-    // geartype for testing(should be removed)
-    Wand,
-    Staff,
-    Shield,
-    Helmet,
-    Chestplate,
-    Gloves,
-    Boots
+    Misc
 }
 
 // Change this later
