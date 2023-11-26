@@ -9,6 +9,15 @@ public class Health : MonoBehaviour
     [SerializeField]
     float healthRegen;//will need to get this from calculator later
     // You may want to set these in the inspector or in a Start() method if they are constant
+
+    public enum CharacterState
+    {
+        Alive,
+        Dead,
+    }
+
+    public CharacterState currentState = CharacterState.Alive;
+
     private void Start()
     {
         {
@@ -64,6 +73,8 @@ public class Health : MonoBehaviour
     // Method to handle death logic
     private void Die()
     {
+
+        currentState = CharacterState.Dead;
         //StartCoroutine(ReloadCurrentSceneWithDelay());
         Debug.Log(gameObject.name + " has died.");
 
