@@ -135,6 +135,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dragons
       objectReference: {fileID: 0}
+    - target: {fileID: 7884034194758437155, guid: c99eeee5695a87647b9c93b5faa977b2, type: 3}
+      propertyPath: m_TagString
+      value: Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 7886963037797278798, guid: c99eeee5695a87647b9c93b5faa977b2, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7886963037797278798, guid: c99eeee5695a87647b9c93b5faa977b2, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7886963037797278798, guid: c99eeee5695a87647b9c93b5faa977b2, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7886963037797278798, guid: c99eeee5695a87647b9c93b5faa977b2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.661448
@@ -2620,6 +2636,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseInput: {fileID: 2008306114}
+  uiLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!4 &5366652490100931315
 Transform:
   m_ObjectHideFlags: 0
