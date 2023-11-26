@@ -18,7 +18,7 @@ public class ManaBar : MonoBehaviour
         mana = FindFirstObjectByType(typeof(Mana));
         if(mana == null)
         {
-            Debug.Log("Could not Mana Script.");
+            Debug.Log("Could not find Mana Script.");
         }
         else
         {

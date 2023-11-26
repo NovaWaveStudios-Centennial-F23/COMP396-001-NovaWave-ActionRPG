@@ -1,8 +1,10 @@
 // Author: Mithul Koshy
+using Mirror;
 using UnityEngine;
 
-public class Health : MonoBehaviour
+public class Health : NetworkBehaviour
 {
+    [SyncVar(hook = nameof(OnHealthChanged))]
     public ValuePool lifepool; // Assuming this is your character's health pool
     public float reloadDelay = 5.0f; // Time in seconds before the scene reloads
 
@@ -38,15 +40,15 @@ public class Health : MonoBehaviour
                 };
             }
         }
-
     }
 
     private void Update()
     {
-        if(lifepool.currentValue < lifepool.maxValue)
+        if (isServer)
         {
-            lifepool.currentValue += healthRegen * Time.deltaTime;
+            ApplyHealthRegen();
         }
+        
     }
 
     // This method is used to apply damage to the character
@@ -54,12 +56,35 @@ public class Health : MonoBehaviour
     {
         lifepool.currentValue -= damageAmount;
         //Debug.Log("Lifepool: " + lifepool.currentValue);
-
+        RpcUpdateHealth(lifepool.currentValue);
         if (lifepool.currentValue <= 0)
         {
             Die(); // Call the death method if health goes to 0 or below
         }
     }
+
+    private void ApplyHealthRegen()
+    {
+        if (lifepool.currentValue < lifepool.maxValue)
+        {
+            lifepool.currentValue += healthRegen * Time.deltaTime;
+            RpcUpdateHealth(lifepool.currentValue);
+        }
+    }
+
+
+    [ClientRpc]
+    private void RpcUpdateHealth(float newHealthValue)
+    {
+        lifepool.currentValue = newHealthValue;
+    }
+
+    private void OnHealthChanged(ValuePool oldPool, ValuePool newPool)
+    {
+        // Add any client-side logic here, such as updating UI elements or triggering visual effects.
+        Debug.Log("Health changed on client. New value: " + newPool.currentValue);
+    }
+
 
     // Method to handle death logic
     private void Die()
@@ -83,7 +108,17 @@ public class Health : MonoBehaviour
             Debug.Log("addedExp");
         }
         //ReloadCurrentSceneWithDelay();
-         Destroy(gameObject, 2f); // Waits for 2 seconds before destroying the game object
+        //Destroy(gameObject, 2f); // Waits for 2 seconds before destroying the game object
+
+        // will need to implement the waiting some other way
+        DestroySelf();
+    }
+
+
+    [Server]
+    void DestroySelf()
+    {
+        NetworkServer.Destroy(gameObject);
     }
 
 /*    private IEnumerator ReloadCurrentSceneWithDelay()

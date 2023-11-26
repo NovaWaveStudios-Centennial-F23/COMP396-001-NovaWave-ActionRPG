@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using static Stats;
 using static StatFinder;
+using Mirror;
 
 public class FrostNova : Skill
 {
     private ParticleSystem ps, psChild;
+
+    public GameObject player;
 
     public override IEnumerator Duration()
     {
@@ -24,7 +27,7 @@ public class FrostNova : Skill
         while (true)
         {
             yield return new WaitForSeconds(0.5f);
-            damage = CalculationController.Instance.DamageOutput(skillSO);
+            //damage = CalculationController.Instance.DamageOutput(skillSO);
             foreach (GameObject g in enemies)
             {
                 g.GetComponent<Health>().TakeDamage(damage);
@@ -35,17 +38,26 @@ public class FrostNova : Skill
     // Start is called before the first frame update
     void Start()
     {
-        SetIntitialValues();
+        if (isServer)
+        {
+            SetIntitialValues();
+            StartCoroutine(DealDamage());
+            StartCoroutine(Duration());
+        }
         SetParticleSystem();
-        StartCoroutine(DealDamage());
-        StartCoroutine(Duration());
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        MovementBehaviour();
+        if (isServer)
+        {
+            MovementBehaviour();
+            
+        }
         CalculateCooldown();
+
     }
 
     public override void SetIntitialValues()
@@ -59,7 +71,7 @@ public class FrostNova : Skill
 
     public override void MovementBehaviour()
     {
-        transform.position = SkillsController.Instance.player.transform.position;
+        transform.position = player.transform.position;
     }
 
     private void SetParticleSystem()
@@ -93,23 +105,37 @@ public class FrostNova : Skill
 
         if (cooldown <= -0.1)
         {
-            Destroy(gameObject);
+            DestroySelf();
         }
+    }
+
+    [Server]
+    void DestroySelf()
+    {
+        NetworkServer.Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (isServer)
         {
-            enemies.Add(other.gameObject);
+            if (other.gameObject.CompareTag("Enemy"))
+            {
+                enemies.Add(other.gameObject);
+            }
         }
+        
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (isServer)
         {
-            enemies.Remove(other.gameObject);
+            if (other.gameObject.CompareTag("Enemy"))
+            {
+                enemies.Remove(other.gameObject);
+            }
         }
+        
     }
 }

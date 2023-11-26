@@ -4,10 +4,11 @@ using UnityEngine;
 using static UnityEngine.ParticleSystem;
 using static Stats;
 using static StatFinder;
+using Mirror;
 
 public class Fireball : Skill
 {
-    private Vector3 direction;
+    public Vector3 direction;
     private Rigidbody rb;
 
     public override IEnumerator Duration()
@@ -18,8 +19,12 @@ public class Fireball : Skill
 
     void Start()
     {
-        SetIntitialValues();
-        StartCoroutine(Duration());
+        if (isServer)
+        {
+            SetIntitialValues();
+            StartCoroutine(Duration());
+        }
+        
     }
 
     void Update()
@@ -28,8 +33,12 @@ public class Fireball : Skill
     }
 
     void FixedUpdate()
-    {        
-        MovementBehaviour();
+    {
+        if (isServer)
+        {
+            MovementBehaviour();
+        }
+        
     }
 
     public override void SetIntitialValues()
@@ -46,7 +55,7 @@ public class Fireball : Skill
         }
 
         enemies = new List<GameObject>();
-        direction = SkillsController.Instance.mousePosition - transform.position;
+        //direction = SkillsController.Instance.mousePosition - transform.position;
         cooldown = FindStat(skillSO, Stat.Cooldown).minValue;
         AOE.radius = FindStat(skillSO, Stat.AOE).minValue / 10;
     }
@@ -65,14 +74,25 @@ public class Fireball : Skill
 
         if (cooldown <= -0.1 && gameObject.layer == 6)
         {
-            Destroy(gameObject);
+            DestroySelf();
         }
+    }
+
+    [Server]
+    void DestroySelf()
+    {
+        NetworkServer.Destroy(gameObject);
     }
 
     private void OnCollisionEnter(Collision other)
     {
+        //damage will be handled on server side to avoid double counting and other issues
+        if (!isServer)
+        {
+            return;
+        }
         // Damage Output
-        damage = CalculationController.Instance.DamageOutput(skillSO);
+        //damage = CalculationController.Instance.DamageOutput(skillSO);
         if (other.gameObject.CompareTag("Enemy"))
         {
             other.gameObject.GetComponent<Health>().TakeDamage(damage);
@@ -93,6 +113,10 @@ public class Fireball : Skill
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!isServer)
+        {
+            return;
+        }
         if (other.gameObject.CompareTag("Enemy"))
         {
             enemies.Add(other.gameObject);
@@ -101,6 +125,11 @@ public class Fireball : Skill
 
     private void OnTriggerExit(Collider other)
     {
+        if(!isServer) 
+        {
+            return;
+        }
+
         if (other.gameObject.CompareTag("Enemy"))
         {
             enemies.Remove(other.gameObject);
