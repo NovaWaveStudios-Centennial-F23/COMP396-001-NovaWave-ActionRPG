@@ -30,18 +30,6 @@ public class CharacterSelectionSceneManager : MonoBehaviour
         ShowCharacterSelection();
     }
 
-    //Starts the character in the common town scene
-    public void StartTown()
-    {
-
-    }
-
-    //only starts this scene when character creates their character for the first time
-    public void StartLevelOne()
-    {
-        //SceneManager.LoadScene("Level1");
-    }
-
     private void CloseAllPanels()
     {
         foreach (GameObject panel in allPanels)

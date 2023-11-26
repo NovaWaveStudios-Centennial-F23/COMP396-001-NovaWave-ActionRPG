@@ -1,7 +1,6 @@
 using Mirror;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMultiplayer : NetworkBehaviour
 {
@@ -13,8 +12,6 @@ public class PlayerMultiplayer : NetworkBehaviour
 
     private void Start()
     {
-
-        
         if (isLocalPlayer)
         {
             //allow the camera to be created
@@ -27,7 +24,18 @@ public class PlayerMultiplayer : NetworkBehaviour
         {
             playerCamera.SetActive(false);
         }
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
+
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Start();
+    }
+
+    
+    
 
 
 }

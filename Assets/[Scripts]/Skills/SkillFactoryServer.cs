@@ -9,8 +9,6 @@ using UnityEngine;
 public class SkillFactoryServer : NetworkBehaviour
 {
     public static SkillFactoryServer Instance;
-
-
     private void Awake()
     {
         Instance = this;
@@ -21,7 +19,6 @@ public class SkillFactoryServer : NetworkBehaviour
     {
 
         ActiveSkillSO activeSkillSO = Resources.Load<ActiveSkillSO>("Skills/" + skill + "/" + skill + "Stats");
-
         GameObject activeSkill = Instantiate(activeSkillSO.prefab, location, Quaternion.identity);
         activeSkillSO.allStats = stats;
         activeSkill.GetComponent<Skill>().skillSO = activeSkillSO;

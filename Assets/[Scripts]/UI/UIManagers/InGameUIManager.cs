@@ -53,18 +53,7 @@ public class InGameUIManager : MonoBehaviour
 
     void HandleSceneChange(Scene currScene, LoadSceneMode mode)
     {
-        
-        if(currScene.name == "StartMenu" || currScene.name == "CharacterSelectionMenu")
-        {
-            listenForInputs = false;
-        }
-        else
-        {
-            listenForInputs = true;
-        }
-        CloseAllPanels();
-
-        playerHUDPanel.SetActive(listenForInputs);
+        Start();
     }
 
     private void Start()
@@ -77,7 +66,7 @@ public class InGameUIManager : MonoBehaviour
 
     private bool ShouldCheckForInput(Scene curScene)
     {
-        return (curScene.buildIndex != 0 || curScene.buildIndex != 1);
+        return curScene.buildIndex != 0 && curScene.buildIndex != 1;
     }
 
     private void Update()
