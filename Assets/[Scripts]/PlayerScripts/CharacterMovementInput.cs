@@ -11,6 +11,7 @@ public class CharacterMovementInput : MonoBehaviour
     [SerializeField] MouseInput mouseInput;
     CharacterMovement characterMovement;
     Health health; // Reference to the Health script
+    private bool isCastingSpell = false; // Flag to track if a spell is being cast
 
     // Layer mask for the "UI" layer
     public LayerMask uiLayerMask;
@@ -23,7 +24,7 @@ public class CharacterMovementInput : MonoBehaviour
 
     private void Update()
     {
-        if (health.currentState == Health.CharacterState.Alive) // Check character's state
+        if (health.currentState == Health.CharacterState.Alive && !isCastingSpell)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -39,6 +40,22 @@ public class CharacterMovementInput : MonoBehaviour
                 }
 
                 characterMovement.SetDestination(mouseInput.mouseInputPosition);
+            }
+        }
+
+        // Handle spell casting logic for the player with the "Player" tag
+        if (gameObject.CompareTag("Player"))
+        {
+            if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.R))
+            {
+                // Set isCastingSpell to true to prevent movement
+                isCastingSpell = true;
+
+            }
+            else if (Input.GetKeyUp(KeyCode.Q) || Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.E) || Input.GetKeyUp(KeyCode.R))
+            {
+                // After the spell is cast, set isCastingSpell back to false to allow movement
+                isCastingSpell = false;
             }
         }
     }
