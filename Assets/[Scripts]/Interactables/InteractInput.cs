@@ -44,7 +44,7 @@ public class InteractInput : MonoBehaviour
 
                 }catch(Exception e)
                 {
-                    Debug.LogWarning(e);
+                    //Debug.LogWarning(e);
                 }
                 
             }

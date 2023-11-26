@@ -5,7 +5,7 @@ using static Stats;
 using static StatFinder;
 using Mirror;
 
-public class SkillsController : NetworkBehaviour
+public class SkillsController : MonoBehaviour
 {
     private static SkillsController instance;
     public static SkillsController Instance { get { return instance; } }
@@ -45,7 +45,6 @@ public class SkillsController : NetworkBehaviour
 
     void Update()
     {
-        //why do we need this in update?
         Raycast();
     }
 
@@ -56,6 +55,7 @@ public class SkillsController : NetworkBehaviour
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundMask))
         {
             mousePosition = hit.point;
+            
             mousePosition.y = projectileSpawner.transform.position.y;
         }
     }
@@ -73,22 +73,9 @@ public class SkillsController : NetworkBehaviour
             switch (activeSkillSO.skillType)
             {
                 case SkillSO.SkillType.Projectile:
-                    if (projectileSpawner == null)
-                    {
-                        if (player == null)
-                        {
-                            player = GameObject.FindGameObjectWithTag("Player");
-                        }
-                        projectileSpawner = player.GetComponentInChildren<ProjectileSpawner>().gameObject;
-                    }
                     spawnLocation = projectileSpawner.transform.position;
                     break;
                 case SkillSO.SkillType.OnPlayer:
-                    if (player == null)
-                    {
-                        player = GameObject.FindGameObjectWithTag("Player");
-                    }
-                    spawnLocation = player.transform.position;
                     break;
                 case SkillSO.SkillType.OnMouse:
                     spawnLocation = mousePosition;
@@ -105,7 +92,13 @@ public class SkillsController : NetworkBehaviour
             if (playerMana.SpendMana(FindStat(activeSkillSO, Stat.ManaCost).minValue))
             {
                 // Instantiate skill
-                CmdCastSpell(spawnLocation);
+                //CmdCastSpell(spawnLocation);
+                Vector3 direction = mousePosition - spawnLocation;
+
+                float damage = CalculationController.Instance.DamageOutput(activeSkillSO);
+                uint playerID = player.GetComponent<NetworkIdentity>().netId;
+
+                SkillFactoryServer.Instance.CmdCastSpell(skill, spawnLocation, direction, activeSkillSO.allStats, damage, playerID);
 
                 // Activate Skill Cooldown
                 activeSkillCooldown.Add(skill, FindStat(activeSkillSO, Stat.Cooldown).minValue);
@@ -116,15 +109,6 @@ public class SkillsController : NetworkBehaviour
         {
             Debug.Log(skill + " is on cooldown.");
         }
-    }
-
-    //not a player object, thus needs to set auth to false
-    [Command(requiresAuthority = false)]
-    private void CmdCastSpell(Vector3 spawnLocation)
-    {
-        GameObject activeSkill = Instantiate(activeSkillSO.prefab, spawnLocation, Quaternion.identity);
-        activeSkill.GetComponent<Skill>().skillSO = activeSkillSO;
-        NetworkServer.Spawn(activeSkill);
     }
 
     public void SetSkillCooldown(string skill, float cooldown)

@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using static Stats;
 using static StatFinder;
+using Mirror;
 
 public class LightningStrike : Skill
 {
     private ParticleSystem ps, psChild;
+    [SyncVar]
+    float duration;
 
     public override IEnumerator Duration()
     {
-        yield return new WaitForSeconds(FindStat(skillSO, Stat.Duration).minValue + 0.1f);
+        yield return new WaitForSeconds(duration + 0.1f);
 
         gameObject.layer = 6;
         AOE.enabled = false;
@@ -24,7 +27,7 @@ public class LightningStrike : Skill
         while (true)
         {
             yield return new WaitForSeconds(1f);
-            damage = CalculationController.Instance.DamageOutput(skillSO);
+            //damage = CalculationController.Instance.DamageOutput(skillSO);
             foreach (GameObject g in enemies)
             {
                 try
@@ -44,11 +47,15 @@ public class LightningStrike : Skill
 
     // Start is called before the first frame update
     void Start()
-    {        
-        SetIntitialValues();
+    {
+        if (isServer)
+        {
+            SetIntitialValues();
+            StartCoroutine(DealDamage());
+            StartCoroutine(Duration());
+        }
+        
         SetParticleSystem();
-        StartCoroutine(DealDamage());
-        StartCoroutine(Duration());
     }
 
     // Update is called once per frame
@@ -64,6 +71,7 @@ public class LightningStrike : Skill
         cooldown = FindStat(skillSO, Stat.Cooldown).minValue;
         aoe = FindStat(skillSO, Stat.AOE).minValue;
         AOE.radius = aoe / 10;
+        duration = FindStat(skillSO, Stat.Duration).minValue;
     }
 
 
@@ -75,8 +83,14 @@ public class LightningStrike : Skill
 
         if (cooldown <= -0.1)
         {
-            Destroy(gameObject);
+            DestroySelf();
         }
+    }
+
+    [Server]
+    void DestroySelf()
+    {
+        NetworkServer.Destroy(gameObject);
     }
 
     private void SetParticleSystem()
@@ -90,28 +104,37 @@ public class LightningStrike : Skill
         var shape = ps.shape;
         var mainChild = psChild.main;
 
-        main.duration = FindStat(skillSO, Stat.Duration).minValue * 5;
+        main.duration = duration * 5;
         emission.SetBurst(0, new ParticleSystem.Burst(2.0f, 1, 1, (int) main.duration * 4, 0.3f));
         shape.radius = aoe / 10;
-        mainChild.duration = FindStat(skillSO, Stat.Duration).minValue + 1;
+        mainChild.duration = duration + 1f;
 
         ps.Play(true);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (isServer)
         {
-            enemies.Add(other.gameObject);
+            if (other.gameObject.CompareTag("Enemy"))
+            {
+                enemies.Add(other.gameObject);
+            }
+
         }
+        
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if(isServer)
         {
-            enemies.Remove(other.gameObject);
+            if (other.gameObject.CompareTag("Enemy"))
+            {
+                enemies.Remove(other.gameObject);
+            }
         }
+        
     }
 
     public override void MovementBehaviour()

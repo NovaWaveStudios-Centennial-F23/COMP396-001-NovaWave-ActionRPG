@@ -1,12 +1,9 @@
 // Author: Mithul Koshy
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.Specialized;
+using Mirror;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class CharacterMovement : MonoBehaviour
+public class CharacterMovement : NetworkBehaviour
 {
     NavMeshAgent agent;
     // Start is called before the first frame update
@@ -15,8 +12,8 @@ public class CharacterMovement : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
     }
 
-    // Update is called once per frame
-    public void SetDestination(Vector3 destinationPosition)
+    [Command]
+    public void CmdSetDestination(Vector3 destinationPosition)
     {
         agent.isStopped = false;
         agent.SetDestination(destinationPosition);

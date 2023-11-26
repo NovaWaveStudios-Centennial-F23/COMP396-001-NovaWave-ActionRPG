@@ -2924,7 +2924,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 836251995}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1469647810}
+        m_TargetAssemblyTypeName: CharacterSelectionSceneManager, Assembly-CSharp
+        m_MethodName: CloseMultiplayerOptions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &836251995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3973,6 +3985,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6689446909280237467, guid: ed489ea16cb0d64489b26199e8217148, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7063944712734852253, guid: ed489ea16cb0d64489b26199e8217148, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4650,34 +4666,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6119397205964976996, guid: 658c2399a6bca1945924a29506bb7990, type: 3}
-      propertyPath: spawnPrefabs.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6119397205964976996, guid: 658c2399a6bca1945924a29506bb7990, type: 3}
-      propertyPath: spawnPrefabs.Array.data[0]
-      value: 
-      objectReference: {fileID: 1079946990457772, guid: 661f61a86de0fc24bbd8a86ca55a15c6, type: 3}
-    - target: {fileID: 6119397205964976996, guid: 658c2399a6bca1945924a29506bb7990, type: 3}
-      propertyPath: spawnPrefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 1258350160538612, guid: 92587b411b3ba7f4ea2385d87a64c297, type: 3}
-    - target: {fileID: 6119397205964976996, guid: 658c2399a6bca1945924a29506bb7990, type: 3}
-      propertyPath: spawnPrefabs.Array.data[2]
-      value: 
-      objectReference: {fileID: 1220213892471706, guid: c32e9ffd21025174fb5ac678ca33e34a, type: 3}
-    - target: {fileID: 6119397205964976996, guid: 658c2399a6bca1945924a29506bb7990, type: 3}
-      propertyPath: spawnPrefabs.Array.data[3]
-      value: 
-      objectReference: {fileID: 1612411718768874, guid: eaa76516df08ead429405072a0652c47, type: 3}
-    - target: {fileID: 6119397205964976996, guid: 658c2399a6bca1945924a29506bb7990, type: 3}
-      propertyPath: spawnPrefabs.Array.data[4]
-      value: 
-      objectReference: {fileID: 1604970523841052, guid: 7857150e75ac7d245881c20f0db9d9ef, type: 3}
-    - target: {fileID: 6119397205964976996, guid: 658c2399a6bca1945924a29506bb7990, type: 3}
-      propertyPath: spawnPrefabs.Array.data[5]
-      value: 
-      objectReference: {fileID: 1219712984032920, guid: 36222912d655a0642a7f2acabc3a6723, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
