@@ -11,115 +11,70 @@ namespace NetworkingTest
 {
     public class CanvasHUD : MonoBehaviour
     {
-        public GameObject PanelStart;
-        public GameObject PanelStop;
-
         public Button buttonHost, buttonServer, buttonClient, buttonStop;
 
         public TMP_InputField inputFieldAddress;
-
-        public TextMeshProUGUI serverText;
-        public TextMeshProUGUI clientText;
-
         
-    private void Start()
-    {
-        //Update the canvas text if you have manually changed network managers address from the game object before starting the game scene
-        if (NetworkManager.singleton.networkAddress != "localhost") { inputFieldAddress.text = NetworkManager.singleton.networkAddress; }
-
-        //Adds a listener to the main input field and invokes a method when the value changes.
-        inputFieldAddress.onValueChanged.AddListener(delegate { ValueChangeCheck(); });
-
-        //Make sure to attach these Buttons in the Inspector
-        buttonHost.onClick.AddListener(ButtonHost);
-        buttonServer.onClick.AddListener(ButtonServer);
-        buttonClient.onClick.AddListener(ButtonClient);
-        buttonStop.onClick.AddListener(ButtonStop);
-
-        //This updates the Unity canvas, we have to manually call it every change, unlike legacy OnGUI.
-        SetupCanvas();
-    }
-
-    // Invoked when the value of the text field changes.
-    public void ValueChangeCheck()
-    {
-        NetworkManager.singleton.networkAddress = inputFieldAddress.text;
-    }
-
-    public void ButtonHost()
-    {
-        NetworkManager.singleton.StartHost();
-        SetupCanvas();
-    }
-
-    public void ButtonServer()
-    {
-        NetworkManager.singleton.StartServer();
-        SetupCanvas();
-    }
-
-    public void ButtonClient()
-    {
-        NetworkManager.singleton.StartClient();
-        SetupCanvas();
-    }
-
-    public void ButtonStop()
-    {
-        // stop host if host mode
-        if (NetworkServer.active && NetworkClient.isConnected)
+        private void Start()
         {
-            NetworkManager.singleton.StopHost();
-        }
-        // stop client if client-only
-        else if (NetworkClient.isConnected)
-        {
-            NetworkManager.singleton.StopClient();
-        }
-        // stop server if server-only
-        else if (NetworkServer.active)
-        {
-            NetworkManager.singleton.StopServer();
+            //Update the canvas text if you have manually changed network managers address from the game object before starting the game scene
+            if (NetworkManager.singleton.networkAddress != "localhost") { inputFieldAddress.text = NetworkManager.singleton.networkAddress; }
+
+            //Adds a listener to the main input field and invokes a method when the value changes.
+            inputFieldAddress.onValueChanged.AddListener(delegate { ValueChangeCheck(); });
+
+            //Make sure to attach these Buttons in the Inspector
+            buttonHost.onClick.AddListener(ButtonHost);
+            buttonServer.onClick.AddListener(ButtonServer);
+            buttonClient.onClick.AddListener(ButtonClient);
+            buttonStop.onClick.AddListener(ButtonStop);
+
         }
 
-        SetupCanvas();
-    }
-
-    public void SetupCanvas()
-    {
-        // Here we will dump majority of the canvas UI that may be changed.
-
-        if (!NetworkClient.isConnected && !NetworkServer.active)
+        // Invoked when the value of the text field changes.
+        public void ValueChangeCheck()
         {
-            if (NetworkClient.active)
+            NetworkManager.singleton.networkAddress = inputFieldAddress.text;
+        }
+
+        public void ButtonHost()
+        {
+            NetworkManager.singleton.StartHost();
+
+        }
+
+        public void ButtonServer()
+        {
+            NetworkManager.singleton.StartServer();
+
+        }
+
+        public void ButtonClient()
+        {
+            NetworkManager.singleton.StartClient();
+        }
+
+        public void ButtonStop()
+        {
+            // stop host if host mode
+            if (NetworkServer.active && NetworkClient.isConnected)
             {
-                PanelStart.SetActive(false);
-                PanelStop.SetActive(true);
-                clientText.text = "Connecting to " + NetworkManager.singleton.networkAddress + "..";
+                NetworkManager.singleton.StopHost();
             }
-            else
+            // stop client if client-only
+            else if (NetworkClient.isConnected)
             {
-                PanelStart.SetActive(true);
-                PanelStop.SetActive(false);
+                NetworkManager.singleton.StopClient();
             }
-        }
-        else
-        {
-            PanelStart.SetActive(false);
-            PanelStop.SetActive(true);
+            // stop server if server-only
+            else if (NetworkServer.active)
+            {
+                NetworkManager.singleton.StopServer();
+            }
 
-            // server / client status message
-            if (NetworkServer.active)
-            {
-                serverText.text = "Server: active. Transport: " + Transport.active;
-                // Note, older mirror versions use: Transport.activeTransport
-            }
-            if (NetworkClient.isConnected)
-            {
-                clientText.text = "Client: address=" + NetworkManager.singleton.networkAddress;
-            }
         }
-    }
+
+   
     }
 
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static Stats;
 using static StatFinder;
+using Mirror;
 
 public class SkillsController : MonoBehaviour
 {
@@ -54,14 +55,7 @@ public class SkillsController : MonoBehaviour
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundMask))
         {
             mousePosition = hit.point;
-            if (projectileSpawner == null)
-            {
-                if (player == null)
-                {
-                    player = GameObject.FindGameObjectWithTag("Player");
-                }
-                projectileSpawner = player.GetComponentInChildren<ProjectileSpawner>().gameObject;
-            }
+            
             mousePosition.y = projectileSpawner.transform.position.y;
         }
     }
@@ -79,22 +73,9 @@ public class SkillsController : MonoBehaviour
             switch (activeSkillSO.skillType)
             {
                 case SkillSO.SkillType.Projectile:
-                    if (projectileSpawner == null)
-                    {
-                        if (player == null)
-                        {
-                            player = GameObject.FindGameObjectWithTag("Player");
-                        }
-                        projectileSpawner = player.GetComponentInChildren<ProjectileSpawner>().gameObject;
-                    }
                     spawnLocation = projectileSpawner.transform.position;
                     break;
                 case SkillSO.SkillType.OnPlayer:
-                    if (player == null)
-                    {
-                        player = GameObject.FindGameObjectWithTag("Player");
-                    }
-                    spawnLocation = player.transform.position;
                     break;
                 case SkillSO.SkillType.OnMouse:
                     spawnLocation = mousePosition;
@@ -111,22 +92,24 @@ public class SkillsController : MonoBehaviour
             if (playerMana.SpendMana(FindStat(activeSkillSO, Stat.ManaCost).minValue))
             {
                 // Instantiate skill
-                GameObject activeSkill = Instantiate(activeSkillSO.prefab, spawnLocation, Quaternion.identity);
-                activeSkill.GetComponent<Skill>().skillSO = activeSkillSO;
+                //CmdCastSpell(spawnLocation);
+                Vector3 direction = mousePosition - spawnLocation;
+
+                float damage = CalculationController.Instance.DamageOutput(activeSkillSO);
+                uint playerID = player.GetComponent<NetworkIdentity>().netId;
+
+                SkillFactoryServer.Instance.CmdCastSpell(skill, spawnLocation, direction, activeSkillSO.allStats, damage, playerID);
 
                 // Activate Skill Cooldown
                 activeSkillCooldown.Add(skill, FindStat(activeSkillSO, Stat.Cooldown).minValue);
             }
 
-
-
-            
         }
         else
         {
             Debug.Log(skill + " is on cooldown.");
         }
-    }    
+    }
 
     public void SetSkillCooldown(string skill, float cooldown)
     {
@@ -143,5 +126,16 @@ public class SkillsController : MonoBehaviour
     public float GetSkillCooldown(string skill)
     {
         return activeSkillCooldown[skill];
+    }
+
+    /// <summary>
+    /// Used in multiplayer to make sure skills controller is tracking the correct player object
+    /// </summary>
+    /// <param name="player"></param>
+    /// <param name="projectileSpawner"></param>
+    public void Init(GameObject player, GameObject projectileSpawner)
+    {
+        this.player = player;
+        this.projectileSpawner = projectileSpawner;
     }
 }

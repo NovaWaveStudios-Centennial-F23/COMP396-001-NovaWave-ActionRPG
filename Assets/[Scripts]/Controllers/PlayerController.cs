@@ -134,7 +134,7 @@ public class PlayerController : MonoBehaviour
     {
         //dummy data for now
         PlayerSkillPoints = 0;
-        SkillSkillPoints = 1;
+        SkillSkillPoints = 3;
         CurrentLevel = 1;
     }
 

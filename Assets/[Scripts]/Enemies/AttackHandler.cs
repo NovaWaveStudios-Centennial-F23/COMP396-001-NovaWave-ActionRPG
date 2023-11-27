@@ -86,7 +86,7 @@ public class AttackHandler : MonoBehaviour
             float maxMoveDistance = 4f;
             Vector3 directionToTarget = (target.transform.position - transform.position).normalized;
             Vector3 targetPosition = transform.position + directionToTarget * Mathf.Min(distance, maxMoveDistance);
-            characterMovement.SetDestination(targetPosition);
+            characterMovement.CmdSetDestination(targetPosition);
         }
     }
 

@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
+using Mirror;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PlayerAnimate : MonoBehaviour
+public class PlayerAnimate : NetworkBehaviour
 {
     Animator animator; // Change the variable type to Animator
 
@@ -17,7 +16,11 @@ public class PlayerAnimate : MonoBehaviour
 
     private void Update()
     {
-        float motion = agent.velocity.magnitude;
-        animator.SetFloat("Motion", motion);
+        if (isServer)
+        {
+            float motion = agent.velocity.magnitude;
+            animator.SetFloat("Motion", motion);
+        }
+        
     }
 }

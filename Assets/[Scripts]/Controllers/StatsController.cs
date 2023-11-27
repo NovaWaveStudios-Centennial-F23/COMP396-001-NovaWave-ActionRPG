@@ -71,6 +71,7 @@ public class StatsController : MonoBehaviour
         List<Gear> gears = new List<Gear>();
         Dictionary<Stat, Stats> tempGearStats = new Dictionary<Stat, Stats>();
 
+
         // List of equipped gear (Cannot be a list)
         if (equippedGear.wand != null)
         {

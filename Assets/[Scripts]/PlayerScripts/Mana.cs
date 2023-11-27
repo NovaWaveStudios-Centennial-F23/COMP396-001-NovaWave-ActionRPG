@@ -8,7 +8,7 @@ using UnityEngine;
 public class Mana : MonoBehaviour
 {
     private ValuePool manaPool;
-    public event Action<ValuePool> PoolChanged;
+    public event Action<ValuePool> PoolChanged = delegate { };
 
     [SerializeField] float manaRegen; 
     //will need to get this value from calculation controller

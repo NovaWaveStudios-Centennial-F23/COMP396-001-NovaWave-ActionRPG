@@ -12,6 +12,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Official Scenes/CharacterSelectionMenu.unity
     guid: b87d03d27edd9c141a336dfd9662870a
   - enabled: 1
-    path: Assets/Scenes/MainLevel.unity
-    guid: 1d6fa678e77005c42b1e91c0c3d76127
+    path: Assets/Scenes/Official Scenes/Level1.unity
+    guid: 36254d23147bdae4cb8e76e7bc795b00
+  - enabled: 1
+    path: Assets/Scenes/Official Scenes/Level2.unity
+    guid: 117acd8e1efceb341b2c12eea202c957
+  - enabled: 1
+    path: Assets/Scenes/Official Scenes/Level3.unity
+    guid: c04c5f4cc673ab542925686932e2685f
+  - enabled: 1
+    path: Assets/Scenes/Official Scenes/Town.unity
+    guid: 01c60375fac72ce4bb372e68da13cf21
   m_configObjects: {}

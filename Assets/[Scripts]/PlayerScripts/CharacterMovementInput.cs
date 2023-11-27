@@ -1,12 +1,11 @@
 /**Created by Mithul Koshy
  * Used to check character movement and mouse clicks in Game
  */
-using System.Collections;
-using System.Collections.Generic;
+using Mirror;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class CharacterMovementInput : MonoBehaviour
+public class CharacterMovementInput : NetworkBehaviour
 {
     [SerializeField] MouseInput mouseInput;
     CharacterMovement characterMovement;
@@ -24,7 +23,7 @@ public class CharacterMovementInput : MonoBehaviour
 
     private void Update()
     {
-        if (health.currentState == Health.CharacterState.Alive && !isCastingSpell)
+        if (health.currentState == Health.CharacterState.Alive && !isCastingSpell && isLocalPlayer)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -39,8 +38,12 @@ public class CharacterMovementInput : MonoBehaviour
                     return;
                 }
 
-                characterMovement.SetDestination(mouseInput.mouseInputPosition);
-            }
+                if (mouseInput == null)
+                {
+                    mouseInput = Camera.main.GetComponent<MouseInput>();
+                }
+
+                characterMovement.CmdSetDestination(mouseInput.mouseInputPosition);            }
         }
 
         // Handle spell casting logic for the player with the "Player" tag
@@ -56,7 +59,9 @@ public class CharacterMovementInput : MonoBehaviour
             {
                 // After the spell is cast, set isCastingSpell back to false to allow movement
                 isCastingSpell = false;
+
             }
         }
+        
     }
 }
