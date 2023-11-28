@@ -65420,6 +65420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62277f45532a47b478b1fd33acf25972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spellCastClip: {fileID: 8300000, guid: dccaa2f018edbf04486e46bd446efed9, type: 3}
   fireballCooldown: 0
   activeSkillSO: {fileID: 0}
   player: {fileID: 0}

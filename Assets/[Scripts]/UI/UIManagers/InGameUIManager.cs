@@ -2,6 +2,7 @@
  * Used to handle UI states for while in-game
  * Checks for input from player
  */
+using Mirror;
 using System;
 using System.Collections.Generic;
 using TMPro;
@@ -29,6 +30,7 @@ public class InGameUIManager : MonoBehaviour
 
     bool listenForInputs = false;
 
+    //list of all panels that are 'optional' (does not include UI that 'always' exists)
     private List<GameObject> panels;
 
     //temporary
@@ -58,15 +60,29 @@ public class InGameUIManager : MonoBehaviour
 
     private void Start()
     {
-        panels = new List<GameObject>() { inventoryPanel, playerSkillTreePanel, skillSkillTreePanel, ingameMenuPanel };
+        if(panels == null)
+        {
+            panels = new List<GameObject>() { inventoryPanel, playerSkillTreePanel, skillSkillTreePanel, ingameMenuPanel };
+        }
         listenForInputs = ShouldCheckForInput(SceneManager.GetActiveScene());
         CloseAllPanels();
         ingameMenuPanel.SetActive(false);
+        playerHUDPanel.SetActive(listenForInputs);
     }
 
     private bool ShouldCheckForInput(Scene curScene)
     {
-        return curScene.buildIndex != 0 && curScene.buildIndex != 1;
+        if(curScene.buildIndex == 0)
+        {
+            return false;
+        }else if(curScene.buildIndex == 1)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 
     private void Update()
@@ -139,6 +155,7 @@ public class InGameUIManager : MonoBehaviour
                 p.SetActive(false);
             }
         }
+
         if(ToolTipController.Instance != null)
         {
             ToolTipController.Instance.CloseTooltips();
@@ -220,6 +237,22 @@ public class InGameUIManager : MonoBehaviour
 
     public void MainMenu()
     {
+        // stop host if host mode
+        if (NetworkServer.active && NetworkClient.isConnected)
+        {
+            NetworkManager.singleton.StopHost();
+        }
+        // stop client if client-only
+        else if (NetworkClient.isConnected)
+        {
+            NetworkManager.singleton.StopClient();
+        }
+        // stop server if server-only
+        else if (NetworkServer.active)
+        {
+            NetworkManager.singleton.StopServer();
+        }
+
         SceneManager.LoadScene("StartMenu");
     }
 
