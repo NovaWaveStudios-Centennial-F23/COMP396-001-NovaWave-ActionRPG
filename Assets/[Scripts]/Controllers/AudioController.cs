@@ -60,6 +60,10 @@ public class AudioController : MonoBehaviour
         AudioSource.PlayClipAtPoint(audio, pos, volume);
     }
 
+    /// <summary>
+    /// Plays oneshot audio
+    /// </summary>
+    /// <param name="audio"></param>
     public void PlayOneShot(AudioClip audio)
     {
         audioSource.PlayOneShot(audio, volume);

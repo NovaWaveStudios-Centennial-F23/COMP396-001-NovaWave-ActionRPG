@@ -36,16 +36,19 @@ public class SkillSlot : MonoBehaviour, IPointerClickHandler
     GameObject skillSelectionButton;
 
     //this is a reference of the skillname
-    string selectedSkill;
+    private string selectedSkill;
 
-    //broadcasts an event letting listener know that keys have changed
-    public event Action<Dictionary<KeyCode, string>> SkillKeyChanged = delegate { };
+
+    public string GetSelectedSkill()
+    {
+        return selectedSkill;
+    }
 
     public void OnPointerClick(PointerEventData eventData)
     {
         //show an option of all skills the player has unlocked
         ShowToolTip();
-        
+
     }
 
     private void Start()
@@ -53,53 +56,36 @@ public class SkillSlot : MonoBehaviour, IPointerClickHandler
         //ensure tooltip is hidden
         HideToolTip();
         txtKeyText.text = activationKey.ToString();
+        iconImage = GetComponent<Image>();
                 
     }
 
     public void SetSkill(string skill)
     {
-        //Debug.Log($"Setting skill {skill} with {activationKey}");
 
         HideToolTip();
         //guards?
         selectedSkill = skill;
 
         //change the icon image
+        if(iconImage == null)
+        {
+            iconImage = GetComponent<Image>();
+        }
         iconImage.sprite = ActiveSkillUIData.Instance.GetSprite(skill);
 
         //let the input manager know
         InputController.Instance.RegisterSpell(activationKey, skill);
 
-        //subscribe to the skillTreeController to see if anything changes
-        SkillTreeController.instance.OnSkillTreeChanged += HandleSkillTreeChange;
-    }
-
-    private void HandleSkillTreeChange()
-    {
-        List<string> activeSkills = SkillTreeController.instance.GetSkills();
-        bool skillEnabled = false;
-        foreach (string skill in activeSkills)
-        {
-            if(skill == selectedSkill)
-            {
-                skillEnabled = true;
-                break;
-            }
-        }
-
-        if (!skillEnabled)
-        {
-            InputController.Instance.UnRegisterSpell(activationKey);
-            selectedSkill = "";
-            iconImage.sprite = null;
-            SkillTreeController.instance.OnSkillTreeChanged -= HandleSkillTreeChange;
-        }
-
     }
 
     public void HideToolTip()
     {
-        tooltip.SetActive(false);
+        if(tooltip != null && tooltip.activeInHierarchy)
+        {
+            tooltip.SetActive(false);
+        }
+        
     }
 
     private void ShowToolTip()
@@ -113,6 +99,13 @@ public class SkillSlot : MonoBehaviour, IPointerClickHandler
             tooltip.SetActive(true);
             displayingSkillSelection = this;
         }
+    }
+
+    public void Reset()
+    {
+        InputController.Instance.UnRegisterSpell(activationKey);
+        selectedSkill = "";
+        iconImage.sprite = null;
     }
 
 
