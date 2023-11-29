@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Mana : MonoBehaviour
 {
-    private ValuePool manaPool;
+    public ValuePool manaPool {get; private set;}
     public event Action<ValuePool> PoolChanged = delegate { };
 
     [SerializeField] float manaRegen; 

@@ -1281,6 +1281,7 @@ GameObject:
   - component: {fileID: 2847836701225970705}
   - component: {fileID: 8206760705537934319}
   - component: {fileID: 7625796349348128815}
+  - component: {fileID: 5657087602392262930}
   m_Layer: 5
   m_Name: SkillsSelector
   m_TagString: Untagged
@@ -1352,6 +1353,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 1
   m_VerticalFit: 2
+--- !u!114 &5657087602392262930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6242463365147080356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b40b634fb71ff743b01c83f4aa657be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7398757149101478803
 GameObject:
   m_ObjectHideFlags: 0

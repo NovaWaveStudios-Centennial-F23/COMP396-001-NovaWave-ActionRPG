@@ -5,9 +5,7 @@
 
 using System;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.SceneManagement;
-using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 /// <summary>
 /// Used to track changes in player information

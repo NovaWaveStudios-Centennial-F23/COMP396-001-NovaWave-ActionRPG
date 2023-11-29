@@ -3,7 +3,11 @@ guid: 62277f45532a47b478b1fd33acf25972
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - spellCastClip: {fileID: 8300000, guid: dccaa2f018edbf04486e46bd446efed9, type: 3}
+  - activeSkillSO: {instanceID: 0}
+  - player: {instanceID: 0}
+  - projectileSpawner: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

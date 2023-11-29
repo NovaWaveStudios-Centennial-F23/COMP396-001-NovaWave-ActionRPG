@@ -10,6 +10,9 @@ public class ExperienceManager : MonoBehaviour
     public event Action OnLevelUp; // Event for leveling up
     public event Action<int> OnExpGain;
 
+    [SerializeField]
+    AudioClip levelupClip;
+
     public int CurrentLevel { get; private set; } = 1;
     public int CurrentExperience { get; private set; } = 0;
     public int ExperienceToNextLevel { get; private set; } = 100;
@@ -24,7 +27,7 @@ public class ExperienceManager : MonoBehaviour
         else
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(this);
         }
     }
 
@@ -47,6 +50,9 @@ public class ExperienceManager : MonoBehaviour
 
             // Invoke the OnLevelUp event
             OnLevelUp?.Invoke();
+
+            //play sound effect
+            AudioController.Instance.PlayOneShot(levelupClip);
         }
     }
 

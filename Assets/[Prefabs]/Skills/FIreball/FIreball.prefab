@@ -4985,7 +4985,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0.33333334, y: -1.6284772e-36, z: 7.2e-43, w: -1.6706256e-36}
+  m_BoundingSphereOverride: {x: 1.02e-43, y: 1.3e-44, z: 1.2595e-41, w: 5.2237356e+31}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -5059,6 +5059,7 @@ MonoBehaviour:
   damage: 0
   cooldown: 0
   aoe: 0
+  direction: {x: 0, y: 0, z: 0}
 --- !u!135 &6400155886251943743
 SphereCollider:
   m_ObjectHideFlags: 0

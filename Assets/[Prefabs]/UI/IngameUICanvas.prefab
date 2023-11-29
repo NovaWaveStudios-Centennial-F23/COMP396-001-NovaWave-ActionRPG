@@ -401,6 +401,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bar: {fileID: 6945666936647381117}
+  healthIndicator: {fileID: 0}
 --- !u!1 &4209359263231467131
 GameObject:
   m_ObjectHideFlags: 0
@@ -663,6 +664,7 @@ MonoBehaviour:
   ingameMenuPanel: {fileID: 8426257199450745902}
   playerHUDPanel: {fileID: 9210077338364734834}
   playerHealthBar: {fileID: 6990250879727433449}
+  playerManaBar: {fileID: 4574734594774655771}
   enemyHealthBarDisplay: {fileID: 4736241091880995141}
   txtEnemyName: {fileID: 4376138097316632773}
 --- !u!114 &3653765966804149451
@@ -2143,6 +2145,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6375219119293052031, guid: d9034f0e9d4094e45820462daef8b35e, type: 3}
   m_PrefabInstance: {fileID: 4998458560133550286}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4574734594774655771 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8800789534225642453, guid: d9034f0e9d4094e45820462daef8b35e, type: 3}
+  m_PrefabInstance: {fileID: 4998458560133550286}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6ec226f8deae574a97ec5048be46d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &5155180352394248711 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 204059068662092489, guid: d9034f0e9d4094e45820462daef8b35e, type: 3}

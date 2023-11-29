@@ -10,6 +10,9 @@ public class SkillsController : MonoBehaviour
     private static SkillsController instance;
     public static SkillsController Instance { get { return instance; } }
 
+    [SerializeField]
+    AudioClip spellCastClip;
+
     public bool fireballCooldown = false;
 
     [Header("Scriptable Objects")]
@@ -99,6 +102,12 @@ public class SkillsController : MonoBehaviour
                 uint playerID = player.GetComponent<NetworkIdentity>().netId;
 
                 SkillFactoryServer.Instance.CmdCastSpell(skill, spawnLocation, direction, activeSkillSO.allStats, damage, playerID);
+
+                //play sound
+                if(spellCastClip  != null)
+                {
+                    AudioController.Instance.PlayAtLocation(spellCastClip, player.transform.position);
+                }
 
                 // Activate Skill Cooldown
                 activeSkillCooldown.Add(skill, FindStat(activeSkillSO, Stat.Cooldown).minValue);
