@@ -29512,6 +29512,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46de96d843d7ca1459ca1425f45ace88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelupClip: {fileID: 0}
 --- !u!4 &954285086 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 473574, guid: 3c7e3093f2f74ad499210774e0d01aea, type: 3}
@@ -35258,9 +35259,18 @@ MonoBehaviour:
   - stat: 7
     minValue: 0
     maxValue: 0
-  - stat: 11
-    minValue: 0
-    maxValue: 0
+  - stat: 1
+    minValue: 500
+    maxValue: 500
+  - stat: 2
+    minValue: 150
+    maxValue: 150
+  - stat: 45
+    minValue: 20
+    maxValue: 20
+  - stat: 43
+    minValue: 10
+    maxValue: 10
   equippedGear: {fileID: 0}
 --- !u!1001 &1119205791
 PrefabInstance:

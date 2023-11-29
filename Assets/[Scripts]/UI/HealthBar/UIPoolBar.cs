@@ -1,5 +1,6 @@
 //Author: Mithul Koshy
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +14,7 @@ public class ValuePool
 public class UIPoolBar : MonoBehaviour
 {
     [SerializeField] Image bar;
+    [SerializeField] TextMeshProUGUI healthIndicator;
 
     ValuePool targetPool;
 
@@ -33,6 +35,7 @@ public class UIPoolBar : MonoBehaviour
         if (targetPool != null)
         {
             bar.fillAmount = Mathf.InverseLerp(0f, targetPool.maxValue, targetPool.currentValue);
+            healthIndicator.text = targetPool.currentValue.ToString();
         }
     }
 

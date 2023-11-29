@@ -35,6 +35,7 @@ public class InGameUIManager : MonoBehaviour
 
     //temporary
     public UIPoolBar playerHealthBar;
+    public ManaBar playerManaBar;
     public UIPoolBar enemyHealthBarDisplay;
     public TextMeshProUGUI txtEnemyName;
 

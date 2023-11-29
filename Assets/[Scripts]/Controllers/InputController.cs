@@ -15,12 +15,12 @@ public class InputController : MonoBehaviour
     {
         if(Instance != null && Instance != this)
         {
-            Destroy(gameObject);
+            Destroy(this);
         }
         else
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(this);
         }
         SceneManager.sceneLoaded += HandleSceneChange;
     }

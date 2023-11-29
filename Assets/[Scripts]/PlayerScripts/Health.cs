@@ -81,6 +81,17 @@ public class Health : NetworkBehaviour
         }
     }
 
+    /// <summary>
+    /// Commmand to set the max health of the player character
+    /// </summary>
+    [Command(requiresAuthority = false)]
+    public void CmdSetupHealth(float maxHealth, float regen)
+    {
+        lifepool.maxValue = maxHealth;
+        lifepool.currentValue = lifepool.maxValue;
+        healthRegen = regen;
+    }
+
 
     [ClientRpc]
     private void RpcUpdateHealth(float newHealthValue)
