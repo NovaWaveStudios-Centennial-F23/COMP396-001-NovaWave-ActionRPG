@@ -6,22 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : NetworkBehaviour
 {
-    public static SceneController Instance;
-
-
-    private void Awake()
-    {
-        if(Instance != null && Instance != this)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-    }
-
     public void LoadLevelOne()
     {
         if (isServer)
@@ -29,7 +13,6 @@ public class SceneController : NetworkBehaviour
             NetworkManager.singleton.ServerChangeScene("Level1");
         }
     }
-
 
     public void LoadTown()
     {

@@ -1,4 +1,5 @@
 using Mirror;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static Stats;
@@ -11,7 +12,23 @@ public class PlayerMultiplayer : NetworkBehaviour
     [SerializeField]
     GameObject projectileSpawner;
 
+    [SerializeField]
+    Health health;
+
+    [SerializeField]
+    Mana mana;
+
     private void Start()
+    {
+        StartCoroutine(nameof(Initialize));
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Start();
+    }
+
+    IEnumerator Initialize()
     {
         if (isLocalPlayer)
         {
@@ -21,16 +38,24 @@ public class PlayerMultiplayer : NetworkBehaviour
             //register self with the skill controller
             SkillsController.Instance.Init(gameObject, projectileSpawner);
 
+            while(StatsController.Instance == null || InGameUIManager.Instance == null)
+            {
+                
+                yield return new WaitForEndOfFrame();
+
+            }
+
+
+
             //Setup health for player
-            Health playerHealth = GetComponent<Health>();
-            playerHealth.CmdSetupHealth(
-                StatsController.Instance.GetPlayerModifier(Stat.Health).minValue,
-                StatsController.Instance.GetPlayerModifier(Stat.Health).minValue);
-            InGameUIManager.Instance.playerHealthBar.Show(playerHealth.lifepool);
+            health.CmdSetupHealth(
+            StatsController.Instance.GetPlayerModifier(Stat.Health).minValue,
+            StatsController.Instance.GetPlayerModifier(Stat.HealthRegen).minValue);
+            InGameUIManager.Instance.playerHealthBar.Show(health.lifepool);
 
             //setup mana for player
-            Mana mana = GetComponent<Mana>();
             InGameUIManager.Instance.playerManaBar.Initialize(mana);
+
         }
         else
         {
@@ -38,11 +63,6 @@ public class PlayerMultiplayer : NetworkBehaviour
         }
 
         SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        Start();
     }
 
 }

@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 6400155886251943743}
   - component: {fileID: 698198282966440886}
   - component: {fileID: 5272585243631712193}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FIreball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4985,7 +4985,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.02e-43, y: 1.3e-44, z: 1.2595e-41, w: 5.2237356e+31}
+  m_BoundingSphereOverride: {x: 3.0734807e+32, y: 7.225071e+28, z: 4.0682766e+24, w: 1.7034132e+19}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -5144,7 +5144,7 @@ GameObject:
   - component: {fileID: 4899089606134644}
   - component: {fileID: 198442058369866520}
   - component: {fileID: 199288503146715412}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Debris
   m_TagString: Untagged
   m_Icon: {fileID: 0}

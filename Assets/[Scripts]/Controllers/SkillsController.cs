@@ -59,7 +59,11 @@ public class SkillsController : MonoBehaviour
         {
             mousePosition = hit.point;
             
-            mousePosition.y = projectileSpawner.transform.position.y;
+            if(projectileSpawner != null) 
+            {
+                mousePosition.y = projectileSpawner.transform.position.y;
+            }
+            
         }
     }
 

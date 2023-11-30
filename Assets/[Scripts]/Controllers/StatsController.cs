@@ -4,9 +4,7 @@
  */
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using static Stats;
 using static StatFinder;
@@ -70,7 +68,6 @@ public class StatsController : MonoBehaviour
         this.gearStats.Clear();
         List<Gear> gears = new List<Gear>();
         Dictionary<Stat, Stats> tempGearStats = new Dictionary<Stat, Stats>();
-
 
         // List of equipped gear (Cannot be a list)
         if (equippedGear.wand != null)
@@ -161,5 +158,5 @@ public class StatsController : MonoBehaviour
                 Debug.Log(s.stat + " doesn't exist in player stats");
             }
         }
-    }*/    
+    }*/
 }
