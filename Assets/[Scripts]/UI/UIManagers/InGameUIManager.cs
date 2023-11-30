@@ -67,8 +67,16 @@ public class InGameUIManager : MonoBehaviour
         }
         listenForInputs = ShouldCheckForInput(SceneManager.GetActiveScene());
         CloseAllPanels();
-        ingameMenuPanel.SetActive(false);
-        playerHUDPanel.SetActive(listenForInputs);
+        if(ingameMenuPanel != null)
+        {
+            ingameMenuPanel.SetActive(false);
+        }
+        
+        if(playerHUDPanel != null)
+        {
+            playerHUDPanel.SetActive(listenForInputs);
+        }
+        
     }
 
     private bool ShouldCheckForInput(Scene curScene)
@@ -153,7 +161,11 @@ public class InGameUIManager : MonoBehaviour
         {
             foreach (GameObject p in panels)
             {
-                p.SetActive(false);
+                if(p != null)
+                {
+                    p.SetActive(false);
+                }
+                
             }
         }
 

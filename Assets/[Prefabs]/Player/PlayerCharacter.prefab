@@ -3118,8 +3118,8 @@ MonoBehaviour:
   syncInterval: 0
   playerCamera: {fileID: 8942325554131568807}
   projectileSpawner: {fileID: 6988133777774251576}
-  health: {fileID: 0}
-  mana: {fileID: 0}
+  health: {fileID: 425414509417814487}
+  mana: {fileID: 8530132553203190438}
 --- !u!114 &2284050911408654355
 MonoBehaviour:
   m_ObjectHideFlags: 0

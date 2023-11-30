@@ -13,8 +13,8 @@ public class ValuePool
 
 public class UIPoolBar : MonoBehaviour
 {
-    [SerializeField] Image bar;
-    [SerializeField] TextMeshProUGUI healthIndicator;
+    public Image bar;
+    public TextMeshProUGUI healthIndicator;
 
     ValuePool targetPool;
 

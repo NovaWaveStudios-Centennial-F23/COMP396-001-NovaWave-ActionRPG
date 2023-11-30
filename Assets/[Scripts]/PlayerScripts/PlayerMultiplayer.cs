@@ -1,4 +1,5 @@
 using Mirror;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static Stats;
@@ -19,6 +20,16 @@ public class PlayerMultiplayer : NetworkBehaviour
 
     private void Start()
     {
+        StartCoroutine(nameof(Initialize));
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Start();
+    }
+
+    IEnumerator Initialize()
+    {
         if (isLocalPlayer)
         {
             //allow the camera to be created
@@ -27,14 +38,24 @@ public class PlayerMultiplayer : NetworkBehaviour
             //register self with the skill controller
             SkillsController.Instance.Init(gameObject, projectileSpawner);
 
+            while(StatsController.Instance == null || InGameUIManager.Instance == null)
+            {
+                
+                yield return new WaitForEndOfFrame();
+
+            }
+
+
+
             //Setup health for player
             health.CmdSetupHealth(
-                StatsController.Instance.GetPlayerModifier(Stat.Health).minValue,
-                StatsController.Instance.GetPlayerModifier(Stat.HealthRegen).minValue);
+            StatsController.Instance.GetPlayerModifier(Stat.Health).minValue,
+            StatsController.Instance.GetPlayerModifier(Stat.HealthRegen).minValue);
             InGameUIManager.Instance.playerHealthBar.Show(health.lifepool);
 
             //setup mana for player
             InGameUIManager.Instance.playerManaBar.Initialize(mana);
+
         }
         else
         {
@@ -42,11 +63,6 @@ public class PlayerMultiplayer : NetworkBehaviour
         }
 
         SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        Start();
     }
 
 }
