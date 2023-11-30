@@ -11,6 +11,12 @@ public class PlayerMultiplayer : NetworkBehaviour
     [SerializeField]
     GameObject projectileSpawner;
 
+    [SerializeField]
+    Health health;
+
+    [SerializeField]
+    Mana mana;
+
     private void Start()
     {
         if (isLocalPlayer)
@@ -22,14 +28,12 @@ public class PlayerMultiplayer : NetworkBehaviour
             SkillsController.Instance.Init(gameObject, projectileSpawner);
 
             //Setup health for player
-            Health playerHealth = GetComponent<Health>();
-            playerHealth.CmdSetupHealth(
+            health.CmdSetupHealth(
                 StatsController.Instance.GetPlayerModifier(Stat.Health).minValue,
-                StatsController.Instance.GetPlayerModifier(Stat.Health).minValue);
-            InGameUIManager.Instance.playerHealthBar.Show(playerHealth.lifepool);
+                StatsController.Instance.GetPlayerModifier(Stat.HealthRegen).minValue);
+            InGameUIManager.Instance.playerHealthBar.Show(health.lifepool);
 
             //setup mana for player
-            Mana mana = GetComponent<Mana>();
             InGameUIManager.Instance.playerManaBar.Initialize(mana);
         }
         else

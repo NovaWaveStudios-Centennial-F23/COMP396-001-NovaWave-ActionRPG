@@ -3022,6 +3022,7 @@ MonoBehaviour:
   syncInterval: 0
   reloadDelay: 5
   healthRegen: 25
+  currentState: 0
 --- !u!114 &8811999857863127525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3117,6 +3118,8 @@ MonoBehaviour:
   syncInterval: 0
   playerCamera: {fileID: 8942325554131568807}
   projectileSpawner: {fileID: 6988133777774251576}
+  health: {fileID: 0}
+  mana: {fileID: 0}
 --- !u!114 &2284050911408654355
 MonoBehaviour:
   m_ObjectHideFlags: 0
