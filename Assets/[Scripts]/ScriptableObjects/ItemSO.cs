@@ -2,6 +2,7 @@
     Author: Yusuke Kuroki
 
     This SO is for item/gear creation.
+    *Won't be used, gear will be similar to this script.
 */
 
 using System.Collections;
@@ -18,13 +19,12 @@ public enum ItemType
 [CreateAssetMenu(fileName = "New Item Object", menuName = "ScriptableObejcts/Create New Item Object")]
 public class ItemSO : ScriptableObject
 {
-    // Check properties for all type of items
     public Sprite icon;
-    public GameObject groundPrefab;
-    public bool stackable;
     public ItemType itemType;
+    public bool stackable;
     [TextArea(15, 20)]
     public string description;
+
     public Item data = new Item();
 
     public Item CreateItem()
@@ -50,6 +50,6 @@ public class Item
     public Item(ItemSO item)
     {
         Name = item.name;
-        Id = item.data.Id;  // change here to get instance id?
+        Id = item.data.Id;
     }
 }

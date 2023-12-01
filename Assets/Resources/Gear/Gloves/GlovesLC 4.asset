@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e30db3d7f63eaff49acbdc77d596811b, type: 3}
-  m_Name: ChestplateLC
+  m_Name: GlovesLC 4
   m_EditorClassIdentifier: 
   gearMeshFilter: {fileID: 0}
   level: 1
-  gearType: 4
+  gearType: 5
   gearBase: 0
   gearRarity: 0
   mainStats:
@@ -56,9 +56,9 @@ MonoBehaviour:
     minValue: 0
     maxValue: 0
   affixes: []
-  icon: {fileID: 21300000, guid: c2618f66ac40e4643887cc8caf50a7de, type: 3}
+  icon: {fileID: 21300000, guid: 0a3d9b0b864370044a55141801d1d2e5, type: 3}
   stackable: 0
   gearDescription: 
   data:
     gearName: 
-    Id: 1
+    Id: -1

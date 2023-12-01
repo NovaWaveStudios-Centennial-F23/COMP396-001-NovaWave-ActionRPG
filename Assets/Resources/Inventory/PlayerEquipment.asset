@@ -14,34 +14,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   database: {fileID: 11400000, guid: 69375f6472fb67340b46842e19a0a3b0, type: 2}
   Container:
-    Items:
-    - AllowedItems: 05000000
-      item:
-        Name: 
+    Gears:
+    - AllowedGears: 03000000
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 06000000
-      item:
-        Name: 
+    - AllowedGears: 04000000
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 07000000
-      item:
-        Name: 
+    - AllowedGears: 05000000
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 08000000
-      item:
-        Name: 
+    - AllowedGears: 06000000
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 020000000300000004000000
-      item:
-        Name: 
+    - AllowedGears: 000000000100000002000000
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 020000000300000004000000
-      item:
-        Name: 
+    - AllowedGears: 000000000100000002000000
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0

@@ -52,8 +52,8 @@ public class GearToolTip : MonoBehaviour
     public void DisplayDetails(GearSO gear)
     {
 
-        DisplayIcon(gear.gearIcon);
-        DisplayName(gear.gearName);
+        DisplayIcon(gear.icon);
+        DisplayName(gear.data.gearName);
         DisplayGearLevel(gear.level);
         DisplayGearType(gear.gearType);
         DisplayGearBase(gear.gearBase);

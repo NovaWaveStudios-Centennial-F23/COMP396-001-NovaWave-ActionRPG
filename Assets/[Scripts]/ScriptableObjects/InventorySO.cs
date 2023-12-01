@@ -28,17 +28,17 @@ public class InventorySO : ScriptableObject
     public InventoryDatabaseSO database;
     public Inventory Container;
 
-    public bool AddItem(Item _item, int _amount)
+    public bool AddItem(GearInfo _gearInfo, int _amount)
     {
         if (EmptySlotCount <= 0)
         {
             return false;
         }
 
-        InventorySlot slot = FindItemOnInventory(_item);
-        if (!database.Items[_item.Id].stackable || slot == null)
+        InventorySlot slot = FindItemOnInventory(_gearInfo);
+        if (!database.Gears[_gearInfo.Id].stackable || slot == null)
         {
-            SetEmptySlot(_item, _amount);
+            SetEmptySlot(_gearInfo, _amount);
             return true;
         }
         slot.AddAmount(_amount);
@@ -50,9 +50,9 @@ public class InventorySO : ScriptableObject
         get
         {
             int counter = 0;
-            for (int i = 0; i < Container.Items.Length; i++)
+            for (int i = 0; i < Container.Gears.Length; i++)
             {
-                if (Container.Items[i].item.Id <= -1)
+                if (Container.Gears[i].gearInfo.Id <= -1)
                 {
                     counter++;
                 }
@@ -61,26 +61,26 @@ public class InventorySO : ScriptableObject
         }
     }
 
-    public InventorySlot FindItemOnInventory(Item _item)
+    public InventorySlot FindItemOnInventory(GearInfo _gearInfo)
     {
-        for (int i = 0; i < Container.Items.Length; i++)
+        for (int i = 0; i < Container.Gears.Length; i++)
         {
-            if (Container.Items[i].item.Id == _item.Id)
+            if (Container.Gears[i].gearInfo.Id == _gearInfo.Id)
             {
-                return Container.Items[i];
+                return Container.Gears[i];
             }
         }
         return null;
     }
 
-    public InventorySlot SetEmptySlot(Item _item, int _amount)
+    public InventorySlot SetEmptySlot(GearInfo _gearInfo, int _amount)
     {
-        for (int i = 0; i < Container.Items.Length; i++)
+        for (int i = 0; i < Container.Gears.Length; i++)
         {
-            if (Container.Items[i].item.Id <= -1)
+            if (Container.Gears[i].gearInfo.Id <= -1)
             {
-                Container.Items[i].UpdateSlot(_item, _amount);
-                return Container.Items[i];
+                Container.Gears[i].UpdateSlot(_gearInfo, _amount);
+                return Container.Gears[i];
             }
         }
         // Set up UI to show inventory is full
@@ -94,11 +94,11 @@ public class InventorySO : ScriptableObject
         // check the slot is left/right slot and one of slot has double handed weapon
         // need to get left/right slot
 
-        if (item2.CanPlaceInSlot(item1.ItemObject) && item1.CanPlaceInSlot(item2.ItemObject))
+        if (item2.CanPlaceInSlot(item1.GearObject) && item1.CanPlaceInSlot(item2.GearObject))
         {
-            InventorySlot temp = new InventorySlot(item2.item, item2.amount);
-            item2.UpdateSlot(item1.item, item1.amount);
-            item1.UpdateSlot(temp.item, temp.amount);
+            InventorySlot temp = new InventorySlot(item2.gearInfo, item2.amount);
+            item2.UpdateSlot(item1.gearInfo, item1.amount);
+            item1.UpdateSlot(temp.gearInfo, temp.amount);
         }
     }
 
@@ -116,12 +116,12 @@ public class InventorySO : ScriptableObject
 public class Inventory
 {
     public static int numberOfSlots = 48;
-    public InventorySlot[] Items = new InventorySlot[numberOfSlots];
+    public InventorySlot[] Gears = new InventorySlot[numberOfSlots];
     public void Clear()
     {
-        for (int i = 0; i < Items.Length; i++)
+        for (int i = 0; i < Gears.Length; i++)
         {
-            Items[i].RemoveItem();
+            Gears[i].RemoveGear();
         }
     }
 }
@@ -132,19 +132,19 @@ public class Inventory
 [System.Serializable]
 public class InventorySlot
 {
-    public ItemType[] AllowedItems = new ItemType[0];
+    public GearSO.GearType[] AllowedGears = new GearSO.GearType[0];
     [System.NonSerialized]
     public UserInterface parent;
-    public Item item = new Item();
+    public GearInfo gearInfo = new GearInfo();
     public int amount;
 
-    public ItemSO ItemObject
+    public GearSO GearObject
     {
         get
         {
-            if (item.Id >= 0)
+            if (gearInfo.Id >= 0)
             {
-                return parent.inventory.database.Items[item.Id];
+                return parent.inventory.database.Gears[gearInfo.Id];
             }
             return null;
         }
@@ -153,25 +153,25 @@ public class InventorySlot
     // Constructor
     public InventorySlot()
     {
-        item = new Item();
+        gearInfo = new GearInfo();
         amount = 0;
     }
 
-    public InventorySlot(Item _item, int _amount)
+    public InventorySlot(GearInfo _gearInfo, int _amount)
     {
-        item = _item;
+        gearInfo = _gearInfo;
         amount = _amount;
     }
 
-    public void UpdateSlot(Item _item, int _amount)
+    public void UpdateSlot(GearInfo _gearInfo, int _amount)
     {
-        item = _item;
+        gearInfo = _gearInfo;
         amount = _amount;
     }
 
-    public void RemoveItem()
+    public void RemoveGear()
     {
-        item = new Item();
+        gearInfo = new GearInfo();
         amount = 0;
     }
 
@@ -180,21 +180,21 @@ public class InventorySlot
         amount += value;
     }
 
-    public bool CanPlaceInSlot(ItemSO _itemObject)
+    public bool CanPlaceInSlot(GearSO _gearObject)
     {
-        if (AllowedItems.Length <= 0 || _itemObject == null || _itemObject.data.Id < 0)
+        if (AllowedGears.Length <= 0 || _gearObject == null || _gearObject.data.Id < 0)
         {
             return true;
         }
 
-        for (int i = 0; i < AllowedItems.Length; i++)
+        for (int i = 0; i < AllowedGears.Length; i++)
         {
             // return false if item type is double handed
-            // if (AllowedItems[i] == itemType.Staff) {
+            // if (AllowedGears[i] == itemType.Staff) {
             //     return false;
             // }
 
-            if (_itemObject.itemType == AllowedItems[i])
+            if (_gearObject.gearType == AllowedGears[i])
             {
                 return true;
             }

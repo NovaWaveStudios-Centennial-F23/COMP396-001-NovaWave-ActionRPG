@@ -31,14 +31,14 @@ public abstract class UserInterface : MonoBehaviour
 
     // properties for dropping item
     public GameObject player;
-    public GroundedItem groundedItem;
+    public PickableObject groundedItem;
 
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < inventory.Container.Items.Length; i++)
+        for (int i = 0; i < inventory.Container.Gears.Length; i++)
         {
-            inventory.Container.Items[i].parent = this;
+            inventory.Container.Gears[i].parent = this;
         }
         CreateSlots();
         AddEvent(gameObject, EventTriggerType.PointerEnter, delegate { OnEnterInterface(gameObject); });
@@ -97,7 +97,7 @@ public abstract class UserInterface : MonoBehaviour
     public GameObject CreateTempItem(GameObject obj)
     {
         GameObject tempItem = null;
-        if (slotsOnInterface[obj].item.Id >= 0)
+        if (slotsOnInterface[obj].gearInfo.Id >= 0)
         {
         // Get item from inventory
             tempItem = new GameObject();
@@ -105,7 +105,7 @@ public abstract class UserInterface : MonoBehaviour
             rt.sizeDelta = new Vector2(xSlot, ySlot);
             tempItem.transform.SetParent(transform.parent);
             var img = tempItem.AddComponent<Image>();
-            img.sprite = slotsOnInterface[obj].ItemObject.icon;
+            img.sprite = slotsOnInterface[obj].GearObject.icon;
             img.raycastTarget = false;
         }
 
@@ -125,12 +125,12 @@ public abstract class UserInterface : MonoBehaviour
         if (MouseData.interfaceMouseIsOver == null)
         {
             // Instantiate item to field
-            ItemSO droppedItemData = slotsOnInterface[obj].ItemObject;
-            groundedItem.itemSO = droppedItemData;
+            GearSO droppedItemData = slotsOnInterface[obj].GearObject;
+            groundedItem.gearSO = droppedItemData;
             Instantiate(groundedItem, player.transform.position, Quaternion.identity);
 
             // Remove dragged item from inventory
-            slotsOnInterface[obj].RemoveItem();
+            slotsOnInterface[obj].RemoveGear();
             return;
         }
         if (MouseData.slotHoveredOver)
@@ -166,9 +166,9 @@ public static class ExtensionMethods
     {
         foreach (KeyValuePair<GameObject, InventorySlot> _slot in _slotsOnInterface)
         {
-            if (_slot.Value.item.Id >= 0)
+            if (_slot.Value.gearInfo.Id >= 0)
             {
-                _slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().sprite = _slot.Value.ItemObject.icon;
+                _slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().sprite = _slot.Value.GearObject.icon;
                 _slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(1, 1, 1, 1);
                 _slot.Key.GetComponentInChildren<TextMeshProUGUI>().text = _slot.Value.amount == 1 ? "" : _slot.Value.amount.ToString("n0");
             }
