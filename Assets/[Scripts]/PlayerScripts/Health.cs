@@ -71,11 +71,10 @@ public class Health : NetworkBehaviour
 
     private void Update()
     {
-        if (isServer)
+        if (isOwned)
         {
             ApplyHealthRegen();
         }
-        
     }
 
     // This method is used to apply damage to the character
@@ -83,7 +82,7 @@ public class Health : NetworkBehaviour
     {
         lifepool.currentValue -= damageAmount;
         //Debug.Log("Lifepool: " + lifepool.currentValue);
-        RpcUpdateHealth(lifepool.currentValue);
+        RpcUpdateHealth(lifepool.currentValue, lifepool.maxValue);
         if (lifepool.currentValue <= 0)
         {
             Die(); // Call the death method if health goes to 0 or below
@@ -95,7 +94,7 @@ public class Health : NetworkBehaviour
         if (lifepool.currentValue < lifepool.maxValue)
         {
             lifepool.currentValue += healthRegen * Time.deltaTime;
-            RpcUpdateHealth(lifepool.currentValue);
+            RpcUpdateHealth(lifepool.currentValue, lifepool.maxValue);
         }
     }
 
@@ -108,13 +107,15 @@ public class Health : NetworkBehaviour
         lifepool.maxValue = maxHealth;
         lifepool.currentValue = lifepool.maxValue;
         healthRegen = regen;
+        RpcUpdateHealth(lifepool.currentValue, lifepool.maxValue);
     }
 
 
     [ClientRpc]
-    private void RpcUpdateHealth(float newHealthValue)
+    private void RpcUpdateHealth(float newHealthValue, float newMaxHealth)
     {
         lifepool.currentValue = newHealthValue;
+        lifepool.maxValue = newMaxHealth;
     }
 
     private void OnHealthChanged(ValuePool oldPool, ValuePool newPool)
