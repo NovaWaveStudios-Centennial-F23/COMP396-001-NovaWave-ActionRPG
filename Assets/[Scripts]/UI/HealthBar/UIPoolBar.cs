@@ -37,6 +37,12 @@ public class UIPoolBar : MonoBehaviour
             bar.fillAmount = Mathf.InverseLerp(0f, targetPool.maxValue, targetPool.currentValue);
             healthIndicator.text = targetPool.currentValue.ToString();
         }
+        else
+        {
+            // Handle the case when targetPool is null, e.g., hide the UI elements.
+            bar.fillAmount = 0f;
+            healthIndicator.text = "N/A";
+        }
     }
 
 }
