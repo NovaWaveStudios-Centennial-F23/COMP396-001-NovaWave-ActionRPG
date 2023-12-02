@@ -2410,6 +2410,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70923f42b28305d439d657f527db417d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
 --- !u!114 &6317273501008652605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2422,6 +2425,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6731c58b4056b7f4bb2893c14932261a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
 --- !u!114 &2570090589694003197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2469,6 +2475,7 @@ MonoBehaviour:
   syncInterval: 0
   reloadDelay: 5
   healthRegen: 0
+  currentState: 0
 --- !u!114 &9187607832892254921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2913,6 +2920,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70923f42b28305d439d657f527db417d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
 --- !u!114 &3423622129585487835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2925,6 +2935,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6731c58b4056b7f4bb2893c14932261a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
 --- !u!114 &1789477586814909438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2972,6 +2985,7 @@ MonoBehaviour:
   syncInterval: 0
   reloadDelay: 5
   healthRegen: 0
+  currentState: 0
 --- !u!114 &1410409800556567232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6291,6 +6305,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70923f42b28305d439d657f527db417d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
 --- !u!114 &3477760392932832052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6303,6 +6320,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6731c58b4056b7f4bb2893c14932261a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
 --- !u!114 &6868175535513011255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6350,6 +6370,7 @@ MonoBehaviour:
   syncInterval: 0
   reloadDelay: 5
   healthRegen: 0
+  currentState: 0
 --- !u!114 &2828088824683055415
 MonoBehaviour:
   m_ObjectHideFlags: 0

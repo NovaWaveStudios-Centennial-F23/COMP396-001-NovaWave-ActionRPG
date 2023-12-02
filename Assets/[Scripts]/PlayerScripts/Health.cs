@@ -28,16 +28,34 @@ public class Health : NetworkBehaviour
             {
                 lifepool = new ValuePool
                 {
-                    maxValue = 1000f, // Player has more health, for example
-                    currentValue = 1000f
+                    maxValue = 100000f, // Player has more health, for example
+                    currentValue = 100000f
                 };
             }
-            else if (gameObject.CompareTag("Enemy"))
+            else if (gameObject.CompareTag("EnemyEasy"))
             {
                 lifepool = new ValuePool
                 {
                     maxValue = 100f, // Enemy has less health
                     currentValue = 100f
+                };
+            }
+
+            else if (gameObject.CompareTag("EnemyMedium"))
+            {
+                lifepool = new ValuePool
+                {
+                    maxValue = 200f, // Enemy has less health
+                    currentValue = 200f
+                };
+            }
+
+            else if (gameObject.CompareTag("EnemyHard"))
+            {
+                lifepool = new ValuePool
+                {
+                    maxValue = 300f, // Enemy has less health
+                    currentValue = 300f
                 };
             }
             else
