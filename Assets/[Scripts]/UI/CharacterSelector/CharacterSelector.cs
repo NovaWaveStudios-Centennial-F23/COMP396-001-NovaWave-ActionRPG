@@ -79,19 +79,12 @@ public class CharacterSelector : MonoBehaviour
     //generates some fake data for the chracter selector
     private void GenerateDummyData()
     {
-        CharacterSaveData s1 = new CharacterSaveData("Desuburingaa1", 10);
+        CharacterSaveData s1 = new CharacterSaveData("Test Save", 1);
         var obj1 = Instantiate(characterOptionPrefab);
         obj1.transform.parent = transform;
         obj1.GetComponent<CharacterSelectButton>().PopulateData(s1);
         obj1.GetComponent<CharacterSelectButton>();
         characterSelectionHandler.AddButton(obj1.GetComponent<CharacterSelectButton>());
-        characterCount++;
-
-        CharacterSaveData s2 = new CharacterSaveData("xxNoobSlayer69", 28);
-        var obj2 = Instantiate(characterOptionPrefab);
-        obj2.transform.parent = transform;
-        obj2.GetComponent<CharacterSelectButton>().PopulateData(s2);
-        characterSelectionHandler.AddButton(obj2.GetComponent<CharacterSelectButton>());
         characterCount++;
     }
 
@@ -110,7 +103,7 @@ public class CharacterSelector : MonoBehaviour
         {
             btnSingleplayer.interactable = true;
             btnMultiplayer.interactable = true;
-            btnDeleteCharacter.interactable = true;
+            btnDeleteCharacter.interactable = false;//setting this to false since it is not yet implemented
         }
         else
         {

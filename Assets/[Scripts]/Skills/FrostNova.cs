@@ -54,7 +54,6 @@ public class FrostNova : Skill
         if (isServer)
         {
             MovementBehaviour();
-            
         }
         CalculateCooldown();
 
@@ -101,7 +100,7 @@ public class FrostNova : Skill
     {
         // Live cooldown counter
         cooldown -= Time.deltaTime;
-        SkillsController.Instance.SetSkillCooldown(nameof(FrostNova), cooldown);
+        //SkillsController.Instance.UpdateSkillCooldown(nameof(FrostNova), cooldown);
 
         if (cooldown <= -0.1)
         {

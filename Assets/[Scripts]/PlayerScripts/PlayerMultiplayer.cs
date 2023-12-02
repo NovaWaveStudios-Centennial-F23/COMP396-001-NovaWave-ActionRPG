@@ -32,6 +32,7 @@ public class PlayerMultiplayer : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
+            
             //allow the camera to be created
             playerCamera.SetActive(true);
 
@@ -45,8 +46,7 @@ public class PlayerMultiplayer : NetworkBehaviour
 
             }
 
-
-
+            Debug.Log($"Stats intialization for {netId} started.");
             //Setup health for player
             health.CmdSetupHealth(
             StatsController.Instance.GetPlayerModifier(Stat.Health).minValue,

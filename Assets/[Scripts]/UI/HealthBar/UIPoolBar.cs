@@ -4,7 +4,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 // A placeholder ValuePool class 
+[Serializable]
 public class ValuePool
 {
     public float maxValue;
@@ -45,7 +47,11 @@ public class UIPoolBar : MonoBehaviour
             }
 
             bar.fillAmount = Mathf.InverseLerp(0f, targetPool.maxValue, targetPool.currentValue);
-            healthIndicator.text = targetPool.currentValue.ToString("F0"); // Format for whole numbers, adjust as needed
+            if(targetPool != null)
+            {
+                healthIndicator.text = targetPool.currentValue.ToString("F0"); // Format for whole numbers, adjust as needed
+            }
+            
         }
         else
         {

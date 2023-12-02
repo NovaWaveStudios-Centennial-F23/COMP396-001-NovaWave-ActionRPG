@@ -2309,6 +2309,7 @@ GameObject:
   - component: {fileID: 9187607832892254921}
   - component: {fileID: 5839087647217253787}
   - component: {fileID: 2694669157672632575}
+  - component: {fileID: 6522756311681822429}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Enemy
@@ -2488,7 +2489,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fc6eb1fb7c528245a9b85cb12c1157e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  detectionRadius: 3
+  movementSpeed: 1.5
 --- !u!114 &5839087647217253787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2518,7 +2523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 1
+  syncDirection: 0
   syncMode: 0
   syncInterval: 0
   target: {fileID: 6717084409048220754}
@@ -2541,6 +2546,23 @@ MonoBehaviour:
   compressRotation: 0
   positionPrecision: 0.01
   scalePrecision: 0.01
+--- !u!114 &6522756311681822429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1094658667312087952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f6f3bf89aa97405989c802ba270f815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  clientAuthority: 0
+  animator: {fileID: 7531840429000039029}
 --- !u!1 &1114007204683664491
 GameObject:
   m_ObjectHideFlags: 0
@@ -2819,6 +2841,7 @@ GameObject:
   - component: {fileID: 1410409800556567232}
   - component: {fileID: 8068810470491326893}
   - component: {fileID: 4131329103325118761}
+  - component: {fileID: 875303476858422178}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Enemy
@@ -2998,7 +3021,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fc6eb1fb7c528245a9b85cb12c1157e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  detectionRadius: 3
+  movementSpeed: 1.5
 --- !u!114 &8068810470491326893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3028,7 +3055,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 1
+  syncDirection: 0
   syncMode: 0
   syncInterval: 0
   target: {fileID: 8245293437876788595}
@@ -3051,6 +3078,23 @@ MonoBehaviour:
   compressRotation: 0
   positionPrecision: 0.01
   scalePrecision: 0.01
+--- !u!114 &875303476858422178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579789048697451467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f6f3bf89aa97405989c802ba270f815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  clientAuthority: 0
+  animator: {fileID: 3481940189362900045}
 --- !u!1 &1636494899101272905
 GameObject:
   m_ObjectHideFlags: 0
@@ -6204,6 +6248,7 @@ GameObject:
   - component: {fileID: 2828088824683055415}
   - component: {fileID: 2713979661702632281}
   - component: {fileID: 3050664550349101544}
+  - component: {fileID: 5990227370381396827}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Enemy
@@ -6383,7 +6428,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fc6eb1fb7c528245a9b85cb12c1157e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  detectionRadius: 3
+  movementSpeed: 1.5
 --- !u!114 &2713979661702632281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6413,7 +6462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 1
+  syncDirection: 0
   syncMode: 0
   syncInterval: 0
   target: {fileID: 7998530724534295053}
@@ -6436,6 +6485,23 @@ MonoBehaviour:
   compressRotation: 0
   positionPrecision: 0.01
   scalePrecision: 0.01
+--- !u!114 &5990227370381396827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3643130571233153300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f6f3bf89aa97405989c802ba270f815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  clientAuthority: 0
+  animator: {fileID: 2728636586769992282}
 --- !u!1 &3690579127680791067
 GameObject:
   m_ObjectHideFlags: 0

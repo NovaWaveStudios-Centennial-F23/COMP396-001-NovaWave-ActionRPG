@@ -22,7 +22,6 @@ public class TownTeleporter : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger Detected");
 
         if (other.CompareTag("Player"))
         {

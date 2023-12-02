@@ -75096,6 +75096,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fc6eb1fb7c528245a9b85cb12c1157e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   detectionRadius: 10
   movementSpeed: 3.5
 --- !u!1 &3316479355762824733
@@ -78416,6 +78419,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fc6eb1fb7c528245a9b85cb12c1157e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   detectionRadius: 10
   movementSpeed: 3.5
 --- !u!4 &4756799449957359906
@@ -84302,6 +84308,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fc6eb1fb7c528245a9b85cb12c1157e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   detectionRadius: 10
   movementSpeed: 3.5
 --- !u!136 &8460812797315926563

@@ -70,7 +70,7 @@ public class Fireball : Skill
     {
         // Live cooldown counter
         cooldown -= Time.deltaTime;
-        SkillsController.Instance.SetSkillCooldown(nameof(Fireball), cooldown);
+        //SkillsController.Instance.UpdateSkillCooldown(nameof(Fireball), cooldown);
 
         if (cooldown <= -0.1 && gameObject.layer == 6)
         {
