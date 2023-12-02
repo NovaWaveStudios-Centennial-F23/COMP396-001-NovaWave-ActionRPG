@@ -76,19 +76,12 @@ public class AttackHandler : MonoBehaviour
         if (damageAmount > 0f && distance < attackRange)
         {
             attackTimer = defaultTimeToAttack;
-            characterMovement.Stop();
             animator.SetTrigger("Attack");
             target.TakeDamage(damageAmount);
         }
-        else
-        {
-            // Limit the maximum distance to move towards the target
-            float maxMoveDistance = 4f;
-            Vector3 directionToTarget = (target.transform.position - transform.position).normalized;
-            Vector3 targetPosition = transform.position + directionToTarget * Mathf.Min(distance, maxMoveDistance);
-            characterMovement.CmdSetDestination(targetPosition);
-        }
+        // Removed automatic movement towards the enemy
     }
+
 
     private void OnDrawGizmos()
     {

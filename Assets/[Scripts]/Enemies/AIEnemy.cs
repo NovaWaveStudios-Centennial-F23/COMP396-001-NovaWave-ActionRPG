@@ -9,7 +9,7 @@ public class AIEnemy : MonoBehaviour
     NavMeshAgent navMeshAgent;
 
     [SerializeField] float detectionRadius = 3f;
-    [SerializeField] float movementSpeed = 3.5f;
+    [SerializeField] float movementSpeed = 1.5f;
     Health target;
     float timer = 4f;
 
