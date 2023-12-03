@@ -29,11 +29,10 @@ public class GearToolTip : MonoBehaviour
     TextMeshProUGUI txtRarity;
 
     [SerializeField]
-    TextMeshProUGUI txtGearDescription;
-
-    [SerializeField]
     TextMeshProUGUI txtStatsDescription;
 
+    [SerializeField]
+    TextMeshProUGUI txtGearDescription;
 
     private List<TextMeshProUGUI> optionalTooltipElements;
 
@@ -43,9 +42,12 @@ public class GearToolTip : MonoBehaviour
     {
         optionalTooltipElements = new List<TextMeshProUGUI>()
         {
+            txtGearLevel,
+            txtGearType,
             txtGearBase,
             txtRarity,
             txtStatsDescription,
+            txtGearDescription
         };
     }
 
@@ -58,14 +60,14 @@ public class GearToolTip : MonoBehaviour
         DisplayGearType(gear.gearType);
         DisplayGearBase(gear.gearBase);
         DisplayGearRarity(gear.gearRarity);
-        DisplayGearDescription(gear.gearDescription);
         DisplayGearStats(gear.mainStats, gear.randomRolls, gear.affixes);
+        DisplayGearDescription(gear.gearDescription);
 
-        //turn off all optional elements
-        foreach(var t in optionalTooltipElements)
-        {
-            t.gameObject.SetActive(false);
-        }
+        // //turn off all optional elements
+        // foreach(var t in optionalTooltipElements)
+        // {
+        //     t.gameObject.SetActive(false);
+        // }
     }
 
     private void DisplayIcon(Sprite image)

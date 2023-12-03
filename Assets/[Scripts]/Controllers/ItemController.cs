@@ -11,8 +11,13 @@ public class ItemController : MonoBehaviour
     public InventorySO inventory;
     public InventorySO equipment;
     public InventoryDatabaseSO database;
+
+    // properties for enter/clicked object
+    RaycastHit hit = new RaycastHit();
+    GameObject targetObject;
+
+    // prefab for spawning gear on ground
     public PickableObject spawnedBase;
-    GameObject clickedObject;
 
     // properties for life portion
     public GameObject textLifePortionUI;    // Assign PortionUI->PotionSlot->Amount
@@ -23,7 +28,7 @@ public class ItemController : MonoBehaviour
         // Add slot update functions to equipment slots
         for (int i = 0; i < equipment.GetSlots.Length; i++)
         {
-            equipment.GetSlots[i].OnBeforeUpdate += OnBeforeSlotUpdate;
+            // equipment.GetSlots[i].OnBeforeUpdate += OnBeforeSlotUpdate;
             equipment.GetSlots[i].OnAfterUpdate += OnAfterSlotUpdate;
         }
 
@@ -75,9 +80,9 @@ public class ItemController : MonoBehaviour
 
                 List<GearSO> equipped = new List<GearSO>();
 
+                // make list of equipped gearSO from equipment slots
                 for (int i = 0; i < equipment.GetSlots.Length; i++)
                 {
-                    // make list of equipped gearSO from equipment slots
                     if (equipment.GetSlots[i].gearInfo.Id >= 0)
                     {
                         equipped.Add(equipment.GetSlots[i].GearObject);
@@ -85,6 +90,7 @@ public class ItemController : MonoBehaviour
                 }
 
                 // send the list to calculater?(for stats)
+
                 // print("number of equipped gear: " + equipped.Count);
                 // for (int i = 0; i < equipped.Count; i++)
                 // {
@@ -103,45 +109,69 @@ public class ItemController : MonoBehaviour
         {
             OnItemClicked();
         }
+
+        ShowToolTip();
     }
 
     // pick up item/gear from ground
     private void OnItemClicked()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit = new RaycastHit();
         if (Physics.Raycast(ray, out hit))
         {
             // get parent object(groundedItem) from clicked object
-            clickedObject = hit.collider.gameObject.transform.parent.gameObject;
+            targetObject = hit.collider.gameObject.transform.parent.gameObject;
 
-            if (clickedObject.CompareTag("GroundedGear"))
+            if (targetObject.CompareTag("GroundedGear"))
             {
                 // if clicked object is gear, add it to inventory
-                var groundItem = clickedObject.GetComponent<PickableObject>();
+                var groundItem = targetObject.GetComponent<PickableObject>();
                 if (groundItem)
                 {
                     GearInfo _gearInfo = new GearInfo(groundItem.gearSO);
                     if (inventory.AddItem(_gearInfo, 1))
                     {
-                        Destroy(clickedObject);
+                        Destroy(targetObject);
                     }
                 }
             }
-            else if (clickedObject.CompareTag("Potion"))
+            else if (targetObject.CompareTag("Potion"))
             {
                 // add amount of life portion and update UI
                 lifePortionCount++;
                 textLifePortionUI.GetComponent<TextMeshProUGUI>().text = lifePortionCount.ToString();
 
                 // destroy clicked object
-                Destroy(clickedObject);
+                Destroy(targetObject);
             }
             else 
             {
                 // if clicked object is not gear or potion, do nothing
                 // UnityEngine.Debug.Log("Clicked object is not gear or potion)");
                 return;
+            }
+        }
+    }
+
+    private void ShowToolTip()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out hit))
+        {
+            // get parent object(groundedItem) from clicked object
+            targetObject = hit.collider.gameObject.transform.parent.gameObject;
+
+            if (targetObject.CompareTag("GroundedGear"))
+            {
+                // show tooltip
+                var groundItem = targetObject.GetComponent<PickableObject>();
+                ToolTipController.Instance.ShowGearTooltip(groundItem.gearSO);
+            }
+            else
+            {
+                // close tooltip
+                targetObject = null;
+                ToolTipController.Instance.CloseTooltips();
             }
         }
     }
@@ -181,5 +211,11 @@ public class ItemController : MonoBehaviour
     public void ButtonSpawnTest(int dataBaseId)
     {   
         DropObjectOnGroundById(dataBaseId, new Vector3(1, 1, 0));
+    }
+
+    private void OnApplicationQuit()
+    {
+        inventory.Container.Clear();
+        equipment.Container.Clear();
     }
 }

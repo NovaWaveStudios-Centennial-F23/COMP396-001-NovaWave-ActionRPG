@@ -87,12 +87,20 @@ public abstract class UserInterface : MonoBehaviour
     {
         // copy item to hover mouse item
         MouseData.slotHoveredOver = obj;
+
+        // show tooltip if slot is not empty
+        if (slotsOnInterface[obj].gearInfo.Id >= 0)
+        {
+            ToolTipController.Instance.ShowGearTooltip(slotsOnInterface[obj].GearObject);
+        }
     }
 
     public void OnExit(GameObject obj)
     {
         // Delete hover mouse item
         MouseData.slotHoveredOver = null;
+        // close tooltip
+        ToolTipController.Instance.CloseTooltips();
     }
 
     public void OnEnterInterface(GameObject obj)
