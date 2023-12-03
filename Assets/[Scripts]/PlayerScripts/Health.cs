@@ -80,7 +80,7 @@ public class Health : NetworkBehaviour
     {
         if (isOwned)
         {
-            ApplyHealthRegen();
+            CmdApplyHealthRegen();
         }
     }
 
@@ -96,7 +96,8 @@ public class Health : NetworkBehaviour
         }
     }
 
-    private void ApplyHealthRegen()
+    [Command]
+    private void CmdApplyHealthRegen()
     {
         if (lifepool.currentValue < lifepool.maxValue)
         {
@@ -108,7 +109,7 @@ public class Health : NetworkBehaviour
     /// <summary>
     /// Commmand to set the max health of the player character
     /// </summary>
-    [Command(requiresAuthority = false)]
+    [Command]
     public void CmdSetupHealth(float maxHealth, float regen)
     {
         lifepool.maxValue = maxHealth;
