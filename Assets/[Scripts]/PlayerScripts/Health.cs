@@ -12,6 +12,9 @@ public class Health : NetworkBehaviour
     float healthRegen;//will need to get this from calculator later
     // You may want to set these in the inspector or in a Start() method if they are constant
 
+    [SerializeField]
+    int experience;
+
     public enum CharacterState
     {
         Alive,
@@ -31,6 +34,7 @@ public class Health : NetworkBehaviour
                     maxValue = 100000f, // Player has more health, for example
                     currentValue = 100000f
                 };
+                experience = 0;
             }
             else if (gameObject.CompareTag("EnemyEasy"))
             {
@@ -39,6 +43,7 @@ public class Health : NetworkBehaviour
                     maxValue = 100f, // Enemy has less health
                     currentValue = 100f
                 };
+                experience = 8;
             }
 
             else if (gameObject.CompareTag("EnemyMedium"))
@@ -48,6 +53,7 @@ public class Health : NetworkBehaviour
                     maxValue = 200f, // Enemy has less health
                     currentValue = 200f
                 };
+                experience = 14;
             }
 
             else if (gameObject.CompareTag("EnemyHard"))
@@ -57,6 +63,7 @@ public class Health : NetworkBehaviour
                     maxValue = 300f, // Enemy has less health
                     currentValue = 300f
                 };
+                experience = 25;
             }
             else
             {
@@ -110,7 +117,6 @@ public class Health : NetworkBehaviour
         RpcUpdateHealth(lifepool.currentValue, lifepool.maxValue);
     }
 
-
     [ClientRpc]
     private void RpcUpdateHealth(float newHealthValue, float newMaxHealth)
     {
@@ -138,14 +144,12 @@ public class Health : NetworkBehaviour
         if (animator != null)
         {
             animator.SetTrigger("Die");
-         
-            
         }
 
         // Add XP to player's experience
         if (ExperienceManager.Instance != null)
         {
-            ExperienceManager.Instance.AddExperience(5); // Replace 50 with the actual experience value you want to give
+            ExperienceManager.Instance.AddExperience(experience); // Replace 50 with the actual experience value you want to give
             Debug.Log("addedExp");
         }
         //ReloadCurrentSceneWithDelay();
