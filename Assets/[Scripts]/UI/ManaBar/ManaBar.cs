@@ -63,7 +63,7 @@ public class ManaBar : MonoBehaviour
     private void HandleValueChanged(ValuePool pool)
     {
         manaBar.fillAmount = pool.currentValue / pool.maxValue;
-        manaIndicator.text = pool.currentValue.ToString();
+        manaIndicator.text = Mathf.Floor(pool.currentValue).ToString();
     }
 
     void OnDestroy()

@@ -47,9 +47,10 @@ public class UIPoolBar : MonoBehaviour
             }
 
             bar.fillAmount = Mathf.InverseLerp(0f, targetPool.maxValue, targetPool.currentValue);
+            
             if(targetPool != null)
             {
-                healthIndicator.text = targetPool.currentValue.ToString("F0"); // Format for whole numbers, adjust as needed
+                healthIndicator.text = Mathf.Floor(targetPool.currentValue).ToString(); // Format for whole numbers, adjust as needed
             }
             
         }

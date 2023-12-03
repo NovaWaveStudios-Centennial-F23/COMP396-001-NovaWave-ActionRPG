@@ -28,8 +28,8 @@ MonoBehaviour:
     maxValue: 11
   cooldown:
     stat: 29
-    minValue: 0.21
-    maxValue: 0.21
+    minValue: 0.45
+    maxValue: 0.45
   duration:
     stat: 32
     minValue: 5

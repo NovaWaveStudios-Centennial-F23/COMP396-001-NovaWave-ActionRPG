@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static Stats;
 using static StatFinder;
+using UnityEngine.Assertions.Must;
 
 public class CalculationController : MonoBehaviour
 {
@@ -156,5 +157,86 @@ public class CalculationController : MonoBehaviour
         }
     }
 
+
+
+    //calculating player stats
+    public float CalculatePlayerHealth()
+    {
+        float baseHealth = StatsController.Instance.GetPlayerModifier(Stat.Health).minValue;
+        float percentHealth = StatsController.Instance.GetPlayerModifier(Stat.HealthP).minValue;
+        baseHealth *= 1 + percentHealth / 100;
+
+        return baseHealth;
+    }
+
+
+    public float CalculatePlayerMana()
+    {
+        float baseMana = StatsController.Instance.GetPlayerModifier(Stat.Mana).minValue;
+        float percentMana = StatsController.Instance.GetPlayerModifier(Stat.ManaP).minValue;
+        float calcMana = (1 + percentMana / 100)*baseMana;
+
+        return calcMana;
+    }
+
+    public float CalculatePlayerManaRegen()
+    {
+        float baseManaRegen = StatsController.Instance.GetPlayerModifier(Stat.ManaRegen).minValue;
+        float percentManaRegen = StatsController.Instance.GetPlayerModifier(Stat.ManaRegenP).minValue;
+        return (1 + percentManaRegen / 100) * baseManaRegen;
+    }
+
+    public float CalculatePlayerHealthRegen()
+    {
+        float baseHealthRegen = StatsController.Instance.GetPlayerModifier(Stat.HealthRegen).minValue;
+        float percentHealthRegen = StatsController.Instance.GetPlayerModifier(Stat.HealthRegenP).minValue;
+        return (1 + percentHealthRegen / 100) * baseHealthRegen;
+    }
+
+    public float CalculatePlayerArmour()
+    {
+        float baseArmour = StatsController.Instance.GetPlayerModifier(Stat.HealthRegen).minValue;
+        float percentArmour = StatsController.Instance.GetPlayerModifier(Stat.HealthRegenP).minValue;
+        return (1 + percentArmour / 100) * baseArmour;
+    }
+
+    public float CalculateDamageReduction(float armour)
+    {
+        //scaling is as follows: first 500 armour will provide 20% reduction
+        float trackedArmour = armour;
+        float accumulatedDamageReduction = 0f;
+
+        if(trackedArmour >= 500)
+        {
+            trackedArmour -= 500f;
+            accumulatedDamageReduction += .2f;
+        }
+        else
+        {
+            accumulatedDamageReduction += (trackedArmour / 500f)*0.2f;
+        }
+
+        //2000 armour should provide 35% total reduction
+        if(trackedArmour >= 1000)
+        {
+            trackedArmour -= 1500f;
+            accumulatedDamageReduction += .15f;
+        }
+        else
+        {
+            accumulatedDamageReduction += (trackedArmour / 1500f) * 0.15f;
+        }
+
+        //the rest of the armour will scaling very inefficiently with every additional 1000 providing an additional 10%
+        if(trackedArmour > 0)
+        {
+            accumulatedDamageReduction += (trackedArmour / 1000f) * 0.1f;
+        }
+
+        //make sure the total damage reduction doesn't go over cap
+        float normalizedDamageReduction = Mathf.Clamp(accumulatedDamageReduction, 0f, 70f);
+
+        return normalizedDamageReduction;
+    }
         
 }

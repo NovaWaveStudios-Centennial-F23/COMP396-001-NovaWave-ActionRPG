@@ -10,25 +10,19 @@ public class Mana : MonoBehaviour
     public ValuePool manaPool {get; private set;}
     public event Action<ValuePool> PoolChanged = delegate { };
 
-    [SerializeField] float manaRegen; 
+    float manaRegen; 
     //will need to get this value from calculation controller
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        manaPool = new ValuePool { maxValue = 100f, currentValue = 100f };
-    }
 
     private void Update()
     {
-        if (manaPool == null)
+        if(manaPool != null )
         {
-            manaPool = new ValuePool { maxValue = 100f, currentValue = 100f };
+            if (manaPool.currentValue < manaPool.maxValue)
+            {
+                GainMana(manaRegen * Time.deltaTime);
+            }
         }
-        if (manaPool.currentValue < manaPool.maxValue)
-        {
-            GainMana(manaRegen * Time.deltaTime);
-        }
+        
     }
 
     /// <summary>
@@ -62,6 +56,16 @@ public class Mana : MonoBehaviour
             manaPool.currentValue = Mathf.Clamp(manaPool.currentValue + value, 0, manaPool.maxValue);
             PoolChanged(manaPool);
         }
+    }
+
+    public void SetupMana(float maxMana, float manaRegen)
+    {
+        if (manaPool == null)
+        {
+            manaPool = new ValuePool { currentValue = maxMana, maxValue = maxMana };
+        }
+
+        this.manaRegen = manaRegen;
     }
 
 }
