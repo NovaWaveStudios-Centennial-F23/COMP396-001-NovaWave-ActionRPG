@@ -31,6 +31,7 @@ public class ItemController : MonoBehaviour
         textLifePortionUI.GetComponent<TextMeshProUGUI>().text = lifePortionCount.ToString();
     }
 
+    // Won't be used but keep it for now
     public void OnBeforeSlotUpdate(InventorySlot _slot)
     {
         if (_slot.gearInfo == null)
@@ -38,29 +39,24 @@ public class ItemController : MonoBehaviour
             return;
         }
 
-        switch (_slot.parent.inventory.interfaceType)
-        {
-            case InterfaceType.Inventory:
-                break;
-            case InterfaceType.Equipment:
-                print(string.Concat("Removed ", _slot.gearInfo, " on ", _slot.parent.inventory.interfaceType, ", Allowed Items: ", string.Join(", ", _slot.AllowedSlots)));
+        // switch (_slot.parent.inventory.interfaceType)
+        // {
+        //     case InterfaceType.Inventory:
+        //         break;
+        //     case InterfaceType.Equipment:
+        //         // print(string.Concat("Removed ", _slot.gearInfo, " on ", _slot.parent.inventory.interfaceType, ", Allowed Gears: ", string.Join(", ", _slot.AllowedSlots)));
 
-                // rmeove gearSO from equipment slots
+        //         // for (int i = 0; i < equipment.GetSlots.Length; i++)
+        //         // {
+        //         //     print("OnBeforeSlotUpdate. slot " + i + ": " + equipment.GetSlots[i].gearInfo.Id);
+        //         // }
 
-                // for (int i = 0; i < _slot.gearInfo.gearSO.Attributes.Length; i++)
-                // {
-                //     for (int j = 0; j < attributes.Length; j++)
-                //     {
-                //         if (_slot.gearInfo.gearSO.Attributes[i].attribute == attributes[j].attribute)
-                //         {
-                //             attributes[j].RemoveGear(_slot.gearInfo.gearSO.Attributes[i].value);
-                //         }
-                //     }
-                // }
-                break;
-            default:
-                break;
-        }
+        //         // rmeove gearSO from equipment slots
+
+        //         break;
+        //     default:
+        //         break;
+        // }
     }
 
     public void OnAfterSlotUpdate(InventorySlot _slot)
@@ -75,20 +71,26 @@ public class ItemController : MonoBehaviour
             case InterfaceType.Inventory:
                 break;
             case InterfaceType.Equipment:
-                print(string.Concat("Placed ", _slot.gearInfo, " on ", _slot.parent.inventory.interfaceType, ", Allowed Items: ", string.Join(", ", _slot.AllowedSlots)));
+                // print(string.Concat("Placed ", _slot.gearInfo, " on ", _slot.parent.inventory.interfaceType, ", Allowed Gears: ", string.Join(", ", _slot.AllowedSlots)));
 
-                // add gearSO from equipment slots
+                List<GearSO> equipped = new List<GearSO>();
 
-                // for (int i = 0; i < _slot.gearInfo.gearSO.Attributes.Length; i++)
+                for (int i = 0; i < equipment.GetSlots.Length; i++)
+                {
+                    // make list of equipped gearSO from equipment slots
+                    if (equipment.GetSlots[i].gearInfo.Id >= 0)
+                    {
+                        equipped.Add(equipment.GetSlots[i].GearObject);
+                    }
+                }
+
+                // send the list to calculater?(for stats)
+                // print("number of equipped gear: " + equipped.Count);
+                // for (int i = 0; i < equipped.Count; i++)
                 // {
-                //     for (int j = 0; j < attributes.Length; j++)
-                //     {
-                //         if (_slot.gearInfo.gearSO.Attributes[i].attribute == attributes[j].attribute)
-                //         {
-                //             attributes[j].AddGear(_slot.gearInfo.gearSO.Attributes[i].value);
-                //         }
-                //     }
+                //     print(equipped[i].gearType);
                 // }
+
                 break;
             default:
                 break;
