@@ -13,293 +13,246 @@ MonoBehaviour:
   m_Name: PlayerInventory
   m_EditorClassIdentifier: 
   database: {fileID: 11400000, guid: 69375f6472fb67340b46842e19a0a3b0, type: 2}
+  interfaceType: 0
   Container:
-    Items:
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    Slots:
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0
-    - AllowedItems: 
-      parent: {fileID: 0}
-      item:
-        Name: 
+    - AllowedSlots: 
+      gearInfo:
+        gearName: 
         Id: -1
       amount: 0

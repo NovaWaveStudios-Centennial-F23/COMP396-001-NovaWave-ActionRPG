@@ -36,26 +36,45 @@ public abstract class UserInterface : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < inventory.Container.Gears.Length; i++)
+        for (int i = 0; i < inventory.GetSlots.Length; i++)
         {
-            inventory.Container.Gears[i].parent = this;
+            inventory.GetSlots[i].parent = this;
+            inventory.GetSlots[i].OnAfterUpdate += OnSlotUpdate;
         }
         CreateSlots();
+
         AddEvent(gameObject, EventTriggerType.PointerEnter, delegate { OnEnterInterface(gameObject); });
         AddEvent(gameObject, EventTriggerType.PointerExit, delegate { OnExitInterface(gameObject); });
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnSlotUpdate(InventorySlot _slot)
     {
-        slotsOnInterface.UpdateSlotDisplay();
+        if (_slot.gearInfo.Id >= 0)
+        {
+            _slot.slotDisplay.transform.GetChild(0).GetComponentInChildren<Image>().sprite = _slot.GearObject.icon;
+            _slot.slotDisplay.transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(1, 1, 1, 1);
+            _slot.slotDisplay.GetComponentInChildren<TextMeshProUGUI>().text = _slot.amount == 1 ? "" : _slot.amount.ToString("n0");
+        }
+        else
+        {
+            // empty slot
+            _slot.slotDisplay.transform.GetChild(0).GetComponentInChildren<Image>().sprite = null;
+            _slot.slotDisplay.transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(1, 1, 1, 0);
+            _slot.slotDisplay.GetComponentInChildren<TextMeshProUGUI>().text = "";
+        }
     }
+
+    // Update is called once per frame
+    // void Update()
+    // {
+    //     slotsOnInterface.UpdateSlotDisplay();
+    // }
 
     public abstract void CreateSlots();
 
     protected void AddEvent(GameObject obj, EventTriggerType type, UnityAction<BaseEventData> action)
     {
-        // Add event to event trigger
+        // Add events to event trigger
         EventTrigger trigger = obj.GetComponent<EventTrigger>();
         var EventTrigger = new EventTrigger.Entry();
         EventTrigger.eventID = type;

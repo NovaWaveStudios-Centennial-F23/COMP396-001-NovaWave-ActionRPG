@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4337acca16c0cd6418d605d4102999fe, type: 3}
   m_Name: InventoryDatabase
   m_EditorClassIdentifier: 
-  Gears:
+  GearObjects:
   - {fileID: 11400000, guid: 7147c357385cc8a4896e3673a37debe5, type: 2}
   - {fileID: 11400000, guid: ebc766d96f003474e89d7ee1beb33c79, type: 2}
   - {fileID: 11400000, guid: a7a1d6b108ef8b04897aff82d4912982, type: 2}

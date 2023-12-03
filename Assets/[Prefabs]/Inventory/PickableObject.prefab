@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 211461344120169795}
   m_Layer: 0
   m_Name: PickableObject
-  m_TagString: Untagged
+  m_TagString: GroundedGear
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77f21499619ef9c4a91b0d4070b6ea19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemSO: {fileID: 0}
+  gearSO: {fileID: 11400000, guid: 4d4e6039f66643c4eaaec47acacfa838, type: 2}
 --- !u!1001 &4992256901941806974
 PrefabInstance:
   m_ObjectHideFlags: 0

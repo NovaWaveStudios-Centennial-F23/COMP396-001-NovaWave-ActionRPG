@@ -12,16 +12,16 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Inventory Database Object", menuName = "ScriptableObejcts/Create New InventoryDB Object")]
 public class InventoryDatabaseSO : ScriptableObject, ISerializationCallbackReceiver
 {
-    public GearSO[] Gears;
+    public GearSO[] GearObjects;
 
     [ContextMenu("Update ID's")]
     public void UpdateID()
     {
-        for (int i = 0; i < Gears.Length; i++)
+        for (int i = 0; i < GearObjects.Length; i++)
         {
-            if (Gears[i].data.Id != i)
+            if (GearObjects[i].data.Id != i)
             {
-                Gears[i].data.Id = i;
+                GearObjects[i].data.Id = i;
             }
         }
     }

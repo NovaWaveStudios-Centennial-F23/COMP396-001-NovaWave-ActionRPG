@@ -13,34 +13,35 @@ MonoBehaviour:
   m_Name: PlayerEquipment
   m_EditorClassIdentifier: 
   database: {fileID: 11400000, guid: 69375f6472fb67340b46842e19a0a3b0, type: 2}
+  interfaceType: 1
   Container:
-    Gears:
-    - AllowedGears: 03000000
+    Slots:
+    - AllowedSlots: 03000000
       gearInfo:
         gearName: 
         Id: -1
       amount: 0
-    - AllowedGears: 04000000
+    - AllowedSlots: 04000000
       gearInfo:
         gearName: 
         Id: -1
       amount: 0
-    - AllowedGears: 05000000
+    - AllowedSlots: 05000000
       gearInfo:
         gearName: 
         Id: -1
       amount: 0
-    - AllowedGears: 06000000
+    - AllowedSlots: 06000000
       gearInfo:
         gearName: 
         Id: -1
       amount: 0
-    - AllowedGears: 000000000100000002000000
+    - AllowedSlots: 000000000100000002000000
       gearInfo:
         gearName: 
         Id: -1
       amount: 0
-    - AllowedGears: 000000000100000002000000
+    - AllowedSlots: 000000000100000002000000
       gearInfo:
         gearName: 
         Id: -1
