@@ -1,6 +1,5 @@
 using System.Net.NetworkInformation;
 using System.Runtime.CompilerServices;
-using System.Diagnostics;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,11 +18,15 @@ public class ItemController : MonoBehaviour
     RaycastHit hit = new RaycastHit();
     GameObject targetObject;
 
-    // prefab for spawning gear on ground
+    // prefab for spawning
     public PickableObject spawnedBase;
+    public GameObject potionObject;
+
+    [SerializeField]
+	[Range( 0.0f, 100.0f)]
+    public float dropProbability;
 
     // properties for life potion
-    public GameObject textLifePotionUI;    // Assign PotionUI->PotionSlot->Amount
     public int lifePotionCount = 0;
 
     void Awake()
@@ -46,9 +49,6 @@ public class ItemController : MonoBehaviour
             // equipment.GetSlots[i].OnBeforeUpdate += OnBeforeSlotUpdate;
             equipment.GetSlots[i].OnAfterUpdate += OnAfterSlotUpdate;
         }
-
-        // PotionUI
-        textLifePotionUI.GetComponent<TextMeshProUGUI>().text = lifePotionCount.ToString();
     }
 
     // Won't be used but keep it for now
@@ -157,9 +157,9 @@ public class ItemController : MonoBehaviour
             }
             else if (targetObject.CompareTag("Potion"))
             {
+                print("Potion clicked");
                 // add amount of life potion and update UI
                 lifePotionCount++;
-                textLifePotionUI.GetComponent<TextMeshProUGUI>().text = lifePotionCount.ToString();
 
                 // destroy clicked object
                 Destroy(targetObject);
@@ -187,12 +187,25 @@ public class ItemController : MonoBehaviour
                 var groundItem = targetObject.GetComponent<PickableObject>();
                 ToolTipController.Instance.ShowGearTooltip(groundItem.gearSO);
             }
+            else if (targetObject.CompareTag("Potion"))
+            {
+                return;
+            }
             else
             {
                 // close tooltip
                 targetObject = null;
                 ToolTipController.Instance.CloseTooltips();
             }
+        }
+    }
+
+    public void SpawnPotion(Vector3 position)
+    {
+        float random = Random.Range(0f, 100f);
+        if (random <= dropProbability)
+        {
+            Instantiate(potionObject, position, Quaternion.identity);
         }
     }
 
@@ -203,12 +216,10 @@ public class ItemController : MonoBehaviour
         {
             // heal player
 
-            // update amount and UI
+            // update amount
             lifePotionCount--;
-            textLifePotionUI.GetComponent<TextMeshProUGUI>().text = lifePotionCount.ToString();
         }
     }
-
 
     // Won't be used
     // public void DropObjectOnGroundById(int dataBaseId, Vector3 position)

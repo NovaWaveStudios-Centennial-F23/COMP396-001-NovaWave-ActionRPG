@@ -156,6 +156,12 @@ public class Health : NetworkBehaviour
         //ReloadCurrentSceneWithDelay();
         //Destroy(gameObject, 2f); // Waits for 2 seconds before destroying the game object
 
+        // Spawn potion from enemy position
+        if (!gameObject.CompareTag("Player"))
+        {
+            ItemController.Instance.SpawnPotion(transform.position);
+        }
+
         // will need to implement the waiting some other way
         DestroySelf();
     }
