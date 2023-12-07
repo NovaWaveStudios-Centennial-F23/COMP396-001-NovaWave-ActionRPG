@@ -52,6 +52,8 @@ public class PlayerMultiplayer : NetworkBehaviour
             CalculationController.Instance.CalculatePlayerHealthRegen());
             InGameUIManager.Instance.playerHealthBar.Show(health.lifepool);
 
+            ItemController.Instance.SetPlayerHealth(health);
+
             //Setup mana for player
             mana.SetupMana(
                 CalculationController.Instance.CalculatePlayerMana(),

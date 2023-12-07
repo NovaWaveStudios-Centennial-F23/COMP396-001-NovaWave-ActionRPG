@@ -106,6 +106,12 @@ public class Health : NetworkBehaviour
         }
     }
 
+    [Command(requiresAuthority = false)]
+    public void CmdHealPlayer(float value)
+    {
+        lifepool.currentValue = Mathf.Clamp(value + lifepool.currentValue, 0, lifepool.maxValue);
+    }
+
     /// <summary>
     /// Commmand to set the max health of the player character
     /// </summary>

@@ -23390,7 +23390,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 744135790}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.36607417, y: -0.35136035, z: 0.1516329, w: 0.84825885}
+  m_LocalRotation: {x: 0.36607417, y: -0.3513603, z: 0.15163286, w: 0.8482589}
   m_LocalPosition: {x: -173.95, y: 10, z: 28.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -70749,6 +70749,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6022888026983284886, guid: ed489ea16cb0d64489b26199e8217148, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6022888026983284886, guid: ed489ea16cb0d64489b26199e8217148, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6022888026983284886, guid: ed489ea16cb0d64489b26199e8217148, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6022888026983284886, guid: ed489ea16cb0d64489b26199e8217148, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6111259759329622625, guid: ed489ea16cb0d64489b26199e8217148, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -71028,15 +71044,15 @@ PrefabInstance:
       objectReference: {fileID: 744135791}
     - target: {fileID: 2158591229214992201, guid: 783939b25fc0b80438b075232a2276a7, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.84825885
+      value: 0.8482589
       objectReference: {fileID: 0}
     - target: {fileID: 2158591229214992201, guid: 783939b25fc0b80438b075232a2276a7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.35136035
+      value: -0.3513603
       objectReference: {fileID: 0}
     - target: {fileID: 2158591229214992201, guid: 783939b25fc0b80438b075232a2276a7, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.1516329
+      value: 0.15163286
       objectReference: {fileID: 0}
     - target: {fileID: 6167580450965489479, guid: 783939b25fc0b80438b075232a2276a7, type: 3}
       propertyPath: hpBar

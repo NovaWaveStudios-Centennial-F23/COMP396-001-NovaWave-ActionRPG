@@ -29,6 +29,8 @@ public class ItemController : MonoBehaviour
     // properties for life potion
     public int lifePotionCount = 0;
 
+    private Health playerHealth;
+
     void Awake()
     {
         if (instance != null && instance != this)
@@ -49,6 +51,11 @@ public class ItemController : MonoBehaviour
             // equipment.GetSlots[i].OnBeforeUpdate += OnBeforeSlotUpdate;
             equipment.GetSlots[i].OnAfterUpdate += OnAfterSlotUpdate;
         }
+    }
+
+    public void SetPlayerHealth(Health health)
+    {
+        playerHealth = health;
     }
 
     // Won't be used but keep it for now
@@ -215,7 +222,14 @@ public class ItemController : MonoBehaviour
         if (lifePotionCount > 0)
         {
             // heal player
-
+            if(playerHealth != null)
+            {
+                playerHealth.CmdHealPlayer(200f);
+            }
+            else
+            {
+                Debug.LogError("No player health found for potion.");
+            }
             // update amount
             lifePotionCount--;
         }
