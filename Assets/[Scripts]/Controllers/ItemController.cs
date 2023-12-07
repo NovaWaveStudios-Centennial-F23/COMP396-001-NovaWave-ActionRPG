@@ -178,6 +178,11 @@ public class ItemController : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit))
         {
+            if (hit.collider.gameObject.transform.parent == null)
+            {
+                return;
+            }
+
             // get parent object(groundedItem) from clicked object
             targetObject = hit.collider.gameObject.transform.parent.gameObject;
 
@@ -194,8 +199,8 @@ public class ItemController : MonoBehaviour
             else
             {
                 // close tooltip
-                targetObject = null;
                 ToolTipController.Instance.CloseTooltips();
+                targetObject = null;
             }
         }
     }
