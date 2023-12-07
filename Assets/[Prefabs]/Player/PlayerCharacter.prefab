@@ -3020,8 +3020,12 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  lifepool:
+    maxValue: 0
+    currentValue: 0
   reloadDelay: 5
   healthRegen: 25
+  experience: 0
   currentState: 0
 --- !u!114 &8811999857863127525
 MonoBehaviour:
@@ -3035,7 +3039,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12284d64381fccc40a444e86e0b139e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpBar: {fileID: 0}
 --- !u!114 &8530132553203190438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3048,7 +3051,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d06156a57aa08a947be9064a19eac01b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manaRegen: 10
 --- !u!114 &6730746798496603608
 MonoBehaviour:
   m_ObjectHideFlags: 0
