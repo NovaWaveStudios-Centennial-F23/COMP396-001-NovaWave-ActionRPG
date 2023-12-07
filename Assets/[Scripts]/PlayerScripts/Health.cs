@@ -165,7 +165,12 @@ public class Health : NetworkBehaviour
         // Spawn potion from enemy position
         if (!gameObject.CompareTag("Player"))
         {
-            ItemController.Instance.SpawnPotion(transform.position);
+            int random = Random.Range(0, 100);
+            if(random <= 25f)
+            {
+                ItemController.Instance.SpawnPotion(transform.position);
+            }
+            
         }
 
         // will need to implement the waiting some other way
