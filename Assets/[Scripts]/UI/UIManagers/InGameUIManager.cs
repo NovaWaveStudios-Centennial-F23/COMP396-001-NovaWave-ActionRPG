@@ -66,6 +66,8 @@ public class InGameUIManager : MonoBehaviour
             panels = new List<GameObject>() { inventoryPanel, playerSkillTreePanel, skillSkillTreePanel, ingameMenuPanel };
         }
         listenForInputs = ShouldCheckForInput(SceneManager.GetActiveScene());
+        // generate inventory slots
+        inventoryPanel.SetActive(true);
         CloseAllPanels();
         if(ingameMenuPanel != null)
         {

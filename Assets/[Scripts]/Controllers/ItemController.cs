@@ -8,9 +8,12 @@ using TMPro;
 
 public class ItemController : MonoBehaviour
 {
-    public InventorySO inventory;
+    private static ItemController instance;
+    public static ItemController Instance { get { return instance; } }
+
+   public InventorySO inventory;
     public InventorySO equipment;
-    public InventoryDatabaseSO database;
+    // public InventoryDatabaseSO database;
 
     // properties for enter/clicked object
     RaycastHit hit = new RaycastHit();
@@ -19,9 +22,21 @@ public class ItemController : MonoBehaviour
     // prefab for spawning gear on ground
     public PickableObject spawnedBase;
 
-    // properties for life portion
-    public GameObject textLifePortionUI;    // Assign PortionUI->PotionSlot->Amount
-    public int lifePortionCount = 0;
+    // properties for life potion
+    public GameObject textLifePotionUI;    // Assign PotionUI->PotionSlot->Amount
+    public int lifePotionCount = 0;
+
+    void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+    }
 
      private void Start()
     {
@@ -32,8 +47,8 @@ public class ItemController : MonoBehaviour
             equipment.GetSlots[i].OnAfterUpdate += OnAfterSlotUpdate;
         }
 
-        // PortionUI
-        textLifePortionUI.GetComponent<TextMeshProUGUI>().text = lifePortionCount.ToString();
+        // PotionUI
+        textLifePotionUI.GetComponent<TextMeshProUGUI>().text = lifePotionCount.ToString();
     }
 
     // Won't be used but keep it for now
@@ -110,10 +125,15 @@ public class ItemController : MonoBehaviour
             OnItemClicked();
         }
 
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            UseLifePotion();
+        }
+
         ShowToolTip();
     }
 
-    // pick up item/gear from ground
+    // pick up gear/potion from ground
     private void OnItemClicked()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -137,9 +157,9 @@ public class ItemController : MonoBehaviour
             }
             else if (targetObject.CompareTag("Potion"))
             {
-                // add amount of life portion and update UI
-                lifePortionCount++;
-                textLifePortionUI.GetComponent<TextMeshProUGUI>().text = lifePortionCount.ToString();
+                // add amount of life potion and update UI
+                lifePotionCount++;
+                textLifePotionUI.GetComponent<TextMeshProUGUI>().text = lifePotionCount.ToString();
 
                 // destroy clicked object
                 Destroy(targetObject);
@@ -176,46 +196,43 @@ public class ItemController : MonoBehaviour
         }
     }
 
-    // Use portion for life healing
-    public void UseLifePortion()
+    // Use potion for life healing
+    public void UseLifePotion()
     {
-        if (lifePortionCount > 0)
+        if (lifePotionCount > 0)
         {
-            // heal player(use health.cs?)
+            // heal player
 
             // update amount and UI
-            lifePortionCount--;
-            textLifePortionUI.GetComponent<TextMeshProUGUI>().text = lifePortionCount.ToString();
+            lifePotionCount--;
+            textLifePotionUI.GetComponent<TextMeshProUGUI>().text = lifePotionCount.ToString();
         }
     }
 
-    // Spawn gear on ground based on id from database
-    // Send id from GearSO and position of enemy
-    public void DropObjectOnGroundById(int dataBaseId, Vector3 position)
-    {
-        // Check if id is invalid
-        if (dataBaseId < 0 || dataBaseId >= database.GearObjects.Length)
-        {
-            return;
-        }
 
-        // Instantiate item on field
-        spawnedBase.gearSO = database.GearObjects[dataBaseId];
-        Instantiate(spawnedBase, position, Quaternion.identity);
-    }
+    // Won't be used
+    // public void DropObjectOnGroundById(int dataBaseId, Vector3 position)
+    // {
+    //     // Check if id is invalid
+    //     if (dataBaseId < 0 || dataBaseId >= database.GearObjects.Length)
+    //     {
+    //         return;
+    //     }
 
-    // Spawn gear on ground based on rairity?
-    // Spawn gear on ground based on gearType?
+    //     // Instantiate item on field
+    //     spawnedBase.gearSO = database.GearObjects[dataBaseId];
+    //     Instantiate(spawnedBase, position, Quaternion.identity);
+    // }
 
-    // Spawning gear by id(this is for testing)
+    // Spawning gear (this is for testing)
     public void ButtonSpawnTest(int dataBaseId)
     {   
-        DropObjectOnGroundById(dataBaseId, new Vector3(1, 1, 0));
+        // DropObjectOnGroundById(dataBaseId, new Vector3(1, 1, 0));
     }
 
-    private void OnApplicationQuit()
-    {
-        inventory.Container.Clear();
-        equipment.Container.Clear();
-    }
+    // private void OnApplicationQuit()
+    // {
+    //     inventory.Container.Clear();
+    //     equipment.Container.Clear();
+    // }
 }
