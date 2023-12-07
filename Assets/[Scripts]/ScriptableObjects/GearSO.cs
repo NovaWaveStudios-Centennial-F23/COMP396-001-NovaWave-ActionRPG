@@ -41,7 +41,6 @@ public class GearSO : ScriptableObject
 
     // information for inventory
     public Sprite icon;
-    public bool stackable = false;
     [TextArea(15, 20)]
     public string gearDescription;
     public GearInfo data = new GearInfo();
@@ -51,6 +50,9 @@ public class GearSO : ScriptableObject
         GearInfo newGear = new GearInfo(this);
         return newGear;
     }
+
+    // [System.NonSerialized]
+    // public bool stackable = false;
 }
 
 // This is for inventory

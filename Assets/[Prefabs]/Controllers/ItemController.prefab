@@ -49,5 +49,4 @@ MonoBehaviour:
   spawnedBase: {fileID: 211461344120169795, guid: 37ba750e043c9504a8c7375f757aa0e4, type: 3}
   potionObject: {fileID: 5807729131036273031, guid: 50acbf14ef4a08147bf14475bbf2bfd7, type: 3}
   dropProbability: 60
-  textLifePotionUI: {fileID: 0}
   lifePotionCount: 0

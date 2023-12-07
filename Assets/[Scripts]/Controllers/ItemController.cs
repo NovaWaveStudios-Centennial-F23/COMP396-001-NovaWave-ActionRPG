@@ -10,9 +10,8 @@ public class ItemController : MonoBehaviour
     private static ItemController instance;
     public static ItemController Instance { get { return instance; } }
 
-   public InventorySO inventory;
+    public InventorySO inventory;
     public InventorySO equipment;
-    // public InventoryDatabaseSO database;
 
     // properties for enter/clicked object
     RaycastHit hit = new RaycastHit();
@@ -112,12 +111,6 @@ public class ItemController : MonoBehaviour
                 }
 
                 // send the list to calculater?(for stats)
-
-                // print("number of equipped gear: " + equipped.Count);
-                // for (int i = 0; i < equipped.Count; i++)
-                // {
-                //     print(equipped[i].gearType);
-                // }
 
                 break;
             default:
@@ -235,29 +228,17 @@ public class ItemController : MonoBehaviour
         }
     }
 
-    // Won't be used
-    // public void DropObjectOnGroundById(int dataBaseId, Vector3 position)
-    // {
-    //     // Check if id is invalid
-    //     if (dataBaseId < 0 || dataBaseId >= database.GearObjects.Length)
-    //     {
-    //         return;
-    //     }
-
-    //     // Instantiate item on field
-    //     spawnedBase.gearSO = database.GearObjects[dataBaseId];
-    //     Instantiate(spawnedBase, position, Quaternion.identity);
-    // }
-
     // Spawning gear (this is for testing)
-    public void ButtonSpawnTest(int dataBaseId)
+    public void SpawnTest(int dataBaseId)
     {   
         // DropObjectOnGroundById(dataBaseId, new Vector3(1, 1, 0));
     }
 
-    // private void OnApplicationQuit()
-    // {
-    //     inventory.Container.Clear();
-    //     equipment.Container.Clear();
-    // }
+# if UNITY_EDITOR
+    private void OnApplicationQuit()
+    {
+        inventory.Container.Clear();
+        equipment.Container.Clear();
+    }
+# endif
 }
