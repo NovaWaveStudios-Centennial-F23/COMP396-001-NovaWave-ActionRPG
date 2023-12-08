@@ -9987,8 +9987,12 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  lifepool:
+    maxValue: 0
+    currentValue: 0
   reloadDelay: 5
   healthRegen: 0
+  experience: 0
   currentState: 0
 --- !u!114 &200322953
 MonoBehaviour:
@@ -50361,8 +50365,12 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  lifepool:
+    maxValue: 0
+    currentValue: 0
   reloadDelay: 5
   healthRegen: 0
+  experience: 0
   currentState: 0
 --- !u!114 &998444382
 MonoBehaviour:
@@ -90298,8 +90306,12 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  lifepool:
+    maxValue: 0
+    currentValue: 0
   reloadDelay: 5
   healthRegen: 0
+  experience: 0
   currentState: 0
 --- !u!114 &1811062374
 MonoBehaviour:
@@ -106343,7 +106355,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5651591711544768186, guid: 3ce4ae93571265146848769375ea2395, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5703299346865636527, guid: 3ce4ae93571265146848769375ea2395, type: 3}
       propertyPath: controller
