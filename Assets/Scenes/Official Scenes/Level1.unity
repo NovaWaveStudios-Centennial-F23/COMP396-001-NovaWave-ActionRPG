@@ -7820,6 +7820,14 @@ PrefabInstance:
       propertyPath: sceneId
       value: 875942358
       objectReference: {fileID: 0}
+    - target: {fileID: 1871853263155962021, guid: bf24425a7c1c560438efa33d1ce166dd, type: 3}
+      propertyPath: experience
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2163150220870339292, guid: bf24425a7c1c560438efa33d1ce166dd, type: 3}
+      propertyPath: experience
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3331092959651842005, guid: bf24425a7c1c560438efa33d1ce166dd, type: 3}
       propertyPath: target
       value: 
@@ -7831,6 +7839,10 @@ PrefabInstance:
     - target: {fileID: 5602760576674797100, guid: bf24425a7c1c560438efa33d1ce166dd, type: 3}
       propertyPath: target
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5956568391237625323, guid: bf24425a7c1c560438efa33d1ce166dd, type: 3}
+      propertyPath: experience
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6668020060384510223, guid: bf24425a7c1c560438efa33d1ce166dd, type: 3}
       propertyPath: target
@@ -11024,9 +11036,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7653212316986847089, guid: 8cb81f4071a5b5b4c89b53e0fa8e0392, type: 3}
+      propertyPath: experience
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7741342398947375853, guid: 8cb81f4071a5b5b4c89b53e0fa8e0392, type: 3}
       propertyPath: target
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8089286807707774452, guid: 8cb81f4071a5b5b4c89b53e0fa8e0392, type: 3}
+      propertyPath: experience
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233691539367418235, guid: 8cb81f4071a5b5b4c89b53e0fa8e0392, type: 3}
+      propertyPath: experience
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11859,6 +11883,14 @@ PrefabInstance:
       propertyPath: sceneId
       value: 355572872
       objectReference: {fileID: 0}
+    - target: {fileID: 1871853263155962021, guid: bf24425a7c1c560438efa33d1ce166dd, type: 3}
+      propertyPath: experience
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2163150220870339292, guid: bf24425a7c1c560438efa33d1ce166dd, type: 3}
+      propertyPath: experience
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3331092959651842005, guid: bf24425a7c1c560438efa33d1ce166dd, type: 3}
       propertyPath: target
       value: 
@@ -11870,6 +11902,10 @@ PrefabInstance:
     - target: {fileID: 5602760576674797100, guid: bf24425a7c1c560438efa33d1ce166dd, type: 3}
       propertyPath: target
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5956568391237625323, guid: bf24425a7c1c560438efa33d1ce166dd, type: 3}
+      propertyPath: experience
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6668020060384510223, guid: bf24425a7c1c560438efa33d1ce166dd, type: 3}
       propertyPath: target
@@ -20869,6 +20905,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7653212316986847089, guid: 8cb81f4071a5b5b4c89b53e0fa8e0392, type: 3}
+      propertyPath: experience
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8089286807707774452, guid: 8cb81f4071a5b5b4c89b53e0fa8e0392, type: 3}
+      propertyPath: experience
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233691539367418235, guid: 8cb81f4071a5b5b4c89b53e0fa8e0392, type: 3}
+      propertyPath: experience
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -23202,6 +23250,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1196383911}
     m_Modifications:
+    - target: {fileID: 428892637414170399, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
+      propertyPath: experience
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1410409800556567232, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
       propertyPath: target
       value: 
@@ -23258,9 +23310,17 @@ PrefabInstance:
       propertyPath: sceneId
       value: 2144628086
       objectReference: {fileID: 0}
+    - target: {fileID: 7136211829621535539, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
+      propertyPath: experience
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8068810470491326893, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
       propertyPath: sceneId
       value: 4064974669
+      objectReference: {fileID: 0}
+    - target: {fileID: 8769801987890159189, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
+      propertyPath: experience
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 9040295405732471696, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
       propertyPath: m_Name
@@ -23630,6 +23690,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 107675959}
     m_Modifications:
+    - target: {fileID: 428892637414170399, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
+      propertyPath: experience
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1410409800556567232, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
       propertyPath: target
       value: 
@@ -23686,9 +23750,17 @@ PrefabInstance:
       propertyPath: sceneId
       value: 2869632503
       objectReference: {fileID: 0}
+    - target: {fileID: 7136211829621535539, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
+      propertyPath: experience
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8068810470491326893, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
       propertyPath: sceneId
       value: 921169766
+      objectReference: {fileID: 0}
+    - target: {fileID: 8769801987890159189, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
+      propertyPath: experience
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 9040295405732471696, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
       propertyPath: m_Name
@@ -40368,9 +40440,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7653212316986847089, guid: 8cb81f4071a5b5b4c89b53e0fa8e0392, type: 3}
+      propertyPath: experience
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7741342398947375853, guid: 8cb81f4071a5b5b4c89b53e0fa8e0392, type: 3}
       propertyPath: target
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8089286807707774452, guid: 8cb81f4071a5b5b4c89b53e0fa8e0392, type: 3}
+      propertyPath: experience
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233691539367418235, guid: 8cb81f4071a5b5b4c89b53e0fa8e0392, type: 3}
+      propertyPath: experience
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -45059,9 +45143,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7653212316986847089, guid: 8cb81f4071a5b5b4c89b53e0fa8e0392, type: 3}
+      propertyPath: experience
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7741342398947375853, guid: 8cb81f4071a5b5b4c89b53e0fa8e0392, type: 3}
       propertyPath: target
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8089286807707774452, guid: 8cb81f4071a5b5b4c89b53e0fa8e0392, type: 3}
+      propertyPath: experience
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233691539367418235, guid: 8cb81f4071a5b5b4c89b53e0fa8e0392, type: 3}
+      propertyPath: experience
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -49305,6 +49401,14 @@ PrefabInstance:
       propertyPath: sceneId
       value: 2921832844
       objectReference: {fileID: 0}
+    - target: {fileID: 1871853263155962021, guid: bf24425a7c1c560438efa33d1ce166dd, type: 3}
+      propertyPath: experience
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2163150220870339292, guid: bf24425a7c1c560438efa33d1ce166dd, type: 3}
+      propertyPath: experience
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3331092959651842005, guid: bf24425a7c1c560438efa33d1ce166dd, type: 3}
       propertyPath: target
       value: 
@@ -49316,6 +49420,10 @@ PrefabInstance:
     - target: {fileID: 5602760576674797100, guid: bf24425a7c1c560438efa33d1ce166dd, type: 3}
       propertyPath: target
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5956568391237625323, guid: bf24425a7c1c560438efa33d1ce166dd, type: 3}
+      propertyPath: experience
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6668020060384510223, guid: bf24425a7c1c560438efa33d1ce166dd, type: 3}
       propertyPath: target
@@ -50320,9 +50428,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7653212316986847089, guid: 8cb81f4071a5b5b4c89b53e0fa8e0392, type: 3}
+      propertyPath: experience
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7741342398947375853, guid: 8cb81f4071a5b5b4c89b53e0fa8e0392, type: 3}
       propertyPath: target
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8089286807707774452, guid: 8cb81f4071a5b5b4c89b53e0fa8e0392, type: 3}
+      propertyPath: experience
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233691539367418235, guid: 8cb81f4071a5b5b4c89b53e0fa8e0392, type: 3}
+      propertyPath: experience
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -52465,9 +52585,21 @@ PrefabInstance:
       propertyPath: sceneId
       value: 1351528779
       objectReference: {fileID: 0}
+    - target: {fileID: 1871853263155962021, guid: bf24425a7c1c560438efa33d1ce166dd, type: 3}
+      propertyPath: experience
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2163150220870339292, guid: bf24425a7c1c560438efa33d1ce166dd, type: 3}
+      propertyPath: experience
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5231227823945076180, guid: bf24425a7c1c560438efa33d1ce166dd, type: 3}
       propertyPath: m_Name
       value: Beholders
+      objectReference: {fileID: 0}
+    - target: {fileID: 5956568391237625323, guid: bf24425a7c1c560438efa33d1ce166dd, type: 3}
+      propertyPath: experience
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8297587454919399167, guid: bf24425a7c1c560438efa33d1ce166dd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -57571,6 +57703,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1429481156}
     m_Modifications:
+    - target: {fileID: 428892637414170399, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
+      propertyPath: experience
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2713979661702632281, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
       propertyPath: sceneId
       value: 4265083058
@@ -57619,9 +57755,17 @@ PrefabInstance:
       propertyPath: sceneId
       value: 1933088707
       objectReference: {fileID: 0}
+    - target: {fileID: 7136211829621535539, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
+      propertyPath: experience
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8068810470491326893, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
       propertyPath: sceneId
       value: 197423986
+      objectReference: {fileID: 0}
+    - target: {fileID: 8769801987890159189, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
+      propertyPath: experience
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 9040295405732471696, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
       propertyPath: m_Name
@@ -59736,6 +59880,14 @@ PrefabInstance:
       propertyPath: sceneId
       value: 419952755
       objectReference: {fileID: 0}
+    - target: {fileID: 1871853263155962021, guid: bf24425a7c1c560438efa33d1ce166dd, type: 3}
+      propertyPath: experience
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2163150220870339292, guid: bf24425a7c1c560438efa33d1ce166dd, type: 3}
+      propertyPath: experience
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3331092959651842005, guid: bf24425a7c1c560438efa33d1ce166dd, type: 3}
       propertyPath: target
       value: 
@@ -59747,6 +59899,10 @@ PrefabInstance:
     - target: {fileID: 5602760576674797100, guid: bf24425a7c1c560438efa33d1ce166dd, type: 3}
       propertyPath: target
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5956568391237625323, guid: bf24425a7c1c560438efa33d1ce166dd, type: 3}
+      propertyPath: experience
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6668020060384510223, guid: bf24425a7c1c560438efa33d1ce166dd, type: 3}
       propertyPath: target
@@ -64289,6 +64445,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 642491934}
     m_Modifications:
+    - target: {fileID: 428892637414170399, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
+      propertyPath: experience
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1410409800556567232, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
       propertyPath: target
       value: 
@@ -64345,9 +64505,17 @@ PrefabInstance:
       propertyPath: sceneId
       value: 2339699590
       objectReference: {fileID: 0}
+    - target: {fileID: 7136211829621535539, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
+      propertyPath: experience
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8068810470491326893, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
       propertyPath: sceneId
       value: 2822231476
+      objectReference: {fileID: 0}
+    - target: {fileID: 8769801987890159189, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
+      propertyPath: experience
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 9040295405732471696, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
       propertyPath: m_Name
@@ -67193,6 +67361,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 440979064}
     m_Modifications:
+    - target: {fileID: 428892637414170399, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
+      propertyPath: experience
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1410409800556567232, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
       propertyPath: target
       value: 
@@ -67249,9 +67421,17 @@ PrefabInstance:
       propertyPath: sceneId
       value: 1145089144
       objectReference: {fileID: 0}
+    - target: {fileID: 7136211829621535539, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
+      propertyPath: experience
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8068810470491326893, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
       propertyPath: sceneId
       value: 3914590676
+      objectReference: {fileID: 0}
+    - target: {fileID: 8769801987890159189, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
+      propertyPath: experience
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 9040295405732471696, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
       propertyPath: m_Name
@@ -74975,7 +75155,7 @@ MonoBehaviour:
     currentValue: 0
   reloadDelay: 5
   healthRegen: 0
-  experience: 0
+  experience: 8
   currentState: 0
 --- !u!4 &3174729335432660491
 Transform:
@@ -75817,7 +75997,7 @@ MonoBehaviour:
     currentValue: 0
   reloadDelay: 5
   healthRegen: 0
-  experience: 0
+  experience: 8
   currentState: 0
 --- !u!137 &3584047167045657531
 SkinnedMeshRenderer:
@@ -81200,7 +81380,7 @@ MonoBehaviour:
     currentValue: 0
   reloadDelay: 5
   healthRegen: 0
-  experience: 0
+  experience: 8
   currentState: 0
 --- !u!4 &6309704556185564835
 Transform:
