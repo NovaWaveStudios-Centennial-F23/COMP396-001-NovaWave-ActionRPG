@@ -9,12 +9,12 @@ public class SerializationController
 {
     public static bool Save(string saveName, object data)
     {
-        if (!Directory.Exists(Application.persistentDataPath + "/spacesurvivor"))
+        if (!Directory.Exists(Application.persistentDataPath + "/mysticrealms"))
         {
-            Directory.CreateDirectory(Application.persistentDataPath + "/spacesurvivor");
+            Directory.CreateDirectory(Application.persistentDataPath + "/mysticrealms");
         }
 
-        string path = Application.persistentDataPath + "/spacesurvivor/" + saveName + ".xml";
+        string path = Application.persistentDataPath + "/mysticrealms/" + saveName + ".xml";
 
         StreamWriter writer = new StreamWriter(path);
         XmlSerializer serializer = new XmlSerializer(typeof(SaveData));
@@ -27,13 +27,14 @@ public class SerializationController
 
     public static object Load(string path)
     {
-        XmlSerializer serializer = new XmlSerializer(typeof(SaveData));
-        FileStream file = File.Open(path, FileMode.Open);
-
+        XmlSerializer serializer = new XmlSerializer(typeof(SaveData)); 
+        
         if (!File.Exists(path))
         {
             return null;
         }
+
+        FileStream file = File.Open(path, FileMode.Open);       
 
         try
         {

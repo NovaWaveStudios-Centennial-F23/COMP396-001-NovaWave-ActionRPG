@@ -26,7 +26,7 @@ public class SaveData
         }
     }
 
-    public PlayerData playerData;    
+    public PlayerData playerData;
 }
 
 [System.Serializable]
@@ -34,7 +34,6 @@ public class PlayerData
 {
     public List<GearSO> equippedGear;
     public List<int> skillTreeData; 
-    public string Name;
-    public int Level;
-    public Sprite Icon;
+    public string characterName;
+    public int characterLevel;
 }

@@ -39,10 +39,13 @@ public class SkillTreeNode : MonoBehaviour, IPointerClickHandler, IPointerEnterH
     //broadcast event whenenever current level of skill is changed
     public event Action<int> OnSkillLevelChanged = delegate { };
 
+    private void Awake()
+    {
+        dataObjects = nodeData.skills;
+    }
+
     private void Start()
     {
-
-        dataObjects = nodeData.skills;
         maxLevel = dataObjects.Count;
         image = iconGO.GetComponent<Image>();
         outline = outlineGO.GetComponent<Image>();
@@ -253,6 +256,8 @@ public class SkillTreeNode : MonoBehaviour, IPointerClickHandler, IPointerEnterH
         }
         else
         {
+            Debug.Log(nodeData.skills[0]);
+            Debug.Log(dataObjects[currentLevel - 1]);
             return dataObjects[currentLevel - 1].allStats;
         }       
     }

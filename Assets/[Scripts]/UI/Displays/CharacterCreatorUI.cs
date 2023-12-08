@@ -102,13 +102,13 @@ public class CharacterCreatorUI : MonoBehaviour
         characterNameInput.text = "";
         characterNameInput.gameObject.SetActive(false);
         comingSoonText.gameObject.SetActive(false);
-
-
     }
 
     public void CreateCharacter()
     {
-        if(SkillTreeController.instance != null)
+        SaveController.instance.characterName = characterNameInput.text;
+
+        if (SkillTreeController.instance != null)
         {
             SkillTreeController.instance.LoadSkillTree(new List<int>());
         }
