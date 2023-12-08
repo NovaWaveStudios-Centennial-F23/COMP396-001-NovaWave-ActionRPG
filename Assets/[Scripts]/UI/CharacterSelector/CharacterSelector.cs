@@ -73,7 +73,7 @@ public class CharacterSelector : MonoBehaviour
     {
         CharacterSaveData s1 = new CharacterSaveData(name, level, saveNumber);
         var obj1 = Instantiate(characterOptionPrefab);
-        obj1.transform.parent = transform;
+        obj1.transform.SetParent(transform, false);
         obj1.GetComponent<CharacterSelectButton>().PopulateData(s1);
         obj1.GetComponent<CharacterSelectButton>();
         characterSelectionHandler.AddButton(obj1.GetComponent<CharacterSelectButton>());
