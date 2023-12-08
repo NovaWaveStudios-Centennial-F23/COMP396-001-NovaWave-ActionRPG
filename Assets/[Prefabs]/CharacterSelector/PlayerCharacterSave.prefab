@@ -83,6 +83,9 @@ MonoBehaviour:
   icon: {fileID: 6532588906139746279}
   txtCharacterName: {fileID: 262982793137001038}
   txtCharacterLevel: {fileID: 7538335080019391127}
+  characterName: 
+  characterLevel: 0
+  saveNumber: 0
 --- !u!1 &2898211735715673702
 GameObject:
   m_ObjectHideFlags: 0
