@@ -62,6 +62,7 @@ public class SaveController : MonoBehaviour
         characterLevel = SaveData.currentData.playerData.characterLevel;
         characterExperience = SaveData.currentData.playerData.characterExperience;
         experienceRequired = SaveData.currentData.playerData.experienceRequired;
+        skillPoints = SaveData.currentData.playerData.skillPoints;
 
         SkillTreeController.instance.LoadSkillTree(skillTreeData);
         ExperienceManager.Instance.CurrentLevel = characterLevel;
