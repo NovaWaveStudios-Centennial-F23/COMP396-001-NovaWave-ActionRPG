@@ -90,6 +90,7 @@ public class Health : NetworkBehaviour
         lifepool.currentValue -= damageAmount;
         //Debug.Log("Lifepool: " + lifepool.currentValue);
         RpcUpdateHealth(lifepool.currentValue, lifepool.maxValue);
+
         if (lifepool.currentValue <= 0)
         {
             Die(); // Call the death method if health goes to 0 or below
