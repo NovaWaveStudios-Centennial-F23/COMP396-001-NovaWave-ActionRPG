@@ -5,13 +5,15 @@ using UnityEngine;
 public class SaveController : MonoBehaviour
 {
     public static SaveController instance;
-    [HideInInspector] public SaveData currentData; 
-    public List<GearSO> equippedGear;
+    [HideInInspector] public SaveData currentData;
     public List<int> skillTreeData;
     public CharacterSelector characterSelector;
     public int currentSave;
     public string characterName;
     public int characterLevel;
+    public int characterExperience;
+    public int experienceRequired;
+    public int skillPoints;
 
     int saveNumber = 1;
 
@@ -37,21 +39,16 @@ public class SaveController : MonoBehaviour
         LoadSave("Save 3");
         LoadSave("Save 4");
         InGameUIManager.Instance.ToggleSkillTree();
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     public void OnSave()
     {
         this.currentData.playerData.characterName = characterName;
-        this.currentData.playerData.characterLevel = characterLevel;
         this.currentData.playerData.skillTreeData = SkillTreeController.instance.GetSkillTreeNodeLevels();
-        this.currentData.playerData.equippedGear = equippedGear;
+        this.currentData.playerData.characterLevel = ExperienceManager.Instance.CurrentLevel;
+        this.currentData.playerData.characterExperience = ExperienceManager.Instance.CurrentExperience;
+        this.currentData.playerData.experienceRequired = ExperienceManager.Instance.ExperienceToNextLevel;
+        this.currentData.playerData.skillPoints = PlayerController.Instance.SkillSkillPoints;
 
         SerializationController.Save("Save " + currentSave, this.currentData);
     }
@@ -61,11 +58,17 @@ public class SaveController : MonoBehaviour
         SaveData.currentData = (SaveData)SerializationController.Load(Application.persistentDataPath + "/mysticrealms/Save " + currentSave + ".xml");
 
         characterName = SaveData.currentData.playerData.characterName;
-        characterLevel = SaveData.currentData.playerData.characterLevel;
         skillTreeData = SaveData.currentData.playerData.skillTreeData;
-        equippedGear = SaveData.currentData.playerData.equippedGear;
+        characterLevel = SaveData.currentData.playerData.characterLevel;
+        characterExperience = SaveData.currentData.playerData.characterExperience;
+        experienceRequired = SaveData.currentData.playerData.experienceRequired;
 
         SkillTreeController.instance.LoadSkillTree(skillTreeData);
+        ExperienceManager.Instance.CurrentLevel = characterLevel;
+        ExperienceManager.Instance.CurrentExperience = characterExperience;
+        ExperienceManager.Instance.ExperienceToNextLevel = experienceRequired;
+        PlayerController.Instance.CurrentLevel = characterLevel;
+        PlayerController.Instance.SkillSkillPoints = skillPoints;
     }
 
     public void LoadSave(string saveName)
@@ -83,5 +86,13 @@ public class SaveController : MonoBehaviour
         }
 
         saveNumber++;
+    }
+
+    public void DeleteSave()
+    {
+        SerializationController.Delete(Application.persistentDataPath + "/mysticrealms/Save " + currentSave + ".xml");
+
+        characterSelector.currentSelection.GetComponent<CharacterSelectButton>().UpdateName("Empty");
+        characterSelector.currentSelection.GetComponent<CharacterSelectButton>().UpdateLevel(0);
     }
 }

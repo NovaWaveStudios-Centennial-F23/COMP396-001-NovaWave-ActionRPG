@@ -32,8 +32,10 @@ public class SaveData
 [System.Serializable]
 public class PlayerData
 {
-    public List<GearSO> equippedGear;
     public List<int> skillTreeData; 
     public string characterName;
+    public int skillPoints;
     public int characterLevel;
+    public int characterExperience;
+    public int experienceRequired;
 }

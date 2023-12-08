@@ -35,7 +35,7 @@ public class CharacterSelector : MonoBehaviour
 
     int characterCount = 0;
 
-    GameObject currentSelection;
+    public GameObject currentSelection;
 
 
     private void Awake()
@@ -97,13 +97,14 @@ public class CharacterSelector : MonoBehaviour
                 btnCreateCharacter.interactable = true;
                 btnSingleplayer.interactable = false;
                 btnMultiplayer.interactable = false;
+                btnDeleteCharacter.interactable = false;//setting this to false since it is not yet implemented
             }
             else
             {
                 btnCreateCharacter.interactable = false;
                 btnSingleplayer.interactable = true;
                 btnMultiplayer.interactable = true;
-                btnDeleteCharacter.interactable = false;//setting this to false since it is not yet implemented
+                btnDeleteCharacter.interactable = true;//setting this to false since it is not yet implemented
             }
             SaveController.instance.currentSave = currentSelection.GetComponent<CharacterSelectButton>().saveNumber;
         }

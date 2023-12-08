@@ -34,7 +34,7 @@ public class SerializationController
             return null;
         }
 
-        FileStream file = File.Open(path, FileMode.Open);       
+        FileStream file = File.Open(path, FileMode.Open);
 
         try
         {
@@ -46,6 +46,18 @@ public class SerializationController
         {
             file.Close();
             throw new NullReferenceException("Cannot load file");
+        }
+    }
+
+    public static void Delete(string path)
+    {
+        if (!File.Exists(path))
+        {
+            Debug.Log("Save Does not exist");
+        }
+        else
+        {
+            File.Delete(path);
         }
     }
 }
