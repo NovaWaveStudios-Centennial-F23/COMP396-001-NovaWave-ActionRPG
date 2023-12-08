@@ -106,6 +106,12 @@ public class Health : NetworkBehaviour
         }
     }
 
+    [Command(requiresAuthority = false)]
+    public void CmdHealPlayer(float value)
+    {
+        lifepool.currentValue = Mathf.Clamp(value + lifepool.currentValue, 0, lifepool.maxValue);
+    }
+
     /// <summary>
     /// Commmand to set the max health of the player character
     /// </summary>
@@ -155,6 +161,12 @@ public class Health : NetworkBehaviour
         }
         //ReloadCurrentSceneWithDelay();
         //Destroy(gameObject, 2f); // Waits for 2 seconds before destroying the game object
+
+        // Spawn potion from enemy position
+        if (!gameObject.CompareTag("Player"))
+        {
+            ItemController.Instance.SpawnPotion(transform.position);
+        }
 
         // will need to implement the waiting some other way
         DestroySelf();

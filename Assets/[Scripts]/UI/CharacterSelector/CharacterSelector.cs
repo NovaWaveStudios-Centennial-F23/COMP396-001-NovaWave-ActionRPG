@@ -34,7 +34,6 @@ public class CharacterSelector : MonoBehaviour
     bool generateFakeData;
 
     int characterCount = 0;
-    
 
     GameObject currentSelection;
 
@@ -51,16 +50,9 @@ public class CharacterSelector : MonoBehaviour
         SetSelection(null);
     }
 
-
     private void Initialize()
     {
         characterCount = 0;
-
-        if (generateFakeData)
-        {
-            GenerateDummyData();
-        }
-
 
         DisplayData();
 
@@ -77,9 +69,9 @@ public class CharacterSelector : MonoBehaviour
 
 
     //generates some fake data for the chracter selector
-    private void GenerateDummyData()
+    public void GenerateData(string name, int level, int saveNumber)
     {
-        CharacterSaveData s1 = new CharacterSaveData("Test Save", 1);
+        CharacterSaveData s1 = new CharacterSaveData(name, level, saveNumber);
         var obj1 = Instantiate(characterOptionPrefab);
         obj1.transform.parent = transform;
         obj1.GetComponent<CharacterSelectButton>().PopulateData(s1);
@@ -93,31 +85,34 @@ public class CharacterSelector : MonoBehaviour
     {
         currentSelection = character;
         UpdateButtons();
-        
     }
 
     //this sets the state of the buttons making sure only the right buttons are enabled
     private void UpdateButtons()
     {
-        if(currentSelection != null)
+        if (currentSelection != null)
         {
-            btnSingleplayer.interactable = true;
-            btnMultiplayer.interactable = true;
-            btnDeleteCharacter.interactable = false;//setting this to false since it is not yet implemented
+            if (currentSelection.GetComponent<CharacterSelectButton>().characterName == "Empty")
+            {
+                btnCreateCharacter.interactable = true;
+                btnSingleplayer.interactable = false;
+                btnMultiplayer.interactable = false;
+            }
+            else
+            {
+                btnCreateCharacter.interactable = false;
+                btnSingleplayer.interactable = true;
+                btnMultiplayer.interactable = true;
+                btnDeleteCharacter.interactable = false;//setting this to false since it is not yet implemented
+            }
+            SaveController.instance.currentSave = currentSelection.GetComponent<CharacterSelectButton>().saveNumber;
         }
         else
         {
             btnSingleplayer.interactable = false;
             btnMultiplayer.interactable = false;
             btnDeleteCharacter.interactable = false;
+            btnCreateCharacter.interactable = false;
         }
     }
-
-
-
-
-
-
-
-
 }

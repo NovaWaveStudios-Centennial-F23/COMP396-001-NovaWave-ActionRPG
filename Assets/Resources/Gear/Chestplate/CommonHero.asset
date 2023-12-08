@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e30db3d7f63eaff49acbdc77d596811b, type: 3}
+  m_Name: CommonHero
+  m_EditorClassIdentifier: 
+  level: 0
+  gearType: 4
+  gearBase: 2
+  gearRarity: 1
+  mainStats:
+  - stat: 1
+    minValue: 7.351292
+    maxValue: 7.351292
+  - stat: 2
+    minValue: 7.683309
+    maxValue: 7.683309
+  - stat: 3
+    minValue: 8.176115
+    maxValue: 8.176115
+  randomRolls: []
+  affixes:
+  - stat: 8
+    minValue: 62.295853
+    maxValue: 62.295853
+  - stat: 20
+    minValue: 45.192867
+    maxValue: 45.192867
+  - stat: 5
+    minValue: 63.990128
+    maxValue: 63.990128
+  - stat: 13
+    minValue: 95.28884
+    maxValue: 95.28884
+  - stat: 23
+    minValue: 5.724618
+    maxValue: 5.724618
+  - stat: 14
+    minValue: 64.76682
+    maxValue: 64.76682
+  - stat: 22
+    minValue: 9.963725
+    maxValue: 9.963725
+  - stat: 21
+    minValue: 67.13836
+    maxValue: 67.13836
+  - stat: 11
+    minValue: 1
+    maxValue: 100
+  icon: {fileID: 0}
+  gearDescription: 
+  data:
+    gearName: 
+    Id: -1

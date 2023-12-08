@@ -11,10 +11,9 @@ public class TestForInventory : MonoBehaviour
     public InventorySO inventory;
     public InventorySO equipment;
 
-    // Make slots and then close UI(Inventory needs to be active for generating slots before deactivating)
     void Start()
     {
-        inventoryUI.SetActive(false);
+        inventoryUI.SetActive(true);
     }
 
     public void CloseInventory()
@@ -25,11 +24,5 @@ public class TestForInventory : MonoBehaviour
     public void OpenInventory()
     {
         inventoryUI.SetActive(true);
-    }
-
-    private void OnApplicationQuit()
-    {
-        inventory.Container.Clear();
-        equipment.Container.Clear();
     }
 }

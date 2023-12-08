@@ -1,14 +1,11 @@
+using System.Diagnostics;
 /*
     Author: Yusuke Kuroki
     
     This script is main inventory script. It cannot be use directory, but can be extended.
 
-    Tasks:
-    - Check if item is stackable and separate if needed(or separate right/left click)
-    - Check if item is stackable then remove item all or one by one
 */
 
-using System.Diagnostics;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,7 +14,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 
-public abstract class UserInterface : MonoBehaviour
+public abstract class UserInterface : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     // Inventory Scriptable object
     public InventorySO inventory;
@@ -32,6 +29,9 @@ public abstract class UserInterface : MonoBehaviour
     // properties for dropping item
     public GameObject player;
     public PickableObject groundedItem;
+
+    // property for tooltip
+    private GearSO targetGearSO;
 
     // Start is called before the first frame update
     void Start()
@@ -64,12 +64,6 @@ public abstract class UserInterface : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    // void Update()
-    // {
-    //     slotsOnInterface.UpdateSlotDisplay();
-    // }
-
     public abstract void CreateSlots();
 
     protected void AddEvent(GameObject obj, EventTriggerType type, UnityAction<BaseEventData> action)
@@ -83,15 +77,28 @@ public abstract class UserInterface : MonoBehaviour
     }
 
     // Mouse events
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (targetGearSO != null)
+        {
+            ToolTipController.Instance.ShowGearTooltip(targetGearSO);
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        ToolTipController.Instance.CloseTooltips();
+    }
+
     public void OnEnter(GameObject obj)
     {
         // copy item to hover mouse item
         MouseData.slotHoveredOver = obj;
 
-        // show tooltip if slot is not empty
+        // keep gearSO data to show tooltip if slot is not empty
         if (slotsOnInterface[obj].gearInfo.Id >= 0)
         {
-            ToolTipController.Instance.ShowGearTooltip(slotsOnInterface[obj].GearObject);
+            targetGearSO = slotsOnInterface[obj].GearObject;
         }
     }
 
@@ -99,19 +106,15 @@ public abstract class UserInterface : MonoBehaviour
     {
         // Delete hover mouse item
         MouseData.slotHoveredOver = null;
-        // close tooltip
-        ToolTipController.Instance.CloseTooltips();
     }
 
     public void OnEnterInterface(GameObject obj)
     {
-        // set ui on mouse cursor
         MouseData.interfaceMouseIsOver = obj.GetComponent<UserInterface>();
     }
 
     public void OnExitInterface(GameObject obj)
     {
-        // Remove ui from mouse cursor
         MouseData.interfaceMouseIsOver = null;
     }
 

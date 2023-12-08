@@ -1,6 +1,5 @@
 using System.Net.NetworkInformation;
 using System.Runtime.CompilerServices;
-using System.Diagnostics;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,20 +7,40 @@ using TMPro;
 
 public class ItemController : MonoBehaviour
 {
+    private static ItemController instance;
+    public static ItemController Instance { get { return instance; } }
+
     public InventorySO inventory;
     public InventorySO equipment;
-    public InventoryDatabaseSO database;
 
     // properties for enter/clicked object
     RaycastHit hit = new RaycastHit();
     GameObject targetObject;
 
-    // prefab for spawning gear on ground
+    // prefab for spawning
     public PickableObject spawnedBase;
+    public GameObject potionObject;
 
-    // properties for life portion
-    public GameObject textLifePortionUI;    // Assign PortionUI->PotionSlot->Amount
-    public int lifePortionCount = 0;
+    [SerializeField]
+	[Range( 0.0f, 100.0f)]
+    public float dropProbability;
+
+    // properties for life potion
+    public int lifePotionCount = 0;
+
+    private Health playerHealth;
+
+    void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+    }
 
      private void Start()
     {
@@ -31,9 +50,11 @@ public class ItemController : MonoBehaviour
             // equipment.GetSlots[i].OnBeforeUpdate += OnBeforeSlotUpdate;
             equipment.GetSlots[i].OnAfterUpdate += OnAfterSlotUpdate;
         }
+    }
 
-        // PortionUI
-        textLifePortionUI.GetComponent<TextMeshProUGUI>().text = lifePortionCount.ToString();
+    public void SetPlayerHealth(Health health)
+    {
+        playerHealth = health;
     }
 
     // Won't be used but keep it for now
@@ -91,12 +112,6 @@ public class ItemController : MonoBehaviour
 
                 // send the list to calculater?(for stats)
 
-                // print("number of equipped gear: " + equipped.Count);
-                // for (int i = 0; i < equipped.Count; i++)
-                // {
-                //     print(equipped[i].gearType);
-                // }
-
                 break;
             default:
                 break;
@@ -110,10 +125,15 @@ public class ItemController : MonoBehaviour
             OnItemClicked();
         }
 
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            UseLifePotion();
+        }
+
         ShowToolTip();
     }
 
-    // pick up item/gear from ground
+    // pick up gear/potion from ground
     private void OnItemClicked()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -137,9 +157,9 @@ public class ItemController : MonoBehaviour
             }
             else if (targetObject.CompareTag("Potion"))
             {
-                // add amount of life portion and update UI
-                lifePortionCount++;
-                textLifePortionUI.GetComponent<TextMeshProUGUI>().text = lifePortionCount.ToString();
+                print("Potion clicked");
+                // add amount of life potion and update UI
+                lifePotionCount++;
 
                 // destroy clicked object
                 Destroy(targetObject);
@@ -158,6 +178,11 @@ public class ItemController : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit))
         {
+            if (hit.collider.gameObject.transform.parent == null)
+            {
+                return;
+            }
+
             // get parent object(groundedItem) from clicked object
             targetObject = hit.collider.gameObject.transform.parent.gameObject;
 
@@ -167,55 +192,58 @@ public class ItemController : MonoBehaviour
                 var groundItem = targetObject.GetComponent<PickableObject>();
                 ToolTipController.Instance.ShowGearTooltip(groundItem.gearSO);
             }
+            else if (targetObject.CompareTag("Potion"))
+            {
+                return;
+            }
             else
             {
                 // close tooltip
-                targetObject = null;
                 ToolTipController.Instance.CloseTooltips();
+                targetObject = null;
             }
         }
     }
 
-    // Use portion for life healing
-    public void UseLifePortion()
+    public void SpawnPotion(Vector3 position)
     {
-        if (lifePortionCount > 0)
+        float random = Random.Range(0f, 100f);
+        if (random <= dropProbability)
         {
-            // heal player(use health.cs?)
-
-            // update amount and UI
-            lifePortionCount--;
-            textLifePortionUI.GetComponent<TextMeshProUGUI>().text = lifePortionCount.ToString();
+            Instantiate(potionObject, position, Quaternion.identity);
         }
     }
 
-    // Spawn gear on ground based on id from database
-    // Send id from GearSO and position of enemy
-    public void DropObjectOnGroundById(int dataBaseId, Vector3 position)
+    // Use potion for life healing
+    public void UseLifePotion()
     {
-        // Check if id is invalid
-        if (dataBaseId < 0 || dataBaseId >= database.GearObjects.Length)
+        if (lifePotionCount > 0)
         {
-            return;
+            // heal player
+            if(playerHealth != null)
+            {
+                playerHealth.CmdHealPlayer(200f);
+            }
+            else
+            {
+                Debug.LogError("No player health found for potion.");
+            }
+            // update amount
+            lifePotionCount--;
         }
-
-        // Instantiate item on field
-        spawnedBase.gearSO = database.GearObjects[dataBaseId];
-        Instantiate(spawnedBase, position, Quaternion.identity);
     }
 
-    // Spawn gear on ground based on rairity?
-    // Spawn gear on ground based on gearType?
-
-    // Spawning gear by id(this is for testing)
-    public void ButtonSpawnTest(int dataBaseId)
+    // Spawning gear (this is for testing)
+    public void SpawnTest(int dataBaseId)
     {   
-        DropObjectOnGroundById(dataBaseId, new Vector3(1, 1, 0));
+        // DropObjectOnGroundById(dataBaseId, new Vector3(1, 1, 0));
     }
 
+# if UNITY_EDITOR
     private void OnApplicationQuit()
     {
         inventory.Container.Clear();
         equipment.Container.Clear();
     }
+# endif
 }

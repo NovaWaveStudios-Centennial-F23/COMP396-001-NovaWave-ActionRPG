@@ -50,12 +50,17 @@ public class InventorySO : ScriptableObject
         }
 
         InventorySlot slot = FindItemOnInventory(_gearInfo);
-        if (!database.GearObjects[_gearInfo.Id].stackable || slot == null)
-        {
-            SetEmptySlot(_gearInfo, _amount);
-            return true;
-        }
-        slot.AddAmount(_amount);
+
+        // All gears are not stackable
+        // if (!database.GearObjects[_gearInfo.Id].stackable || slot == null)
+        // {
+        //     SetEmptySlot(_gearInfo, _amount);
+        //     return true;
+        // }
+
+        SetEmptySlot(_gearInfo, _amount);
+
+        // slot.AddAmount(_amount);
         return true;
     }
 

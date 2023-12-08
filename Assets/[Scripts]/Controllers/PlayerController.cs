@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
             Instance = this;
         }
 
-        ResetPlayerInfo();
+        //ResetPlayerInfo();
 
         SceneManager.sceneUnloaded += HandleSceneUnload;
         SceneManager.sceneLoaded += HandleSceneLoad;

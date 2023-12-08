@@ -27,8 +27,9 @@ public class FrostNova : Skill
         while (true)
         {
             yield return new WaitForSeconds(0.5f);
+            List<GameObject> list = new List<GameObject>(enemies);
             //damage = CalculationController.Instance.DamageOutput(skillSO);
-            foreach (GameObject g in enemies)
+            foreach (GameObject g in list)
             {
                 g.GetComponent<Health>().TakeDamage(damage);
             }

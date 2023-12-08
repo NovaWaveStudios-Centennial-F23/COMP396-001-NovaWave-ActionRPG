@@ -54,7 +54,7 @@ public class StatsController : MonoBehaviour
     private void CalculatePlayerStats()
     {
         //skillTreeModifiers = SkillTreeController.instance.GetModifiers("Player");
-        CalculateGearStats();
+        //CalculateGearStats();
         Debug.Log(gearStats.Keys.Count);
 
         // Change player modifiers based on skill tree stats and gear stats

@@ -23,9 +23,19 @@ MonoBehaviour:
       amount: 0
     - AllowedSlots: 
       gearInfo:
+        gearName: HelmetLC 3
+        Id: 3
+      amount: 2
+    - AllowedSlots: 
+      gearInfo:
+        gearName: StaffLC 2
+        Id: 5
+      amount: 1
+    - AllowedSlots: 
+      gearInfo:
         gearName: 
         Id: -1
-      amount: 0
+      amount: 2
     - AllowedSlots: 
       gearInfo:
         gearName: 
@@ -70,17 +80,7 @@ MonoBehaviour:
       gearInfo:
         gearName: 
         Id: -1
-      amount: 0
-    - AllowedSlots: 
-      gearInfo:
-        gearName: 
-        Id: -1
-      amount: 0
-    - AllowedSlots: 
-      gearInfo:
-        gearName: 
-        Id: -1
-      amount: 0
+      amount: 1
     - AllowedSlots: 
       gearInfo:
         gearName: 
