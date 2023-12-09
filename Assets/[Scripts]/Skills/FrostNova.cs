@@ -26,9 +26,10 @@ public class FrostNova : Skill
     {
         while (true)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.5f);            
+            List<GameObject> list = new List<GameObject>(enemies);
             //damage = CalculationController.Instance.DamageOutput(skillSO);
-            foreach (GameObject g in enemies)
+            foreach (GameObject g in list)
             {
                 g.GetComponent<Health>().TakeDamage(damage);
             }
@@ -54,7 +55,6 @@ public class FrostNova : Skill
         if (isServer)
         {
             MovementBehaviour();
-            
         }
         CalculateCooldown();
 
@@ -101,7 +101,7 @@ public class FrostNova : Skill
     {
         // Live cooldown counter
         cooldown -= Time.deltaTime;
-        SkillsController.Instance.SetSkillCooldown(nameof(FrostNova), cooldown);
+        //SkillsController.Instance.UpdateSkillCooldown(nameof(FrostNova), cooldown);
 
         if (cooldown <= -0.1)
         {

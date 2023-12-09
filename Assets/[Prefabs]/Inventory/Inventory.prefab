@@ -264,7 +264,14 @@ MonoBehaviour:
   xSlot: 100
   ySlot: 100
   player: {fileID: 0}
-  groundedItem: {fileID: 7006348394643442827, guid: 922dba4201685964281e7921a726fb9b, type: 3}
+  groundedItem: {fileID: 211461344120169795, guid: 37ba750e043c9504a8c7375f757aa0e4, type: 3}
+  equippedGears:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   inventoryIcon: {fileID: 145341717808876369, guid: d0340974e8b5292498d2ea91388aaf7d, type: 3}
   X_START: -250
   Y_START: 325
@@ -383,7 +390,14 @@ MonoBehaviour:
   xSlot: 100
   ySlot: 100
   player: {fileID: 0}
-  groundedItem: {fileID: 7006348394643442827, guid: 922dba4201685964281e7921a726fb9b, type: 3}
+  groundedItem: {fileID: 211461344120169795, guid: 37ba750e043c9504a8c7375f757aa0e4, type: 3}
+  equippedGears:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   slots:
   - {fileID: 3426022982540144527}
   - {fileID: 7681971406847439496}

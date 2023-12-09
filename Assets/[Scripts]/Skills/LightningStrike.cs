@@ -79,7 +79,7 @@ public class LightningStrike : Skill
     {
         // Live cooldown counter
         cooldown -= Time.deltaTime;
-        SkillsController.Instance.SetSkillCooldown(nameof(LightningStrike), cooldown);
+        //SkillsController.Instance.UpdateSkillCooldown(nameof(LightningStrike), cooldown);
 
         if (cooldown <= -0.1)
         {
@@ -120,11 +120,8 @@ public class LightningStrike : Skill
             {
                 enemies.Add(other.gameObject);
             }
-
         }
-        
     }
-
     private void OnTriggerExit(Collider other)
     {
         if(isServer)
@@ -134,7 +131,6 @@ public class LightningStrike : Skill
                 enemies.Remove(other.gameObject);
             }
         }
-        
     }
 
     public override void MovementBehaviour()

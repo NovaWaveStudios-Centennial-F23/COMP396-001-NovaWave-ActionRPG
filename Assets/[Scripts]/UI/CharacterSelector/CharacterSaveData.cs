@@ -10,11 +10,13 @@ public class CharacterSaveData
 { 
     public string Name;
     public int Level;
+    public int SaveNumber;
     public Sprite Icon;
 
-    public CharacterSaveData(string name, int level)
+    public CharacterSaveData(string name, int level, int saveNumber)
     {
         Name = name;
         Level = level;
+        SaveNumber = saveNumber;
     }
 }

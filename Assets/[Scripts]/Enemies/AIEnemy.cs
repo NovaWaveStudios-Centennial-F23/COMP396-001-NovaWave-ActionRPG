@@ -15,7 +15,7 @@ public class AIEnemy : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("AIENEMY AWAKE CALLED");
+        //Debug.Log("AIENEMY AWAKE CALLED");
         attackHandler = GetComponent<AttackHandler>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         navMeshAgent.speed = movementSpeed;
@@ -23,7 +23,7 @@ public class AIEnemy : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("UPDATE CALLED");
+        //Debug.Log("UPDATE CALLED");
         if (target == null)
         {
             FindClosestTarget();
@@ -37,7 +37,7 @@ public class AIEnemy : MonoBehaviour
             {
                 timer = 4f;
                 attackHandler.Attack(target);
-                Debug.Log("ATTACKING TARGET");
+                //Debug.Log("ATTACKING TARGET");
             }
         }
     }
@@ -68,13 +68,13 @@ public class AIEnemy : MonoBehaviour
         target = closestTarget;
         if (target != null)
         {
-            Debug.Log("CLOSEST PLAYER TARGETED");
+            //Debug.Log("CLOSEST PLAYER TARGETED");
         }
     }
 
     private void ChaseTarget()
     {
-        Debug.Log("CHASING TARGET");
+        //Debug.Log("CHASING TARGET");
         navMeshAgent.SetDestination(target.transform.position);
     }
 

@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 public class SkillTreeController : MonoBehaviour
 {
@@ -56,7 +57,6 @@ public class SkillTreeController : MonoBehaviour
     public void RecalculateModifiers()
     {
         skillTreeModifiers.Clear();
-
         foreach (SkillTreeNode[] tree in treeNodes)
         {
             if (tree.Length > 0)
@@ -134,6 +134,19 @@ public class SkillTreeController : MonoBehaviour
         RecalculateModifiers();
     }
 
+    public List<int> GetSkillTreeNodeLevels()
+    {
+        List<int> levels = new List<int>();
 
+        foreach (var nodeArr in treeNodes)
+        {
+            foreach (var node in nodeArr)
+            {
+                levels.Add(node.GetCurrentLevel());
+            }
+        }
+
+        return levels;
+    }
 }
 

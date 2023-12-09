@@ -15,8 +15,9 @@ public class CharacterSelectButton : GroupButton
     TextMeshProUGUI txtCharacterLevel;
 
     CharacterSelector characterSelector;
-    string characterName;
-    int characterLevel;
+    public string characterName;
+    public int characterLevel;
+    public int saveNumber;
     Sprite characterIcon;
 
     private void Awake()
@@ -29,6 +30,7 @@ public class CharacterSelectButton : GroupButton
     {
         characterName = data.Name;
         characterLevel = data.Level;
+        saveNumber = data.SaveNumber;
     }
 
     protected override void UpdateAppearance()

@@ -22,26 +22,45 @@ using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
+public enum InterfaceType
+{
+    Inventory,
+    Equipment
+}
+
 [CreateAssetMenu(fileName = "New Inventory Object", menuName = "ScriptableObejcts/Create New Inventory Object")]
 public class InventorySO : ScriptableObject
 {
     public InventoryDatabaseSO database;
+    public InterfaceType interfaceType;
     public Inventory Container;
+    public InventorySlot[] GetSlots 
+    {
+        get 
+        {
+            return Container.Slots;
+        }
+    }
 
-    public bool AddItem(Item _item, int _amount)
+    public bool AddItem(GearInfo _gearInfo, int _amount)
     {
         if (EmptySlotCount <= 0)
         {
             return false;
         }
 
-        InventorySlot slot = FindItemOnInventory(_item);
-        if (!database.Items[_item.Id].stackable || slot == null)
-        {
-            SetEmptySlot(_item, _amount);
-            return true;
-        }
-        slot.AddAmount(_amount);
+        InventorySlot slot = FindItemOnInventory(_gearInfo);
+
+        // All gears are not stackable
+        // if (!database.GearObjects[_gearInfo.Id].stackable || slot == null)
+        // {
+        //     SetEmptySlot(_gearInfo, _amount);
+        //     return true;
+        // }
+
+        SetEmptySlot(_gearInfo, _amount);
+
+        // slot.AddAmount(_amount);
         return true;
     }
 
@@ -50,9 +69,9 @@ public class InventorySO : ScriptableObject
         get
         {
             int counter = 0;
-            for (int i = 0; i < Container.Items.Length; i++)
+            for (int i = 0; i < GetSlots.Length; i++)
             {
-                if (Container.Items[i].item.Id <= -1)
+                if (GetSlots[i].gearInfo.Id <= -1)
                 {
                     counter++;
                 }
@@ -61,26 +80,26 @@ public class InventorySO : ScriptableObject
         }
     }
 
-    public InventorySlot FindItemOnInventory(Item _item)
+    public InventorySlot FindItemOnInventory(GearInfo _gearInfo)
     {
-        for (int i = 0; i < Container.Items.Length; i++)
+        for (int i = 0; i < GetSlots.Length; i++)
         {
-            if (Container.Items[i].item.Id == _item.Id)
+            if (GetSlots[i].gearInfo.Id == _gearInfo.Id)
             {
-                return Container.Items[i];
+                return GetSlots[i];
             }
         }
         return null;
     }
 
-    public InventorySlot SetEmptySlot(Item _item, int _amount)
+    public InventorySlot SetEmptySlot(GearInfo _gearInfo, int _amount)
     {
-        for (int i = 0; i < Container.Items.Length; i++)
+        for (int i = 0; i < GetSlots.Length; i++)
         {
-            if (Container.Items[i].item.Id <= -1)
+            if (GetSlots[i].gearInfo.Id <= -1)
             {
-                Container.Items[i].UpdateSlot(_item, _amount);
-                return Container.Items[i];
+                GetSlots[i].UpdateSlot(_gearInfo, _amount);
+                return GetSlots[i];
             }
         }
         // Set up UI to show inventory is full
@@ -94,11 +113,11 @@ public class InventorySO : ScriptableObject
         // check the slot is left/right slot and one of slot has double handed weapon
         // need to get left/right slot
 
-        if (item2.CanPlaceInSlot(item1.ItemObject) && item1.CanPlaceInSlot(item2.ItemObject))
+        if (item2.CanPlaceInSlot(item1.GearObject) && item1.CanPlaceInSlot(item2.GearObject))
         {
-            InventorySlot temp = new InventorySlot(item2.item, item2.amount);
-            item2.UpdateSlot(item1.item, item1.amount);
-            item1.UpdateSlot(temp.item, temp.amount);
+            InventorySlot temp = new InventorySlot(item2.gearInfo, item2.amount);
+            item2.UpdateSlot(item1.gearInfo, item1.amount);
+            item1.UpdateSlot(temp.gearInfo, temp.amount);
         }
     }
 
@@ -116,15 +135,17 @@ public class InventorySO : ScriptableObject
 public class Inventory
 {
     public static int numberOfSlots = 48;
-    public InventorySlot[] Items = new InventorySlot[numberOfSlots];
+    public InventorySlot[] Slots = new InventorySlot[numberOfSlots];
     public void Clear()
     {
-        for (int i = 0; i < Items.Length; i++)
+        for (int i = 0; i < Slots.Length; i++)
         {
-            Items[i].RemoveItem();
+            Slots[i].RemoveGear();
         }
     }
 }
+
+public delegate void SlotUpdated(InventorySlot _slot);
 
 //
 // InventorySlot class
@@ -132,19 +153,25 @@ public class Inventory
 [System.Serializable]
 public class InventorySlot
 {
-    public ItemType[] AllowedItems = new ItemType[0];
+    public GearSO.GearType[] AllowedSlots = new GearSO.GearType[0];
     [System.NonSerialized]
     public UserInterface parent;
-    public Item item = new Item();
+    [System.NonSerialized]
+    public GameObject slotDisplay;
+    [System.NonSerialized]
+    public SlotUpdated OnAfterUpdate;
+    [System.NonSerialized]
+    public SlotUpdated OnBeforeUpdate;
+    public GearInfo gearInfo = new GearInfo();
     public int amount;
 
-    public ItemSO ItemObject
+    public GearSO GearObject
     {
         get
         {
-            if (item.Id >= 0)
+            if (gearInfo.Id >= 0)
             {
-                return parent.inventory.database.Items[item.Id];
+                return parent.inventory.database.GearObjects[gearInfo.Id];
             }
             return null;
         }
@@ -153,48 +180,53 @@ public class InventorySlot
     // Constructor
     public InventorySlot()
     {
-        item = new Item();
-        amount = 0;
+        UpdateSlot(new GearInfo(), 0);
     }
 
-    public InventorySlot(Item _item, int _amount)
+    public InventorySlot(GearInfo _gearInfo, int _amount)
     {
-        item = _item;
+        UpdateSlot(_gearInfo, _amount);
+    }
+
+    // Functions
+    public void UpdateSlot(GearInfo _gearInfo, int _amount)
+    {
+        if (OnBeforeUpdate != null)
+        {
+            OnBeforeUpdate.Invoke(this);
+        }
+
+        gearInfo = _gearInfo;
         amount = _amount;
+
+        if (OnAfterUpdate != null)
+        {
+            OnAfterUpdate.Invoke(this);
+        }
     }
 
-    public void UpdateSlot(Item _item, int _amount)
+    public void RemoveGear()
     {
-        item = _item;
-        amount = _amount;
-    }
-
-    public void RemoveItem()
-    {
-        item = new Item();
-        amount = 0;
+        UpdateSlot(new GearInfo(), 0);
     }
 
     public void AddAmount(int value)
     {
-        amount += value;
+        UpdateSlot(gearInfo, amount += value);
     }
 
-    public bool CanPlaceInSlot(ItemSO _itemObject)
+    public bool CanPlaceInSlot(GearSO _gearObject)
     {
-        if (AllowedItems.Length <= 0 || _itemObject == null || _itemObject.data.Id < 0)
+        if (AllowedSlots.Length <= 0 || _gearObject == null || _gearObject.data.Id < 0)
         {
             return true;
         }
 
-        for (int i = 0; i < AllowedItems.Length; i++)
+        for (int i = 0; i < AllowedSlots.Length; i++)
         {
-            // return false if item type is double handed
-            // if (AllowedItems[i] == itemType.Staff) {
-            //     return false;
-            // }
+            // return false if item type is double handed here
 
-            if (_itemObject.itemType == AllowedItems[i])
+            if (_gearObject.gearType == AllowedSlots[i])
             {
                 return true;
             }

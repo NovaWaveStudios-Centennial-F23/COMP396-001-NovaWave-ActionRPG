@@ -32,6 +32,7 @@ public class PlayerMultiplayer : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
+            
             //allow the camera to be created
             playerCamera.SetActive(true);
 
@@ -40,18 +41,23 @@ public class PlayerMultiplayer : NetworkBehaviour
 
             while(StatsController.Instance == null || InGameUIManager.Instance == null)
             {
-                
                 yield return new WaitForEndOfFrame();
-
             }
 
-
-
+            Debug.Log($"Stats intialization for {netId} started.");
+            
             //Setup health for player
             health.CmdSetupHealth(
-            StatsController.Instance.GetPlayerModifier(Stat.Health).minValue,
-            StatsController.Instance.GetPlayerModifier(Stat.HealthRegen).minValue);
+            CalculationController.Instance.CalculatePlayerHealth(),
+            CalculationController.Instance.CalculatePlayerHealthRegen());
             InGameUIManager.Instance.playerHealthBar.Show(health.lifepool);
+
+            ItemController.Instance.SetPlayerHealth(health);
+
+            //Setup mana for player
+            mana.SetupMana(
+                CalculationController.Instance.CalculatePlayerMana(),
+                CalculationController.Instance.CalculatePlayerManaRegen());
 
             //setup mana for player
             InGameUIManager.Instance.playerManaBar.Initialize(mana);

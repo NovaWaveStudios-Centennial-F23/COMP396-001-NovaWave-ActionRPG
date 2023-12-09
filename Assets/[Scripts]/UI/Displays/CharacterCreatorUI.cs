@@ -3,10 +3,10 @@
  * Requires a class selection handler to observe changes from
  */
 
+using Mirror;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CharacterCreatorUI : MonoBehaviour
@@ -102,13 +102,13 @@ public class CharacterCreatorUI : MonoBehaviour
         characterNameInput.text = "";
         characterNameInput.gameObject.SetActive(false);
         comingSoonText.gameObject.SetActive(false);
-
-
     }
 
     public void CreateCharacter()
     {
-        if(SkillTreeController.instance != null)
+        SaveController.instance.characterName = characterNameInput.text;
+
+        if (SkillTreeController.instance != null)
         {
             SkillTreeController.instance.LoadSkillTree(new List<int>());
         }
@@ -118,7 +118,7 @@ public class CharacterCreatorUI : MonoBehaviour
             PlayerController.Instance.ResetPlayerInfo();
         }
 
-        SceneManager.LoadScene("MainLevel");
+        NetworkManager.singleton.StartHost();
     }
 
 }

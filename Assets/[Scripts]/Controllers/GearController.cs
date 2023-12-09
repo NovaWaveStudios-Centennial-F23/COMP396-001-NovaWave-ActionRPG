@@ -11,7 +11,6 @@ public class GearController : MonoBehaviour
 
     [SerializeField] private GearSO gearSO;
     [SerializeField] private GameObject gearPrefab;
-    [SerializeField] private List<Stats> playerStats;
     [SerializeField] private EnemyStatsTest enemyStats;
     //test variables
 
@@ -28,16 +27,19 @@ public class GearController : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void Update()
     {
-        playerStats = StatsController.Instance.GetAllPlayerStats();
+        if (Input.GetKey(KeyCode.H))
+        {
+            GearDropCalculation();
+        }
     }
 
     private void SpawnGear(GearSO.GearType gearType, GearSO.GearBase gearBase, GearSO.GearRarity gearRarity)
     {
         // Load Gear Scriptable Object
         gearSO = Resources.Load<GearSO>("Gear/" + gearType.ToString() + "/" + gearRarity.ToString() + gearBase.ToString());
-
+        Debug.Log("Gear/" + gearType.ToString() + "/" + gearRarity.ToString() + gearBase.ToString());
         System.Random random = new System.Random();
 
         for (int i = 0; i < (int)gearType; i++)
@@ -54,29 +56,32 @@ public class GearController : MonoBehaviour
             s.minValue = UnityEngine.Random.Range(s.minValue, s.maxValue);
             s.maxValue = s.minValue;
             gear.GetComponent<Gear>().GetGearStats().Add(s.stat, s);
+            Debug.Log(gear.GetComponent<Gear>().GetGearStats().Count);
         }
         foreach (Stats s in gearSO.affixes)
         {
             s.minValue = UnityEngine.Random.Range(s.minValue, s.maxValue);
             s.maxValue = s.minValue;
             gear.GetComponent<Gear>().GetGearStats().Add(s.stat, s);
+            Debug.Log(gear.GetComponent<Gear>().GetGearStats().Count);
         }
 
         gear.GetComponent<Gear>().InitGearStats();
+        //return gearSO;
     }
 
     public void GearDropCalculation()
     {
         // Number of possible drops
-        int dropNumber = (int)Mathf.Round(UnityEngine.Random.Range(enemyStats.GetEnemyStat(Stats.Stat.Range).minValue, enemyStats.GetEnemyStat(Stats.Stat.Range).maxValue));
+        int dropNumber = 1; // (int)Mathf.Round(UnityEngine.Random.Range(enemyStats.GetEnemyStat(Stats.Stat.Range).minValue, enemyStats.GetEnemyStat(Stats.Stat.Range).maxValue));
 
         // Drop Rate Stats
-        float enemyDropRate = UnityEngine.Random.Range(enemyStats.GetEnemyStat(Stats.Stat.DropRateP).minValue, enemyStats.GetEnemyStat(Stats.Stat.DropRateP).maxValue);
+        float enemyDropRate = 0; // UnityEngine.Random.Range(enemyStats.GetEnemyStat(Stats.Stat.DropRateP).minValue, enemyStats.GetEnemyStat(Stats.Stat.DropRateP).maxValue);
         float playerDropRate = UnityEngine.Random.Range(StatsController.Instance.GetPlayerModifier(Stats.Stat.DropRateP).minValue, StatsController.Instance.GetPlayerModifier(Stats.Stat.DropRateP).maxValue);
         float dropRate = enemyDropRate + playerDropRate;
 
         // Item Rarity Stats
-        float enemyItemRarity = UnityEngine.Random.Range(enemyStats.GetEnemyStat(Stats.Stat.ItemRarityP).minValue, enemyStats.GetEnemyStat(Stats.Stat.ItemRarityP).maxValue);
+        float enemyItemRarity = 0; // UnityEngine.Random.Range(enemyStats.GetEnemyStat(Stats.Stat.ItemRarityP).minValue, enemyStats.GetEnemyStat(Stats.Stat.ItemRarityP).maxValue);
         float playerItemRarity = UnityEngine.Random.Range(StatsController.Instance.GetPlayerModifier(Stats.Stat.ItemRarityP).minValue, StatsController.Instance.GetPlayerModifier(Stats.Stat.ItemRarityP).maxValue);
         float itemRarity = enemyItemRarity + playerItemRarity;
 

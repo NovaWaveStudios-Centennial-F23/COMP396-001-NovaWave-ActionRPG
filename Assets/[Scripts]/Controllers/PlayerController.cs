@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
             Instance = this;
         }
 
-        ResetPlayerInfo();
+        //ResetPlayerInfo();
 
         SceneManager.sceneUnloaded += HandleSceneUnload;
         SceneManager.sceneLoaded += HandleSceneLoad;
@@ -49,9 +49,9 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    public int CurrentLevel { get; private set; }
-    public int PlayerSkillPoints { get; private set; }
-    public int SkillSkillPoints {  get; private set; }
+    public int CurrentLevel { get; set; }
+    public int PlayerSkillPoints { get; set; }
+    public int SkillSkillPoints {  get; set; }
 
     public event Action<int> OnPlayerSkillPointsChange = delegate { };
     public event Action<int> OnSkillSkillPointsChange = delegate { };

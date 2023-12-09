@@ -2,7 +2,7 @@
  * Used for displaying UI when user hovers over a interactive object
  * Singleton design pattern since there should only be one tooltip on screen at any given time
 
- * Yusuke Kuroki: Added itemTooltip, ShowGearTooltip and ShowItemTooltip
+ * Yusuke Kuroki: Added ShowGearTooltip
  */
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,9 +22,6 @@ public class ToolTipController : MonoBehaviour
 
     [SerializeField]
     GameObject gearTooltip;
-
-    [SerializeField]
-    GameObject itemTooltip;
 
     private List<GameObject> toolTips = new();
 
@@ -49,8 +46,7 @@ public class ToolTipController : MonoBehaviour
             skillTooltip,
             playerSkillTooltip,
             nodeTooltip,
-            gearTooltip,
-            itemTooltip
+            gearTooltip
         };
 
         CloseTooltips();
@@ -62,7 +58,6 @@ public class ToolTipController : MonoBehaviour
         skillTooltip.SetActive(true);
         skillTooltip.GetComponent<SkillToolTip>().DisplayDetails(node);
     }
-
 
     public void CloseTooltips()
     {
@@ -84,12 +79,5 @@ public class ToolTipController : MonoBehaviour
         CloseTooltips();
         gearTooltip.SetActive(true);
         gearTooltip.GetComponent<GearToolTip>().DisplayDetails(gear);
-    }
-
-    public void ShowItemTooltip(ItemSO item)
-    {
-        CloseTooltips();
-        itemTooltip.SetActive(true);
-        itemTooltip.GetComponent<ItemToolTip>().DisplayDetails(item);
     }
 }

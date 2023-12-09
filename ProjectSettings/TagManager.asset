@@ -10,6 +10,8 @@ TagManager:
   - EnemyEasy
   - EnemyMedium
   - EnemyHard
+  - GroundedGear
+  - Potion
   layers:
   - Default
   - TransparentFX

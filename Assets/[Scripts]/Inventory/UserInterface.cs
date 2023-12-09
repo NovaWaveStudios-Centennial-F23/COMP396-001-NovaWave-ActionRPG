@@ -1,14 +1,11 @@
+using System.Diagnostics;
 /*
     Author: Yusuke Kuroki
     
     This script is main inventory script. It cannot be use directory, but can be extended.
 
-    Tasks:
-    - Check if item is stackable and separate if needed(or separate right/left click)
-    - Check if item is stackable then remove item all or one by one
 */
 
-using System.Diagnostics;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,7 +14,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 
-public abstract class UserInterface : MonoBehaviour
+public abstract class UserInterface : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     // Inventory Scriptable object
     public InventorySO inventory;
@@ -31,31 +28,47 @@ public abstract class UserInterface : MonoBehaviour
 
     // properties for dropping item
     public GameObject player;
-    public GroundedItem groundedItem;
+    public PickableObject groundedItem;
+
+    // property for tooltip
+    private GearSO targetGearSO;
 
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < inventory.Container.Items.Length; i++)
+        for (int i = 0; i < inventory.GetSlots.Length; i++)
         {
-            inventory.Container.Items[i].parent = this;
+            inventory.GetSlots[i].parent = this;
+            inventory.GetSlots[i].OnAfterUpdate += OnSlotUpdate;
         }
         CreateSlots();
+
         AddEvent(gameObject, EventTriggerType.PointerEnter, delegate { OnEnterInterface(gameObject); });
         AddEvent(gameObject, EventTriggerType.PointerExit, delegate { OnExitInterface(gameObject); });
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnSlotUpdate(InventorySlot _slot)
     {
-        slotsOnInterface.UpdateSlotDisplay();
+        if (_slot.gearInfo.Id >= 0)
+        {
+            _slot.slotDisplay.transform.GetChild(0).GetComponentInChildren<Image>().sprite = _slot.GearObject.icon;
+            _slot.slotDisplay.transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(1, 1, 1, 1);
+            _slot.slotDisplay.GetComponentInChildren<TextMeshProUGUI>().text = _slot.amount == 1 ? "" : _slot.amount.ToString("n0");
+        }
+        else
+        {
+            // empty slot
+            _slot.slotDisplay.transform.GetChild(0).GetComponentInChildren<Image>().sprite = null;
+            _slot.slotDisplay.transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(1, 1, 1, 0);
+            _slot.slotDisplay.GetComponentInChildren<TextMeshProUGUI>().text = "";
+        }
     }
 
     public abstract void CreateSlots();
 
     protected void AddEvent(GameObject obj, EventTriggerType type, UnityAction<BaseEventData> action)
     {
-        // Add event to event trigger
+        // Add events to event trigger
         EventTrigger trigger = obj.GetComponent<EventTrigger>();
         var EventTrigger = new EventTrigger.Entry();
         EventTrigger.eventID = type;
@@ -64,10 +77,29 @@ public abstract class UserInterface : MonoBehaviour
     }
 
     // Mouse events
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (targetGearSO != null)
+        {
+            ToolTipController.Instance.ShowGearTooltip(targetGearSO);
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        ToolTipController.Instance.CloseTooltips();
+    }
+
     public void OnEnter(GameObject obj)
     {
         // copy item to hover mouse item
         MouseData.slotHoveredOver = obj;
+
+        // keep gearSO data to show tooltip if slot is not empty
+        if (slotsOnInterface[obj].gearInfo.Id >= 0)
+        {
+            targetGearSO = slotsOnInterface[obj].GearObject;
+        }
     }
 
     public void OnExit(GameObject obj)
@@ -78,13 +110,11 @@ public abstract class UserInterface : MonoBehaviour
 
     public void OnEnterInterface(GameObject obj)
     {
-        // set ui on mouse cursor
         MouseData.interfaceMouseIsOver = obj.GetComponent<UserInterface>();
     }
 
     public void OnExitInterface(GameObject obj)
     {
-        // Remove ui from mouse cursor
         MouseData.interfaceMouseIsOver = null;
     }
 
@@ -97,7 +127,7 @@ public abstract class UserInterface : MonoBehaviour
     public GameObject CreateTempItem(GameObject obj)
     {
         GameObject tempItem = null;
-        if (slotsOnInterface[obj].item.Id >= 0)
+        if (slotsOnInterface[obj].gearInfo.Id >= 0)
         {
         // Get item from inventory
             tempItem = new GameObject();
@@ -105,7 +135,7 @@ public abstract class UserInterface : MonoBehaviour
             rt.sizeDelta = new Vector2(xSlot, ySlot);
             tempItem.transform.SetParent(transform.parent);
             var img = tempItem.AddComponent<Image>();
-            img.sprite = slotsOnInterface[obj].ItemObject.icon;
+            img.sprite = slotsOnInterface[obj].GearObject.icon;
             img.raycastTarget = false;
         }
 
@@ -125,12 +155,12 @@ public abstract class UserInterface : MonoBehaviour
         if (MouseData.interfaceMouseIsOver == null)
         {
             // Instantiate item to field
-            ItemSO droppedItemData = slotsOnInterface[obj].ItemObject;
-            groundedItem.itemSO = droppedItemData;
+            GearSO droppedItemData = slotsOnInterface[obj].GearObject;
+            groundedItem.gearSO = droppedItemData;
             Instantiate(groundedItem, player.transform.position, Quaternion.identity);
 
             // Remove dragged item from inventory
-            slotsOnInterface[obj].RemoveItem();
+            slotsOnInterface[obj].RemoveGear();
             return;
         }
         if (MouseData.slotHoveredOver)
@@ -166,9 +196,9 @@ public static class ExtensionMethods
     {
         foreach (KeyValuePair<GameObject, InventorySlot> _slot in _slotsOnInterface)
         {
-            if (_slot.Value.item.Id >= 0)
+            if (_slot.Value.gearInfo.Id >= 0)
             {
-                _slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().sprite = _slot.Value.ItemObject.icon;
+                _slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().sprite = _slot.Value.GearObject.icon;
                 _slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(1, 1, 1, 1);
                 _slot.Key.GetComponentInChildren<TextMeshProUGUI>().text = _slot.Value.amount == 1 ? "" : _slot.Value.amount.ToString("n0");
             }

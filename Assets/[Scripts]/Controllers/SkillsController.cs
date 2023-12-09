@@ -49,6 +49,7 @@ public class SkillsController : MonoBehaviour
     void Update()
     {
         Raycast();
+        UpdateSkillCooldown();
     }
 
     private void Raycast()
@@ -114,7 +115,7 @@ public class SkillsController : MonoBehaviour
                 }
 
                 // Activate Skill Cooldown
-                activeSkillCooldown.Add(skill, FindStat(activeSkillSO, Stat.Cooldown).minValue);
+                activeSkillCooldown.Add(skill, FindStat(activeSkillSO, Stat.Cooldown).minValue + Time.deltaTime);
             }
 
         }
@@ -122,17 +123,20 @@ public class SkillsController : MonoBehaviour
         {
             Debug.Log(skill + " is on cooldown.");
         }
+
     }
 
-    public void SetSkillCooldown(string skill, float cooldown)
+    public void UpdateSkillCooldown()
     {
-        if (cooldown <= 0)
+        var keys = new List<string>(activeSkillCooldown.Keys);
+
+        foreach (string key in keys)
         {
-            activeSkillCooldown.Remove(skill);
-        }
-        else
-        {
-            activeSkillCooldown[skill] = cooldown;
+            activeSkillCooldown[key] -= Time.deltaTime;
+            if (activeSkillCooldown[key] <= 0)
+            {
+                activeSkillCooldown.Remove(key);
+            }
         }
     }
 
@@ -150,5 +154,6 @@ public class SkillsController : MonoBehaviour
     {
         this.player = player;
         this.projectileSpawner = projectileSpawner;
+        activeSkillCooldown = new Dictionary<string, float>();
     }
 }

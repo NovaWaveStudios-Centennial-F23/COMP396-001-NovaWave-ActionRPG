@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : NetworkBehaviour
 {
+
     public void LoadLevelOne()
     {
         if (isServer)

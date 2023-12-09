@@ -1289,6 +1289,7 @@ GameObject:
   - component: {fileID: 2317559069693686482}
   - component: {fileID: 1488117040203930718}
   - component: {fileID: 1476365748144237202}
+  - component: {fileID: 153721525448010664}
   m_Layer: 0
   m_Name: ChestMonster
   m_TagString: Enemy
@@ -1435,7 +1436,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fc6eb1fb7c528245a9b85cb12c1157e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  detectionRadius: 6
+  movementSpeed: 1.5
 --- !u!114 &8089286807707774452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1451,8 +1453,13 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  lifepool:
+    maxValue: 0
+    currentValue: 0
   reloadDelay: 5
+  maxHealth: 50
   healthRegen: 0
+  experience: 8
   currentState: 0
 --- !u!114 &2317559069693686482
 MonoBehaviour:
@@ -1499,7 +1506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 1
+  syncDirection: 0
   syncMode: 0
   syncInterval: 0
   target: {fileID: 1739248659869719555}
@@ -1522,6 +1529,23 @@ MonoBehaviour:
   compressRotation: 0
   positionPrecision: 0.01
   scalePrecision: 0.01
+--- !u!114 &153721525448010664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3679715036756387083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f6f3bf89aa97405989c802ba270f815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  clientAuthority: 0
+  animator: {fileID: 5149093756353088485}
 --- !u!1 &3959348012710016404
 GameObject:
   m_ObjectHideFlags: 0
@@ -2352,6 +2376,7 @@ GameObject:
   - component: {fileID: 8613545545095809976}
   - component: {fileID: 1351767193629705326}
   - component: {fileID: 471721378088561549}
+  - component: {fileID: 4677893644637638953}
   m_Layer: 0
   m_Name: ChestMonster
   m_TagString: Enemy
@@ -2498,7 +2523,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fc6eb1fb7c528245a9b85cb12c1157e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  detectionRadius: 6
+  movementSpeed: 1.5
 --- !u!114 &8233691539367418235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2514,8 +2540,13 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  lifepool:
+    maxValue: 0
+    currentValue: 0
   reloadDelay: 5
+  maxHealth: 50
   healthRegen: 0
+  experience: 8
   currentState: 0
 --- !u!114 &8613545545095809976
 MonoBehaviour:
@@ -2562,7 +2593,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 1
+  syncDirection: 0
   syncMode: 0
   syncInterval: 0
   target: {fileID: 529934048165642082}
@@ -2585,6 +2616,23 @@ MonoBehaviour:
   compressRotation: 0
   positionPrecision: 0.01
   scalePrecision: 0.01
+--- !u!114 &4677893644637638953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7260809235047271677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f6f3bf89aa97405989c802ba270f815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  clientAuthority: 0
+  animator: {fileID: 9181673778474965267}
 --- !u!1 &7340924338268215847
 GameObject:
   m_ObjectHideFlags: 0
@@ -2893,6 +2941,7 @@ GameObject:
   - component: {fileID: 6195152558685907181}
   - component: {fileID: 5725557694357723679}
   - component: {fileID: 4158139989111224512}
+  - component: {fileID: 3923102523314234720}
   m_Layer: 0
   m_Name: ChestMonster
   m_TagString: Enemy
@@ -3039,7 +3088,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fc6eb1fb7c528245a9b85cb12c1157e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  detectionRadius: 6
+  movementSpeed: 1.5
 --- !u!114 &7653212316986847089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3055,8 +3105,13 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  lifepool:
+    maxValue: 0
+    currentValue: 0
   reloadDelay: 5
+  maxHealth: 50
   healthRegen: 0
+  experience: 8
   currentState: 0
 --- !u!114 &6195152558685907181
 MonoBehaviour:
@@ -3103,7 +3158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 1
+  syncDirection: 0
   syncMode: 0
   syncInterval: 0
   target: {fileID: 4441941557278343343}
@@ -3126,6 +3181,23 @@ MonoBehaviour:
   compressRotation: 0
   positionPrecision: 0.01
   scalePrecision: 0.01
+--- !u!114 &3923102523314234720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8296773742265005558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f6f3bf89aa97405989c802ba270f815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  clientAuthority: 0
+  animator: {fileID: 690843092216797984}
 --- !u!1 &8620671533393635545
 GameObject:
   m_ObjectHideFlags: 0

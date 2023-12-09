@@ -13,9 +13,9 @@ public class ExperienceManager : MonoBehaviour
     [SerializeField]
     AudioClip levelupClip;
 
-    public int CurrentLevel { get; private set; } = 1;
-    public int CurrentExperience { get; private set; } = 0;
-    public int ExperienceToNextLevel { get; private set; } = 100;
+    public int CurrentLevel { get; set; } = 1;
+    public int CurrentExperience { get; set; } = 0;
+    public int ExperienceToNextLevel { get; set; } = 100;
 
 
     private void Awake()
