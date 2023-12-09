@@ -128,6 +128,10 @@ public class Health : NetworkBehaviour
     {
 
         currentState = CharacterState.Dead;
+        if (gameObject.CompareTag("Player"))
+        {
+            NotifyGameManagerOfDeath();
+        }
         //StartCoroutine(ReloadCurrentSceneWithDelay());
         Debug.Log(gameObject.name + " has died.");
 
@@ -168,11 +172,18 @@ public class Health : NetworkBehaviour
     {
         NetworkServer.Destroy(gameObject);
     }
-
-/*    private IEnumerator ReloadCurrentSceneWithDelay()
+    private void NotifyGameManagerOfDeath()
     {
-        yield return new WaitForSeconds(reloadDelay);
-        string sceneName = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene(sceneName);
-    }*/
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.ShowDeathPanel();
+        }
+    }
+
+    /*    private IEnumerator ReloadCurrentSceneWithDelay()
+        {
+            yield return new WaitForSeconds(reloadDelay);
+            string sceneName = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene(sceneName);
+        }*/
 }
