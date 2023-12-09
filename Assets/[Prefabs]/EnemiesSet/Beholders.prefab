@@ -537,6 +537,7 @@ MonoBehaviour:
     maxValue: 0
     currentValue: 0
   reloadDelay: 5
+  maxHealth: 50
   healthRegen: 0
   experience: 8
   currentState: 0
@@ -4657,6 +4658,7 @@ MonoBehaviour:
     maxValue: 0
     currentValue: 0
   reloadDelay: 5
+  maxHealth: 50
   healthRegen: 0
   experience: 8
   currentState: 0
@@ -5489,6 +5491,7 @@ MonoBehaviour:
     maxValue: 0
     currentValue: 0
   reloadDelay: 5
+  maxHealth: 50
   healthRegen: 0
   experience: 8
   currentState: 0

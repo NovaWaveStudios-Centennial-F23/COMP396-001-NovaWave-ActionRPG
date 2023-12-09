@@ -7,6 +7,8 @@ public class Health : NetworkBehaviour
     [SyncVar(hook = nameof(OnHealthChanged))]
     public ValuePool lifepool; // Assuming this is your character's health pool
     public float reloadDelay = 5.0f; // Time in seconds before the scene reloads
+    [SerializeField]
+    private float enemyHealth = 100f; // Default max health, can be modified in the inspector
 
     [SerializeField]
     float healthRegen;//will need to get this from calculator later
@@ -36,35 +38,17 @@ public class Health : NetworkBehaviour
                 };
                 experience = 0;
             }
-            else if (gameObject.CompareTag("EnemyEasy"))
+            else if (gameObject.CompareTag("Enemy"))
             {
                 lifepool = new ValuePool
                 {
-                    maxValue = 100f, // Enemy has less health
-                    currentValue = 100f
+                    maxValue = enemyHealth, // Enemy has less health
+                    currentValue = enemyHealth
                 };
                 experience = 8;
             }
 
-            else if (gameObject.CompareTag("EnemyMedium"))
-            {
-                lifepool = new ValuePool
-                {
-                    maxValue = 200f, // Enemy has less health
-                    currentValue = 200f
-                };
-                experience = 14;
-            }
 
-            else if (gameObject.CompareTag("EnemyHard"))
-            {
-                lifepool = new ValuePool
-                {
-                    maxValue = 300f, // Enemy has less health
-                    currentValue = 300f
-                };
-                experience = 25;
-            }
             else
             {
                 lifepool = new ValuePool

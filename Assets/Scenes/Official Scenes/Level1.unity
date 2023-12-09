@@ -67326,6 +67326,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 440979064}
     m_Modifications:
     - target: {fileID: 428892637414170399, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
+      propertyPath: maxHealth
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 428892637414170399, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
       propertyPath: experience
       value: 8
       objectReference: {fileID: 0}
@@ -67386,12 +67390,20 @@ PrefabInstance:
       value: 1145089144
       objectReference: {fileID: 0}
     - target: {fileID: 7136211829621535539, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
+      propertyPath: maxHealth
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7136211829621535539, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
       propertyPath: experience
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8068810470491326893, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
       propertyPath: sceneId
       value: 3914590676
+      objectReference: {fileID: 0}
+    - target: {fileID: 8769801987890159189, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
+      propertyPath: maxHealth
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8769801987890159189, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
       propertyPath: experience
@@ -75118,6 +75130,7 @@ MonoBehaviour:
     maxValue: 0
     currentValue: 0
   reloadDelay: 5
+  maxHealth: 300
   healthRegen: 0
   experience: 8
   currentState: 0
@@ -75960,6 +75973,7 @@ MonoBehaviour:
     maxValue: 0
     currentValue: 0
   reloadDelay: 5
+  maxHealth: 300
   healthRegen: 0
   experience: 8
   currentState: 0
@@ -81343,6 +81357,7 @@ MonoBehaviour:
     maxValue: 0
     currentValue: 0
   reloadDelay: 5
+  maxHealth: 300
   healthRegen: 0
   experience: 8
   currentState: 0
