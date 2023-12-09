@@ -9994,7 +9994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fc6eb1fb7c528245a9b85cb12c1157e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRadius: 10
+  detectionRadius: 8
   movementSpeed: 3.5
 --- !u!114 &200322952
 MonoBehaviour:
@@ -50432,7 +50432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fc6eb1fb7c528245a9b85cb12c1157e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRadius: 10
+  detectionRadius: 8
   movementSpeed: 3.5
 --- !u!114 &998444381
 MonoBehaviour:
@@ -90397,7 +90397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fc6eb1fb7c528245a9b85cb12c1157e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRadius: 10
+  detectionRadius: 8
   movementSpeed: 3.5
 --- !u!114 &1811062373
 MonoBehaviour:

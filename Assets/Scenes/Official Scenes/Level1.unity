@@ -20905,18 +20905,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7653212316986847089, guid: 8cb81f4071a5b5b4c89b53e0fa8e0392, type: 3}
-      propertyPath: experience
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8089286807707774452, guid: 8cb81f4071a5b5b4c89b53e0fa8e0392, type: 3}
-      propertyPath: experience
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8233691539367418235, guid: 8cb81f4071a5b5b4c89b53e0fa8e0392, type: 3}
-      propertyPath: experience
-      value: 8
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -52585,21 +52573,9 @@ PrefabInstance:
       propertyPath: sceneId
       value: 1351528779
       objectReference: {fileID: 0}
-    - target: {fileID: 1871853263155962021, guid: bf24425a7c1c560438efa33d1ce166dd, type: 3}
-      propertyPath: experience
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2163150220870339292, guid: bf24425a7c1c560438efa33d1ce166dd, type: 3}
-      propertyPath: experience
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 5231227823945076180, guid: bf24425a7c1c560438efa33d1ce166dd, type: 3}
       propertyPath: m_Name
       value: Beholders
-      objectReference: {fileID: 0}
-    - target: {fileID: 5956568391237625323, guid: bf24425a7c1c560438efa33d1ce166dd, type: 3}
-      propertyPath: experience
-      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8297587454919399167, guid: bf24425a7c1c560438efa33d1ce166dd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -57703,10 +57679,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1429481156}
     m_Modifications:
-    - target: {fileID: 428892637414170399, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
-      propertyPath: experience
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 2713979661702632281, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
       propertyPath: sceneId
       value: 4265083058
@@ -57755,17 +57727,9 @@ PrefabInstance:
       propertyPath: sceneId
       value: 1933088707
       objectReference: {fileID: 0}
-    - target: {fileID: 7136211829621535539, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
-      propertyPath: experience
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 8068810470491326893, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
       propertyPath: sceneId
       value: 197423986
-      objectReference: {fileID: 0}
-    - target: {fileID: 8769801987890159189, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
-      propertyPath: experience
-      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 9040295405732471696, guid: cf0e0a0ea04ebd145972b1ce32263d63, type: 3}
       propertyPath: m_Name
@@ -75368,7 +75332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fc6eb1fb7c528245a9b85cb12c1157e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRadius: 10
+  detectionRadius: 8
   movementSpeed: 3.5
 --- !u!1 &3316479355762824733
 GameObject:
@@ -78917,7 +78881,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fc6eb1fb7c528245a9b85cb12c1157e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRadius: 10
+  detectionRadius: 8
   movementSpeed: 3.5
 --- !u!4 &4756799449957359906
 Transform:
@@ -84807,7 +84771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fc6eb1fb7c528245a9b85cb12c1157e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRadius: 10
+  detectionRadius: 8
   movementSpeed: 3.5
 --- !u!136 &8460812797315926563
 CapsuleCollider:
