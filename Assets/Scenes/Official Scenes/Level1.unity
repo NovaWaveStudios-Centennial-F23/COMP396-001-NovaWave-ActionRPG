@@ -16843,10 +16843,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeathPortal
       objectReference: {fileID: 0}
-    - target: {fileID: 7526732332086378036, guid: 9630c12a035aade44a82f006bcda3a0f, type: 3}
-      propertyPath: controller
-      value: 
-      objectReference: {fileID: 1648688761}
+    - target: {fileID: 5388005427547840945, guid: 9630c12a035aade44a82f006bcda3a0f, type: 3}
+      propertyPath: sceneId
+      value: 702393588
+      objectReference: {fileID: 0}
     - target: {fileID: 8417797604356278280, guid: 9630c12a035aade44a82f006bcda3a0f, type: 3}
       propertyPath: m_Pivot.x
       value: 0
