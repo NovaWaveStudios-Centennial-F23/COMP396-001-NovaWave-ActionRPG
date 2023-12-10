@@ -147,6 +147,7 @@ GameObject:
   - component: {fileID: 1685428427506927829}
   - component: {fileID: 4429289859644564415}
   - component: {fileID: 7526732332086378036}
+  - component: {fileID: 7819575725970971555}
   m_Layer: 5
   m_Name: DeathPortal
   m_TagString: Untagged
@@ -250,7 +251,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathPanel: {fileID: 5326474120731978276}
-  controller: {fileID: 0}
+  controller: {fileID: 7819575725970971555}
+--- !u!114 &7819575725970971555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1723033098673908228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f103dfabace1114d8df4e7ae31a7ebc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
 --- !u!1 &5326474120731978276
 GameObject:
   m_ObjectHideFlags: 0

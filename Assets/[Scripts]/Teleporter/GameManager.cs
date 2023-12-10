@@ -1,11 +1,14 @@
+using Mirror;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject deathPanel; // Reference to the death panel
-    [SerializeField]
-    SceneController controller;
+
     // Singleton instance
     public static GameManager Instance { get; private set; }
 
@@ -48,6 +51,13 @@ public class GameManager : MonoBehaviour
     public void Teleport()
     {
         HideDeathPanel();
-        controller.LoadTown();
+        LoadTown();
+    }
+
+    public void LoadTown()
+    {
+
+            NetworkManager.singleton.ServerChangeScene("Town");
+
     }
 }
