@@ -19,15 +19,24 @@ public class SkillPointTracker : MonoBehaviour
 
     void OnEnable()
     {
-        if (isPlayerSkillTree)
+        // Safely check if PlayerController.Instance and its properties are not null
+        if (PlayerController.Instance != null)
         {
-            HandleSkillChange(PlayerController.Instance.PlayerSkillPoints);
+            if (isPlayerSkillTree && PlayerController.Instance.PlayerSkillPoints != null)
+            {
+                HandleSkillChange(PlayerController.Instance.PlayerSkillPoints);
+            }
+            else if (PlayerController.Instance.SkillSkillPoints != null)
+            {
+                HandleSkillChange(PlayerController.Instance.SkillSkillPoints);
+            }
         }
         else
         {
-            HandleSkillChange(PlayerController.Instance.SkillSkillPoints);
+            Debug.LogWarning("PlayerController.Instance is not initialized yet.");
         }
     }
+
 
     IEnumerator GetPlayerControllerInstance()
     {
